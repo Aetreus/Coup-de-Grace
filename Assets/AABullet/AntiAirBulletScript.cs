@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class AntiAirBulletScript : MonoBehaviour {
-
-    public float speed;
+    
     public float timer;
+    public float speed;
 
-    private Vector3 velocity;
+    private Vector3 velocity = new Vector3(0, 0, 1).normalized;
 
     // Use this for initialization
     void Start()
@@ -18,9 +18,9 @@ public class AntiAirBulletScript : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(velocity * Time.deltaTime);
+        transform.Translate(velocity * speed * Time.deltaTime);
 
-        //print(speed);
+        //print(velocity);
 
         timer -= Time.deltaTime;
         if (timer < 0)
@@ -28,21 +28,20 @@ public class AntiAirBulletScript : MonoBehaviour {
             GameObject.Destroy(gameObject);
         }
     }
-
-    public void SetVel(Vector3 direction)
+    /*
+    public void SetVel(Vector3 v)
     {
-        print(direction);
         print(velocity);
-        velocity = direction.normalized * speed;
+        print(v);
+        velocity = v;
         print(velocity);
     }
-
-    /*
+    */
+    
     void OnCollisionEnter(Collision collision)
     {
         //insert what to do when hitting player
 
         GameObject.Destroy(gameObject);
     }
-    */
 }

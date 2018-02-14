@@ -33,7 +33,7 @@ public class TurretAim : MonoBehaviour {
         Vector3 intercept = InterceptVector();
 
         //rotate the faceVector toward
-        faceVector = Vector3.RotateTowards(faceVector, intercept, rotateDelta, 0.0f).normalized;
+        faceVector = Vector3.RotateTowards(faceVector, intercept, rotateDelta*Time.deltaTime, 0.0f).normalized;
 
         //change the turret's position to match the faceVector
         UpdateTransform();
@@ -45,7 +45,7 @@ public class TurretAim : MonoBehaviour {
             float angle = Vector3.Angle(faceVector, intercept);
 
             //if the target is close enough and the faceVector is close enough to the intercept
-            if (dist <= minFireDist && angle <= minFireDist)
+            if (dist <= minFireDist && angle <= minFireAngle)
             {
                 //fire and reset the cooldown
                 Fire();
@@ -61,7 +61,7 @@ public class TurretAim : MonoBehaviour {
     //get the target's velocity information
     void UpdateVelocity()
     {
-        targetVel = Vector3.zero;
+        targetVel = new Vector3(2, 2, 2);
     }
 
     //
@@ -106,6 +106,7 @@ public class TurretAim : MonoBehaviour {
         Vector3 spawnLoc = transform.position + faceVector.normalized * bulletSpawnOffset;
         Quaternion spawnRot = Quaternion.LookRotation(faceVector);
         Instantiate(bullet, spawnLoc, spawnRot);
-        bullet.GetComponent<AntiAirBulletScript>().SetVel(faceVector);
+        //bullet.GetComponent<AntiAirBulletScript>().SetVel(faceVector.normalized * shotSpeed);
+        bullet.GetComponent<AntiAirBulletScript>().speed = shotSpeed;
     }
 }
