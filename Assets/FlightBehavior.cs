@@ -36,20 +36,20 @@ public class FlightBehavior : MonoBehaviour {
 
         float thrustMagnitude = maxThrust;
         Vector3 thrust = rb.transform.forward * thrustMagnitude;
-        rb.AddForce(thrust, ForceMode.Impulse);
+        rb.AddForce(thrust, ForceMode.Force);
 
         AoA = Vector3.Angle(rb.velocity, rb.transform.forward);
-        float liftMagnitude = (1 / 2) * airDensity * wingArea * (float)Math.Pow((double)rb.velocity.magnitude,2) * CalculateLiftCoeff();
+        float liftMagnitude = (1F / 2) * airDensity * wingArea * (float)Math.Pow((double)rb.velocity.magnitude,2) * CalculateLiftCoeff();
         Vector3 lift = new Vector3(0, liftMagnitude, 0);//TODO:Should be seperating lift from induced drag. 
-        rb.AddForce(lift, ForceMode.Impulse);
+        rb.AddForce(lift, ForceMode.Force);
 
-        float dragMagnitude = (1 / 2) * airDensity * wingArea * (float)Math.Pow((double)rb.velocity.magnitude,2) * dragCoeff;
+        float dragMagnitude = (1F / 2) * airDensity * wingArea * (float)Math.Pow((double)rb.velocity.magnitude,2) * dragCoeff;
         Vector3 drag = rb.velocity.normalized * -1 * dragMagnitude;
-        rb.AddForce(drag, ForceMode.Impulse);
+        rb.AddForce(drag, ForceMode.Force);
 
 
         //Unity is left-handed, so all moments need to be inverted to keep constants in line with reference values
-        float cMMagnitude = (1 / 2) * airDensity * wingArea * (float)Math.Pow((double)rb.velocity.magnitude, 2) * CalculatePitchingCoeff() * -1;
+        float cMMagnitude = (1F / 2) * airDensity * wingArea * (float)Math.Pow((double)rb.velocity.magnitude, 2) * CalculatePitchingCoeff() * -1;
         rb.AddRelativeTorque(cMMagnitude, 0, 0);
     }
 
@@ -62,6 +62,10 @@ public class FlightBehavior : MonoBehaviour {
         else if(AoA > 20)
         {
             return 2.4F;
+        }
+        else if(AoA < -10)
+        {
+            return -0.9F;
         }
         else
         {

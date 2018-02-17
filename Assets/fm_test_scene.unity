@@ -292,7 +292,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dragCoeff: 0.04
   wingArea: 56
-  maxThrust: 60000
+  maxThrust: 210000
   pitchingMomentCoeffIntercept: 0.05
   pitchingMomentCoeffSlope: -0.01
 --- !u!54 &1734864282
