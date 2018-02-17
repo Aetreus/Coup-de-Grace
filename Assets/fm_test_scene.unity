@@ -187,11 +187,11 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 161613250}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.25, z: -0.6666667}
+  m_LocalScale: {x: 0.125, y: 0.25, z: 0.06666667}
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1734864286}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &732064454
@@ -257,7 +257,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &1734864280
 GameObject:
@@ -272,6 +272,7 @@ GameObject:
   - component: {fileID: 1734864283}
   - component: {fileID: 1734864282}
   - component: {fileID: 1734864281}
+  - component: {fileID: 1734864287}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -293,11 +294,11 @@ MonoBehaviour:
   dragCoeff: 0.04
   wingArea: 56
   maxThrust: 300000
-  pitchingMomentCoeffIntercept: 0.05
+  pitchingMomentCoeffIntercept: 0.02
   pitchingMomentCoeffSlope: -0.01
   yawMomentCoeffIntercept: 0
-  yawMomentCoeffSlope: -0.05
-  aileronControlCoeff: 0.25
+  yawMomentCoeffSlope: -0.15
+  aileronControlCoeff: 0.45
   elevatorControlCoeff: 0.3
   rudderControlCoeff: 0.1
 --- !u!54 &1734864282
@@ -309,7 +310,7 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 20000
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0.1
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -376,8 +377,20 @@ Transform:
   m_GameObject: {fileID: 1734864280}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 10}
-  m_Children: []
+  m_LocalScale: {x: 8, y: 4, z: 15}
+  m_Children:
+  - {fileID: 161613254}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1734864287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1734864280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 484689df7ac6db544991c1a20f1d4c59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
