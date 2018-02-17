@@ -67,7 +67,13 @@ public class TurretAim : MonoBehaviour {
     //
     void UpdateTransform()
     {
-        transform.forward = faceVector.normalized;
+        //transform.forward = faceVector.normalized;
+
+        transform.forward = new Vector3(faceVector.x, 0, faceVector.z);
+
+        //Transform pivot = transform.GetChild(0);
+
+        //pivot.forward = new Vector3(0, faceVector.y, 0);
     }
 
     //method found here: http://danikgames.com/blog/how-to-intersect-a-moving-target-in-2d/
