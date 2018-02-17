@@ -292,9 +292,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dragCoeff: 0.04
   wingArea: 56
-  maxThrust: 210000
+  maxThrust: 300000
   pitchingMomentCoeffIntercept: 0.05
   pitchingMomentCoeffSlope: -0.01
+  yawMomentCoeffIntercept: 0
+  yawMomentCoeffSlope: -0.05
+  aileronControlCoeff: 0.25
+  elevatorControlCoeff: 0.3
+  rudderControlCoeff: 0.1
 --- !u!54 &1734864282
 Rigidbody:
   m_ObjectHideFlags: 0
