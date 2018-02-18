@@ -37,7 +37,7 @@ public class FlightBehavior : MonoBehaviour {
 
     public float rudderControlCoeff = 0.1F;
 
-    private float AoA;
+    private float AoA = 0.0F;
 
     private float sideslip;
 
@@ -51,34 +51,30 @@ public class FlightBehavior : MonoBehaviour {
 		
 	}
 
-    public void SetElevator (float desired)
-    {
-        if(desired <= 1.0F && desired >= -1.0F)
-        {
-            elevatorSetting = desired;
-        }
-        else if(desired > 1.0F)
-        {
-            elevatorSetting = 1.0F;
-        }
-        else
-        {
-            elevatorSetting = -1.0F;
+    public float elevator { get { return elevatorSetting; }
+    set {
+            if (value <= 1.0F && value >= -1.0F)
+            {
+                elevatorSetting = value;
+            }
+            else if (value > 1.0F)
+            {
+                elevatorSetting = 1.0F;
+            }
+            else
+            {
+                elevatorSetting = -1.0F;
+            }
         }
     }
 
-    public float GetElevator ()
-    {
-        return elevatorSetting;
-    }
-
-    public void SetAileron (float desired)
-    {
-        if (desired <= 1.0F && desired >= -1.0F)
+    public float aileron { get { return aileronSetting; }
+    set {
+        if (value <= 1.0F && value >= -1.0F)
         {
-            aileronSetting = desired;
+            aileronSetting = value;
         }
-        else if (desired > 1.0F)
+        else if (value > 1.0F)
         {
             aileronSetting = 1.0F;
         }
@@ -86,20 +82,16 @@ public class FlightBehavior : MonoBehaviour {
         {
             aileronSetting = -1.0F;
         }
-    }
+    } }
 
-    public float GetAileron()
+    public float rudder {  get { return rudderSetting; }
+    set
     {
-        return aileronSetting;
-    }
-
-    public void SetRudder (float desired)
-    {
-        if (desired <= 1.0F && desired >= -1.0F)
+        if (value <= 1.0F && value >= -1.0F)
         {
-            rudderSetting = desired;
+            rudderSetting = value;
         }
-        else if (desired > 1.0F)
+        else if (value > 1.0F)
         {
             rudderSetting = 1.0F;
         }
@@ -107,12 +99,11 @@ public class FlightBehavior : MonoBehaviour {
         {
             rudderSetting = -1.0F;
         }
+        
+    }
     }
 
-    public float GetRudder()
-    {
-        return rudderSetting;
-    }
+    public float aoa { get { return AoA; } }
 
     void FixedUpdate ()
     {
