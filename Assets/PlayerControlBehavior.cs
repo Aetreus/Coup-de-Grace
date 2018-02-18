@@ -14,30 +14,8 @@ public class PlayerControlBehavior : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(Input.GetKey(KeyCode.DownArrow))
-        {
-            fb.SetElevator(0.5F);
-        }
-        else if(Input.GetKey(KeyCode.UpArrow))
-        {
-            fb.SetElevator(-0.5F);
-        }
-        else
-        {
-            fb.SetElevator(0.0F);
-        }
+		fb.SetElevator(Input.GetAxis("Elevator"));
 
-        if (Input.GetKey(KeyCode.RightArrow))
-        {
-            fb.SetAileron(0.5F);
-        }
-        else if (Input.GetKey(KeyCode.LeftArrow))
-        {
-            fb.SetAileron(-0.5F);
-        }
-        else
-        {
-            fb.SetAileron(0.0F);
-        }
+		fb.SetAileron(Input.GetAxis("Aileron"));
     }
 }
