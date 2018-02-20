@@ -73,6 +73,11 @@ public class TurretAim : MonoBehaviour {
 
         float zAngle = Vector3.Angle(faceVector, transform.right);
 
+        if((faceVector+transform.position).y < transform.position.y)
+        {
+            zAngle *= -1;
+        }
+
         Transform pivot = transform.GetChild(0);
 
         pivot.localEulerAngles = new Vector3(0, 0, zAngle);

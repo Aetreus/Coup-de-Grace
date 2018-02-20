@@ -30,8 +30,7 @@ public class HPManager : MonoBehaviour {
 
     public void ChangeHP(float value)
     {
-        float newVal = hp + value;
-        SetHP(newVal);
+        SetHP(hp + value);
     }
 
     public void Damage(float damage)
