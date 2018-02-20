@@ -11,10 +11,13 @@ public class PlayerControlBehavior : MonoBehaviour {
 
     public GameObject AltOutput;
 
+    public GameObject SpdOutput;
+
     private Text AoALabel;
 
     private Text AltLabel;
 
+    private Text SpdLabel;
 
 	// Use this for initialization
 	void Start () {
@@ -23,6 +26,8 @@ public class PlayerControlBehavior : MonoBehaviour {
         AoALabel = AoAOutput.GetComponent<Text>();
 
         AltLabel = AltOutput.GetComponent<Text>();
+
+        SpdLabel = SpdOutput.GetComponent<Text>();
 
     }
 	
@@ -36,5 +41,6 @@ public class PlayerControlBehavior : MonoBehaviour {
 
         AltLabel.text = transform.position.y.ToString();
 
+        SpdLabel.text = GetComponent<Rigidbody>().velocity.magnitude.ToString();
     }
 }
