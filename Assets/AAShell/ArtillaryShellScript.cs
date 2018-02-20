@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AntiAirBulletScript : MonoBehaviour {
+public class ArtillaryShellScript : MonoBehaviour {
     
     public float timer;
     public float speed;
 
-    private Vector3 velocity = new Vector3(0, 0, 1).normalized;
+    private Vector3 velocity = Vector3.forward.normalized;
 
     // Use this for initialization
     void Start()
@@ -28,6 +28,7 @@ public class AntiAirBulletScript : MonoBehaviour {
             GameObject.Destroy(gameObject);
         }
     }
+
     /*
     public void SetVel(Vector3 v)
     {

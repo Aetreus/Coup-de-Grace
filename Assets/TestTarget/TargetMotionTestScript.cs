@@ -15,4 +15,9 @@ public class TargetMotionTestScript : MonoBehaviour {
 	void Update () {
         transform.Translate(velocity * Time.deltaTime);
     }
+
+    public Vector3 GetVelocity()
+    {
+        return velocity;
+    }
 }

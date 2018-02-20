@@ -150,64 +150,16 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4073266824956242, guid: 7c7c8640cf8c98b4bad5540dcb35f530, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 114736703522378110, guid: 7c7c8640cf8c98b4bad5540dcb35f530,
         type: 2}
       propertyPath: target
       value: 
       objectReference: {fileID: 1585879360}
-    - target: {fileID: 4743547502448930, guid: 7c7c8640cf8c98b4bad5540dcb35f530, type: 2}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4941556867590798, guid: 7c7c8640cf8c98b4bad5540dcb35f530, type: 2}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4743547502448930, guid: 7c7c8640cf8c98b4bad5540dcb35f530, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4743547502448930, guid: 7c7c8640cf8c98b4bad5540dcb35f530, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4743547502448930, guid: 7c7c8640cf8c98b4bad5540dcb35f530, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7c7c8640cf8c98b4bad5540dcb35f530, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &573914134
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 573914135}
-  m_Layer: 0
-  m_Name: Anti-Air Turret
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &573914135
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 573914134}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.0472574, y: -0.9473344, z: -7.6061296}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &810104110
 GameObject:
   m_ObjectHideFlags: 0
