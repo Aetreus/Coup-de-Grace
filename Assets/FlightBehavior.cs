@@ -180,21 +180,21 @@ public class FlightBehavior : MonoBehaviour {
 
     float CalculateLiftCoeff()
     {
-        if (AoA >= -20 && AoA < 20)//Still lazy but better stall condition.
+        if (AoA >= -20 && AoA < 25)//Still lazy but better stall condition.
         {
             return 0.11F * AoA + 0.2F;
         }
-        else if (AoA >= 20 && AoA < 25)
+        else if (AoA >= 25 && AoA < 30)
         {
-            return 2.4F;
+            return 2.9F;
         }
         else if (AoA < -20 && AoA >= -41)
         {
             return -2.4F - 0.11F * (AoA + 20);
         }
-        else if (AoA >= 25 && AoA < 46)
+        else if (AoA >= 29 && AoA < 45)
         {
-            return 2.4F - 0.11F * (AoA - 25);
+            return 2.9F - 0.2F * (AoA - 29);
         }
         else
             return 0.0F;
@@ -212,6 +212,9 @@ public class FlightBehavior : MonoBehaviour {
 
     void OnCollisionEnter(Collision collision)
     {
-        Destroy(gameObject);
+        if (collision.gameObject.tag.Equals("Terrain"))
+        {
+            Destroy(gameObject);
+        }
     }
 }

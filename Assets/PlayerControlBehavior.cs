@@ -30,6 +30,8 @@ public class PlayerControlBehavior : MonoBehaviour {
 
         SpdLabel = SpdOutput.GetComponent<Text>();
 
+        GetComponent<Rigidbody>().velocity = transform.forward * 150;
+
     }
 	
 	// Update is called once per frame
@@ -49,6 +51,7 @@ public class PlayerControlBehavior : MonoBehaviour {
 
     void OnDestroy()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
     }
 }
