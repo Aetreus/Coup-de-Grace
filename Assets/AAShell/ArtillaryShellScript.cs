@@ -6,6 +6,7 @@ public class ArtillaryShellScript : MonoBehaviour {
     
     public float timer;
     public float speed;
+    public string hostileTag;
 
     private Vector3 velocity = Vector3.forward.normalized;
 
@@ -41,8 +42,11 @@ public class ArtillaryShellScript : MonoBehaviour {
     
     void OnCollisionEnter(Collision collision)
     {
-        //insert what to do when hitting player
+        if (collision.gameObject.tag.Equals(hostileTag))
+        {
+            Destroy(collision.gameObject);
+        }
 
-        GameObject.Destroy(gameObject);
+        Destroy(gameObject);
     }
 }
