@@ -182,7 +182,7 @@ public class FlightBehavior : MonoBehaviour {
 
     float CalculateDragCoeff()
     {
-        return dragCoeff;
+        return Math.Min(dragCoeff + 0.025F * Math.Abs(AoA), 0.5F);
     }
 
     float CalculatePitchingCoeff()
