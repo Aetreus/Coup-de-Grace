@@ -12,6 +12,7 @@ public class TurretAim : MonoBehaviour {
     public float minFireDist;
     public float fireCooldown;
     public float bulletSpawnOffset;
+    public string playerTag;
 
     private Vector3 targetVel;
 
@@ -26,6 +27,10 @@ public class TurretAim : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+        if (!target)
+        {
+            return;
+        }
         //get the velocity of the target
         UpdateVelocity();
         
