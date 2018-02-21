@@ -31,6 +31,8 @@ public class FlightBehavior : MonoBehaviour {
 
     private float rudderSetting = 0;
 
+    private float throttleSetting = 1;
+
     public float aileronControlCoeff = 0.25F;//These coefficients drive how large the moments that the control surfaces apply to the aircraft are.
 
     public float elevatorControlCoeff = 0.3F;
@@ -103,13 +105,31 @@ public class FlightBehavior : MonoBehaviour {
     }
     }
 
+    public float throttle { get { return throttleSetting; }
+    set
+        {
+            if (value <= 1.0F && value >= 0.0F)
+            {
+                throttleSetting = value;
+            }
+            else if (value > 1.0F)
+            {
+                throttleSetting = 1.0F;
+            }
+            else
+            {
+                throttleSetting = 0.0F;
+            }
+        }
+    }
+
     public float aoa { get { return AoA; } }
 
     void FixedUpdate ()
     {
 
         float thrustMagnitude = maxThrust;
-        Vector3 thrust = rb.transform.forward * thrustMagnitude;
+        Vector3 thrust = rb.transform.forward * thrustMagnitude * throttleSetting;
         rb.AddForce(thrust, ForceMode.Force);
 
         //AoA is the portion of the angle between facing and velocity vector that is in the plane between the up and forward vectors of facing

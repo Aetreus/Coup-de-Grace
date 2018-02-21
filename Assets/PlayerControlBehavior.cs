@@ -37,6 +37,8 @@ public class PlayerControlBehavior : MonoBehaviour {
 
 		fb.aileron = Input.GetAxis("Aileron");
 
+        fb.throttle = Input.GetAxis("Throttle");
+
         AoALabel.text = fb.aoa.ToString();
 
         AltLabel.text = transform.position.y.ToString();
