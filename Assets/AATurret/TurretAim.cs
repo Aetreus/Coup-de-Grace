@@ -66,7 +66,7 @@ public class TurretAim : MonoBehaviour {
     //get the target's velocity information
     void UpdateVelocity()
     {
-        targetVel = target.GetComponent<TargetMotionTestScript>().GetVelocity();
+        targetVel = target.GetComponent<Rigidbody>().velocity;
     }
 
     //

@@ -244,12 +244,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   bullet: {fileID: 1657919553941542, guid: 5e8b365525937ed4fa10054f6cf38a44, type: 2}
-  shotSpeed: 30
-  rotateDelta: 0.2
+  shotSpeed: 400
+  rotateDelta: 100
   minFireAngle: 3
   minFireDist: 200
   fireCooldown: 2
-  bulletSpawnOffset: 2
+  bulletSpawnOffset: 80
   playerTag: Player
 --- !u!114 &114774538535228172
 MonoBehaviour:

@@ -209,4 +209,9 @@ public class FlightBehavior : MonoBehaviour {
     {
         return pitchingMomentCoeffIntercept + AoA * pitchingMomentCoeffSlope;
     }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        Destroy(gameObject);
+    }
 }

@@ -21,7 +21,7 @@ public class PlayerMissileAim : MonoBehaviour {
     // Update is called once per frame
     void Update() {
 
-        if (Input.GetMouseButtonDown(0) && timer <= 0)
+        if (Input.GetButton("Fire1") && timer <= 0)
         {
             CheckAim();
             timer = fireCooldown;

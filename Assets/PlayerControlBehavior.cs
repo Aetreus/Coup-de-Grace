@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(FlightBehavior))]
 public class PlayerControlBehavior : MonoBehaviour {
@@ -44,5 +45,10 @@ public class PlayerControlBehavior : MonoBehaviour {
         AltLabel.text = transform.position.y.ToString();
 
         SpdLabel.text = GetComponent<Rigidbody>().velocity.magnitude.ToString();
+    }
+
+    void OnDestroy()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
