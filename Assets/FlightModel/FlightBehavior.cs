@@ -25,6 +25,8 @@ public class FlightBehavior : MonoBehaviour {
 
     public float yawMomentCoeffSlope = -0.15F;//This value must be negative, but its magnitude is less important.
 
+    public float rollDampeningCoeff = 0.05F;
+
     private float elevatorSetting = 0;//These values are the current settings of the control surfaces, from 1.0 to -1.0
 
     private float aileronSetting = 0;
@@ -161,6 +163,9 @@ public class FlightBehavior : MonoBehaviour {
 
         float yMMagnitude = (1F / 2) * airDensity * wingArea * (float)Math.Pow((double)rb.velocity.magnitude, 2) * CalculateYawCoeff() * -1;
         rb.AddRelativeTorque(0, yMMagnitude, 0);
+
+        float rollDampMagnitude = (1F / 2) * airDensity * wingArea * (float)Math.Pow((double)rb.velocity.magnitude, 2) * rb.angularVelocity.z * rollDampeningCoeff * -1;
+        rb.AddRelativeTorque(0, 0, rollDampMagnitude);
 
 
         float eSigMMagnitude = (1F / 2) * airDensity * wingArea * (float)Math.Pow((double)rb.velocity.magnitude, 2) * elevatorControlCoeff * elevatorSetting * -1;
