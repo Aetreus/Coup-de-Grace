@@ -1599,7 +1599,7 @@ MonoBehaviour:
   pitchingMomentCoeffIntercept: 0.005
   pitchingMomentCoeffSlope: -0.008
   yawMomentCoeffIntercept: 0
-  yawMomentCoeffSlope: -0.2
+  yawMomentCoeffSlope: -0.3
   aileronControlCoeff: 0.25
   elevatorControlCoeff: 0.2
   rudderControlCoeff: 0.1

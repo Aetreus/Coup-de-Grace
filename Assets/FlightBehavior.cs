@@ -184,17 +184,17 @@ public class FlightBehavior : MonoBehaviour {
         {
             return 0.11F * AoA + 0.2F;
         }
-        else if (AoA >= 25 && AoA < 30)
+        else if (AoA >= 23 && AoA < 30)
         {
-            return 2.9F;
+            return 2.8F;
         }
         else if (AoA < -20 && AoA >= -41)
         {
             return -2.4F - 0.11F * (AoA + 20);
         }
-        else if (AoA >= 29 && AoA < 45)
+        else if (AoA >= 30 && AoA < 45)
         {
-            return 2.9F - 0.2F * (AoA - 29);
+            return 2.8F - 0.2F * (AoA - 29);
         }
         else
             return 0.0F;
