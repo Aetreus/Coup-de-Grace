@@ -14,11 +14,15 @@ public class PlayerControlBehavior : MonoBehaviour {
 
     public GameObject SpdOutput;
 
+    public GameObject SlpOutput;
+
     private Text AoALabel;
 
     private Text AltLabel;
 
     private Text SpdLabel;
+
+    private Text SlpLabel;
 
 	// Use this for initialization
 	void Start () {
@@ -29,6 +33,8 @@ public class PlayerControlBehavior : MonoBehaviour {
         AltLabel = AltOutput.GetComponent<Text>();
 
         SpdLabel = SpdOutput.GetComponent<Text>();
+
+        SlpLabel = SlpOutput.GetComponent<Text>();
 
         GetComponent<Rigidbody>().velocity = transform.forward * 150;
 
@@ -47,6 +53,8 @@ public class PlayerControlBehavior : MonoBehaviour {
         AltLabel.text = transform.position.y.ToString();
 
         SpdLabel.text = GetComponent<Rigidbody>().velocity.magnitude.ToString();
+
+        SlpLabel.text = fb.slip.ToString();
     }
 
     void OnDestroy()
