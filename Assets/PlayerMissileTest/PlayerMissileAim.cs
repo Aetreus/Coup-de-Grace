@@ -20,16 +20,17 @@ public class PlayerMissileAim : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-
+        /*
         if (Input.GetButton("Fire1") && timer <= 0)
         {
             CheckAim();
             timer = fireCooldown;
         }
         timer = Mathf.Clamp(timer - Time.deltaTime, 0, fireCooldown);
+        */
     }
 
-    void CheckAim()
+    public void CheckAim()
     {
         GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
         GameObject middleEnemy = null;

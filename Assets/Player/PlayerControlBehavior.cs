@@ -4,9 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-[RequireComponent(typeof(FlightBehavior))]
+[RequireComponent(typeof(FlightBehavior),typeof(WeaponManager))]
 public class PlayerControlBehavior : MonoBehaviour {
     FlightBehavior fb;
+
+    WeaponManager wm;
 
     public GameObject AoAOutput;
 
@@ -16,6 +18,8 @@ public class PlayerControlBehavior : MonoBehaviour {
 
     public GameObject SlpOutput;
 
+    public GameObject WpnHolder;
+
     private Text AoALabel;
 
     private Text AltLabel;
@@ -24,9 +28,27 @@ public class PlayerControlBehavior : MonoBehaviour {
 
     private Text SlpLabel;
 
+    private List<GameObject> WpnGraphics;
+
+    private List<float> loadTime;
+
 	// Use this for initialization
 	void Start () {
         fb = GetComponent<FlightBehavior>();
+
+        wm = GetComponent<WeaponManager>();
+
+        WpnGraphics = new List<GameObject>();
+
+        for(int i = 0; i < WpnHolder.transform.childCount; i++)
+        {
+            WpnGraphics.Add(WpnHolder.transform.GetChild(i).gameObject);
+        }
+
+        for(int i = wm.maximumShots; i < WpnHolder.transform.childCount; i++)
+        {
+            WpnGraphics[i].GetComponent<Image>().color = Color.red;
+        }
 
         AoALabel = AoAOutput.GetComponent<Text>();
 
@@ -55,6 +77,16 @@ public class PlayerControlBehavior : MonoBehaviour {
         SpdLabel.text = GetComponent<Rigidbody>().velocity.magnitude.ToString();
 
         SlpLabel.text = fb.slip.ToString();
+
+        for(int i = 0; i < WpnGraphics.Count && i < wm.maximumShots; i++)
+        {
+            WpnGraphics[i].GetComponent<Image>().fillAmount = wm.GetLoadingFraction(i);
+        }
+
+        if(Input.GetButtonDown("Fire1"))
+        {
+            wm.Fire();
+        }
     }
 
     void OnDestroy()

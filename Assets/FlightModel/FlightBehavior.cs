@@ -7,6 +7,8 @@ using System;
 public class FlightBehavior : MonoBehaviour {
     Rigidbody rb;
 
+    public Vector3 inertiaTensor = new Vector3(0,0,0);
+
     const float airDensity = 1.225F; //kg/m^2
 
     public float dragCoeff = 0.04F;
@@ -54,6 +56,15 @@ public class FlightBehavior : MonoBehaviour {
     // Use this for initialization
     void Start () {
         rb = GetComponent<Rigidbody>();
+
+        if(!inertiaTensor.Equals(new Vector3(0,0,0)))
+        {
+            rb.inertiaTensor = inertiaTensor;
+        }
+        else
+        {
+            inertiaTensor = rb.inertiaTensor;
+        }
 	}
 	
 	// Update is called once per frame
@@ -231,7 +242,7 @@ public class FlightBehavior : MonoBehaviour {
 
     float CalculateDragCoeff()
     {
-        return Math.Min(dragCoeff + 0.025F * Math.Abs(AoA), 0.5F);
+        return Math.Min(dragCoeff + 0.025F * Math.Abs(AoA), 2.0F);
     }
 
     float CalculatePitchingCoeff()
