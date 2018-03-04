@@ -43,7 +43,7 @@ RenderSettings:
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 11
-  m_GIWorkflowMode: 0
+  m_GIWorkflowMode: 1
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -1593,16 +1593,47 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d71116da01448e4aa39b11a4f4f540a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inertiaTensor: {x: 0, y: 0, z: 0}
   dragCoeff: 0.04
   wingArea: 56
   maxThrust: 300000
-  pitchingMomentCoeffIntercept: 0.005
-  pitchingMomentCoeffSlope: -0.008
-  yawMomentCoeffIntercept: 0
-  yawMomentCoeffSlope: -0.3
+  rollDampeningCoeff: 0.05
+  yawDampeningCoeff: 0.1
   aileronControlCoeff: 0.25
   elevatorControlCoeff: 0.2
   rudderControlCoeff: 0.1
+  liftCoeffSetpoints:
+  - {x: -180, y: 0}
+  - {x: -35, y: -0.4}
+  - {x: -20, y: -2}
+  - {x: 0, y: 0.2}
+  - {x: 25, y: 2.81}
+  - {x: 30, y: 2.61}
+  - {x: 45, y: 0.4}
+  - {x: 180, y: 0}
+  crossLiftCoeffSetpoints:
+  - {x: -180, y: 0}
+  - {x: -35, y: -0.05}
+  - {x: -20, y: -0.25}
+  - {x: 20, y: 0.25}
+  - {x: 35, y: -0.05}
+  - {x: 180, y: 0}
+  pitchingMomentSetpoints:
+  - {x: -180, y: 0}
+  - {x: -50, y: 0.1}
+  - {x: -35, y: 0.285}
+  - {x: 0, y: 0.005}
+  - {x: 35, y: -0.275}
+  - {x: 50, y: -0.1}
+  - {x: 180, y: 0}
+  yawMomentSetpoints:
+  - {x: -180, y: 0}
+  - {x: -50, y: 0.1}
+  - {x: -35, y: 0.35}
+  - {x: 0, y: 0}
+  - {x: 35, y: -0.35}
+  - {x: 50, y: -0.1}
+  - {x: 180, y: 0}
 --- !u!54 &1734864282
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1676,6 +1707,8 @@ MonoBehaviour:
   AoAOutput: {fileID: 1941213941}
   AltOutput: {fileID: 1806812964}
   SpdOutput: {fileID: 2115832715}
+  SlpOutput: {fileID: 0}
+  WpnHolder: {fileID: 0}
 --- !u!1 &1739487915
 GameObject:
   m_ObjectHideFlags: 0
