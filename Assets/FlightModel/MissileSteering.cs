@@ -20,12 +20,10 @@ public class MissileSteering : MonoBehaviour {
 
         Vector3 latex = prop_nav.Latex;
 
-        Vector3 thrust;
-        Vector3 yaw;
-        Vector3 pitch;
+        Vector3 local_accel = transform.InverseTransformVector(latex);
 
-        fb.throttle = thrust / ref_accel;
-        fb.rudder = yaw / ref_accel;
-        fb.elevator = pitch / ref_accel;
+        fb.throttle = local_accel.z / ref_accel;
+        fb.rudder = local_accel.x / ref_accel;
+        fb.elevator = local_accel.y / ref_accel;
     }
 }
