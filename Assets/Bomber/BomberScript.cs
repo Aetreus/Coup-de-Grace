@@ -14,11 +14,13 @@ public class BomberScript : MonoBehaviour {
     private Vector3 velocity;
     
     public float drop_frequency;
-    public float bomb_drop_offset;
+    public float bombing_radius;
+    public float bomb_spawn_offset;
     private float drop_timer;
 
     public float missile_fire_angle;
     public float missile_chance;
+    public float missile_spawn_offset;
     private GameObject player;
 
 	// Use this for initialization
@@ -31,6 +33,7 @@ public class BomberScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
         MoveUpdate();
 
         if (drop_timer <= 0 )
@@ -42,11 +45,7 @@ public class BomberScript : MonoBehaviour {
             drop_timer -= Time.deltaTime;
         }
 
-        float angle = Vector3.Angle(transform.forward, player.transform.position - transform.position);
-        if(angle <= missile_fire_angle && Random.Range(0.0f, 100.0f) <= missile_chance * Time.deltaTime)
-        {
-            FireMissile();
-        }
+        MissileChance();
     }
 
     void MoveUpdate()
@@ -56,13 +55,16 @@ public class BomberScript : MonoBehaviour {
 
     void CheckBombDrop()
     {
-        float altitude = Mathf.Abs(bomb_target.transform.position.y - transform.position.y);
+        //float altitude = Mathf.Abs(bomb_target.transform.position.y - transform.position.y);
 
-        float fallTime = Mathf.Sqrt(altitude / Physics.gravity.magnitude);
+        //float fallTime = Mathf.Sqrt(altitude / Physics.gravity.magnitude);
 
-        float horiz_dist = (new Vector3(velocity.x, 0, velocity.z)).magnitude * fallTime;
+        //float horiz_dist = (new Vector3(velocity.x, 0, velocity.z)).magnitude * fallTime;
 
-        if (horiz_dist <= bomb_drop_offset)
+        float horiz_dist = ((new Vector3(transform.position.x, 0, transform.position.z)) - 
+                            (new Vector3(bomb_target.transform.position.x, 0, bomb_target.transform.position.z))).magnitude;
+
+        if (horiz_dist <= bombing_radius)
         {
             DropBomb();
 
@@ -72,11 +74,20 @@ public class BomberScript : MonoBehaviour {
 
     void DropBomb()
     {
-
+        Instantiate(bomb, transform.position + new Vector3(0, -bomb_spawn_offset, 0), Quaternion.identity);
     }
 
-    void FireMissile()
+    void MissileChance()
     {
+        Vector3 towardPlayer = player.transform.position - transform.position;
+        float angle = Vector3.Angle(transform.forward, towardPlayer);
+        if (angle <= missile_fire_angle && Random.Range(0.0f, 100.0f) <= missile_chance * Time.deltaTime)
+        {
+            Vector3 spawnLoc = transform.position + towardPlayer.normalized * missile_spawn_offset;
+            Quaternion spawnRot = Quaternion.LookRotation(towardPlayer);
 
+            GameObject m = Instantiate(missile, spawnLoc, spawnRot);
+            m.GetComponent<PropNav>().Target = player;
+        }
     }
 }
