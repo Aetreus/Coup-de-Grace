@@ -5,13 +5,13 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(FlightBehavior),typeof(WeaponManager))]
-[RequireComponent(typeof(PlayerTargetingScript))]
+[RequireComponent(typeof(PlayerTargetSystem))]
 public class PlayerControlBehavior : MonoBehaviour {
     FlightBehavior fb;
 
     WeaponManager wm;
 
-    PlayerTargetingScript pt;
+    PlayerTargetSystem pt;
 
     public GameObject AoAOutput;
 
@@ -41,7 +41,7 @@ public class PlayerControlBehavior : MonoBehaviour {
 
         wm = GetComponent<WeaponManager>();
 
-        pt = GetComponent<PlayerTargetingScript>();
+        pt = GetComponent<PlayerTargetSystem>();
 
         WpnGraphics = new List<GameObject>();
 
@@ -95,12 +95,12 @@ public class PlayerControlBehavior : MonoBehaviour {
 
         if(Input.GetButtonDown("TargetNext"))
         {
-            pt.TargetNext();
+            pt.CycleTarget();
         }
 
         if(Input.GetButtonDown("TargetClosest"))
         {
-            pt.TargetCenter();
+            pt.CenterTarget();
         }
     }
 

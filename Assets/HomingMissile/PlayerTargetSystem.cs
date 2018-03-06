@@ -1,109 +1,146 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerTargetSystem : MonoBehaviour {
 
-    public float lock_angle;
-    public float lock_time;
+    public float lockAngle;
+    public float lockTime;
+
+    public float flashTime;
 
     public string hostileTag;
     
-    private float timer;
+    private float lockTimer;
+    private float flashTimer;
     private bool locked;
+    private bool flash;
     
-    private GameObject target;
+    private GameObject _target;
     private List<GameObject> enemies;
 
-	// Use this for initialization
-	void Start () {
+
+    private List<GameObject> targetIcons;
+
+    private GameObject lockIcon;
+
+    public GameObject targetPrefab;
+
+    public GameObject lockPrefab;
+
+
+    private GameObject canvas;
+
+    // Use this for initialization
+    void Start () {
         locked = false;
         enemies = new List<GameObject>();
+
+        flash = true;
+        flashTimer = flashTime;
+
+        canvas = GameObject.Find("Canvas");
+        targetIcons = new List<GameObject>();
+        lockIcon = Instantiate(lockPrefab, canvas.transform);
+        lockIcon.GetComponent<Image>().enabled = false;
+        for (int i = 0; i < enemies.Count; i++)
+        {
+            targetIcons.Add(Instantiate(targetPrefab, canvas.transform));
+        }
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update ()
+    {
+        GameObject[] e = GameObject.FindGameObjectsWithTag(hostileTag);
+        enemies = new List<GameObject>(e);
+        enemies.Sort(SortByAngle);
 
         //if you currently have a target you are aiming at or locking onto...
-        if (target)
+        if (_target)
         {
             //if the target was being locked onto long enough, set the lock-on to true
-            if (timer <= 0)
+            if (lockTimer <= 0 && lockTimer >= -1)
             {
                 locked = true;
             }
-            //otherwise keep counting down
+            //otherwise if locking keep counting down
+            else if(lockTimer >= 0)
+            {
+                lockTimer -= Time.deltaTime;
+            }
+            //otherwise...
             else
             {
-                timer -= Time.deltaTime;
+                //Check if we can start locking onto the target.
+                AttemptLock();
             }
 
-            //if the target being aimed at leaves the lock-on angle, lose the target
-            Vector3 toTarget = target.transform.position - transform.position;
+            //if the target being aimed at leaves the lock-on angle, lose lock
+            Vector3 toTarget = _target.transform.position - transform.position;
             float angleToTarget = Vector3.Angle(toTarget, transform.forward);
-            if (angleToTarget > lock_angle)
+            if (angleToTarget > lockAngle)
             {
-                target = null;
                 locked = false;
+                lockTimer = -2.0F;
             }
         }
-        //otherwise...
-        else
+        flashTimer -= Time.deltaTime;
+        if(flashTimer <= 0)
         {
-            //lock on to the center-most target if its in the view angle
-            CenterTarget();
+            flashTimer = flashTime;
+            flash = flash & false;
         }
+        DisplayIcons();
     }
 
     public void CycleTarget()
     {
-        enemies.Sort(SortByAngle);
-        int targetIndex = enemies.IndexOf(target);
+        int targetIndex = enemies.IndexOf(_target);
         targetIndex++;
 
         if(targetIndex >= enemies.Count)
         {
-            CenterTarget();
-            return;
+            targetIndex = 0;
         }
 
-        Vector3 toTarget = enemies[targetIndex].transform.position - transform.position;
+        _target = enemies[targetIndex];
+
+        AttemptLock();
+    }
+
+    //Attempts to start a lock on the current target.
+    private void AttemptLock()
+    {
+        Vector3 toTarget = _target.transform.position - transform.position;
         float angleToTarget = Vector3.Angle(toTarget, transform.forward);
-        if (angleToTarget <= lock_angle)
+        if (angleToTarget <= lockAngle)
         {
-            target = enemies[targetIndex];
-            timer = lock_time;
+            lockTimer = lockTime;
         }
         else
         {
-            CenterTarget();
+            lockTimer = -2.0F;
         }
     }
 
     public void CenterTarget()
     {
-        //get all enemies and sort them by smallest angle b/w LOS and forward
-        GameObject[] e = GameObject.FindGameObjectsWithTag(hostileTag);
-        enemies = new List<GameObject>(e);
-        enemies.Sort(SortByAngle);
+        
 
         //if there are enemies..
         if (enemies.Count > 0)
         {
+            _target = enemies[0];
             //if enemy closes to center of view is within the lock-on angle, start locking on to it
-            Vector3 toTarget = target.transform.position - transform.position;
-            float angleToTarget = Vector3.Angle(toTarget, transform.forward);
-            if (angleToTarget <= lock_angle)
-            {
-                target = enemies[0];
-                timer = lock_time;
-            }
+            AttemptLock();
         }
     }
 
     static int SortByAngle(GameObject a, GameObject b)
     {
-        GameObject player = GameObject.FindGameObjectWithTag("player");
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
 
         Vector3 toA = a.transform.position - player.transform.position;
         float angleA = Vector3.Angle(toA, player.transform.forward);
@@ -122,11 +159,49 @@ public class PlayerTargetSystem : MonoBehaviour {
         return 0;
     }
 
+    private void DisplayIcons()
+    {
+        int usedIcons = 0;
+        while (enemies.Count > targetIcons.Count)
+        {
+            targetIcons.Add(Instantiate(targetPrefab, canvas.transform));
+        }
+        foreach (GameObject enemy in enemies)
+        {
+            Vector3 screenPos = Camera.main.WorldToScreenPoint(enemy.transform.position);
+            
+            RectTransform location = targetIcons[usedIcons].GetComponent<RectTransform>();
+            if (screenPos.z > 1)
+            {
+                if (_target != null &&  _target.Equals(enemy) && (flash || locked))
+                {
+                    location.anchoredPosition = new Vector2(screenPos.x, screenPos.y) - canvas.GetComponent<RectTransform>().sizeDelta / 2f;
+                    lockIcon.GetComponent<Image>().enabled = true;
+                }
+                else
+                {
+                    location.anchoredPosition = new Vector2(screenPos.x, screenPos.y) - canvas.GetComponent<RectTransform>().sizeDelta / 2f;
+                    targetIcons[usedIcons].GetComponent<Image>().enabled = true;
+                    usedIcons++;
+                }
+            }
+            else if(_target.Equals(enemy))
+            {
+                lockIcon.GetComponent<Image>().enabled = false;
+            }
+        }
+        while (usedIcons < targetIcons.Count)
+        {
+            targetIcons[usedIcons].GetComponent<Image>().enabled = false;
+            usedIcons++;
+        }
+    }
+
     public GameObject Target
     {
         get
         {
-            return target;
+            return _target;
         }
     }
 
@@ -142,7 +217,7 @@ public class PlayerTargetSystem : MonoBehaviour {
     {
         get
         {
-            return timer;
+            return lockTimer;
         }
     }
 }

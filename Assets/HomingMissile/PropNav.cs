@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof (FlightBehavior))]
 public class PropNav : MonoBehaviour {
 
     public float N = 3;
@@ -28,7 +29,7 @@ public class PropNav : MonoBehaviour {
 
         Vector3 latex;
 
-        if (target && fueltime > 0)
+        if (target)
         {
             Vector3 range_new = target.transform.position - transform.position;
             Vector3 range_old = target_last_pos - last_pos;
@@ -63,7 +64,14 @@ public class PropNav : MonoBehaviour {
 
         Vector3 local_accel = transform.InverseTransformVector(latex);
 
-        fb.throttle = local_accel.z / ref_accel;
+        if(fueltime > 0)
+        {
+            fb.throttle = 1.0F;
+        }
+        else
+        {
+            fb.throttle = 0.0F;
+        }
         fb.rudder = local_accel.x / ref_accel;
         fb.elevator = local_accel.y / ref_accel;
 

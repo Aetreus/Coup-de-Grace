@@ -21,11 +21,11 @@ GameObject:
   - component: {fileID: 4654294536136784}
   - component: {fileID: 54554850910278232}
   - component: {fileID: 114878435811959906}
+  - component: {fileID: 114793004816600776}
+  - component: {fileID: 114399108138111284}
   - component: {fileID: 114222035015594602}
-  - component: {fileID: 114609556791138784}
   - component: {fileID: 114256119274711160}
   - component: {fileID: 65232640516170786}
-  - component: {fileID: 114766691275383468}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -268,9 +268,9 @@ MonoBehaviour:
   onFire:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114609556791138784}
-        m_MethodName: CheckAim
-        m_Mode: 1
+      - m_Target: {fileID: 114399108138111284}
+        m_MethodName: Create
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -278,12 +278,12 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 1
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
+        m_CallState: 2
+    m_TypeName: WeaponManager+OnFire, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
   maximumShots: 2
-  reloadTime: 1
---- !u!114 &114609556791138784
+  reloadTime: 2
+--- !u!114 &114399108138111284
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -291,16 +291,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1118712050718116}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d8902d1e931c0b49a4e9683e8d6ca50, type: 3}
+  m_Script: {fileID: 11500000, guid: d5e2c53abab5c04468059faf376727dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  missile: {fileID: 1849440131375636, guid: db925c54f2a4f7d458edce92370ea561, type: 2}
-  missileSpeed: 300
-  aimRadius: 400
-  fireCooldown: 0.75
-  enemyTag: Enemy
-  missileSpawnOffset: 5
---- !u!114 &114766691275383468
+  spawned: {fileID: 1975112741600778, guid: 150e474180d89554f9d854462fbbf436, type: 2}
+  offset: {x: 0, y: -2, z: 5}
+--- !u!114 &114793004816600776
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -308,10 +304,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1118712050718116}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18ee19258e11a55479e01d552d303529, type: 3}
+  m_Script: {fileID: 11500000, guid: 53bc7cf0b952bc040a05fe63fc15a282, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetingTag: Enemy
+  lockAngle: 50
+  lockTime: 2
+  flashTime: 0.75
+  hostileTag: Enemy
   targetPrefab: {fileID: 1661510180886782, guid: b5887845d3719ba4e9d9e436a5fcbd9e,
     type: 2}
   lockPrefab: {fileID: 1167767397186056, guid: 06db1d6d1b6cca54797a636f89202c03, type: 2}
