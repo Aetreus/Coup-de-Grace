@@ -6,13 +6,14 @@ public class TurretAim : MonoBehaviour {
 
     public GameObject target;
     public GameObject bullet;
-    public float shotSpeed;
     public float rotateDelta;
     public float minFireAngle;
     public float minFireDist;
     public float fireCooldown;
     public float bulletSpawnOffset;
     public string playerTag;
+    
+    private float shotSpeed;
 
     private Vector3 targetVel;
 
@@ -22,6 +23,8 @@ public class TurretAim : MonoBehaviour {
     // Use this for initialization
     void Start () {
         faceVector = transform.forward.normalized;
+
+        shotSpeed = bullet.GetComponent<ArtillaryShellScript>().speed;
     }
 	
 	// Update is called once per frame
@@ -133,6 +136,5 @@ public class TurretAim : MonoBehaviour {
         Quaternion spawnRot = Quaternion.LookRotation(faceVector);
         Instantiate(bullet, spawnLoc, spawnRot);
         //bullet.GetComponent<AntiAirBulletScript>().SetVel(faceVector.normalized * shotSpeed);
-        bullet.GetComponent<ArtillaryShellScript>().speed = shotSpeed;
     }
 }
