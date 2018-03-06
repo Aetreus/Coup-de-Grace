@@ -307,9 +307,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53bc7cf0b952bc040a05fe63fc15a282, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lockAngle: 50
-  lockTime: 2
-  flashTime: 0.75
+  lockAngle: 25
+  lockTime: 1.5
+  flashTime: 0.15
   hostileTag: Enemy
   targetPrefab: {fileID: 1661510180886782, guid: b5887845d3719ba4e9d9e436a5fcbd9e,
     type: 2}

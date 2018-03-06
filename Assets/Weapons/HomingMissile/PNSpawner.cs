@@ -21,6 +21,7 @@ public class PNSpawner : MonoBehaviour {
     public void Create(GameObject target)
     {
         GameObject created = Instantiate(spawned, transform.position + offset, transform.rotation);
+        created.GetComponent<Rigidbody>().velocity = GetComponent<Rigidbody>().velocity;
         created.GetComponent<PropNav>().Target = target;
     }
 }

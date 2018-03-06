@@ -16,6 +16,7 @@ public class PlayerTargetSystem : MonoBehaviour {
     private float flashTimer;
     private bool locked;
     private bool flash;
+    private bool locking;
     
     private GameObject _target;
     private List<GameObject> enemies;
@@ -24,6 +25,9 @@ public class PlayerTargetSystem : MonoBehaviour {
     private List<GameObject> targetIcons;
 
     private GameObject lockIcon;
+
+    private Sprite lockSprite;
+    private Sprite targetSprite;
 
     public GameObject targetPrefab;
 
@@ -35,15 +39,18 @@ public class PlayerTargetSystem : MonoBehaviour {
     // Use this for initialization
     void Start () {
         locked = false;
+        locking = false;
         enemies = new List<GameObject>();
 
-        flash = true;
+        flash = false;
         flashTimer = flashTime;
 
         canvas = GameObject.Find("Canvas");
         targetIcons = new List<GameObject>();
         lockIcon = Instantiate(lockPrefab, canvas.transform);
         lockIcon.GetComponent<Image>().enabled = false;
+        lockSprite = lockIcon.GetComponent<Image>().sprite;
+        targetSprite = targetPrefab.GetComponent<Image>().sprite;
         for (int i = 0; i < enemies.Count; i++)
         {
             targetIcons.Add(Instantiate(targetPrefab, canvas.transform));
@@ -61,12 +68,12 @@ public class PlayerTargetSystem : MonoBehaviour {
         if (_target)
         {
             //if the target was being locked onto long enough, set the lock-on to true
-            if (lockTimer <= 0 && lockTimer >= -1)
+            if (lockTimer <= 0 && locking)
             {
                 locked = true;
             }
             //otherwise if locking keep counting down
-            else if(lockTimer >= 0)
+            else if(lockTimer >= 0 && locking)
             {
                 lockTimer -= Time.deltaTime;
             }
@@ -83,14 +90,19 @@ public class PlayerTargetSystem : MonoBehaviour {
             if (angleToTarget > lockAngle)
             {
                 locked = false;
-                lockTimer = -2.0F;
+                locking = false;
             }
         }
         flashTimer -= Time.deltaTime;
         if(flashTimer <= 0)
         {
             flashTimer = flashTime;
-            flash = flash & false;
+            if (flash)
+            {
+                flash = false;
+            }
+            else
+                flash = true;
         }
         DisplayIcons();
     }
@@ -107,6 +119,9 @@ public class PlayerTargetSystem : MonoBehaviour {
 
         _target = enemies[targetIndex];
 
+        locked = false;
+        locking = false;
+
         AttemptLock();
     }
 
@@ -118,10 +133,11 @@ public class PlayerTargetSystem : MonoBehaviour {
         if (angleToTarget <= lockAngle)
         {
             lockTimer = lockTime;
+            locking = true;
         }
         else
         {
-            lockTimer = -2.0F;
+            locking = false;
         }
     }
 
@@ -133,6 +149,11 @@ public class PlayerTargetSystem : MonoBehaviour {
         if (enemies.Count > 0)
         {
             _target = enemies[0];
+
+
+            locked = false;
+            locking = false;
+
             //if enemy closes to center of view is within the lock-on angle, start locking on to it
             AttemptLock();
         }
@@ -170,24 +191,32 @@ public class PlayerTargetSystem : MonoBehaviour {
         {
             Vector3 screenPos = Camera.main.WorldToScreenPoint(enemy.transform.position);
             
-            RectTransform location = targetIcons[usedIcons].GetComponent<RectTransform>();
             if (screenPos.z > 1)
             {
-                if (_target != null &&  _target.Equals(enemy) && (flash || locked))
+                if (_target != null && _target.Equals(enemy))
                 {
+                    RectTransform location = lockIcon.GetComponent<RectTransform>();
                     location.anchoredPosition = new Vector2(screenPos.x, screenPos.y) - canvas.GetComponent<RectTransform>().sizeDelta / 2f;
-                    lockIcon.GetComponent<Image>().enabled = true;
+                    GameObject DistLabel = lockIcon.transform.Find("DistLabel").gameObject;
+                    DistLabel.GetComponent<Text>().text = (transform.position - _target.transform.position).magnitude.ToString();
+                    if ((flash && locking) || locked)
+                    {
+                        lockIcon.GetComponent<Image>().enabled = true;
+                        lockIcon.GetComponent<Image>().overrideSprite = null;
+                    }
+                    else
+                    {
+                        lockIcon.GetComponent<Image>().enabled = true;
+                        lockIcon.GetComponent<Image>().overrideSprite = targetSprite;
+                    }
                 }
                 else
                 {
+                    RectTransform location = targetIcons[usedIcons].GetComponent<RectTransform>();
                     location.anchoredPosition = new Vector2(screenPos.x, screenPos.y) - canvas.GetComponent<RectTransform>().sizeDelta / 2f;
                     targetIcons[usedIcons].GetComponent<Image>().enabled = true;
                     usedIcons++;
                 }
-            }
-            else if(_target.Equals(enemy))
-            {
-                lockIcon.GetComponent<Image>().enabled = false;
             }
         }
         while (usedIcons < targetIcons.Count)

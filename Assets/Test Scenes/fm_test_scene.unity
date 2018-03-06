@@ -301,11 +301,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114256119274711160, guid: df6bd1004b6bea74a9c6072f3afa6241,
-        type: 2}
-      propertyPath: onFire.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4654294536136784, guid: df6bd1004b6bea74a9c6072f3afa6241, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -363,75 +358,17 @@ Prefab:
       propertyPath: WpnHolder
       value: 
       objectReference: {fileID: 472355647}
-    - target: {fileID: 114793004816600776, guid: df6bd1004b6bea74a9c6072f3afa6241,
+    - target: {fileID: 114878435811959906, guid: df6bd1004b6bea74a9c6072f3afa6241,
         type: 2}
-      propertyPath: hostileTag
-      value: Enemy
+      propertyPath: pitchingMomentSetpoints.Array.data[2].y
+      value: 0.36
       objectReference: {fileID: 0}
-    - target: {fileID: 114793004816600776, guid: df6bd1004b6bea74a9c6072f3afa6241,
+    - target: {fileID: 114878435811959906, guid: df6bd1004b6bea74a9c6072f3afa6241,
         type: 2}
-      propertyPath: flashTime
-      value: 0.75
+      propertyPath: pitchingMomentSetpoints.Array.data[6].y
+      value: -0.36
       objectReference: {fileID: 0}
-    - target: {fileID: 114793004816600776, guid: df6bd1004b6bea74a9c6072f3afa6241,
-        type: 2}
-      propertyPath: lockTime
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114793004816600776, guid: df6bd1004b6bea74a9c6072f3afa6241,
-        type: 2}
-      propertyPath: lockAngle
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 114256119274711160, guid: df6bd1004b6bea74a9c6072f3afa6241,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114256119274711160, guid: df6bd1004b6bea74a9c6072f3afa6241,
-        type: 2}
-      propertyPath: reloadTime
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114256119274711160, guid: df6bd1004b6bea74a9c6072f3afa6241,
-        type: 2}
-      propertyPath: onFire.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114256119274711160, guid: df6bd1004b6bea74a9c6072f3afa6241,
-        type: 2}
-      propertyPath: onFire.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114256119274711160, guid: df6bd1004b6bea74a9c6072f3afa6241,
-        type: 2}
-      propertyPath: onFire.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1734864284}
-    - target: {fileID: 114256119274711160, guid: df6bd1004b6bea74a9c6072f3afa6241,
-        type: 2}
-      propertyPath: onFire.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Create
-      objectReference: {fileID: 0}
-    - target: {fileID: 114256119274711160, guid: df6bd1004b6bea74a9c6072f3afa6241,
-        type: 2}
-      propertyPath: onFire.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 114793004816600776, guid: df6bd1004b6bea74a9c6072f3afa6241,
-        type: 2}
-      propertyPath: targetPrefab
-      value: 
-      objectReference: {fileID: 1661510180886782, guid: b5887845d3719ba4e9d9e436a5fcbd9e,
-        type: 2}
-    - target: {fileID: 114793004816600776, guid: df6bd1004b6bea74a9c6072f3afa6241,
-        type: 2}
-      propertyPath: lockPrefab
-      value: 
-      objectReference: {fileID: 1167767397186056, guid: 06db1d6d1b6cca54797a636f89202c03,
-        type: 2}
-    m_RemovedComponents:
-    - {fileID: 114766691275383468, guid: df6bd1004b6bea74a9c6072f3afa6241, type: 2}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: df6bd1004b6bea74a9c6072f3afa6241, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1212221150
@@ -746,12 +683,6 @@ GameObject:
   m_PrefabParentObject: {fileID: 1118712050718116, guid: df6bd1004b6bea74a9c6072f3afa6241,
     type: 2}
   m_PrefabInternal: {fileID: 865004232}
---- !u!114 &1734864284 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114399108138111284, guid: df6bd1004b6bea74a9c6072f3afa6241,
-    type: 2}
-  m_PrefabInternal: {fileID: 865004232}
-  m_Script: {fileID: 11500000, guid: d5e2c53abab5c04468059faf376727dc, type: 3}
 --- !u!1 &1739487915
 GameObject:
   m_ObjectHideFlags: 0

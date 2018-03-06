@@ -125,7 +125,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   N: 3
-  ref_accel: 1000
+  ref_accel: 3000
   damage: 0
   hostileTag: Enemy
   fueltime: 5
@@ -142,8 +142,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inertiaTensor: {x: 170, y: 170, z: 10}
   dragCoeff: 0.02
-  wingArea: 2
-  maxThrust: 5000
+  wingArea: 0.5
+  maxThrust: 18000
   rollDampeningCoeff: 0.2
   yawDampeningCoeff: 0.1
   aileronControlCoeff: 0.25
@@ -165,11 +165,11 @@ MonoBehaviour:
   - {x: 180, y: 0}
   pitchingMomentSetpoints:
   - {x: -180, y: 0}
-  - {x: -50, y: 0.1}
+  - {x: -120, y: 0.55}
   - {x: -35, y: 0.35}
   - {x: 0, y: 0}
   - {x: 35, y: -0.35}
-  - {x: 50, y: -0.1}
+  - {x: 120, y: -0.55}
   - {x: 180, y: 0}
   yawMomentSetpoints:
   - {x: -180, y: 0}
