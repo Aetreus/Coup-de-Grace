@@ -5,22 +5,30 @@ using UnityEngine;
 public class PropNav : MonoBehaviour {
 
     public float N = 3;
+    public float ref_accel;
+
+    public float damage;
+    public string hostileTag;
+    public float fueltime;
 
     private GameObject target = null;
     private Vector3 last_pos;
     private Vector3 target_last_pos;
+    
+    private FlightBehavior fb;
 
-    private Vector3 latex = Vector3.zero;
-
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         last_pos = transform.position;
+        fb = GetComponent<FlightBehavior>();
     }
 	
 	// Update is called once per frame
 	void Update () {
 
-        if (target)
+        Vector3 latex;
+
+        if (target && fueltime > 0)
         {
             Vector3 range_new = target.transform.position - transform.position;
             Vector3 range_old = target_last_pos - last_pos;
@@ -52,6 +60,14 @@ public class PropNav : MonoBehaviour {
         {
             latex = Vector3.zero;
         }
+
+        Vector3 local_accel = transform.InverseTransformVector(latex);
+
+        fb.throttle = local_accel.z / ref_accel;
+        fb.rudder = local_accel.x / ref_accel;
+        fb.elevator = local_accel.y / ref_accel;
+
+        fueltime -= Time.deltaTime;
     }
 
     public GameObject Target
@@ -67,11 +83,14 @@ public class PropNav : MonoBehaviour {
         }
     }
 
-    public Vector3 Latex
+    void OnCollisionEnter(Collision collision)
     {
-        get
+        if (collision.gameObject.tag.Equals(hostileTag))
         {
-            return latex;
+            HPManager hp = collision.gameObject.GetComponent<HPManager>();
+            hp.Damage(damage);
         }
+
+        Destroy(gameObject);
     }
 }

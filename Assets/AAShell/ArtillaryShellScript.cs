@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class ArtillaryShellScript : MonoBehaviour {
     
-    public float timer;
+    public float lifetime;
     public float speed;
+
+    public float damage;
     public string hostileTag;
 
     private Vector3 velocity = Vector3.forward.normalized;
@@ -23,8 +25,8 @@ public class ArtillaryShellScript : MonoBehaviour {
 
         //print(velocity);
 
-        timer -= Time.deltaTime;
-        if (timer < 0)
+        lifetime -= Time.deltaTime;
+        if (lifetime < 0)
         {
             GameObject.Destroy(gameObject);
         }
@@ -44,7 +46,8 @@ public class ArtillaryShellScript : MonoBehaviour {
     {
         if (collision.gameObject.tag.Equals(hostileTag))
         {
-            Destroy(collision.gameObject);
+            HPManager hp = collision.gameObject.GetComponent<HPManager>();
+            hp.Damage(damage);
         }
 
         Destroy(gameObject);
