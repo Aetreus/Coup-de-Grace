@@ -35,6 +35,7 @@ public class ProximityExplodeScript : MonoBehaviour {
         
 
         List<float> distances = new List<float>();
+        nearby.RemoveAll(g => g == null);
         foreach(GameObject g in nearby)
         {
             if(g.tag == hostileTag)
