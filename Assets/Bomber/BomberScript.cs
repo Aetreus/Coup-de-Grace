@@ -89,7 +89,12 @@ public class BomberScript : MonoBehaviour {
     {
         Vector3 towardPlayer = player.transform.position - transform.position;
         float angle = Vector3.Angle(transform.forward, towardPlayer);
-        if (angle <= missile_fire_angle && Random.Range(0.0f, 100.0f) <= missile_chance * Time.deltaTime)
+
+        RaycastHit info;
+        bool hit = Physics.Raycast(transform.position, player.transform.position - transform.position, info);
+        GameObject hitObj = info.collider.gameObject;
+
+        if (hit && hitObj==player && angle <= missile_fire_angle && Random.Range(0.0f, 100.0f) <= missile_chance * Time.deltaTime)
         {
             Vector3 spawnLoc = transform.position + towardPlayer.normalized * missile_spawn_offset;
             Quaternion spawnRot = Quaternion.LookRotation(towardPlayer);
