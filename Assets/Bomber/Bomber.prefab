@@ -39,6 +39,7 @@ GameObject:
   - component: {fileID: 65123895949819450}
   - component: {fileID: 54435925456711056}
   - component: {fileID: 114547039967664742}
+  - component: {fileID: 114454341211153008}
   m_Layer: 0
   m_Name: Bomber
   m_TagString: Enemy
@@ -189,6 +190,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 9.32, y: 2, z: 7.9}
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &114454341211153008
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1457669272040804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8b05051625088745b563a66caa669ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHP: 6
 --- !u!114 &114547039967664742
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -205,8 +218,9 @@ MonoBehaviour:
   bomb: {fileID: 1971833699960792, guid: 09a37c71be6d84d43809cf1ebb2e6f8e, type: 2}
   bomb_target: {fileID: 0}
   drop_frequency: 0.5
-  bombing_radius: 5
+  bombing_radius: 300
   bomb_spawn_offset: 1
-  missile_fire_angle: 0
-  missile_chance: 0
-  missile_spawn_offset: 0
+  missile_fire_angle: 120
+  missile_chance: 15
+  missile_spawn_offset: 5
+  missile_max_range: 5000

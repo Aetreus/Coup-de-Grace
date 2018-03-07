@@ -246,7 +246,7 @@ MonoBehaviour:
   bullet: {fileID: 1657919553941542, guid: 5e8b365525937ed4fa10054f6cf38a44, type: 2}
   rotateDelta: 100
   minFireAngle: 3
-  minFireDist: 1600
+  minFireDist: 4000
   fireCooldown: 2
   bulletSpawnOffset: 80
   playerTag: Player
@@ -261,7 +261,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8b05051625088745b563a66caa669ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: 10
+  maxHP: 2
 --- !u!135 &135584668097584800
 SphereCollider:
   m_ObjectHideFlags: 1

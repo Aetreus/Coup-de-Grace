@@ -20,6 +20,7 @@ public class BomberScript : MonoBehaviour {
     public float missile_fire_angle;
     public float missile_chance;
     public float missile_spawn_offset;
+    public float missile_max_range;
     private GameObject player;
     
     private Vector3 target_loc;
@@ -91,16 +92,21 @@ public class BomberScript : MonoBehaviour {
         float angle = Vector3.Angle(transform.forward, towardPlayer);
 
         RaycastHit info;
-        bool hit = Physics.Raycast(transform.position, player.transform.position - transform.position, info);
-        GameObject hitObj = info.collider.gameObject;
+        bool hit = Physics.Raycast(transform.position, player.transform.position - transform.position, out info);
+        GameObject hitObj;
+        if (hit)
+            hitObj = info.collider.gameObject;
+        else
+            hitObj = null;
 
-        if (hit && hitObj==player && angle <= missile_fire_angle && Random.Range(0.0f, 100.0f) <= missile_chance * Time.deltaTime)
+        if (/*hit && hitObj==player &&*/ angle <= missile_fire_angle && Random.Range(0.0f, 100.0f) <= missile_chance * Time.deltaTime && (player.transform.position - transform.position).magnitude < missile_max_range)
         {
             Vector3 spawnLoc = transform.position + towardPlayer.normalized * missile_spawn_offset;
             Quaternion spawnRot = Quaternion.LookRotation(towardPlayer);
 
             GameObject m = Instantiate(missile, spawnLoc, spawnRot);
             m.GetComponent<PropNav>().Target = player;
+            m.GetComponent<ProximityExplodeScript>().hostileTag = "Player";
         }
     }
 }

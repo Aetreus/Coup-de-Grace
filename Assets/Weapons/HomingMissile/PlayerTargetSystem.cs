@@ -224,6 +224,9 @@ public class PlayerTargetSystem : MonoBehaviour {
                 }
             }
         }
+        if (_target == null)
+            lockIcon.SetActive(false);
+
         while (usedIcons < targetIcons.Count)
         {
             targetIcons[usedIcons].GetComponent<Image>().enabled = false;

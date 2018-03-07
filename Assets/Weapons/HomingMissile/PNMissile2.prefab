@@ -216,11 +216,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   N: 3
-  ref_accel: 50
+  ref_accel: 20
   ref_speed: 300
   damage: 3
-  hostileTag: Enemy
-  fueltime: 5
+  fueltime: 2
 --- !u!114 &114545845404950122
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -251,8 +250,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inertiaTensor: {x: 170, y: 170, z: 10}
   dragCoeff: 0.02
-  wingArea: 1.5
-  maxThrust: 12000
+  wingArea: 3
+  maxThrust: 24000
   rollDampeningCoeff: 0.2
   yawDampeningCoeff: 0.1
   aileronControlCoeff: 0.25

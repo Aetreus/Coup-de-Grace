@@ -1597,11 +1597,31 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4654449303586296, guid: ec3cf49d205d6d341812aa48fc4b34ef, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 8800
+      value: 3391
       objectReference: {fileID: 0}
     - target: {fileID: 4654449303586296, guid: ec3cf49d205d6d341812aa48fc4b34ef, type: 2}
       propertyPath: m_LocalPosition.y
       value: 1838.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 114547039967664742, guid: ec3cf49d205d6d341812aa48fc4b34ef,
+        type: 2}
+      propertyPath: missile_fire_angle
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 114547039967664742, guid: ec3cf49d205d6d341812aa48fc4b34ef,
+        type: 2}
+      propertyPath: missile_chance
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 114547039967664742, guid: ec3cf49d205d6d341812aa48fc4b34ef,
+        type: 2}
+      propertyPath: missile_spawn_offset
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114547039967664742, guid: ec3cf49d205d6d341812aa48fc4b34ef,
+        type: 2}
+      propertyPath: missile_max_range
+      value: 5000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ec3cf49d205d6d341812aa48fc4b34ef, type: 2}
