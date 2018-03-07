@@ -13,7 +13,7 @@ public class BombScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+        print(GetComponent<Rigidbody>().velocity);
 	}
 
     void OnCollisionEnter(Collision collision)

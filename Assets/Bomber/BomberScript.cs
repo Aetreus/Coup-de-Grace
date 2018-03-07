@@ -5,7 +5,6 @@ using UnityEngine;
 public class BomberScript : MonoBehaviour {
 
     public GameObject missile;
-    public Vector3 travel_direction;
     public float speed;
     
     public GameObject bomb;
@@ -22,13 +21,18 @@ public class BomberScript : MonoBehaviour {
     public float missile_chance;
     public float missile_spawn_offset;
     private GameObject player;
+    
+    private Vector3 travel_direction;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
+
+        travel_direction = (new Vector3(bomb_target.transform.position.x, 0, bomb_target.transform.position.z)) - (new Vector3(transform.position.x, 0, transform.position.z));
+
         transform.forward = travel_direction.normalized;
         velocity = travel_direction.normalized * speed;
 
-        player = GameObject.FindGameObjectWithTag("player");
+        //player = GameObject.FindGameObjectWithTag("player");
     }
 	
 	// Update is called once per frame
@@ -45,12 +49,13 @@ public class BomberScript : MonoBehaviour {
             drop_timer -= Time.deltaTime;
         }
 
-        MissileChance();
+        //MissileChance();
     }
 
     void MoveUpdate()
     {
-        transform.Translate(velocity * Time.deltaTime);
+        Vector3 temp = transform.InverseTransformVector(velocity);
+        transform.Translate(temp * Time.deltaTime);
     }
 
     void CheckBombDrop()
@@ -61,8 +66,8 @@ public class BomberScript : MonoBehaviour {
 
         //float horiz_dist = (new Vector3(velocity.x, 0, velocity.z)).magnitude * fallTime;
 
-        float horiz_dist = ((new Vector3(transform.position.x, 0, transform.position.z)) - 
-                            (new Vector3(bomb_target.transform.position.x, 0, bomb_target.transform.position.z))).magnitude;
+        float horiz_dist = ((new Vector3(bomb_target.transform.position.x, 0, bomb_target.transform.position.z)) - 
+                            (new Vector3(transform.position.x, 0, transform.position.z))).magnitude;
 
         if (horiz_dist <= bombing_radius)
         {
@@ -74,7 +79,7 @@ public class BomberScript : MonoBehaviour {
 
     void DropBomb()
     {
-        Instantiate(bomb, transform.position + new Vector3(0, -bomb_spawn_offset, 0), Quaternion.identity);
+        Instantiate(bomb, transform.position + new Vector3(0, -bomb_spawn_offset, 0), Quaternion.Euler(0, -90, 0));
     }
 
     void MissileChance()
