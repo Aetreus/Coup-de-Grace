@@ -34,7 +34,15 @@ public class PropNav : MonoBehaviour {
             Vector3 range = target.transform.position - transform.position;
 
             Vector3 missile_vel = GetComponent<Rigidbody>().velocity;
-            Vector3 relative_vel = target.GetComponent<Rigidbody>().velocity - missile_vel;
+            Vector3 relative_vel;
+            if (target.GetComponent<Rigidbody>() == null)
+            {
+                relative_vel = -missile_vel;   
+            }
+            else
+            {
+                relative_vel = target.GetComponent<Rigidbody>().velocity - missile_vel;
+            }
 
             Vector3 rotation_vec = Vector3.Cross(range, relative_vel) / Vector3.Dot(range, range);
 
@@ -59,7 +67,7 @@ public class PropNav : MonoBehaviour {
         {
             fb.throttle = 0.0F;
         }
-        fb.rudder = local_accel.x / ref_accel;
+        fb.rudder = -local_accel.x / ref_accel;
         fb.elevator = local_accel.y / ref_accel;
 
         fueltime -= Time.deltaTime;

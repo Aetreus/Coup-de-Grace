@@ -254,7 +254,14 @@ public class FlightBehavior : MonoBehaviour {
     {
         if (collision.gameObject.tag.Equals("Terrain"))
         {
-            Destroy(gameObject);
+            if (gameObject.tag.Equals("Player"))
+            {
+                transform.position = new Vector3(0, 0, 0);
+                rb.velocity = new Vector3(0, 0, 150);
+                rb.angularVelocity = new Vector3(0, 0, 0);
+            }
+            else
+                Destroy(gameObject);
         }
     }
 
