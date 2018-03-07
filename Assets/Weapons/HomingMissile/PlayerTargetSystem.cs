@@ -48,7 +48,7 @@ public class PlayerTargetSystem : MonoBehaviour {
         canvas = GameObject.Find("Canvas");
         targetIcons = new List<GameObject>();
         lockIcon = Instantiate(lockPrefab, canvas.transform);
-        lockIcon.GetComponent<Image>().enabled = false;
+        lockIcon.SetActive(false);
         lockSprite = lockIcon.GetComponent<Image>().sprite;
         targetSprite = targetPrefab.GetComponent<Image>().sprite;
         for (int i = 0; i < enemies.Count; i++)
@@ -65,7 +65,7 @@ public class PlayerTargetSystem : MonoBehaviour {
         enemies.Sort(SortByAngle);
 
         //if you currently have a target you are aiming at or locking onto...
-        if (_target)
+        if (_target != null)
         {
             //if the target was being locked onto long enough, set the lock-on to true
             if (lockTimer <= 0 && locking)
@@ -180,6 +180,11 @@ public class PlayerTargetSystem : MonoBehaviour {
         return 0;
     }
 
+    private void ShowLockIcon()
+    {
+
+    }
+
     private void DisplayIcons()
     {
         int usedIcons = 0;
@@ -201,12 +206,12 @@ public class PlayerTargetSystem : MonoBehaviour {
                     DistLabel.GetComponent<Text>().text = (transform.position - _target.transform.position).magnitude.ToString();
                     if ((flash && locking) || locked)
                     {
-                        lockIcon.GetComponent<Image>().enabled = true;
+                        lockIcon.SetActive(true);
                         lockIcon.GetComponent<Image>().overrideSprite = null;
                     }
                     else
                     {
-                        lockIcon.GetComponent<Image>().enabled = true;
+                        lockIcon.SetActive(true);
                         lockIcon.GetComponent<Image>().overrideSprite = targetSprite;
                     }
                 }

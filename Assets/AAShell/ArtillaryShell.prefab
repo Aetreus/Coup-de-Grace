@@ -376,8 +376,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa67645b32c741a4b96e2a97c4a58c1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 5
+  lifetime: 4
   speed: 400
+  damage: 2
   hostileTag: Player
 --- !u!136 &136744268328911122
 CapsuleCollider:

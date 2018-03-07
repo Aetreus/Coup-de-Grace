@@ -35,7 +35,7 @@ public class BomberScript : MonoBehaviour {
         transform.forward = travel_direction.normalized;
         velocity = travel_direction.normalized * speed;
 
-        //player = GameObject.FindGameObjectWithTag("player");
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 	
 	// Update is called once per frame
@@ -52,7 +52,7 @@ public class BomberScript : MonoBehaviour {
             drop_timer -= Time.deltaTime;
         }
 
-        //MissileChance();
+        MissileChance();
     }
 
     void MoveUpdate()
@@ -69,7 +69,7 @@ public class BomberScript : MonoBehaviour {
 
         //float horiz_dist = (new Vector3(velocity.x, 0, velocity.z)).magnitude * fallTime;
 
-        float horiz_dist = ((new Vector3(target_loc.x, 0, target_loc.position.z)) - 
+        float horiz_dist = ((new Vector3(target_loc.x, 0, target_loc.z)) - 
                             (new Vector3(transform.position.x, 0, transform.position.z))).magnitude;
 
         if (horiz_dist <= bombing_radius)
