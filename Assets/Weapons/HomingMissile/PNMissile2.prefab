@@ -216,7 +216,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   N: 3
-  ref_accel: 80
+  ref_accel: 50
+  ref_speed: 300
   damage: 3
   hostileTag: Enemy
   fueltime: 5
@@ -250,42 +251,42 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inertiaTensor: {x: 170, y: 170, z: 10}
   dragCoeff: 0.02
-  wingArea: 1
-  maxThrust: 18000
+  wingArea: 1.5
+  maxThrust: 12000
   rollDampeningCoeff: 0.2
   yawDampeningCoeff: 0.1
   aileronControlCoeff: 0.25
-  elevatorControlCoeff: 0.4
-  rudderControlCoeff: 0.4
+  elevatorControlCoeff: 0.6
+  rudderControlCoeff: 0.6
   liftCoeffSetpoints:
   - {x: -180, y: 0}
-  - {x: -45, y: -0.75}
-  - {x: -25, y: -2}
-  - {x: 25, y: 2}
-  - {x: 45, y: 0.75}
+  - {x: -45, y: -2}
+  - {x: -20, y: -3}
+  - {x: 20, y: 3}
+  - {x: 45, y: 2}
   - {x: 180, y: 0}
   crossLiftCoeffSetpoints:
   - {x: -180, y: 0}
-  - {x: -45, y: -1.75}
-  - {x: -25, y: -2}
-  - {x: 25, y: 2}
-  - {x: 45, y: 1.75}
+  - {x: -45, y: -2}
+  - {x: -20, y: -3}
+  - {x: 20, y: 3}
+  - {x: 45, y: 2}
   - {x: 180, y: 0}
   pitchingMomentSetpoints:
   - {x: -180, y: 0}
-  - {x: -120, y: 0.55}
-  - {x: -35, y: 0.35}
+  - {x: -120, y: 1.15}
+  - {x: -35, y: 0.7}
   - {x: 0, y: 0}
-  - {x: 35, y: -0.35}
-  - {x: 120, y: -0.55}
+  - {x: 35, y: -0.7}
+  - {x: 120, y: -1.15}
   - {x: 180, y: 0}
   yawMomentSetpoints:
   - {x: -180, y: 0}
-  - {x: -50, y: 0.1}
-  - {x: -35, y: 0.35}
+  - {x: -120, y: 1.15}
+  - {x: -35, y: 0.7}
   - {x: 0, y: 0}
-  - {x: 35, y: -0.35}
-  - {x: 50, y: -0.1}
+  - {x: 35, y: -0.7}
+  - {x: 120, y: -1.15}
   - {x: 180, y: 0}
 --- !u!198 &198058937082830708
 ParticleSystem:
