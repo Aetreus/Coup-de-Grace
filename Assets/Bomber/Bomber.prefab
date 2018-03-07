@@ -200,7 +200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dcb6ea340d95d4468739a2555e88387, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  missile: {fileID: 0}
+  missile: {fileID: 1015981174769106, guid: 5f59c449d05f05746bb8a514e6938170, type: 2}
   speed: 5
   bomb: {fileID: 1971833699960792, guid: 09a37c71be6d84d43809cf1ebb2e6f8e, type: 2}
   bomb_target: {fileID: 0}

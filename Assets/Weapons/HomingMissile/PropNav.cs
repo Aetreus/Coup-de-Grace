@@ -9,7 +9,6 @@ public class PropNav : MonoBehaviour {
     public float ref_accel;
 
     public float damage;
-    public string hostileTag;
     public float fueltime;
 
     private GameObject target = null;
@@ -88,7 +87,7 @@ public class PropNav : MonoBehaviour {
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag.Equals(hostileTag))
+        if (target && collision.gameObject == target)
         {
             HPManager hp = collision.gameObject.GetComponent<HPManager>();
             hp.Damage(damage);

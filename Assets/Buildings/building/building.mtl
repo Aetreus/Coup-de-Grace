@@ -1,0 +1,33 @@
+#
+## Alias OBJ Material File
+# Exported from SketchUp, (c) 2000-2012 Trimble Navigation Limited
+
+newmtl Limestone
+Ka 0.000000 0.000000 0.000000
+Kd 0.941176 0.874510 0.749020
+Ks 0.330000 0.330000 0.330000
+map_Kd Untitled/Limestone.jpg
+
+newmtl FrontColor
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.330000 0.330000 0.330000
+
+newmtl building_texture1
+Ka 0.000000 0.000000 0.000000
+Kd 0.501961 0.501961 0.501961
+Ks 0.000000 0.000000 0.000000
+map_Kd Untitled/building_texture1.jpg
+
+newmtl Doors
+Ka 0.000000 0.000000 0.000000
+Kd 0.501961 0.501961 0.501961
+Ks 0.000000 0.000000 0.000000
+map_Kd Untitled/Doors.png
+
+newmtl png_window_4_by_paradise234_d5i7f6m
+Ka 0.000000 0.000000 0.000000
+Kd 0.501961 0.501961 0.501961
+Ks 0.000000 0.000000 0.000000
+map_Kd Untitled/png_window_4_by_paradise234_d5i7f6m.png
+
