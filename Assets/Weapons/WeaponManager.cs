@@ -52,7 +52,7 @@ public class WeaponManager : MonoBehaviour {
 
     public void Fire()
     {
-        if (current_shots >= 1 && pt.Locked)
+        if (current_shots >= 1 && pt.Locked && pt.Target != null)
         {
             current_shots--;
             for(int i = 0; i< maximumShots; i++)

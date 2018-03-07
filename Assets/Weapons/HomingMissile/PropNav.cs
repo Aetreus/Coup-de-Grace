@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof (FlightBehavior))]
+[RequireComponent(typeof (FlightBehavior)),RequireComponent(typeof (Rigidbody))]
 public class PropNav : MonoBehaviour {
 
     public float N = 3;
     public float ref_accel;
+    public float ref_speed = 200;
 
     public float damage;
     public float fueltime;
@@ -17,10 +18,13 @@ public class PropNav : MonoBehaviour {
     
     private FlightBehavior fb;
 
+    private Rigidbody rb;
+
     // Use this for initialization
     void Start () {
         last_pos = transform.position;
         fb = GetComponent<FlightBehavior>();
+        rb = GetComponent<Rigidbody>();
     }
 	
 	// Update is called once per frame
@@ -66,8 +70,14 @@ public class PropNav : MonoBehaviour {
         {
             fb.throttle = 0.0F;
         }
-        fb.rudder = -local_accel.x / ref_accel;
-        fb.elevator = local_accel.y / ref_accel;
+        float speedControlSense = 1.0F;
+        if(rb.velocity.sqrMagnitude > ref_speed)
+        {
+            speedControlSense = ref_speed * ref_speed / rb.velocity.sqrMagnitude;
+        }
+
+        fb.rudder = (-local_accel.x / ref_accel) * speedControlSense;
+        fb.elevator = (local_accel.y / ref_accel) * speedControlSense;
 
         fueltime -= Time.deltaTime;
     }
