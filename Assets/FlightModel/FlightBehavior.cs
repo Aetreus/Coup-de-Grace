@@ -257,6 +257,7 @@ public class FlightBehavior : MonoBehaviour {
             if (gameObject.tag.Equals("Player"))
             {
                 transform.position = new Vector3(0, 0, 0);
+                transform.rotation = Quaternion.Euler(Vector3.zero);
                 rb.velocity = new Vector3(0, 0, 150);
                 rb.angularVelocity = new Vector3(0, 0, 0);
             }
