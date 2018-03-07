@@ -34,7 +34,7 @@ public class BomberScript : MonoBehaviour {
 
         transform.forward = travel_direction.normalized;
         velocity = travel_direction.normalized * speed;
-
+        
         player = GameObject.FindGameObjectWithTag("Player");
     }
 	
