@@ -27,42 +27,27 @@ public class PropNav : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        Vector3 latex;
+        Vector3 latax;
 
         if (target)
         {
-            Vector3 range_new = target.transform.position - transform.position;
-            Vector3 range_old = target_last_pos - last_pos;
-            range_new.Normalize();
-            range_old.Normalize();
+            Vector3 range = target.transform.position - transform.position;
 
-            Vector3 LOS_Delta;
-            float LOS_Rate;
-            if (range_old.magnitude == 0)
-            {
-                LOS_Delta = range_new - range_old;
-                LOS_Rate = LOS_Delta.magnitude;
-            }
-            else
-            {
-                LOS_Delta = range_new - range_old;
-                LOS_Rate = LOS_Delta.magnitude;
-            }
+            Vector3 missile_vel = GetComponent<Rigidbody>().velocity;
+            Vector3 relative_vel = target.GetComponent<Rigidbody>().velocity - missile_vel;
 
-            float closing_vel = -LOS_Rate;
+            Vector3 rotation_vec = Vector3.Cross(range, relative_vel) / Vector3.Dot(range, range);
 
-            float Nt = Physics.gravity.magnitude;
-            latex = range_new * N * closing_vel * LOS_Rate + LOS_Delta * Nt * N * 0.5f;
+            Vector3 term1 = -N * relative_vel.magnitude * missile_vel.normalized;
 
-            target_last_pos = target.transform.position;
-            last_pos = transform.position;
+            latax = Vector3.Cross(term1, rotation_vec);
         }
         else
         {
-            latex = Vector3.zero;
+            latax = Vector3.zero;
         }
 
-        Vector3 local_accel = transform.InverseTransformVector(latex);
+        Vector3 local_accel = transform.InverseTransformVector(latax);
 
         print(local_accel);
 
