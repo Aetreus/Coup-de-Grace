@@ -40,6 +40,14 @@ public class HPManager : MonoBehaviour {
 
     public void Die()
     {
-        Destroy(this.gameObject);
+        if (gameObject.tag.Equals("Player"))
+        {
+            transform.position = new Vector3(0, 0, 0);
+            transform.rotation = Quaternion.Euler(Vector3.zero);
+            gameObject.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 150);
+            gameObject.GetComponent<Rigidbody>().angularVelocity = new Vector3(0, 0, 0);
+        }
+        else
+            Destroy(gameObject);
     }
 }
