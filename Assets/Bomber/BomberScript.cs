@@ -22,12 +22,15 @@ public class BomberScript : MonoBehaviour {
     public float missile_spawn_offset;
     private GameObject player;
     
+    private Vector3 target_loc;
     private Vector3 travel_direction;
 
     // Use this for initialization
     void Start () {
 
-        travel_direction = (new Vector3(bomb_target.transform.position.x, 0, bomb_target.transform.position.z)) - (new Vector3(transform.position.x, 0, transform.position.z));
+        target_loc = bomb_target.transform.position;
+
+        travel_direction = (new Vector3(target_loc.x, 0, target_loc.z)) - (new Vector3(transform.position.x, 0, transform.position.z));
 
         transform.forward = travel_direction.normalized;
         velocity = travel_direction.normalized * speed;
@@ -66,7 +69,7 @@ public class BomberScript : MonoBehaviour {
 
         //float horiz_dist = (new Vector3(velocity.x, 0, velocity.z)).magnitude * fallTime;
 
-        float horiz_dist = ((new Vector3(bomb_target.transform.position.x, 0, bomb_target.transform.position.z)) - 
+        float horiz_dist = ((new Vector3(target_loc.x, 0, target_loc.position.z)) - 
                             (new Vector3(transform.position.x, 0, transform.position.z))).magnitude;
 
         if (horiz_dist <= bombing_radius)
