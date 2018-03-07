@@ -215,10 +215,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   N: 3
-  ref_accel: 3000
+  ref_accel: 45
   damage: 0
   hostileTag: Enemy
-  fueltime: 4.2214212
+  fueltime: 5
 --- !u!114 &114728926152922066
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -241,17 +241,17 @@ MonoBehaviour:
   rudderControlCoeff: 0.3
   liftCoeffSetpoints:
   - {x: -180, y: 0}
-  - {x: -35, y: -0.75}
-  - {x: -20, y: -0.375}
-  - {x: 20, y: 0.375}
-  - {x: 35, y: 0.05}
+  - {x: -45, y: -0.75}
+  - {x: -25, y: -2}
+  - {x: 25, y: 2}
+  - {x: 45, y: 0.75}
   - {x: 180, y: 0}
   crossLiftCoeffSetpoints:
   - {x: -180, y: 0}
-  - {x: -35, y: -0.05}
-  - {x: -20, y: -0.25}
-  - {x: 20, y: 0.25}
-  - {x: 35, y: 0.05}
+  - {x: -45, y: -1.75}
+  - {x: -25, y: -2}
+  - {x: 25, y: 2}
+  - {x: 45, y: 1.75}
   - {x: 180, y: 0}
   pitchingMomentSetpoints:
   - {x: -180, y: 0}
