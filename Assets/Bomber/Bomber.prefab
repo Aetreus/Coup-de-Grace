@@ -37,9 +37,10 @@ GameObject:
   - component: {fileID: 65298606072798784}
   - component: {fileID: 54283156488944226}
   - component: {fileID: 114466530315199630}
+  - component: {fileID: 114686651551343980}
   m_Layer: 0
   m_Name: Bomber
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -200,13 +201,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dcb6ea340d95d4468739a2555e88387, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  missile: {fileID: 0}
-  speed: 5
+  missile: {fileID: 1015981174769106, guid: 5f59c449d05f05746bb8a514e6938170, type: 2}
+  speed: 100
   bomb: {fileID: 1971833699960792, guid: 09a37c71be6d84d43809cf1ebb2e6f8e, type: 2}
   bomb_target: {fileID: 0}
   drop_frequency: 0.5
   bombing_radius: 5
   bomb_spawn_offset: 1
-  missile_fire_angle: 0
-  missile_chance: 0
-  missile_spawn_offset: 0
+  missile_fire_angle: 60
+  missile_chance: 0.01
+  missile_spawn_offset: 10
+--- !u!114 &114686651551343980
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1544919092086188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8b05051625088745b563a66caa669ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHP: 3
