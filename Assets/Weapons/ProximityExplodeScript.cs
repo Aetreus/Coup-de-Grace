@@ -43,7 +43,7 @@ public class ProximityExplodeScript : MonoBehaviour {
         }
         distances.Sort();
 
-        if (live && distances[0] > prevDistance)
+        if (live && distances.Count > 0 && distances[0] > prevDistance)
             Explode();
 
         if (distances.Count > 0 && distances[0] < triggerRange)

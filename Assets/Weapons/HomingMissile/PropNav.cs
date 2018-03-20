@@ -11,6 +11,10 @@ public class PropNav : MonoBehaviour {
 
     public float damage;
     public float fueltime;
+    public float lifetime;
+    public float dampingTime;
+
+    public PIDController surfaceController;
 
     private GameObject target = null;
     private Vector3 last_pos;
@@ -20,11 +24,14 @@ public class PropNav : MonoBehaviour {
 
     private Rigidbody rb;
 
+    private float dampingTimer;
+
     // Use this for initialization
     void Start () {
         last_pos = transform.position;
         fb = GetComponent<FlightBehavior>();
         rb = GetComponent<Rigidbody>();
+        dampingTimer = dampingTime;
     }
 	
 	// Update is called once per frame
@@ -62,6 +69,17 @@ public class PropNav : MonoBehaviour {
 
         print(local_accel);
 
+        if(lifetime < 0)
+        {
+            Destroy(gameObject);
+        }
+        float surfaceDampCoeff = 1.0F;
+        if(dampingTimer > 0)
+        {
+            surfaceDampCoeff = 1.0F - (dampingTime / dampingTimer);
+            dampingTime -= Time.deltaTime;
+        }
+
         if(fueltime > 0)
         {
             fb.throttle = 1.0F;
@@ -76,10 +94,11 @@ public class PropNav : MonoBehaviour {
             speedControlSense = ref_speed * ref_speed / rb.velocity.sqrMagnitude;
         }
 
-        fb.rudder = (-local_accel.x / ref_accel) * speedControlSense;
-        fb.elevator = (local_accel.y / ref_accel) * speedControlSense;
+        fb.rudder = surfaceController.Calc((-local_accel.x / ref_accel) * speedControlSense * surfaceDampCoeff);
+        fb.elevator = surfaceController.Calc((local_accel.y / ref_accel) * speedControlSense * surfaceDampCoeff);
 
         fueltime -= Time.deltaTime;
+        lifetime -= Time.deltaTime;
     }
 
     public GameObject Target

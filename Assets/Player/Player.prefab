@@ -515,7 +515,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8b05051625088745b563a66caa669ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: 10
+  maxHP: 12
 --- !u!114 &114222035015594602
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -560,7 +560,7 @@ MonoBehaviour:
     m_TypeName: WeaponManager+OnFire, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   maximumShots: 2
-  reloadTime: 2
+  reloadTime: 6
 --- !u!114 &114399108138111284
 MonoBehaviour:
   m_ObjectHideFlags: 1

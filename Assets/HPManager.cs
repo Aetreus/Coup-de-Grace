@@ -46,6 +46,7 @@ public class HPManager : MonoBehaviour {
             transform.rotation = Quaternion.Euler(Vector3.zero);
             gameObject.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 150);
             gameObject.GetComponent<Rigidbody>().angularVelocity = new Vector3(0, 0, 0);
+            SetHP(maxHP);
         }
         else
             Destroy(gameObject);
