@@ -13,8 +13,8 @@ public class HPManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        if(onDie.GetPersistentEventCount() == 0)
-            onDie.AddListener(delegate { Destroy(this); });
+        if (onDie.GetPersistentEventCount() == 0)
+            onDie.AddListener(delegate { Destroy(gameObject); });
         hp = maxHP;
 	}
 	
@@ -45,6 +45,7 @@ public class HPManager : MonoBehaviour {
 
     public void Die()
     {
+        
         onDie.Invoke();
     }
 }

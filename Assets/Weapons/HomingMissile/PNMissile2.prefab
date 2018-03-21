@@ -29,6 +29,7 @@ GameObject:
   - component: {fileID: 199953753338361412}
   - component: {fileID: 96770090736886502}
   - component: {fileID: 114545845404950122}
+  - component: {fileID: 114924372814145022}
   m_Layer: 0
   m_Name: PNMissile2
   m_TagString: Untagged
@@ -294,6 +295,18 @@ MonoBehaviour:
   - {x: 35, y: -0.7}
   - {x: 120, y: -1.15}
   - {x: 180, y: 0}
+--- !u!114 &114924372814145022
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1015981174769106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67f98435b43caf14eb48c078020e5fa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Icon: {fileID: 1969818061814534, guid: f7d7173db0157374fb9aaedcb90acc0c, type: 2}
 --- !u!198 &198058937082830708
 ParticleSystem:
   m_ObjectHideFlags: 1

@@ -119,8 +119,10 @@ public class PropNav : MonoBehaviour {
             if (target != null)
             {
                 PlayerControlBehavior pcb = target.GetComponent<PlayerControlBehavior>();
-                if(pcb != null)
+                if (pcb != null)
+                {
                     pcb.warnings.RemoveAll(w => w.reference == gameObject);
+                }
             }
             target = value;
             target_last_pos = target.transform.position;
@@ -150,8 +152,11 @@ public class PropNav : MonoBehaviour {
         if (target != null)
         {
             PlayerControlBehavior pcb = target.GetComponent<PlayerControlBehavior>();
-            if(pcb != null)
+            if (pcb != null)
+            {
+                target.transform.Find("UISoundHolder/MissileAlertPlayer").GetComponent<AudioSource>().Stop();
                 pcb.warnings.RemoveAll(w => w.reference == gameObject);
+            }
         }
     }
 }

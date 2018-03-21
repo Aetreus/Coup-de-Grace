@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 114256119274711160}
   - component: {fileID: 65232640516170786}
   - component: {fileID: 114001547825267288}
+  - component: {fileID: 114217066268131064}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -656,6 +657,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHP: 12
+  onDie:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114222035015594602}
+        m_MethodName: Respawn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+--- !u!114 &114217066268131064
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1118712050718116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67f98435b43caf14eb48c078020e5fa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Icon: {fileID: 1744471353617844, guid: fbc3d3b633ee6e146b599a0dc5c829c8, type: 2}
 --- !u!114 &114222035015594602
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -686,6 +715,7 @@ MonoBehaviour:
     warningText: STALL
     warningTargetName: AoALabel
     sound: {fileID: 0}
+    forcePlay: 0
   - reference: {fileID: 1118712050718116}
     component: FlightBehavior
     valueName: aoa
@@ -695,6 +725,7 @@ MonoBehaviour:
     warningText: STALL
     warningTargetName: AoALabel
     sound: {fileID: 0}
+    forcePlay: 0
   - reference: {fileID: 1118712050718116}
     component: FlightBehavior
     valueName: airspeed
@@ -704,6 +735,7 @@ MonoBehaviour:
     warningText: AIRSPEED
     warningTargetName: SpeedLabel
     sound: {fileID: 0}
+    forcePlay: 0
 --- !u!114 &114256119274711160
 MonoBehaviour:
   m_ObjectHideFlags: 1

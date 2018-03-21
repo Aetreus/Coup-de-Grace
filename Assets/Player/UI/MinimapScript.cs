@@ -36,7 +36,9 @@ public class MinimapScript : MonoBehaviour {
     {
         actives.Remove(unreg);
         int index = icons.FindIndex(x => x.name == unreg.Icon.name);
+        GameObject.Destroy(icons[index].gameObject, 0.1F);
         icons.RemoveAt(index);
+        
     }
 	
 	// Update is called once per frame
