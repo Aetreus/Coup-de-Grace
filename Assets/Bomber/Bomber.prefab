@@ -222,5 +222,5 @@ MonoBehaviour:
   bomb_spawn_offset: 1
   missile_fire_angle: 120
   missile_chance: 10
-  missile_spawn_offset: 5
+  missile_spawn_offset: 15
   missile_max_range: 5000

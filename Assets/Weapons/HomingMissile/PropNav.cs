@@ -127,7 +127,7 @@ public class PropNav : MonoBehaviour {
             if(target.GetComponent<PlayerControlBehavior>() != null)
             {
                 PlayerControlBehavior pcb = target.GetComponent<PlayerControlBehavior>();
-                PlayerControlBehavior.Warning warn = new PlayerControlBehavior.Warning(gameObject,"PropNav","targetDistance",false,null,false,2000,"MISSILE","None");
+                PlayerControlBehavior.Warning warn = new PlayerControlBehavior.Warning(gameObject,"PropNav","targetDistance",false,null,false,2000,"MISSILE","None",target.transform.Find("UISoundHolder/MissileAlertPlayer").GetComponent<AudioSource>(),true);
                 pcb.warnings.Add(warn);
                 pcb.UpdateWarnings();
             }

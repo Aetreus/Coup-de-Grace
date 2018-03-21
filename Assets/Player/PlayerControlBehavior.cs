@@ -40,7 +40,11 @@ public class PlayerControlBehavior : MonoBehaviour {
 
     private List<GameObject> WpnGraphics;
 
-    private List<float> loadTime;
+    private Queue<AudioSource> queuedAlerts;
+    private AudioSource playing;
+    private Vector3 startLocation;
+    private Quaternion startRotation;
+    private Vector3 startVelocity;
 
     //Defines what a warning consists of
     [System.Serializable]
@@ -74,8 +78,9 @@ public class PlayerControlBehavior : MonoBehaviour {
         internal bool active = false;
 
         public AudioSource sound;
+        public bool forcePlay;
 
-        public Warning(GameObject refer, string comp, string value, bool method, object[] param, bool greater, float limit, string warning, string targetName,AudioSource sound)
+        public Warning(GameObject refer, string comp, string value, bool method, object[] param, bool greater, float limit, string warning, string targetName,AudioSource sound,bool forcePlay)
         {
             reference = refer;
             component = comp;
@@ -90,9 +95,10 @@ public class PlayerControlBehavior : MonoBehaviour {
             warningText = warning;
             warningTargetName = targetName;
             this.sound = sound;
+            this.forcePlay = forcePlay;
         }
 
-        public Warning(GameObject refer, string comp, string value, bool method, object[] param, bool greater, float limit, string warning, string targetName) : this(refer, comp, value, false, null, greater, limit, warning, targetName, null)
+        public Warning(GameObject refer, string comp, string value, bool method, object[] param, bool greater, float limit, string warning, string targetName) : this(refer, comp, value, false, null, greater, limit, warning, targetName, null, false)
         {
 
         }
@@ -152,6 +158,7 @@ public class PlayerControlBehavior : MonoBehaviour {
         AlertOutput.SetActive(false);
 
         WpnGraphics = new List<GameObject>();
+        queuedAlerts = new Queue<AudioSource>();
 
         for (int i = 0; i < WpnHolder.transform.childCount; i++)
         {
@@ -162,6 +169,10 @@ public class PlayerControlBehavior : MonoBehaviour {
         {
             WpnGraphics[i].GetComponent<Image>().color = Color.red;
         }
+
+        startLocation = transform.position;
+        startRotation = transform.localRotation;
+        startVelocity = GetComponent<Rigidbody>().velocity;
 
         UpdateWarnings();
     }
@@ -203,6 +214,12 @@ public class PlayerControlBehavior : MonoBehaviour {
         }
 
         CheckWarnings();
+
+        if((playing == null || playing.isPlaying == false) && queuedAlerts.Count > 0)
+        {
+            playing = queuedAlerts.Dequeue();
+            playing.Play();
+        }
     }
 
     //Updates the warning MethodInfo- must be called before a new warning is valid
@@ -259,7 +276,17 @@ public class PlayerControlBehavior : MonoBehaviour {
                 }
                 w.active = true;
 
-                //TODO Audible alert functionality goes here
+                if(w.forcePlay && w.sound != null && !w.sound.isPlaying)
+                {
+                    w.sound.Play();
+                }
+                else if(w.sound != null)
+                {
+                    if(!queuedAlerts.Contains(w.sound))
+                    {
+                        queuedAlerts.Enqueue(w.sound);
+                    }
+                }
             }
             else if(w.active == true)
             {
@@ -273,6 +300,8 @@ public class PlayerControlBehavior : MonoBehaviour {
                 }
                 w.active = false;
                 AlertOutput.SetActive(false);
+
+                w.sound.Stop();
             }
         }
         if(enableWarning)
@@ -280,6 +309,17 @@ public class PlayerControlBehavior : MonoBehaviour {
             AlertOutput.SetActive(true);
             AlertOutput.GetComponent<Text>().text = warningText;
         }
+        else
+        {
+            AlertOutput.SetActive(false);
+        }
+    }
+
+    public void Respawn()
+    {
+        transform.position = startLocation;
+        transform.localRotation = startRotation;
+        GetComponent<Rigidbody>().velocity = startVelocity;
     }
 
     void OnDestroy()
