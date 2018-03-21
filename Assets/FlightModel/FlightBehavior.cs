@@ -146,6 +146,8 @@ public class FlightBehavior : MonoBehaviour {
 
     public float slip { get { return sideslip; } }
 
+    public float airspeed { get { return GetComponent<Rigidbody>().velocity.magnitude; } }
+
     void FixedUpdate ()
     {
 

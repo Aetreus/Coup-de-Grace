@@ -11,6 +11,9 @@ public class PlayerTargetSystem : MonoBehaviour {
     public float flashTime;
 
     public string hostileTag;
+
+    public float referenceDistance;
+    public float logBase;
     
     private float lockTimer;
     private float flashTimer;
@@ -214,12 +217,57 @@ public class PlayerTargetSystem : MonoBehaviour {
                         lockIcon.SetActive(true);
                         lockIcon.GetComponent<Image>().overrideSprite = targetSprite;
                     }
+                    
+                    //Check if we hit some object other than the target.
+                    RaycastHit info;
+                    bool hit = Physics.Raycast(transform.position, _target.transform.position - transform.position, out info);
+                    GameObject hitObj = info.transform.gameObject;
+                    if (hit && hitObj != _target)
+                        lockIcon.transform.Find("ObstructedMarker").gameObject.SetActive(true);
+                    else
+                        lockIcon.transform.Find("ObstructedMarker").gameObject.SetActive(false);
+
+                    float distance = (transform.position - _target.transform.position).magnitude;
+                    
+                    //Scale icon by distance
+                    if(distance > referenceDistance)
+                    {
+                        float scaleFactor = 1 / (1 + Mathf.Log(distance / referenceDistance) / Mathf.Log(logBase));
+                        lockIcon.transform.localScale = new Vector3(scaleFactor, scaleFactor, 1);
+                    }
+                    else
+                    {
+                        lockIcon.transform.localScale = new Vector3(1, 1, 1);
+                    }
                 }
                 else
                 {
                     RectTransform location = targetIcons[usedIcons].GetComponent<RectTransform>();
                     location.anchoredPosition = new Vector2(screenPos.x, screenPos.y) - canvas.GetComponent<RectTransform>().sizeDelta / 2f;
                     targetIcons[usedIcons].GetComponent<Image>().enabled = true;
+
+                    RaycastHit info;
+                    bool hit = Physics.Raycast(transform.position, enemy.transform.position - transform.position, out info);
+                    GameObject hitObj = info.transform.gameObject;
+                    if (hit && hitObj != enemy)
+                        targetIcons[usedIcons].transform.Find("ObstructedMarker").gameObject.SetActive(true);
+                    else
+                        targetIcons[usedIcons].transform.Find("ObstructedMarker").gameObject.SetActive(false);
+
+
+                    float distance = (transform.position - enemy.transform.position).magnitude;
+
+                    //Scale icon by distance
+                    if (distance > referenceDistance)
+                    {
+                        float scaleFactor = 1 / (1 + Mathf.Log(distance / referenceDistance) / Mathf.Log(logBase));
+                        targetIcons[usedIcons].transform.localScale = new Vector3(scaleFactor, scaleFactor, 1);
+                    }
+                    else
+                    {
+                        targetIcons[usedIcons].transform.localScale = new Vector3(1,1, 1);
+                    }
+
                     usedIcons++;
                 }
             }

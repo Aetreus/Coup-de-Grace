@@ -220,7 +220,7 @@ MonoBehaviour:
   drop_frequency: 0.5
   bombing_radius: 300
   bomb_spawn_offset: 1
-  missile_fire_angle: 90
-  missile_chance: 2.5
+  missile_fire_angle: 120
+  missile_chance: 10
   missile_spawn_offset: 5
   missile_max_range: 5000

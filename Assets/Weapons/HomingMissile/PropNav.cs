@@ -14,6 +14,8 @@ public class PropNav : MonoBehaviour {
     public float lifetime;
     public float dampingTime;
 
+    public float targetDistance { get { return _targetDistance; } }
+
     public PIDController surfaceController;
 
     private GameObject target = null;
@@ -23,6 +25,8 @@ public class PropNav : MonoBehaviour {
     private FlightBehavior fb;
 
     private Rigidbody rb;
+
+    private float _targetDistance;
 
     private float dampingTimer;
 
@@ -42,6 +46,8 @@ public class PropNav : MonoBehaviour {
         if (target)
         {
             Vector3 range = target.transform.position - transform.position;
+
+            _targetDistance = range.magnitude;
 
             Vector3 missile_vel = GetComponent<Rigidbody>().velocity;
             Vector3 relative_vel;
@@ -109,8 +115,22 @@ public class PropNav : MonoBehaviour {
         }
         set
         {
+            //Add/remove target warnings if we target the player.
+            if (target != null)
+            {
+                PlayerControlBehavior pcb = target.GetComponent<PlayerControlBehavior>();
+                if(pcb != null)
+                    pcb.warnings.RemoveAll(w => w.reference == gameObject);
+            }
             target = value;
             target_last_pos = target.transform.position;
+            if(target.GetComponent<PlayerControlBehavior>() != null)
+            {
+                PlayerControlBehavior pcb = target.GetComponent<PlayerControlBehavior>();
+                PlayerControlBehavior.Warning warn = new PlayerControlBehavior.Warning(gameObject,"PropNav","targetDistance",false,null,false,2000,"MISSILE","None");
+                pcb.warnings.Add(warn);
+                pcb.UpdateWarnings();
+            }
         }
     }
 
@@ -123,5 +143,15 @@ public class PropNav : MonoBehaviour {
         }
 
         Destroy(gameObject);
+    }
+
+    private void OnDestroy()
+    {
+        if (target != null)
+        {
+            PlayerControlBehavior pcb = target.GetComponent<PlayerControlBehavior>();
+            if(pcb != null)
+                pcb.warnings.RemoveAll(w => w.reference == gameObject);
+        }
     }
 }

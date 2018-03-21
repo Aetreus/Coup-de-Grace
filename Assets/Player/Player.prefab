@@ -527,11 +527,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 484689df7ac6db544991c1a20f1d4c59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AoAOutput: {fileID: 0}
-  AltOutput: {fileID: 0}
-  SpdOutput: {fileID: 0}
-  SlpOutput: {fileID: 0}
-  WpnHolder: {fileID: 0}
+  CanvasName: Canvas
+  AoALabelName: AoALabel/AoAValue
+  AltLabelName: AltLabel/AltValue
+  SpdOutputName: SpeedLabel/SpeedValue
+  SlpOutputName: SideslipLabel/SideslipValue
+  WpnHolderName: WeaponsUIHolder
+  AlertLabelName: AlertLabel
+  warningColor: {r: 0.8897059, g: 0.18317476, b: 0.18317476, a: 1}
+  defaultColor: {r: 0.1764706, g: 0.8235294, b: 0.25882354, a: 1}
+  warnings:
+  - reference: {fileID: 1118712050718116}
+    component: FlightBehavior
+    valueName: aoa
+    isMethod: 0
+    isGreater: 1
+    limit: 30
+    warningText: STALL
+    warningTargetName: AoALabel
+  - reference: {fileID: 1118712050718116}
+    component: FlightBehavior
+    valueName: aoa
+    isMethod: 0
+    isGreater: 0
+    limit: -20
+    warningText: STALL
+    warningTargetName: AoALabel
+  - reference: {fileID: 1118712050718116}
+    component: FlightBehavior
+    valueName: airspeed
+    isMethod: 0
+    isGreater: 0
+    limit: 80
+    warningText: AIRSPEED
+    warningTargetName: SpeedLabel
 --- !u!114 &114256119274711160
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -590,6 +619,8 @@ MonoBehaviour:
   lockTime: 1.5
   flashTime: 0.15
   hostileTag: Enemy
+  referenceDistance: 4000
+  logBase: 4
   targetPrefab: {fileID: 1661510180886782, guid: b5887845d3719ba4e9d9e436a5fcbd9e,
     type: 2}
   lockPrefab: {fileID: 1167767397186056, guid: 06db1d6d1b6cca54797a636f89202c03, type: 2}
