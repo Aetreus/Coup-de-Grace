@@ -59,13 +59,24 @@ public class PlayerTargetingScript : MonoBehaviour {
         foreach (GameObject enemy in enemies)   
         {
             Vector3 screenPos = Camera.main.WorldToScreenPoint(enemy.transform.position);
-            
+
+            screenPos.x = -screenPos.x;
+            screenPos.y = -screenPos.y;
+
+            Vector3 scaleFactor = canvas.GetComponent<RectTransform>().localScale;
+
+            //flatScreenPos.Scale(scaleFactor);
+
+            //screenPos.Scale(canvas.GetComponent<RectTransform>().localScale);
+
             if (_target.Equals(enemy))
             {
                 if (screenPos.z > 1)
                 {
                     RectTransform location = lockIcon.GetComponent<RectTransform>();
-                    location.anchoredPosition = new Vector2(screenPos.x, screenPos.y) - canvas.GetComponent<RectTransform>().sizeDelta / 2f;
+                    //Vector2 screenCenter = canvas.GetComponent<RectTransform>().sizeDelta / 2f;
+                    location.localPosition = screenPos;
+                    //location.anchoredPosition.Scale(scaleFactor);
                     lockIcon.GetComponent<Image>().enabled = true;
                 }
             }
@@ -74,7 +85,7 @@ public class PlayerTargetingScript : MonoBehaviour {
                 RectTransform location = targetIcons[usedIcons].GetComponent<RectTransform>();
                 if (screenPos.z > 1)
                 {
-                    location.anchoredPosition = new Vector2(screenPos.x, screenPos.y) - canvas.GetComponent<RectTransform>().sizeDelta / 2f;
+                    location.localPosition = screenPos;
                     targetIcons[usedIcons].GetComponent<Image>().enabled = true;
                     usedIcons++;
                 }

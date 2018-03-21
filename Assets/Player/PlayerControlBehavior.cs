@@ -301,7 +301,8 @@ public class PlayerControlBehavior : MonoBehaviour {
                 w.active = false;
                 AlertOutput.SetActive(false);
 
-                w.sound.Stop();
+                if (w.sound != null)
+                    w.sound.Stop();
             }
         }
         if(enableWarning)
