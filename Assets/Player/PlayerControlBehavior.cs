@@ -59,7 +59,7 @@ public class PlayerControlBehavior : MonoBehaviour {
         //Is the name of a method(false means it's a variable)
         public bool isMethod;
         //Parameters passed to the method
-        public object[] parameters = { };
+        public object[] parameters;
         
         //Limit check.
         public bool isGreater;
@@ -96,6 +96,7 @@ public class PlayerControlBehavior : MonoBehaviour {
             warningTargetName = targetName;
             this.sound = sound;
             this.forcePlay = forcePlay;
+            UpdateWarning();
         }
 
         public Warning(GameObject refer, string comp, string value, bool method, object[] param, bool greater, float limit, string warning, string targetName) : this(refer, comp, value, false, null, greater, limit, warning, targetName, null, false)
@@ -129,6 +130,15 @@ public class PlayerControlBehavior : MonoBehaviour {
             warningText = w.warningText;
             warningTargetName = w.warningTargetName;
             sound = w.sound;
+        }
+
+        public void UpdateWarning()
+        {
+            System.Type type = reference.GetComponent(component).GetType();
+            if (isMethod)
+                info = reference.GetType().GetMethod(valueName);
+            else if ((prop = type.GetProperty(valueName)) == null)
+                field = type.GetField(valueName);
         }
     }
 
@@ -227,13 +237,9 @@ public class PlayerControlBehavior : MonoBehaviour {
     {
         foreach(Warning w in warnings)
         {
-            System.Type type = w.reference.GetComponent(w.component).GetType();
-            if (w.isMethod)
-                w.info = w.reference.GetType().GetMethod(w.valueName);
-            else if ((w.prop = type.GetProperty(w.valueName)) == null)
-                w.field = type.GetField(w.valueName);
+            w.UpdateWarning();
             Transform t = canvas.transform.Find(w.warningTargetName);
-            if(t != null)
+            if (t != null)
                 w.warningTarget = t.gameObject;
         }
     }
