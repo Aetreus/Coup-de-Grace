@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class MinimapScript : MonoBehaviour {
 
     private List<MinimapObject> actives;
     private List<RectTransform> icons;
+    private RectTransform rt;
 
     public MinimapObject centerObject;
 
@@ -17,7 +19,7 @@ public class MinimapScript : MonoBehaviour {
     {
         actives = new List<MinimapObject>();
         icons = new List<RectTransform>();
-
+        rt = GetComponent<RectTransform>();
     }
 
     // Use this for initialization
@@ -54,7 +56,8 @@ public class MinimapScript : MonoBehaviour {
             Vector3 relativePos = obj.transform.position - centerObject.transform.position;
             r.localPosition = new Vector3(relativePos.x / scale, relativePos.z / scale);
             r.localRotation = Quaternion.Euler(new Vector3(0, 0, -obj.transform.rotation.eulerAngles.y));
-            r.gameObject.SetActive(true);
+            if(Math.Abs(r.localPosition.x) < rt.sizeDelta.x / 2 && Math.Abs(r.localPosition.y) < rt.sizeDelta.y / 2)
+                r.gameObject.SetActive(true);
         }
 	}
 }

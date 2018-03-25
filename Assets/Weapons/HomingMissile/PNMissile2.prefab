@@ -30,6 +30,7 @@ GameObject:
   - component: {fileID: 96770090736886502}
   - component: {fileID: 114545845404950122}
   - component: {fileID: 114924372814145022}
+  - component: {fileID: 114070149684626198}
   m_Layer: 0
   m_Name: PNMissile2
   m_TagString: Untagged
@@ -98,7 +99,7 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1015981174769106}
   serializedVersion: 2
-  m_Mass: 200
+  m_Mass: 120
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -205,6 +206,18 @@ TrailRenderer:
     generateLightingData: 0
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
+--- !u!114 &114070149684626198
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1015981174769106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58f79fb43e01e054c8532ddbb9ceeea3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Icon: {fileID: 1775334746943150, guid: 380cc049265456144ac9fbe0236b4062, type: 2}
 --- !u!114 &114416581406168452
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -222,7 +235,7 @@ MonoBehaviour:
   damage: 5
   fueltime: 5
   lifetime: 12
-  dampingTime: 1
+  dampingTime: 0.5
   surfaceController:
     propConstant: 0.36
     integConstant: 0.12

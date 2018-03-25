@@ -73,7 +73,7 @@ public class PropNav : MonoBehaviour {
 
         Vector3 local_accel = transform.InverseTransformVector(latax);
 
-        print(local_accel);
+        //print(local_accel);
 
         if(lifetime < 0)
         {

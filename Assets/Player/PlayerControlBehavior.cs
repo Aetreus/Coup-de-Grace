@@ -321,6 +321,7 @@ public class PlayerControlBehavior : MonoBehaviour {
         transform.position = startLocation;
         transform.localRotation = startRotation;
         GetComponent<Rigidbody>().velocity = startVelocity;
+        GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
     }
 
     void OnDestroy()

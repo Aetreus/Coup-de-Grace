@@ -256,12 +256,9 @@ public class FlightBehavior : MonoBehaviour {
     {
         if (collision.gameObject.tag.Equals("Terrain"))
         {
-            if (gameObject.tag.Equals("Player"))
+            if (gameObject.GetComponent<HPManager>() != null)
             {
-                transform.position = new Vector3(14, 700, 16000);
-                transform.rotation = Quaternion.Euler(Vector3.zero);
-                rb.velocity = new Vector3(0, 0, 150);
-                rb.angularVelocity = new Vector3(0, 0, 0);
+                gameObject.GetComponent<HPManager>().Die();
             }
             else
                 Destroy(gameObject);
