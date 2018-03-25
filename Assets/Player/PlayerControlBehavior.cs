@@ -48,7 +48,7 @@ public class PlayerControlBehavior : MonoBehaviour {
 
     //Defines what a warning consists of
     [System.Serializable]
-    public class Warning
+    public class Warning : ISerializationCallbackReceiver
     {
         //Object that will be inspected to get the monitored value
         public GameObject reference;
@@ -139,6 +139,13 @@ public class PlayerControlBehavior : MonoBehaviour {
                 info = reference.GetType().GetMethod(valueName);
             else if ((prop = type.GetProperty(valueName)) == null)
                 field = type.GetField(valueName);
+        }
+
+        public void OnBeforeSerialize() { }
+
+        public void OnAfterDeserialize()
+        {
+            UpdateWarning();
         }
     }
 
