@@ -421,6 +421,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 373668334}
+  - component: {fileID: 373668335}
   m_Layer: 0
   m_Name: LevelEventsManager
   m_TagString: Untagged
@@ -441,6 +442,40 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 31
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &373668335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 373668333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a2ca60ce9de0e4469c3abe969f78d65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  events:
+  - condition:
+      reference: {fileID: 373668333}
+      component: LevelEventManager
+      valueName: IsObjectAlive
+      isMethod: 1
+      paramStrings:
+      - System.String#Bomber3
+    isConditionBoolean: 1
+    invertCondition: 1
+    min: 0
+    max: 0
+    previousEvent: 0
+    previousFired: 1
+    oneTime: 1
+    fired: 0
+    subsequentEvent: -1
+    predicate:
+      reference: {fileID: 682402086}
+      component: PlayerControlBehavior
+      valueName: Respawn
+      isMethod: 1
+      paramStrings: []
 --- !u!1001 &377349148
 Prefab:
   m_ObjectHideFlags: 0

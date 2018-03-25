@@ -96,7 +96,6 @@ public class PlayerControlBehavior : MonoBehaviour {
             warningTargetName = targetName;
             this.sound = sound;
             this.forcePlay = forcePlay;
-            UpdateWarning();
         }
 
         public Warning(GameObject refer, string comp, string value, bool method, object[] param, bool greater, float limit, string warning, string targetName) : this(refer, comp, value, false, null, greater, limit, warning, targetName, null, false)
@@ -145,7 +144,6 @@ public class PlayerControlBehavior : MonoBehaviour {
 
         public void OnAfterDeserialize()
         {
-            UpdateWarning();
         }
     }
 
