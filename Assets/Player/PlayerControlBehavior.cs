@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-[RequireComponent(typeof(FlightBehavior),typeof(WeaponManager))]
+[RequireComponent(typeof(FlightBehavior), typeof(WeaponManager))]
 [RequireComponent(typeof(PlayerTargetSystem))]
 public class PlayerControlBehavior : MonoBehaviour {
     FlightBehavior fb;
@@ -21,6 +21,9 @@ public class PlayerControlBehavior : MonoBehaviour {
     public string SlpOutputName = "SlpLabel/SlpValue";
     public string WpnHolderName = "WpnHolder";
     public string AlertLabelName = "AlertLabel";
+
+    public Rect worldBounds = new Rect(-10000, -10000, 20000, 20000);
+    public float killTime = 20;
 
     private GameObject AoAOutput;
     private GameObject AltOutput;
@@ -45,6 +48,7 @@ public class PlayerControlBehavior : MonoBehaviour {
     private Vector3 startLocation;
     private Quaternion startRotation;
     private Vector3 startVelocity;
+    private float killTimer;
 
     //Defines what a warning consists of
     [System.Serializable]
@@ -60,7 +64,7 @@ public class PlayerControlBehavior : MonoBehaviour {
         public bool isMethod;
         //Parameters passed to the method
         public object[] parameters;
-        
+
         //Limit check.
         public bool isGreater;
         public float limit;
@@ -80,7 +84,7 @@ public class PlayerControlBehavior : MonoBehaviour {
         public AudioSource sound;
         public bool forcePlay;
 
-        public Warning(GameObject refer, string comp, string value, bool method, object[] param, bool greater, float limit, string warning, string targetName,AudioSource sound,bool forcePlay)
+        public Warning(GameObject refer, string comp, string value, bool method, object[] param, bool greater, float limit, string warning, string targetName, AudioSource sound, bool forcePlay)
         {
             reference = refer;
             component = comp;
@@ -108,7 +112,7 @@ public class PlayerControlBehavior : MonoBehaviour {
 
         }
 
-        public Warning() : this(null, "", "", false, null, true,0, "", "")
+        public Warning() : this(null, "", "", false, null, true, 0, "", "")
         {
 
         }
@@ -149,8 +153,8 @@ public class PlayerControlBehavior : MonoBehaviour {
 
     public List<Warning> warnings;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start() {
         fb = GetComponent<FlightBehavior>();
         wm = GetComponent<WeaponManager>();
         pt = GetComponent<PlayerTargetSystem>();
@@ -190,13 +194,15 @@ public class PlayerControlBehavior : MonoBehaviour {
         startVelocity = GetComponent<Rigidbody>().velocity;
 
         UpdateWarnings();
-    }
-	
-	// Update is called once per frame
-	void Update () {
-		fb.elevator = Input.GetAxis("Elevator");
 
-		fb.aileron = Input.GetAxis("Aileron");
+        killTimer = killTime;
+    }
+
+    // Update is called once per frame
+    void Update() {
+        fb.elevator = Input.GetAxis("Elevator");
+
+        fb.aileron = Input.GetAxis("Aileron");
 
         fb.throttle = Input.GetAxis("Throttle") * 0.5F + 0.5F;
 
@@ -208,29 +214,42 @@ public class PlayerControlBehavior : MonoBehaviour {
 
         SlpLabel.text = fb.slip.ToString();
 
-        for(int i = 0; i < WpnGraphics.Count && i < wm.maximumShots; i++)
+        for (int i = 0; i < WpnGraphics.Count && i < wm.maximumShots; i++)
         {
             WpnGraphics[i].GetComponent<Image>().fillAmount = wm.GetLoadingFraction(i);
         }
 
-        if(Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1"))
         {
             wm.Fire();
         }
 
-        if(Input.GetButtonDown("TargetNext"))
+        if (Input.GetButtonDown("TargetNext"))
         {
             pt.CycleTarget();
         }
 
-        if(Input.GetButtonDown("TargetClosest"))
+        if (Input.GetButtonDown("TargetClosest"))
         {
             pt.CenterTarget();
         }
 
         CheckWarnings();
 
-        if((playing == null || playing.isPlaying == false) && queuedAlerts.Count > 0)
+        if (CheckWorldBounds())
+        {
+            killTime -= Time.deltaTime;
+            //TODO: Add the audio alert for being out of bounds here.
+            AlertOutput.SetActive(true);
+            AlertOutput.GetComponent<Text>().text = "BOUNDS " + killTime.ToString("F1");
+        }
+        else
+            killTime = killTimer;
+
+        if (killTime < 0.0)
+            Respawn();//For now respawn
+
+        if ((playing == null || playing.isPlaying == false) && queuedAlerts.Count > 0)
         {
             playing = queuedAlerts.Dequeue();
             playing.Play();
@@ -240,7 +259,7 @@ public class PlayerControlBehavior : MonoBehaviour {
     //Updates the warning MethodInfo- must be called before a new warning is valid
     public void UpdateWarnings()
     {
-        foreach(Warning w in warnings)
+        foreach (Warning w in warnings)
         {
             w.UpdateWarning();
             Transform t = canvas.transform.Find(w.warningTargetName);
@@ -253,10 +272,10 @@ public class PlayerControlBehavior : MonoBehaviour {
     {
         bool enableWarning = false;
         string warningText = "";
-        foreach(Warning w in warnings)
+        foreach (Warning w in warnings)
         {
             float inspect = 0;
-            if(w.isMethod)
+            if (w.isMethod)
             {
                 inspect = System.Convert.ToSingle(w.info.Invoke(w.reference.GetComponent(w.component), w.parameters));
             }
@@ -267,13 +286,13 @@ public class PlayerControlBehavior : MonoBehaviour {
                     var temp = w.prop.GetValue(w.reference.GetComponent(w.component), null);
                     inspect = System.Convert.ToSingle(temp);
                 }
-                else if(w.field != null)
+                else if (w.field != null)
                 {
                     var temp = w.field.GetValue(w.reference.GetComponent(w.component));
                     inspect = System.Convert.ToSingle(temp);
                 }
             }
-            if(w.isGreater && inspect > w.limit || !w.isGreater && inspect < w.limit)
+            if (w.isGreater && inspect > w.limit || !w.isGreater && inspect < w.limit)
             {
                 enableWarning = true;
                 warningText = w.warningText;
@@ -287,19 +306,19 @@ public class PlayerControlBehavior : MonoBehaviour {
                 }
                 w.active = true;
 
-                if(w.forcePlay && w.sound != null && !w.sound.isPlaying)
+                if (w.forcePlay && w.sound != null && !w.sound.isPlaying)
                 {
                     w.sound.Play();
                 }
-                else if(w.sound != null)
+                else if (w.sound != null)
                 {
-                    if(!queuedAlerts.Contains(w.sound))
+                    if (!queuedAlerts.Contains(w.sound))
                     {
                         queuedAlerts.Enqueue(w.sound);
                     }
                 }
             }
-            else if(w.active == true)
+            else if (w.active == true)
             {
                 if (w.warningTarget != null)
                 {
@@ -316,7 +335,7 @@ public class PlayerControlBehavior : MonoBehaviour {
                     w.sound.Stop();
             }
         }
-        if(enableWarning)
+        if (enableWarning)
         {
             AlertOutput.SetActive(true);
             AlertOutput.GetComponent<Text>().text = warningText;
@@ -326,6 +345,14 @@ public class PlayerControlBehavior : MonoBehaviour {
             AlertOutput.SetActive(false);
         }
     }
+
+    private bool CheckWorldBounds()
+    {
+        if (!worldBounds.Contains(new Vector2(transform.position.x,transform.position.z)))
+            return true;
+        return false;
+    }
+
 
     public void Respawn()
     {
