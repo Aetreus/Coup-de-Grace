@@ -11,6 +11,9 @@ public class PlayerTargetSystem : MonoBehaviour {
     public float flashTime;
 
     public string hostileTag;
+
+    public float referenceDistance;
+    public float logBase;
     
     private float lockTimer;
     private float flashTimer;
@@ -201,7 +204,7 @@ public class PlayerTargetSystem : MonoBehaviour {
                 if (_target != null && _target.Equals(enemy))
                 {
                     RectTransform location = lockIcon.GetComponent<RectTransform>();
-                    location.anchoredPosition = new Vector2(screenPos.x, screenPos.y) - canvas.GetComponent<RectTransform>().sizeDelta / 2f;
+                    location.anchoredPosition = (new Vector2(screenPos.x, screenPos.y) / canvas.GetComponent<RectTransform>().localScale.x ) - canvas.GetComponent<RectTransform>().sizeDelta / 2f;
                     GameObject DistLabel = lockIcon.transform.Find("DistLabel").gameObject;
                     DistLabel.GetComponent<Text>().text = (transform.position - _target.transform.position).magnitude.ToString();
                     if ((flash && locking) || locked)
@@ -214,16 +217,64 @@ public class PlayerTargetSystem : MonoBehaviour {
                         lockIcon.SetActive(true);
                         lockIcon.GetComponent<Image>().overrideSprite = targetSprite;
                     }
+                    
+                    //Check if we hit some object other than the target.
+                    RaycastHit info;
+                    Vector3 raycastSource = transform.position + transform.localToWorldMatrix.MultiplyVector(new Vector3(0, 0, 10));
+                    bool hit = Physics.Raycast(transform.position, _target.transform.position - raycastSource, out info);
+                    if (hit && info.transform.gameObject != _target)
+                        lockIcon.transform.Find("ObstructedMarker").gameObject.SetActive(true);
+                    else
+                        lockIcon.transform.Find("ObstructedMarker").gameObject.SetActive(false);
+
+                    float distance = (transform.position - _target.transform.position).magnitude;
+                    
+                    //Scale icon by distance
+                    if(distance > referenceDistance)
+                    {
+                        float scaleFactor = 1 / (1 + Mathf.Log(distance / referenceDistance) / Mathf.Log(logBase));
+                        lockIcon.transform.localScale = new Vector3(scaleFactor, scaleFactor, 1);
+                    }
+                    else
+                    {
+                        lockIcon.transform.localScale = new Vector3(1, 1, 1);
+                    }
                 }
                 else
                 {
                     RectTransform location = targetIcons[usedIcons].GetComponent<RectTransform>();
-                    location.anchoredPosition = new Vector2(screenPos.x, screenPos.y) - canvas.GetComponent<RectTransform>().sizeDelta / 2f;
+                    location.anchoredPosition = (new Vector2(screenPos.x, screenPos.y) / canvas.GetComponent<RectTransform>().localScale.x) - canvas.GetComponent<RectTransform>().sizeDelta / 2f;
                     targetIcons[usedIcons].GetComponent<Image>().enabled = true;
+
+                    RaycastHit info;
+                    bool hit = Physics.Raycast(transform.position, enemy.transform.position - transform.position, out info);
+                    GameObject hitObj = info.transform.gameObject;
+                    if (hit && hitObj != enemy)
+                        targetIcons[usedIcons].transform.Find("ObstructedMarker").gameObject.SetActive(true);
+                    else
+                        targetIcons[usedIcons].transform.Find("ObstructedMarker").gameObject.SetActive(false);
+
+
+                    float distance = (transform.position - enemy.transform.position).magnitude;
+
+                    //Scale icon by distance
+                    if (distance > referenceDistance)
+                    {
+                        float scaleFactor = 1 / (1 + Mathf.Log(distance / referenceDistance) / Mathf.Log(logBase));
+                        targetIcons[usedIcons].transform.localScale = new Vector3(scaleFactor, scaleFactor, 1);
+                    }
+                    else
+                    {
+                        targetIcons[usedIcons].transform.localScale = new Vector3(1,1, 1);
+                    }
+
                     usedIcons++;
                 }
             }
         }
+        if (_target == null)
+            lockIcon.SetActive(false);
+
         while (usedIcons < targetIcons.Count)
         {
             targetIcons[usedIcons].GetComponent<Image>().enabled = false;

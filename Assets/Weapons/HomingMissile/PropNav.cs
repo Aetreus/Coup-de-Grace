@@ -2,15 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof (FlightBehavior))]
+[RequireComponent(typeof (FlightBehavior)),RequireComponent(typeof (Rigidbody))]
 public class PropNav : MonoBehaviour {
 
     public float N = 3;
     public float ref_accel;
+    public float ref_speed = 200;
 
     public float damage;
-    public string hostileTag;
     public float fueltime;
+    public float lifetime;
+    public float dampingTime;
+
+    public float targetDistance { get { return _targetDistance; } }
+
+    public PIDController surfaceController;
 
     private GameObject target = null;
     private Vector3 last_pos;
@@ -18,10 +24,18 @@ public class PropNav : MonoBehaviour {
     
     private FlightBehavior fb;
 
+    private Rigidbody rb;
+
+    private float _targetDistance;
+
+    private float dampingTimer;
+
     // Use this for initialization
     void Start () {
         last_pos = transform.position;
         fb = GetComponent<FlightBehavior>();
+        rb = GetComponent<Rigidbody>();
+        dampingTimer = dampingTime;
     }
 	
 	// Update is called once per frame
@@ -32,6 +46,8 @@ public class PropNav : MonoBehaviour {
         if (target)
         {
             Vector3 range = target.transform.position - transform.position;
+
+            _targetDistance = range.magnitude;
 
             Vector3 missile_vel = GetComponent<Rigidbody>().velocity;
             Vector3 relative_vel;
@@ -57,7 +73,18 @@ public class PropNav : MonoBehaviour {
 
         Vector3 local_accel = transform.InverseTransformVector(latax);
 
-        print(local_accel);
+        //print(local_accel);
+
+        if(lifetime < 0)
+        {
+            Destroy(gameObject);
+        }
+        float surfaceDampCoeff = 1.0F;
+        if(dampingTimer > 0)
+        {
+            surfaceDampCoeff = 1.0F - (dampingTime / dampingTimer);
+            dampingTime -= Time.deltaTime;
+        }
 
         if(fueltime > 0)
         {
@@ -67,10 +94,17 @@ public class PropNav : MonoBehaviour {
         {
             fb.throttle = 0.0F;
         }
-        fb.rudder = -local_accel.x / ref_accel;
-        fb.elevator = local_accel.y / ref_accel;
+        float speedControlSense = 1.0F;
+        if(rb.velocity.sqrMagnitude > ref_speed)
+        {
+            speedControlSense = ref_speed * ref_speed / rb.velocity.sqrMagnitude;
+        }
+
+        fb.rudder = surfaceController.Calc((-local_accel.x / ref_accel) * speedControlSense * surfaceDampCoeff);
+        fb.elevator = surfaceController.Calc((local_accel.y / ref_accel) * speedControlSense * surfaceDampCoeff);
 
         fueltime -= Time.deltaTime;
+        lifetime -= Time.deltaTime;
     }
 
     public GameObject Target
@@ -81,19 +115,48 @@ public class PropNav : MonoBehaviour {
         }
         set
         {
+            //Add/remove target warnings if we target the player.
+            if (target != null)
+            {
+                PlayerControlBehavior pcb = target.GetComponent<PlayerControlBehavior>();
+                if (pcb != null)
+                {
+                    pcb.warnings.RemoveAll(w => w.reference == gameObject);
+                }
+            }
             target = value;
             target_last_pos = target.transform.position;
+            if(target.GetComponent<PlayerControlBehavior>() != null)
+            {
+                PlayerControlBehavior pcb = target.GetComponent<PlayerControlBehavior>();
+                PlayerControlBehavior.Warning warn = new PlayerControlBehavior.Warning(gameObject,"PropNav","targetDistance",false,null,false,2000,"MISSILE","None",target.transform.Find("UISoundHolder/MissileAlertPlayer").GetComponent<AudioSource>(),true);
+                pcb.warnings.Add(warn);
+                pcb.UpdateWarnings();
+            }
         }
     }
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag.Equals(hostileTag))
+        if (target && collision.gameObject == target)
         {
             HPManager hp = collision.gameObject.GetComponent<HPManager>();
             hp.Damage(damage);
         }
 
         Destroy(gameObject);
+    }
+
+    private void OnDestroy()
+    {
+        if (target != null)
+        {
+            PlayerControlBehavior pcb = target.GetComponent<PlayerControlBehavior>();
+            if (pcb != null)
+            {
+                target.transform.Find("UISoundHolder/MissileAlertPlayer").GetComponent<AudioSource>().Stop();
+                pcb.warnings.RemoveAll(w => w.reference == gameObject);
+            }
+        }
     }
 }

@@ -1,15 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class HPManager : MonoBehaviour {
 
     public float maxHP;
 
+    public UnityEvent onDie = new UnityEvent();
+
     private float hp;
 
 	// Use this for initialization
 	void Start () {
+        if (onDie.GetPersistentEventCount() == 0)
+            onDie.AddListener(delegate { Destroy(gameObject); });
         hp = maxHP;
 	}
 	
@@ -40,14 +45,7 @@ public class HPManager : MonoBehaviour {
 
     public void Die()
     {
-        if (gameObject.tag.Equals("Player"))
-        {
-            transform.position = new Vector3(0, 0, 0);
-            transform.rotation = Quaternion.Euler(Vector3.zero);
-            gameObject.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 150);
-            gameObject.GetComponent<Rigidbody>().angularVelocity = new Vector3(0, 0, 0);
-        }
-        else
-            Destroy(gameObject);
+        
+        onDie.Invoke();
     }
 }

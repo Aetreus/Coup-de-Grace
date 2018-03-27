@@ -28,6 +28,9 @@ GameObject:
   - component: {fileID: 198058937082830708}
   - component: {fileID: 199953753338361412}
   - component: {fileID: 96770090736886502}
+  - component: {fileID: 114545845404950122}
+  - component: {fileID: 114924372814145022}
+  - component: {fileID: 114070149684626198}
   m_Layer: 0
   m_Name: PNMissile2
   m_TagString: Untagged
@@ -96,7 +99,7 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1015981174769106}
   serializedVersion: 2
-  m_Mass: 200
+  m_Mass: 120
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -203,6 +206,18 @@ TrailRenderer:
     generateLightingData: 0
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
+--- !u!114 &114070149684626198
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1015981174769106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58f79fb43e01e054c8532ddbb9ceeea3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Icon: {fileID: 1775334746943150, guid: 380cc049265456144ac9fbe0236b4062, type: 2}
 --- !u!114 &114416581406168452
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -215,10 +230,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   N: 3
-  ref_accel: 45
-  damage: 0
-  hostileTag: Enemy
+  ref_accel: 15
+  ref_speed: 300
+  damage: 5
   fueltime: 5
+  lifetime: 12
+  dampingTime: 0.5
+  surfaceController:
+    propConstant: 0.42
+    integConstant: 0.1
+    derivConstant: 0.02
+    output: 0
+--- !u!114 &114545845404950122
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1015981174769106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 527db0ddbd7b343489a15f960f8bcb4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hostileTag: Enemy
+  triggerRange: 40
+  damage: 4
+  minDamage: 1
+  damageRadius: 40
+  innerDamageRadius: 5
 --- !u!114 &114728926152922066
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -232,43 +271,55 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inertiaTensor: {x: 170, y: 170, z: 10}
   dragCoeff: 0.02
-  wingArea: 0.5
-  maxThrust: 18000
+  wingArea: 1.5
+  maxThrust: 27000
   rollDampeningCoeff: 0.2
   yawDampeningCoeff: 0.1
   aileronControlCoeff: 0.25
-  elevatorControlCoeff: 0.3
-  rudderControlCoeff: 0.3
+  elevatorControlCoeff: 0.6
+  rudderControlCoeff: 0.6
   liftCoeffSetpoints:
   - {x: -180, y: 0}
-  - {x: -45, y: -0.75}
-  - {x: -25, y: -2}
-  - {x: 25, y: 2}
-  - {x: 45, y: 0.75}
+  - {x: -45, y: -2}
+  - {x: -20, y: -3}
+  - {x: 20, y: 3}
+  - {x: 45, y: 2}
   - {x: 180, y: 0}
   crossLiftCoeffSetpoints:
   - {x: -180, y: 0}
-  - {x: -45, y: -1.75}
-  - {x: -25, y: -2}
-  - {x: 25, y: 2}
-  - {x: 45, y: 1.75}
+  - {x: -45, y: -2}
+  - {x: -20, y: -3}
+  - {x: 20, y: 3}
+  - {x: 45, y: 2}
   - {x: 180, y: 0}
   pitchingMomentSetpoints:
   - {x: -180, y: 0}
-  - {x: -120, y: 0.55}
-  - {x: -35, y: 0.35}
+  - {x: -120, y: 1.15}
+  - {x: -35, y: 0.7}
   - {x: 0, y: 0}
-  - {x: 35, y: -0.35}
-  - {x: 120, y: -0.55}
+  - {x: 35, y: -0.7}
+  - {x: 120, y: -1.15}
   - {x: 180, y: 0}
   yawMomentSetpoints:
   - {x: -180, y: 0}
-  - {x: -50, y: 0.1}
-  - {x: -35, y: 0.35}
+  - {x: -120, y: 1.15}
+  - {x: -35, y: 0.7}
   - {x: 0, y: 0}
-  - {x: 35, y: -0.35}
-  - {x: 50, y: -0.1}
+  - {x: 35, y: -0.7}
+  - {x: 120, y: -1.15}
   - {x: 180, y: 0}
+--- !u!114 &114924372814145022
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1015981174769106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67f98435b43caf14eb48c078020e5fa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Icon: {fileID: 1969818061814534, guid: f7d7173db0157374fb9aaedcb90acc0c, type: 2}
 --- !u!198 &198058937082830708
 ParticleSystem:
   m_ObjectHideFlags: 1
