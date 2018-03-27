@@ -19,6 +19,7 @@ public class DialogueController : MonoBehaviour {
     private Image outputImage;
     private Text outputText;
     private float lineTimer;
+    private string nextLine;
 
     public bool Playing { get { return lineTimer > 0; } }
 
@@ -36,6 +37,7 @@ public class DialogueController : MonoBehaviour {
         public float time;
         public Sprite speaker;
         public AudioClip voice;
+        public string nextLine;
     }
 
     // Use this for initialization
@@ -60,7 +62,18 @@ public class DialogueController : MonoBehaviour {
             lineTimer -= Time.deltaTime;
             if(lineTimer <= 0)
             {
-                gameObject.SetActive(false);
+                if(lines.ContainsKey(nextLine))
+                {
+                    DialogueLine line = lines[nextLine];
+                    lineTimer = line.time;
+                    dialoguePlayer.clip = line.voice;
+                    outputImage.overrideSprite = line.speaker;
+                    outputText.text = line.text;
+                    nextLine = line.nextLine;
+                    dialoguePlayer.Play();
+                }
+                else
+                    gameObject.SetActive(false);
             }
         }
 	}
@@ -75,6 +88,21 @@ public class DialogueController : MonoBehaviour {
             outputImage.overrideSprite = line.speaker;
             outputText.text = line.text;
             dialoguePlayer.Play();
+            gameObject.SetActive(true);
+        }
+    }
+
+    public void PlayLineSeries(string name)
+    {
+        if (lines.ContainsKey(name))
+        {
+            DialogueLine line = lines[name];
+            lineTimer = line.time;
+            dialoguePlayer.clip = line.voice;
+            outputImage.overrideSprite = line.speaker;
+            outputText.text = line.text;
+            dialoguePlayer.Play();
+            nextLine = line.nextLine;
             gameObject.SetActive(true);
         }
     }

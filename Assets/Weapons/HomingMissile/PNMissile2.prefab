@@ -237,8 +237,8 @@ MonoBehaviour:
   lifetime: 12
   dampingTime: 0.5
   surfaceController:
-    propConstant: 0.36
-    integConstant: 0.12
+    propConstant: 0.42
+    integConstant: 0.1
     derivConstant: 0.02
     output: 0
 --- !u!114 &114545845404950122
@@ -253,10 +253,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hostileTag: Enemy
-  triggerRange: 25
+  triggerRange: 40
   damage: 4
   minDamage: 1
-  damageRadius: 25
+  damageRadius: 40
   innerDamageRadius: 5
 --- !u!114 &114728926152922066
 MonoBehaviour:

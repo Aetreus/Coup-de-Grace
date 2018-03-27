@@ -34,6 +34,20 @@ public class LevelEventManager : MonoBehaviour {
             {
                 if (condition.isMethod)
                 {
+                    ParameterInfo[] args = condition.info.GetParameters();
+                    if(condition.parameters[0].GetType().Equals(args[0].ParameterType.GetElementType()))
+                    {
+                        int i = 0;
+                        List<object> list = new List<object>();
+                        while(i < condition.parameters.Length && condition.parameters[i].GetType().Equals(args[0].ParameterType.GetElementType()))
+                        {
+                            list.Add(condition.parameters[i]);
+                            i++;
+                        }
+                        var arr = Array.CreateInstance(condition.parameters[0].GetType(), list.Count);
+                        Array.Copy(list.ToArray(), arr, list.Count);
+                        condition.parameters = new object[]{arr};
+                    }
                     bool temp = System.Convert.ToBoolean(condition.info.Invoke(condition.reference.GetComponent(condition.component), condition.parameters));
                     result = temp;
                 }
@@ -103,8 +117,10 @@ public class LevelEventManager : MonoBehaviour {
     [SerializeField]
     public List<Event> events;
 
-	// Use this for initialization
-	void Start () {
+    private Dictionary<string, bool> living = new Dictionary<string, bool>();
+
+    // Use this for initialization
+    void Start () {
 		foreach(Event e in events)
         {
             e.UpdateEvent();
@@ -141,6 +157,36 @@ public class LevelEventManager : MonoBehaviour {
         if (GameObject.FindGameObjectWithTag(tag) != null)
             return true;
         return false;
+    }
+
+    public bool OnObjectDie(string name)
+    {
+        if(living.ContainsKey(name) && living[name] == true && !IsObjectAlive(name))
+        {
+            living[name] = false;
+            return true;
+        }
+        else if(!living.ContainsKey(name))
+        {
+            living[name] = IsObjectAlive(name);
+        }
+        return false;
+    }
+
+    public bool OnMultipleObjectsDie(params string[] names)
+    {
+        bool state = false;
+        foreach(string name in names)
+        {
+            if (OnObjectDie(name))
+                state = true;
+        }
+        foreach(string name in names)
+        {
+            if (IsObjectAlive(name))
+                state = false;
+        }
+        return state;
     }
 
     public void TransitionLevel(string levelName)
