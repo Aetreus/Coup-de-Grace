@@ -467,8 +467,11 @@ MonoBehaviour:
     max: 0
     previousEvent: 0
     previousFired: 1
-    oneTime: 1
-    subsequentEvent: -1
+    oneTime: 0
+    reset: 0
+    delay: 5
+    delayTimer: 0
+    subsequentEvent: 0
     predicate:
       reference: {fileID: 682402086}
       component: PlayerControlBehavior

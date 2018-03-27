@@ -2,6 +2,7 @@
 using System.Reflection;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using System;
 using System.ComponentModel;
 
@@ -19,6 +20,9 @@ public class LevelEventManager : MonoBehaviour {
         public bool previousFired;
         public bool oneTime;
         private bool fired;
+        public bool reset;
+        public float delay;
+        public float delayTimer;
         public int subsequentEvent;
         public FunctionCall predicate;
 
@@ -75,7 +79,7 @@ public class LevelEventManager : MonoBehaviour {
                     result = true;
             }
 
-            return previousFired && (!isConditionBoolean && (inspect > min && inspect < max) || result)  && !(oneTime && fired);
+            return previousFired && (!isConditionBoolean && (inspect > min && inspect < max) || result)  && !(oneTime && fired) && !reset;
         }
 
         public void CheckEvent()
@@ -83,7 +87,9 @@ public class LevelEventManager : MonoBehaviour {
             if(CheckConditions())
             {
                 predicate.info.Invoke(predicate.reference.GetComponent(predicate.component),predicate.parameters);
-                fired = true;                
+                fired = true;
+                reset = true;
+                delayTimer = delay;
             }
         }
 
@@ -110,6 +116,15 @@ public class LevelEventManager : MonoBehaviour {
         for(int i = 0; i < events.Count; i++)
         {
             events[i].CheckEvent();
+            if(events[i].delayTimer >= 0 && events[i].reset)
+            {
+                events[i].delayTimer -= Time.deltaTime;
+            }
+            if(events[i].delayTimer < 0 && events[i].reset)
+            {
+                events[events[i].subsequentEvent].previousFired = true;
+                events[i].reset = false;
+            }
         }
 	}
 
@@ -126,6 +141,11 @@ public class LevelEventManager : MonoBehaviour {
         if (GameObject.FindGameObjectWithTag(tag) != null)
             return true;
         return false;
+    }
+
+    public void TransitionLevel(string levelName)
+    {
+        SceneManager.LoadScene(levelName);
     }
 }
 
