@@ -93,7 +93,7 @@ public class LevelEventManager : MonoBehaviour {
                     result = true;
             }
 
-            return previousFired && (!isConditionBoolean && (inspect > min && inspect < max) || result)  && !(oneTime && fired) && !reset;
+            return previousFired && (!isConditionBoolean && (inspect >= min && inspect <= max) || result)  && !(oneTime && fired) && !reset;
         }
 
         public void CheckEvent()
@@ -152,6 +152,11 @@ public class LevelEventManager : MonoBehaviour {
         return false;
     }
 
+    public float NumObjectsWithTagAlive(string tag)
+    {
+        return GameObject.FindGameObjectsWithTag(tag).Length;
+    }
+
     public bool IsObjectWithTagAlive(string tag)
     {
         if (GameObject.FindGameObjectWithTag(tag) != null)
@@ -188,6 +193,11 @@ public class LevelEventManager : MonoBehaviour {
         }
         return state;
     }
+
+    //public bool OnAnyObjectDie(params string[] names)
+    //{
+        
+    //}
 
     public void TransitionLevel(string levelName)
     {
