@@ -40,6 +40,7 @@ GameObject:
   - component: {fileID: 54435925456711056}
   - component: {fileID: 114547039967664742}
   - component: {fileID: 114454341211153008}
+  - component: {fileID: 114549353739007242}
   - component: {fileID: 114690141641881100}
   - component: {fileID: 82818833972495620}
   m_Layer: 0
@@ -287,7 +288,29 @@ MonoBehaviour:
   maxHP: 3
   onDie:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114549353739007242}
+        m_MethodName: explode
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 114454341211153008}
+        m_MethodName: Destroy
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &114547039967664742
@@ -312,6 +335,20 @@ MonoBehaviour:
   missile_chance: 3
   missile_spawn_offset: 15
   missile_max_range: 5000
+--- !u!114 &114549353739007242
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1457669272040804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afaf34423f48635499832e428c207998, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 1855380049135256, guid: 0f953d726d1924e4993251ba20d3ddbf, type: 2}
+  numDebris: 12
+  power: 20
 --- !u!114 &114690141641881100
 MonoBehaviour:
   m_ObjectHideFlags: 1

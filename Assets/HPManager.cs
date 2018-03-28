@@ -43,6 +43,11 @@ public class HPManager : MonoBehaviour {
         ChangeHP(-damage);
     }
 
+    public void Destroy()
+    {
+        Destroy(gameObject);
+    }
+
     public void Die()
     {
         

@@ -56,6 +56,11 @@ public class ProximityExplodeScript : MonoBehaviour {
 
     void Explode()
     {
+        ExplosionScript es;
+        if ((es = GetComponent<ExplosionScript>()) != null)
+        {
+            es.explode();
+        }
         foreach (GameObject g in nearby)
         {
             HPManager man = g.GetComponent<HPManager>();

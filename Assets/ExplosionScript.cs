@@ -7,9 +7,13 @@ public class ExplosionScript : MonoBehaviour {
 	public int numDebris;
 	public float power;
 
+    private Rigidbody myrb;
+
 	// Use this for initialization
 	void Start () {
-		explode();
+        myrb = GetComponent<Rigidbody>();
+           
+		//explode();
 	}
 
 	public void explode() {
@@ -19,7 +23,10 @@ public class ExplosionScript : MonoBehaviour {
 			Rigidbody rb = clone.GetComponent<Rigidbody>();
 
 			transform.position = gameObject.GetComponent<Transform>().position;
-			rb.velocity = new Vector3(Random.Range(power * -1, power), 0, Random.Range(power * -1, power));
+            Vector3 inherit = new Vector3(0, 0, 0);
+            if (myrb != null)
+                inherit = myrb.velocity;
+			rb.velocity = new Vector3(Random.Range(power * -1, power), 0, Random.Range(power * -1, power)) + inherit;
 		}
 	}
 

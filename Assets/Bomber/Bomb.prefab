@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 54447499435549568}
   - component: {fileID: 136013969548543474}
   - component: {fileID: 114981497256718644}
+  - component: {fileID: 114088256357590474}
   m_Layer: 0
   m_Name: Bomb
   m_TagString: Untagged
@@ -100,6 +101,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
+--- !u!114 &114088256357590474
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1971833699960792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afaf34423f48635499832e428c207998, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 0}
+  numDebris: 40
+  power: 50
 --- !u!114 &114981497256718644
 MonoBehaviour:
   m_ObjectHideFlags: 1

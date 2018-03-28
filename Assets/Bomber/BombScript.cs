@@ -6,9 +6,11 @@ public class BombScript : MonoBehaviour {
 
     public string hostileTag;
 
+    private ExplosionScript es;
+
     // Use this for initialization
     void Start () {
-		
+        es = GetComponent<ExplosionScript>();
 	}
 	
 	// Update is called once per frame
@@ -22,7 +24,7 @@ public class BombScript : MonoBehaviour {
         {
             Destroy(collision.gameObject);
         }
-
+        es.explode();
         Destroy(gameObject);
     }
 }
