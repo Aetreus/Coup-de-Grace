@@ -19,7 +19,7 @@ public class ExplosionScript : MonoBehaviour {
 			Rigidbody rb = clone.GetComponent<Rigidbody>();
 
 			transform.position = gameObject.GetComponent<Transform>().position;
-			rb.velocity = new Vector3(Random.Range(power * -1, power), 0, Random.Range(power * -1, power));
+			rb.velocity = new Vector3(Random.Range(power * -1, power), Random.Range(power * -1, power), Random.Range(power * -1, power));
 		}
 	}
 

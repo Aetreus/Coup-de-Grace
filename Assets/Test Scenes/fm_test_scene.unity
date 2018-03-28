@@ -216,7 +216,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 1855380049135256, guid: 0f953d726d1924e4993251ba20d3ddbf, type: 2}
   numDebris: 20
-  power: 50
+  power: 200
 --- !u!4 &369855925 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4778400616029428, guid: 35530321cab83b049926d224888a2df0,
