@@ -60,6 +60,7 @@ GameObject:
   - component: {fileID: 65232640516170786}
   - component: {fileID: 114001547825267288}
   - component: {fileID: 114217066268131064}
+  - component: {fileID: 82183427652424906}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -403,6 +404,86 @@ AudioListener:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1943891370843956}
   m_Enabled: 1
+--- !u!82 &82183427652424906
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1118712050718116}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 2e9df1b27ffcd4f4987f25edf85896f6, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.5
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!82 &82838511723764936
 AudioSource:
   m_ObjectHideFlags: 1
@@ -814,6 +895,13 @@ MonoBehaviour:
   SlpOutputName: SideslipLabel/SideslipValue
   WpnHolderName: WeaponsUIHolder
   AlertLabelName: AlertLabel
+  worldBounds:
+    serializedVersion: 2
+    x: -10000
+    y: -10000
+    width: 20000
+    height: 20000
+  killTime: 20
   warningColor: {r: 0.8897059, g: 0.18317476, b: 0.18317476, a: 1}
   defaultColor: {r: 0.1764706, g: 0.8235294, b: 0.25882354, a: 1}
   warnings:

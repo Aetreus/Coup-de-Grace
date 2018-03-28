@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 54014297486019266}
   - component: {fileID: 114420607920446838}
   - component: {fileID: 65209016539351396}
+  - component: {fileID: 82436018096239090}
   m_Layer: 0
   m_Name: PNMissile
   m_TagString: Untagged
@@ -113,6 +114,86 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.1565342, y: 0.17239654, z: 3.2464056}
   m_Center: {x: -0.011156768, y: 0.018552601, z: 0.08974481}
+--- !u!82 &82436018096239090
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1975112741600778}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 2e9df1b27ffcd4f4987f25edf85896f6, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 2.25
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!114 &114420607920446838
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -126,9 +207,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   N: 3
   ref_accel: 20
+  ref_speed: 200
   damage: 0
-  hostileTag: Enemy
   fueltime: 5
+  lifetime: 0
+  dampingTime: 0
+  surfaceController:
+    propConstant: 0
+    integConstant: 0
+    derivConstant: 0
+    output: 0
 --- !u!114 &114682542898546202
 MonoBehaviour:
   m_ObjectHideFlags: 1
