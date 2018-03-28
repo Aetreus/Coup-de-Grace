@@ -1346,7 +1346,7 @@ MonoBehaviour:
     width: 16000
     height: 16000
   killTime: 20
-  minWarningTime: 5
+  minWarningTime: 4
   warningColor: {r: 0.8897059, g: 0.18317476, b: 0.18317476, a: 1}
   defaultColor: {r: 0.1764706, g: 0.8235294, b: 0.25882354, a: 1}
   warnings:

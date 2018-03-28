@@ -319,7 +319,7 @@ public class PlayerControlBehavior : MonoBehaviour {
                 {
                     w.sound.Play();
                 }
-                else if (w.sound != null && w.warnTimer <= 0)
+                else if (w.sound != null && w.warnTimer <= 0 && !w.forcePlay)
                 {
                     w.warnTimer = minWarningTime;
                     if (!queuedAlerts.Contains(w.sound))

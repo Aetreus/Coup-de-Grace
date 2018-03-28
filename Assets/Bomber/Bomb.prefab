@@ -112,7 +112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afaf34423f48635499832e428c207998, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
+  prefab: {fileID: 1855380049135256, guid: 0f953d726d1924e4993251ba20d3ddbf, type: 2}
   numDebris: 40
   power: 50
 --- !u!114 &114981497256718644
