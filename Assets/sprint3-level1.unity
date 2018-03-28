@@ -2929,6 +2929,12 @@ MonoBehaviour:
       - System.String#Bomber3
       - System.String#Bomber4
       - System.String#Bomber5
+      - System.String#Bomber6
+      - System.String#Bomber17
+      - System.String#Bomber8
+      - System.String#Bomber9
+      - System.String#Bomber10
+      - System.String#Bomber11
     isConditionBoolean: 1
     invertCondition: 0
     min: 0
@@ -3027,6 +3033,31 @@ MonoBehaviour:
       isMethod: 1
       paramStrings:
       - System.String#sprint3-mainmenu
+  - condition:
+      reference: {fileID: 373668333}
+      component: LevelEventManager
+      valueName: IsObjectAlive
+      isMethod: 1
+      paramStrings:
+      - System.String#Player
+    isConditionBoolean: 1
+    invertCondition: 0
+    min: 0
+    max: 4
+    previousEvent: 0
+    previousFired: 1
+    oneTime: 1
+    reset: 1
+    delay: 180
+    delayTimer: 180
+    subsequentEvent: 2
+    predicate:
+      reference: {fileID: 1479216521}
+      component: DialogueController
+      valueName: PlayLineSeries
+      isMethod: 1
+      paramStrings:
+      - System.String#Ending1
 --- !u!1001 &387048305
 Prefab:
   m_ObjectHideFlags: 0
@@ -3963,7 +3994,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1457669272040804, guid: ec3cf49d205d6d341812aa48fc4b34ef, type: 2}
       propertyPath: m_Name
-      value: Bomber5 (1)
+      value: Bomber11
       objectReference: {fileID: 0}
     - target: {fileID: 114547039967664742, guid: ec3cf49d205d6d341812aa48fc4b34ef,
         type: 2}
@@ -4406,7 +4437,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1457669272040804, guid: ec3cf49d205d6d341812aa48fc4b34ef, type: 2}
       propertyPath: m_Name
-      value: Bomber2 (1)
+      value: Bomber8
       objectReference: {fileID: 0}
     - target: {fileID: 114547039967664742, guid: ec3cf49d205d6d341812aa48fc4b34ef,
         type: 2}
@@ -4659,7 +4690,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1457669272040804, guid: ec3cf49d205d6d341812aa48fc4b34ef, type: 2}
       propertyPath: m_Name
-      value: Bomber4 (1)
+      value: Bomber10
       objectReference: {fileID: 0}
     - target: {fileID: 114547039967664742, guid: ec3cf49d205d6d341812aa48fc4b34ef,
         type: 2}
@@ -6700,7 +6731,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1457669272040804, guid: ec3cf49d205d6d341812aa48fc4b34ef, type: 2}
       propertyPath: m_Name
-      value: Bomber1 (1)
+      value: Bomber17
       objectReference: {fileID: 0}
     - target: {fileID: 114547039967664742, guid: ec3cf49d205d6d341812aa48fc4b34ef,
         type: 2}
@@ -6842,7 +6873,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1457669272040804, guid: ec3cf49d205d6d341812aa48fc4b34ef, type: 2}
       propertyPath: m_Name
-      value: Bomber3 (1)
+      value: Bomber9
       objectReference: {fileID: 0}
     - target: {fileID: 114547039967664742, guid: ec3cf49d205d6d341812aa48fc4b34ef,
         type: 2}
@@ -8962,7 +8993,7 @@ Prefab:
       objectReference: {fileID: 1921724512}
     - target: {fileID: 1457669272040804, guid: ec3cf49d205d6d341812aa48fc4b34ef, type: 2}
       propertyPath: m_Name
-      value: Bomber (1)
+      value: Bomber6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ec3cf49d205d6d341812aa48fc4b34ef, type: 2}

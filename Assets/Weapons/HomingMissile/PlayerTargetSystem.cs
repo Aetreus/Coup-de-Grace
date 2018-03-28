@@ -220,7 +220,7 @@ public class PlayerTargetSystem : MonoBehaviour {
                     
                     //Check if we hit some object other than the target.
                     RaycastHit info;
-                    Vector3 raycastSource = transform.position + transform.localToWorldMatrix.MultiplyVector(new Vector3(0, 0, 10));
+                    Vector3 raycastSource = transform.position + transform.localToWorldMatrix.MultiplyVector(new Vector3(0, 0, 20));
                     bool hit = Physics.Raycast(transform.position, _target.transform.position - raycastSource, out info);
                     if (hit && info.transform.gameObject != _target)
                         lockIcon.transform.Find("ObstructedMarker").gameObject.SetActive(true);
@@ -244,7 +244,7 @@ public class PlayerTargetSystem : MonoBehaviour {
                 {
                     RectTransform location = targetIcons[usedIcons].GetComponent<RectTransform>();
                     location.anchoredPosition = (new Vector2(screenPos.x, screenPos.y) / canvas.GetComponent<RectTransform>().localScale.x) - canvas.GetComponent<RectTransform>().sizeDelta / 2f;
-                    targetIcons[usedIcons].GetComponent<Image>().enabled = true;
+                    targetIcons[usedIcons].SetActive(true);
 
                     RaycastHit info;
                     bool hit = Physics.Raycast(transform.position, enemy.transform.position - transform.position, out info);
@@ -277,7 +277,7 @@ public class PlayerTargetSystem : MonoBehaviour {
 
         while (usedIcons < targetIcons.Count)
         {
-            targetIcons[usedIcons].GetComponent<Image>().enabled = false;
+            targetIcons[usedIcons].SetActive(false);
             usedIcons++;
         }
     }
