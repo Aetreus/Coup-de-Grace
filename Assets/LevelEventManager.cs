@@ -194,10 +194,16 @@ public class LevelEventManager : MonoBehaviour {
         return state;
     }
 
-    //public bool OnAnyObjectDie(params string[] names)
-    //{
-        
-    //}
+    public bool OnAnyObjectDie(params string[] names)
+    {
+        bool state = false;
+        foreach (string name in names)
+        {
+            if (OnObjectDie(name))
+                state = true;
+        }
+        return state;
+    }
 
     public void TransitionLevel(string levelName)
     {

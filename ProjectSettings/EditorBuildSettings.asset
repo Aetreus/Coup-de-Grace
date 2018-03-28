@@ -11,3 +11,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/sprint2-sample.unity
     guid: 78a2d9db4754c4b4cbabe8b9a10316a5
+  - enabled: 1
+    path: Assets/sprint3-level1.unity
+    guid: 6c88c98373f18c841a47916bea986d8b

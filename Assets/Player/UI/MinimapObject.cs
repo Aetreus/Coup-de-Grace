@@ -21,6 +21,7 @@ public class MinimapObject : MonoBehaviour {
 
     private void OnDestroy()
     {
-        ms.Unregister(this);
+        if(ms != null)
+            ms.Unregister(this);
     }
 }

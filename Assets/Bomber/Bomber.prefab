@@ -223,8 +223,8 @@ MonoBehaviour:
   speed: 120
   bomb: {fileID: 1971833699960792, guid: 09a37c71be6d84d43809cf1ebb2e6f8e, type: 2}
   bomb_target: {fileID: 0}
-  drop_frequency: 0.5
-  bombing_radius: 300
+  drop_frequency: 0.1
+  bombing_radius: 50
   bomb_spawn_offset: 1
   missile_fire_angle: 120
   missile_chance: 3
