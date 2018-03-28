@@ -44,7 +44,7 @@ public class BomberScript : MonoBehaviour {
 
         MoveUpdate();
 
-        if (drop_timer <= 0 )
+        if ( drop_timer <= 0 )
         {
             CheckBombDrop();
         }
