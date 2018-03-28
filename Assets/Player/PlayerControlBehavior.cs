@@ -24,6 +24,7 @@ public class PlayerControlBehavior : MonoBehaviour {
 
     public Rect worldBounds = new Rect(-10000, -10000, 20000, 20000);
     public float killTime = 20;
+    public float minWarningTime = 5;
 
     private GameObject AoAOutput;
     private GameObject AltOutput;
@@ -49,6 +50,7 @@ public class PlayerControlBehavior : MonoBehaviour {
     private Quaternion startRotation;
     private Vector3 startVelocity;
     private float killTimer;
+    private float warnTimer;
 
     //Defines what a warning consists of
     [System.Serializable]
@@ -65,6 +67,8 @@ public class PlayerControlBehavior : MonoBehaviour {
         //Parameters passed to the method
         public object[] parameters;
 
+
+
         //Limit check.
         public bool isGreater;
         public float limit;
@@ -80,6 +84,7 @@ public class PlayerControlBehavior : MonoBehaviour {
 
         internal GameObject warningTarget;
         internal bool active = false;
+        internal float warnTimer;
 
         public AudioSource sound;
         public bool forcePlay;
@@ -249,6 +254,8 @@ public class PlayerControlBehavior : MonoBehaviour {
         if (killTime < 0.0)
             Respawn();//For now respawn
 
+        warnTimer -= Time.deltaTime;
+
         if ((playing == null || playing.isPlaying == false) && queuedAlerts.Count > 0)
         {
             playing = queuedAlerts.Dequeue();
@@ -265,6 +272,7 @@ public class PlayerControlBehavior : MonoBehaviour {
             Transform t = canvas.transform.Find(w.warningTargetName);
             if (t != null)
                 w.warningTarget = t.gameObject;
+            w.warnTimer = minWarningTime;
         }
     }
 
@@ -274,6 +282,7 @@ public class PlayerControlBehavior : MonoBehaviour {
         string warningText = "";
         foreach (Warning w in warnings)
         {
+            w.warnTimer -= Time.deltaTime;
             float inspect = 0;
             if (w.isMethod)
             {
@@ -310,8 +319,9 @@ public class PlayerControlBehavior : MonoBehaviour {
                 {
                     w.sound.Play();
                 }
-                else if (w.sound != null)
+                else if (w.sound != null && w.warnTimer <= 0)
                 {
+                    w.warnTimer = minWarningTime;
                     if (!queuedAlerts.Contains(w.sound))
                     {
                         queuedAlerts.Enqueue(w.sound);

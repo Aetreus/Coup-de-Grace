@@ -4181,11 +4181,6 @@ GameObject:
   m_PrefabParentObject: {fileID: 1118712050718116, guid: df6bd1004b6bea74a9c6072f3afa6241,
     type: 2}
   m_PrefabInternal: {fileID: 1906950375}
---- !u!4 &682402095 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4654294536136784, guid: df6bd1004b6bea74a9c6072f3afa6241,
-    type: 2}
-  m_PrefabInternal: {fileID: 1906950375}
 --- !u!114 &682402096 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114217066268131064, guid: df6bd1004b6bea74a9c6072f3afa6241,
@@ -5221,115 +5216,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 910045147}
   m_Mesh: {fileID: 4300000, guid: 42086c56f57ac5645ae5a1d9ab9a919c, type: 3}
---- !u!1 &910301267
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 910301268}
-  - component: {fileID: 910301269}
-  m_Layer: 0
-  m_Name: Audio Source
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &910301268
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 910301267}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.009, y: 0.28, z: -0.303}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 682402095}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!82 &910301269
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 910301267}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: fe7149b7d3e7ce547b3e2171bd61b0f5, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 0.528
-  m_Pitch: 1
-  Loop: 1
-  Mute: 1
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - serializedVersion: 2
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
 --- !u!1 &930539915
 GameObject:
   m_ObjectHideFlags: 0
@@ -11965,29 +11851,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 10
       objectReference: {fileID: 0}
-    - target: {fileID: 114222035015594602, guid: df6bd1004b6bea74a9c6072f3afa6241,
+    - target: {fileID: 82183427652424906, guid: df6bd1004b6bea74a9c6072f3afa6241,
         type: 2}
-      propertyPath: worldBounds.x
-      value: -3000
-      objectReference: {fileID: 0}
-    - target: {fileID: 114222035015594602, guid: df6bd1004b6bea74a9c6072f3afa6241,
-        type: 2}
-      propertyPath: worldBounds.y
-      value: -6000
-      objectReference: {fileID: 0}
-    - target: {fileID: 114222035015594602, guid: df6bd1004b6bea74a9c6072f3afa6241,
-        type: 2}
-      propertyPath: worldBounds.width
-      value: 16000
-      objectReference: {fileID: 0}
-    - target: {fileID: 114222035015594602, guid: df6bd1004b6bea74a9c6072f3afa6241,
-        type: 2}
-      propertyPath: worldBounds.height
-      value: 16000
-      objectReference: {fileID: 0}
-    - target: {fileID: 4565344106272534, guid: df6bd1004b6bea74a9c6072f3afa6241, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
+      propertyPath: m_Volume
+      value: 0.111
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: df6bd1004b6bea74a9c6072f3afa6241, type: 2}
