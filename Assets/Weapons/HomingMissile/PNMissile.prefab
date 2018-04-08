@@ -212,6 +212,7 @@ MonoBehaviour:
   fueltime: 5
   lifetime: 0
   dampingTime: 0
+  viewCone: 180
   surfaceController:
     propConstant: 0
     integConstant: 0

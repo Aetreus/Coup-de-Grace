@@ -70,9 +70,9 @@ GameObject:
   - component: {fileID: 54554850910278232}
   - component: {fileID: 114878435811959906}
   - component: {fileID: 114793004816600776}
-  - component: {fileID: 114399108138111284}
   - component: {fileID: 114222035015594602}
   - component: {fileID: 114256119274711160}
+  - component: {fileID: 114780502300982004}
   - component: {fileID: 65232640516170786}
   - component: {fileID: 114001547825267288}
   - component: {fileID: 114217066268131064}
@@ -1394,7 +1394,7 @@ MonoBehaviour:
   onFire:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114399108138111284}
+      - m_Target: {fileID: 114780502300982004}
         m_MethodName: Create
         m_Mode: 0
         m_Arguments:
@@ -1409,7 +1409,7 @@ MonoBehaviour:
       PublicKeyToken=null
   maximumShots: 2
   reloadTime: 6
---- !u!114 &114399108138111284
+--- !u!114 &114780502300982004
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -1417,12 +1417,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1118712050718116}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5e2c53abab5c04468059faf376727dc, type: 3}
+  m_Script: {fileID: 11500000, guid: cee31e584d9beed4392345d3f4479439, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawned: {fileID: 1015981174769106, guid: 5f59c449d05f05746bb8a514e6938170, type: 2}
-  offset: {x: 0, y: -2, z: 5}
-  initial: {x: 0, y: -10, z: 0}
+  spawned: {fileID: 1122467257251606, guid: c7f969548f0ec494db8e6cb5a5709303, type: 2}
+  offset: {x: 0, y: -0.5, z: 0}
+  initial: {x: 0, y: -1, z: 0}
 --- !u!114 &114793004816600776
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1434,7 +1434,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53bc7cf0b952bc040a05fe63fc15a282, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lockAngle: 25
+  lockAngle: 30
   lockTime: 1.5
   flashTime: 0.15
   hostileTag: Enemy

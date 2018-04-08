@@ -13,6 +13,7 @@ public class PropNav : MonoBehaviour {
     public float fueltime;
     public float lifetime;
     public float dampingTime;
+    public float viewCone = 40;
 
     public float targetDistance { get { return _targetDistance; } }
 
@@ -31,7 +32,7 @@ public class PropNav : MonoBehaviour {
     private float dampingTimer;
 
     // Use this for initialization
-    void Start () {
+    protected virtual void Start () {
         last_pos = transform.position;
         fb = GetComponent<FlightBehavior>();
         rb = GetComponent<Rigidbody>();
@@ -39,12 +40,22 @@ public class PropNav : MonoBehaviour {
     }
 	
 	// Update is called once per frame
-	void Update () {
+	protected virtual void Update () {
+
 
         Vector3 latax;
 
+        //Check if target in view cone before calculating latax
         if (target)
         {
+            float targetAngle = Vector3.Angle(this.transform.forward, target.transform.position - transform.position);
+            if (targetAngle > viewCone)
+                target = null;
+        }
+
+        if (target)
+        {
+
             Vector3 range = target.transform.position - transform.position;
 
             _targetDistance = range.magnitude;
@@ -125,13 +136,16 @@ public class PropNav : MonoBehaviour {
                 }
             }
             target = value;
-            target_last_pos = target.transform.position;
-            if(target.GetComponent<PlayerControlBehavior>() != null)
+            if (target != null)
             {
-                PlayerControlBehavior pcb = target.GetComponent<PlayerControlBehavior>();
-                PlayerControlBehavior.Warning warn = new PlayerControlBehavior.Warning(gameObject,"PropNav","targetDistance",false,null,false,2000,"MISSILE","None",target.transform.Find("UISoundHolder/MissileAlertPlayer").GetComponent<AudioSource>(),true);
-                pcb.warnings.Add(warn);
-                pcb.UpdateWarnings();
+                target_last_pos = target.transform.position;
+                if (target.GetComponent<PlayerControlBehavior>() != null)
+                {
+                    PlayerControlBehavior pcb = target.GetComponent<PlayerControlBehavior>();
+                    PlayerControlBehavior.Warning warn = new PlayerControlBehavior.Warning(gameObject, "PropNav", "targetDistance", false, null, false, 2000, "MISSILE", "None", target.transform.Find("UISoundHolder/MissileAlertPlayer").GetComponent<AudioSource>(), true);
+                    pcb.warnings.Add(warn);
+                    pcb.UpdateWarnings();
+                }
             }
         }
     }

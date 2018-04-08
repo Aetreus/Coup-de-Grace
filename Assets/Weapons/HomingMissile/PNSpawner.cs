@@ -7,19 +7,17 @@ public class PNSpawner : MonoBehaviour {
     public GameObject spawned;
     public Vector3 offset;
     public Vector3 initial;
-    PropNav pn;
 
 	// Use this for initialization
-	void Start () {
-        pn = spawned.GetComponent<PropNav>();
+	protected void Start () {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	protected void Update () {
 		
 	}
 
-    public void Create(GameObject target)
+    public virtual void Create(GameObject target)
     {
         GameObject created = Instantiate(spawned, transform.TransformPoint(offset), transform.rotation);
         created.GetComponent<Rigidbody>().velocity = GetComponent<Rigidbody>().velocity + transform.localToWorldMatrix.MultiplyVector(initial);
