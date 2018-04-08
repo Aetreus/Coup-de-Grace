@@ -44,17 +44,25 @@ public class FighterDecisionTree : MonoBehaviour {
     private GameObject activeMissile = null;
     private GameObject player;
 
+    private WeaponManager wm;
+
     private Vector3 linear_accel;
+
+    private string debug_msg;
 
     // Use this for initialization
     void Start() {
         linear_accel = transform.forward * accel_mag;
         player = GameObject.FindGameObjectWithTag("Player");
+        wm = GetComponent<WeaponManager>();
     }
 
     // Update is called once per frame
     void Update() {
+
+        debug_msg = "";
         linear_accel = DetectCollisionTree().normalized * accel_mag;
+        Debug.Log(debug_msg, this);
     }
 
     public Vector3 LinearAcceleration
@@ -73,10 +81,12 @@ public class FighterDecisionTree : MonoBehaviour {
 
         if(avoidVec.magnitude > 0)
         {
+            debug_msg += "Detect Collision T";
             return avoidVec;
         }
         else
         {
+            debug_msg += "Detect Collision F";
             return PlayerMissileApproachingTree();
         }
     }
@@ -87,10 +97,12 @@ public class FighterDecisionTree : MonoBehaviour {
 
         if(closest_missile != null)
         {
+            debug_msg += " -> PlayerMissileApproaching T";
             return PlayerMissileCloseTree(closest_missile);
         }
         else
         {
+            debug_msg += " -> PlayerMissileApproaching F";
             return MyMissileApproachingPlayerTree();
         }
     }
@@ -99,10 +111,12 @@ public class FighterDecisionTree : MonoBehaviour {
     {
         if(PlayerMissileClose(closest_missile))
         {
+            debug_msg += " -> PlayerMissileClose T -> return Sharp Pitch";
             return Sharp_Pitch();
         }
         else
         {
+            debug_msg += " -> PlayerMissileClose F";
             return MyMissileCloseToPlayerTree(closest_missile);
         }
     }
@@ -111,10 +125,12 @@ public class FighterDecisionTree : MonoBehaviour {
     {
         if(MyMissileCloseToPlayer())
         {
+            debug_msg += " -> MyMissileCloseToPlayer T -> return Seek Player";
             return Seek_Player();
         }
         else
         {
+            debug_msg += " -> MyMissileCloseToPlayer F -> return Turn_Side_Toward_Missile";
             return Turn_Side_Toward_Missile(closest_missile);
         }
     }
@@ -123,10 +139,12 @@ public class FighterDecisionTree : MonoBehaviour {
     {
         if(MyMissileApproachingPlayer())
         {
+            debug_msg += " -> MyMissileApproachingPlayer T -> return Seek Player";
             return Seek_Player();
         }
         else
         {
+            debug_msg += " -> MyMissileApproachingPlayer F";
             return PlayerInLOSTree();
         }
     }
@@ -135,10 +153,12 @@ public class FighterDecisionTree : MonoBehaviour {
     {
         if (PlayerInLOS())
         {
+            debug_msg += " -> PlayerInLOS T";
             return InPlayerMissileConeTree();
         }
         else
         {
+            debug_msg += " -> PlayerInLOS F -> return FollowPathToPlayer";
             return FollowPathToPlayer();
         }
     }
@@ -147,10 +167,12 @@ public class FighterDecisionTree : MonoBehaviour {
     {
         if(InPlayerMissileCone())
         {
+            debug_msg += " -> InPlayerMissileCone T -> return Exit_Missile_Cone";
             return Exit_Missile_Cone();
         }
         else
         {
+            debug_msg += " -> InPlayerMissileCone F";
             return MissileAvailableTree();
         }
     }
@@ -159,10 +181,12 @@ public class FighterDecisionTree : MonoBehaviour {
     {
         if(MissileAvailable())
         {
+            debug_msg += " -> MissileAvailable T";
             return PlayerInMissileConeTree();
         }
         else
         {
+            debug_msg += " -> InPlayerMissileCone F -> return Move_Behind_Player";
             return Move_Behind_Player();
         }
     }
@@ -171,9 +195,15 @@ public class FighterDecisionTree : MonoBehaviour {
     {
         if(PlayerInMissileCone())
         {
+            debug_msg += " -> PlayerInMissileCone T -> Fire Missile";
             //fire missile
         }
+        else
+        {
+            debug_msg += " -> PlayerInMissileCone F";
+        }
 
+        debug_msg += "-> return Seek_Player";
         return Seek_Player();
     }
 

@@ -183,9 +183,11 @@ GameObject:
   - component: {fileID: 4220351548787534}
   - component: {fileID: 54176910388109892}
   - component: {fileID: 114394754467270982}
+  - component: {fileID: 114668286498194948}
   - component: {fileID: 114370898182834996}
   - component: {fileID: 114140296527334382}
   - component: {fileID: 114989195923848130}
+  - component: {fileID: 114852199699454370}
   - component: {fileID: 65614739184898264}
   - component: {fileID: 114893411537729166}
   - component: {fileID: 82205912450664284}
@@ -1232,7 +1234,7 @@ MonoBehaviour:
   lockAngle: 25
   lockTime: 1.5
   flashTime: 0.15
-  hostileTag: Enemy
+  hostileTag: Player
   referenceDistance: 4000
   logBase: 4
   targetPrefab: {fileID: 1661510180886782, guid: b5887845d3719ba4e9d9e436a5fcbd9e,
@@ -1295,6 +1297,43 @@ MonoBehaviour:
   - {x: 50, y: -0.25}
   - {x: -100, y: -0.125}
   - {x: 180, y: 0}
+--- !u!114 &114668286498194948
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1919875478718506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 697a56a534456ae47b5f38dc61d7b318, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  accel_mag: 0
+  collision_whisker_len: 0
+  collision_whisker_offset: 0
+  collision_personal_space: 0
+  max_player_missile_approaching_angle: 0
+  max_player_missile_close_dist: 0
+  max_my_missile_close_distance: 0
+  max_my_missile_approaching_angle: 0
+  player_missile_cone_angle: 0
+  player_missile_cone_len: 0
+  fighter_missile_cone_angle: 0
+  fighter_missile_cone_len: 0
+  min_pitch_ground_dist: 0
+  max_in_front_of_player_angle: 0
+  min_far_away_dist: 0
+--- !u!114 &114852199699454370
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1919875478718506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f17ff718e5ca9e34489d5f6a4c0a1e93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114893411537729166
 MonoBehaviour:
   m_ObjectHideFlags: 1
