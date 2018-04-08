@@ -11,9 +11,15 @@ public class MinimapScript : MonoBehaviour {
 
     public MinimapObject centerObject;
 
+    public float size = 125;
+
     public float scale = 80;
+    public float maxDynamicScale = 80;
+    public float minDynamicScale = 10;
+    public float edgeBarrier = 10;
 
     public bool rotateByCenter;
+    public bool scaleDynamic = false;
 
     private void Awake()
     {
@@ -48,6 +54,19 @@ public class MinimapScript : MonoBehaviour {
         foreach(RectTransform r in icons)
         {
             r.gameObject.SetActive(false);
+        }
+
+        if(scaleDynamic)
+        {
+            float maxDist = 0;
+            foreach(MinimapObject obj in actives)
+            {
+                Vector3 relativePos = obj.transform.position - centerObject.transform.position;
+                if (maxDist < relativePos.magnitude)
+                    maxDist = relativePos.magnitude;
+            }
+            scale = maxDist / (size - edgeBarrier);
+            scale = Math.Max(minDynamicScale,Math.Min(maxDynamicScale, scale));
         }
 
 		foreach(MinimapObject obj in actives)
