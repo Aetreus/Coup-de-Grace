@@ -41,6 +41,9 @@ public class FighterDecisionTree : MonoBehaviour {
     //Predict_Player_Loc variables
     //public float max_prediction_time;
 
+    private GameObject targetNode;
+    private float max_node_arrived_dist;
+
     private GameObject activeMissile = null;
     private GameObject player;
 
@@ -327,10 +330,10 @@ public class FighterDecisionTree : MonoBehaviour {
         Vector3 missileToPlayer = player.transform.position - activeMissile.transform.position;
         float angle = Vector3.Angle(missileVel, missileToPlayer);
 
-       if (activeMissile.GetComponent<PropNav>().Target == player && angle <= max_my_missile_approaching_angle)
-       {
+        if (activeMissile.GetComponent<PropNav>().Target == player && angle <= max_my_missile_approaching_angle)
+        {
             return true;
-       }
+        }
 
        return false;
     }
@@ -388,7 +391,7 @@ public class FighterDecisionTree : MonoBehaviour {
         Vector3 diff = transform.forward - Vector3.forward;
 
         //if diff is pointing up, pitch up, otherwise, pitch down
-        if(diff.y > 0)
+        if (diff.y > 0)
         {
             return Vector3.up;
         }
@@ -401,16 +404,19 @@ public class FighterDecisionTree : MonoBehaviour {
     //accelerate in the direction of missiles' right or left depending on current orientation
     Vector3 Turn_Side_Toward_Missile(GameObject missile)
     {
-        Vector3 missile_to_fighter = transform.position - missile.transform.position;
+        Vector3 fighter_to_missile = missile.transform.position - transform.position;
 
-        Vector3 diff = transform.forward - missile_to_fighter.normalized;
+        //Vector3 diff = transform.forward - fighter_to_missile.normalized;
+
+        float dir = AngleDir(fighter_to_missile.normalized, transform.forward, Vector3.up);
         
-        if (diff.x > 0)
+        if (dir > 0) //fighter is facing to the right of the missile
         {
+            Vector3 rightOfMissile = missile.transform.forward + Vector3.right;
             //right of the missile assuming it has zero rotation
             return new Vector3(missile.transform.right.x, 0, 0).normalized;
         }
-        else
+        else //fighter is facing to the left of the missile
         {
             //left of the missile assuming it has zero rotation
             return new Vector3(-missile.transform.right.x, 0, 0).normalized;
@@ -426,16 +432,18 @@ public class FighterDecisionTree : MonoBehaviour {
 
     Vector3 Exit_Missile_Cone()
     {
-        Vector3 player_to_fighter = transform.position - player.transform.position;
+        Vector3 fighter_to_player = player.transform.position - transform.position;
 
-        Vector3 diff = transform.forward - player_to_fighter.normalized;
+        //Vector3 diff = player_to_fighter.normalized - player.transform.forward;
 
-        if (diff.x > 0)
+        float dir = AngleDir(fighter_to_player.normalized, transform.forward, Vector3.up);
+
+        if (dir > 0) //fighter is facing to the right of the player
         {
             //right of the player assuming it has zero rotation
             return new Vector3(player.transform.right.x, 0, 0).normalized;
         }
-        else
+        else //fighter is facing to the left of the player
         {
             //left of the player assuming it has zero rotation
             return new Vector3(-player.transform.right.x, 0, 0).normalized;
@@ -474,16 +482,24 @@ public class FighterDecisionTree : MonoBehaviour {
             return player.transform.position - transform.position;
         }
 
+        //if not arrived at previously calculated next node yet, then keep traveling towards it
+        if(Vector3.Distance(transform.position, targetNode.transform.position) > max_node_arrived_dist)
+        {
+            return targetNode.transform.position - transform.position;
+        }
+
         //get queue of all nodes and set up Dijkstra's
         List<GameObject> queue = new List<GameObject>(GameObject.FindGameObjectsWithTag("Node")); //replace with Dijkstrainfo
         foreach(GameObject node in queue)
         {
             node.GetComponent<DijkstraInfo>().Reset(this.gameObject, player);
         }
+        queue.Remove(targetNode);
         GetComponent<DijkstraInfo>().Reset(this.gameObject, player);
         queue.Add(this.gameObject);
         player.GetComponent<DijkstraInfo>().Reset(this.gameObject, player);
         queue.Add(player);
+
 
         //set the source's info
         this.GetComponent<DijkstraInfo>().Dist = 0;
@@ -537,13 +553,36 @@ public class FighterDecisionTree : MonoBehaviour {
             closest_on_path = closest_on_path.GetComponent<DijkstraInfo>().Prev;
         }
 
-        //return vector from the fighter to that node
+        //return vector from the fighter to that node and set it as the targetNode
+        targetNode = closest_on_path;
         return closest_on_path.transform.position - transform.position;
     }
+
+    //helper functions--------------------------------------------------
 
     static int SortByDist(GameObject n1, GameObject n2)
     {
         return n1.GetComponent<DijkstraInfo>().Dist.CompareTo(n2.GetComponent<DijkstraInfo>().Dist);
+    }
+
+    //returns -1 when to the left, 1 to the right, and 0 for forward/backward
+    public float AngleDir(Vector3 fwd, Vector3 targetDir, Vector3 up)
+    {
+        Vector3 perp = Vector3.Cross(fwd, targetDir);
+        float dir = Vector3.Dot(perp, up);
+
+        if (dir > 0.0f)
+        {
+            return 1.0f;
+        }
+        else if (dir < 0.0f)
+        {
+            return -1.0f;
+        }
+        else
+        {
+            return 0.0f;
+        }
     }
 
     /*
