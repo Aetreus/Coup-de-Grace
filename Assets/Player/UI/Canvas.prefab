@@ -804,8 +804,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   centerObject: {fileID: 0}
+  size: 125
   scale: 160
+  maxDynamicScale: 160
+  minDynamicScale: 10
+  edgeBarrier: 10
   rotateByCenter: 0
+  scaleDynamic: 1
 --- !u!114 &114571669249634004
 MonoBehaviour:
   m_ObjectHideFlags: 1
