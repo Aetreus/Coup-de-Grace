@@ -434,8 +434,13 @@ public class FighterDecisionTree : MonoBehaviour {
     {
         Vector3 fighter_to_player = player.transform.position - transform.position;
 
+        Vector3 diff = fighter_to_player.normalized - transform.forward;
+
+        return -diff;
+
         //Vector3 diff = player_to_fighter.normalized - player.transform.forward;
 
+        /*
         float dir = AngleDir(fighter_to_player.normalized, transform.forward, Vector3.up);
 
         if (dir > 0) //fighter is facing to the right of the player
@@ -448,6 +453,7 @@ public class FighterDecisionTree : MonoBehaviour {
             //left of the player assuming it has zero rotation
             return new Vector3(-player.transform.right.x, 0, 0).normalized;
         }
+        */
     }
 
     //if player is far away from fighter, accelerate toward player
