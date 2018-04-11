@@ -58,14 +58,16 @@ public class FighterDecisionTree : MonoBehaviour {
         linear_accel = transform.forward * accel_mag;
         player = GameObject.FindGameObjectWithTag("Player");
         wm = GetComponent<WeaponManager>();
+
+        targetNode = null;
     }
 
     // Update is called once per frame
     void Update() {
 
         debug_msg = "";
-        linear_accel = DetectCollisionTree().normalized * accel_mag;
-        Debug.Log(debug_msg, this);
+        linear_accel = UpdateAcceleration();
+        Debug.Log(debug_msg, this.gameObject);
     }
 
     public Vector3 LinearAcceleration
@@ -77,6 +79,11 @@ public class FighterDecisionTree : MonoBehaviour {
     }
 
     //forks of the tree------------------------------------------------------
+
+    Vector3 UpdateAcceleration()
+    {
+        return DetectCollisionTree().normalized * accel_mag;
+    }
 
     Vector3 DetectCollisionTree()
     {
@@ -101,6 +108,7 @@ public class FighterDecisionTree : MonoBehaviour {
         if(closest_missile != null)
         {
             debug_msg += " -> PlayerMissileApproaching T";
+            Debug.DrawLine(transform.position, closest_missile.transform.position, Color.green);
             return PlayerMissileCloseTree(closest_missile);
         }
         else
@@ -154,49 +162,37 @@ public class FighterDecisionTree : MonoBehaviour {
 
     Vector3 PlayerInLOSTree()
     {
+        //return MissileAvailableTree();
+
         if (PlayerInLOS())
         {
             debug_msg += " -> PlayerInLOS T";
-            return InPlayerMissileConeTree();
-        }
-        else
-        {
-            debug_msg += " -> PlayerInLOS F -> return FollowPathToPlayer";
-            return FollowPathToPlayer();
-        }
-    }
-
-    Vector3 InPlayerMissileConeTree()
-    {
-        if(InPlayerMissileCone())
-        {
-            debug_msg += " -> InPlayerMissileCone T -> return Exit_Missile_Cone";
-            return Exit_Missile_Cone();
-        }
-        else
-        {
-            debug_msg += " -> InPlayerMissileCone F";
             return MissileAvailableTree();
+        }
+        else
+        {
+            debug_msg += " -> PlayerInLOS F -> return Follow_Path_To_Player";
+            return Follow_Path_To_Player();
         }
     }
 
     Vector3 MissileAvailableTree()
     {
-        if(MissileAvailable())
+        if (MissileAvailable())
         {
             debug_msg += " -> MissileAvailable T";
             return PlayerInMissileConeTree();
         }
         else
         {
-            debug_msg += " -> InPlayerMissileCone F -> return Move_Behind_Player";
-            return Move_Behind_Player();
+            debug_msg += " -> MissileAvailable F";
+            return InPlayerMissileConeTree();
         }
     }
 
     Vector3 PlayerInMissileConeTree()
     {
-        if(PlayerInMissileCone())
+        if (PlayerInMissileCone())
         {
             debug_msg += " -> PlayerInMissileCone T -> Fire Missile";
             //fire missile
@@ -209,7 +205,21 @@ public class FighterDecisionTree : MonoBehaviour {
         debug_msg += "-> return Seek_Player";
         return Seek_Player();
     }
-
+    
+    Vector3 InPlayerMissileConeTree()
+    {
+        if(InPlayerMissileCone())
+        {
+            debug_msg += " -> InPlayerMissileCone T -> return Exit_Missile_Cone";
+            return Exit_Missile_Cone();
+        }
+        else
+        {
+            debug_msg += " -> InPlayerMissileCone F -> return Move_Behind_Player";
+            return Move_Behind_Player();
+        }
+    }
+    
     //Boolean operators for tree-------------------------------------------------
 
     Vector3 DetectCollision()
@@ -223,7 +233,7 @@ public class FighterDecisionTree : MonoBehaviour {
                                     transform.forward + (transform.up + transform.right).normalized * collision_whisker_offset,
                                     transform.forward + (transform.up - transform.right).normalized * collision_whisker_offset,
                                     transform.forward - (transform.up + transform.right).normalized * collision_whisker_offset,
-                                    transform.forward - (transform.up - transform.right).normalized * collision_whisker_offset,
+                                    transform.forward - (transform.up - transform.right).normalized * collision_whisker_offset
                                 };
 
         Vector3 avoidNormal = Vector3.zero;
@@ -291,7 +301,7 @@ public class FighterDecisionTree : MonoBehaviour {
             Vector3 missileToFighter = transform.position - missile.transform.position;
             float angle = Vector3.Angle(missileVel, missileToFighter);
 
-            if(missile.GetComponent<PropNav>().Target == this && angle <= max_player_missile_approaching_angle && angle < smallestAngle)
+            if(missile.GetComponent<PropNav>().Target == this.gameObject && angle <= max_player_missile_approaching_angle && angle < smallestAngle)
             {
                 result = missile;
                 smallestAngle = angle;
@@ -363,16 +373,21 @@ public class FighterDecisionTree : MonoBehaviour {
     //true if a ray can be cast from this fighter to the player
     bool PlayerInLOS()
     {
-        Vector3 towardPlayer = (player.transform.position - transform.position).normalized;
+        Vector3 towardPlayer = player.transform.position - transform.position;
 
         RaycastHit hitinfo;
-        bool hit = Physics.Raycast(transform.position, towardPlayer, out hitinfo);
-        if (hit && hitinfo.collider.gameObject == player)
-        {
-            return true;
-        }
+        bool hit = Physics.Raycast(transform.position, towardPlayer, out hitinfo, towardPlayer.magnitude);
 
-        return false;
+        //Debug.DrawRay(transform.position, towardPlayer*200000, Color.green);
+
+        if (hit && (hitinfo.collider.gameObject.tag == "Terrain" || hitinfo.collider.gameObject.tag == "Building"))
+        {
+            debug_msg += " [PlayerInLOS raycast hit " + hitinfo.collider.gameObject.name + "]";
+
+            return false;
+        }
+        
+        return true;
     }
 
     //Tree actions-----------------------------------------------------------
@@ -406,6 +421,17 @@ public class FighterDecisionTree : MonoBehaviour {
     {
         Vector3 fighter_to_missile = missile.transform.position - transform.position;
 
+        //get the vector perpendicular to the vector toward the missile in the direction the fighter is currently facing
+        Vector3 projection = Vector3.ProjectOnPlane(transform.forward, fighter_to_missile);
+
+        //accelerate in that direciton horizontally
+        return new Vector3(projection.x, 0, projection.z);
+
+        /*
+        Vector3 fighter_to_missile = missile.transform.position - transform.position;
+
+        Vector3 projection = Vector3.ProjectOnPlane(fighter_to_missile, transform.forward);
+
         //Vector3 diff = transform.forward - fighter_to_missile.normalized;
 
         float dir = AngleDir(fighter_to_missile.normalized, transform.forward, Vector3.up);
@@ -421,6 +447,7 @@ public class FighterDecisionTree : MonoBehaviour {
             //left of the missile assuming it has zero rotation
             return new Vector3(-missile.transform.right.x, 0, 0).normalized;
         }
+        */
     }
 
     //maintain acceleration toward player
@@ -434,13 +461,19 @@ public class FighterDecisionTree : MonoBehaviour {
     {
         Vector3 fighter_to_player = player.transform.position - transform.position;
 
+        //get the vector perpendicular to the vector toward the player in the fighter is currently facing
+        Vector3 projection = Vector3.ProjectOnPlane(transform.forward, fighter_to_player);
+
+        //accelerate in the opposite direction of that direction projection
+        return projection;
+
+        /*
         Vector3 diff = fighter_to_player.normalized - transform.forward;
 
         return -diff;
 
         //Vector3 diff = player_to_fighter.normalized - player.transform.forward;
-
-        /*
+        
         float dir = AngleDir(fighter_to_player.normalized, transform.forward, Vector3.up);
 
         if (dir > 0) //fighter is facing to the right of the player
@@ -461,36 +494,46 @@ public class FighterDecisionTree : MonoBehaviour {
     //otherwise, pursue the player
     Vector3 Move_Behind_Player()
     {
-        Vector3 player_to_fighter = player.transform.position - transform.position;
+        Vector3 player_to_fighter = transform.position - player.transform.position;
+
+        //if the fighter is far away, just move toward it
         if (player_to_fighter.magnitude >= min_far_away_dist)
         {
+            debug_msg += " [far away, move toward player]";
             return -player_to_fighter.normalized;
         }
 
         float angle = Vector3.Angle(player_to_fighter, player.transform.forward);
 
+        //if the fighter is in front of the player,
+        //move in the opposite direction the player is facing
         if (angle <= max_in_front_of_player_angle)
         {
+            debug_msg += " [in front of player, move behind it]";
             return -player.transform.forward;
         }
+        //otherwise, move toward the fighter
         else
         {
+            debug_msg += " [behind player and close, move chase it]";
             return -player_to_fighter.normalized;
         }
     }
 
     //if the player is on LOS, pursue it
     //otherwise, use Dijkstra's on the nodes to find the shortest path and seek the first node in that path
-    Vector3 FollowPathToPlayer()
+    Vector3 Follow_Path_To_Player()
     {
         if(PlayerInLOS())
         {
+            debug_msg += "-> PlayerInLOS";
             return player.transform.position - transform.position;
         }
 
         //if not arrived at previously calculated next node yet, then keep traveling towards it
-        if(Vector3.Distance(transform.position, targetNode.transform.position) > max_node_arrived_dist)
+        if(targetNode != null && Vector3.Distance(transform.position, targetNode.transform.position) > max_node_arrived_dist)
         {
+            debug_msg += "-> not at previously found node";
             return targetNode.transform.position - transform.position;
         }
 
@@ -560,6 +603,7 @@ public class FighterDecisionTree : MonoBehaviour {
         }
 
         //return vector from the fighter to that node and set it as the targetNode
+        debug_msg += "-> found new node";
         targetNode = closest_on_path;
         return closest_on_path.transform.position - transform.position;
     }

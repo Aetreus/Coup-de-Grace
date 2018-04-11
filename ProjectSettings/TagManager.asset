@@ -8,6 +8,7 @@ TagManager:
   - Terrain
   - Building
   - Node
+  - Missile
   layers:
   - Default
   - TransparentFX

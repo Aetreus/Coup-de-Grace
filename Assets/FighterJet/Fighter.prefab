@@ -1308,21 +1308,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 697a56a534456ae47b5f38dc61d7b318, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  accel_mag: 0
-  collision_whisker_len: 0
-  collision_whisker_offset: 0
-  collision_personal_space: 0
-  max_player_missile_approaching_angle: 0
-  max_player_missile_close_dist: 0
-  max_my_missile_close_distance: 0
-  max_my_missile_approaching_angle: 0
-  player_missile_cone_angle: 0
-  player_missile_cone_len: 0
-  fighter_missile_cone_angle: 0
-  fighter_missile_cone_len: 0
-  min_pitch_ground_dist: 0
-  max_in_front_of_player_angle: 0
-  min_far_away_dist: 0
+  accel_mag: 50
+  collision_whisker_len: 10
+  collision_whisker_offset: 5
+  collision_personal_space: 10
+  max_player_missile_approaching_angle: 60
+  max_player_missile_close_dist: 20
+  max_my_missile_close_distance: 20
+  max_my_missile_approaching_angle: 40
+  player_missile_cone_angle: 60
+  player_missile_cone_len: 100
+  fighter_missile_cone_angle: 60
+  fighter_missile_cone_len: 100
+  min_pitch_ground_dist: 25
+  max_in_front_of_player_angle: 180
+  min_far_away_dist: 200
 --- !u!114 &114852199699454370
 MonoBehaviour:
   m_ObjectHideFlags: 1

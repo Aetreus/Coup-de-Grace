@@ -29,18 +29,23 @@ public class FighterSteering : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        Vector3 accel_dir;
+        Vector3 accel_vec;
         if (player)
         {
-            accel_dir = tree.LinearAcceleration;
+            accel_vec = tree.LinearAcceleration;
         }
         else
         {
-            accel_dir = Vector3.zero;
+            accel_vec = Vector3.zero;
         }
 
-        accel_dir = transform.InverseTransformVector(accel_dir);
+        Debug.DrawRay(transform.position, accel_vec * 20000, Color.red);
+        
+        Vector3 local_accel_vec = transform.InverseTransformVector(accel_vec);
 
+        //Debug.DrawRay(transform.position, local_accel_vec * 20000, Color.blue);
+
+        
         float surfaceDampCoeff = 1.0F;
         if (dampingTimer > 0)
         {
@@ -55,18 +60,19 @@ public class FighterSteering : MonoBehaviour {
         }
 
         float rollError = Vector3.Angle(rb.transform.up, Vector3.ProjectOnPlane(accel_dir, Vector3.Cross(rb.transform.up, rb.transform.right)));
-        if(Vector3.Dot(Vector3.Cross(accel_dir,rb.transform.up),Vector3.Cross(rb.transform.up,rb.transform.right)) < 0)//Get the sign of the angle difference
+        if(Vector3.Dot(Vector3.Cross(local_accel_vec,rb.transform.up),Vector3.Cross(rb.transform.up,rb.transform.right)) < 0)//Get the sign of the angle difference
         {
             rollError = -rollError;
         }
 
         float elevatorError = Vector3.Angle(rb.transform.up, Vector3.ProjectOnPlane(accel_dir, Vector3.Cross(rb.transform.up, rb.transform.forward)));
-        if (Vector3.Dot(Vector3.Cross(accel_dir, rb.transform.up), Vector3.Cross(rb.transform.up, rb.transform.forward)) < 0)//Get the sign of the angle difference
+        if (Vector3.Dot(Vector3.Cross(local_accel_vec, rb.transform.up), Vector3.Cross(rb.transform.up, rb.transform.forward)) < 0)//Get the sign of the angle difference
         {
             elevatorError = -elevatorError;
         }
 
         fb.aileron = surfaceController.Calc(rollError);
         fb.elevator = surfaceController.Calc(elevatorError);
+        
     }
 }
