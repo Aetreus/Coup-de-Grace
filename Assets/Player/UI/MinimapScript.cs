@@ -10,8 +10,12 @@ public class MinimapScript : MonoBehaviour {
     private RectTransform rt;
 
     private int idCount = 0;
+    
+    private GameObject player;
 
     public MinimapObject centerObject;
+
+    public GameObject outlineRect;
 
     public float size = 125;
 
@@ -29,11 +33,13 @@ public class MinimapScript : MonoBehaviour {
         actives = new List<MinimapObject>();
         icons = new List<RectTransform>();
         rt = GetComponent<RectTransform>();
+        player = GameObject.Find("Player");
         isAwake = true;
     }
 
     // Use this for initialization
     void Start () {
+        outlineRect = Instantiate(outlineRect, this.transform);
 	}
 
     public GameObject Register(MinimapObject reg)
@@ -84,5 +90,13 @@ public class MinimapScript : MonoBehaviour {
             if(Math.Abs(r.localPosition.x) < rt.sizeDelta.x / 2 && Math.Abs(r.localPosition.y) < rt.sizeDelta.y / 2)
                 r.gameObject.SetActive(true);
         }
-	}
+
+        Rect bounds = player.GetComponent<PlayerControlBehavior>().worldBounds;
+
+        outlineRect.GetComponent<RectTransform>().sizeDelta = new Vector2(bounds.width / scale, bounds.height / scale);
+        Vector3 centerpos = centerObject.transform.position;
+        centerpos = new Vector3(-centerpos.x / scale, -centerpos.y / scale);
+        outlineRect.GetComponent<RectTransform>().localPosition = centerpos;
+
+    }
 }

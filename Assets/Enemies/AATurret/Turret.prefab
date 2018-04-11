@@ -243,7 +243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67f98435b43caf14eb48c078020e5fa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Icon: {fileID: 1261174597415340, guid: 8206aed36e2965c42a983254824459eb, type: 2}
+  Icon: {fileID: 1521486262125800, guid: ba72b13cea69b1e438fbd5735d25ce1c, type: 2}
 --- !u!114 &114736703522378110
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -258,8 +258,8 @@ MonoBehaviour:
   target: {fileID: 0}
   bullet: {fileID: 1657919553941542, guid: 5e8b365525937ed4fa10054f6cf38a44, type: 2}
   rotateDelta: 100
-  minFireAngle: 3
-  minFireDist: 4000
+  maxFireAngle: 20
+  maxFireDist: 5000
   fireCooldown: 2
   bulletSpawnOffset: 80
   playerTag: Player

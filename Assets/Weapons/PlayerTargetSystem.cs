@@ -20,6 +20,8 @@ public class PlayerTargetSystem : MonoBehaviour {
     private bool locked;
     private bool flash;
     private bool locking;
+
+    private GameObject lockRing;
     
     private GameObject _target;
     private List<GameObject> enemies;
@@ -48,6 +50,8 @@ public class PlayerTargetSystem : MonoBehaviour {
         flash = false;
         flashTimer = flashTime;
 
+        lockRing = GameObject.Find("LockRing");
+        lockRing.SetActive(false);
         canvas = GameObject.Find("Canvas");
         targetIcons = new List<GameObject>();
         lockIcon = Instantiate(lockPrefab, canvas.transform);
@@ -107,6 +111,13 @@ public class PlayerTargetSystem : MonoBehaviour {
             else
                 flash = true;
         }
+        if (locking == true || locked == true)
+        {
+            lockRing.SetActive(true);
+            ScaleLock(lockAngle);
+        }
+        else
+            lockRing.SetActive(false);
         DisplayIcons();
     }
 
@@ -183,9 +194,10 @@ public class PlayerTargetSystem : MonoBehaviour {
         return 0;
     }
 
-    private void ShowLockIcon()
+    private void ScaleLock(float angle)
     {
-
+        float size = angle / (Camera.main.fieldOfView / 2) * canvas.GetComponent<RectTransform>().sizeDelta.y;
+        lockRing.GetComponent<RectTransform>().sizeDelta = new Vector2(size, size);
     }
 
     private void DisplayIcons()
@@ -221,8 +233,8 @@ public class PlayerTargetSystem : MonoBehaviour {
                     //Check if we hit some object other than the target.
                     RaycastHit info;
                     Vector3 raycastSource = transform.position + transform.localToWorldMatrix.MultiplyVector(new Vector3(0, 0, 20));
-                    bool hit = Physics.Raycast(transform.position, _target.transform.position - raycastSource, out info);
-                    if (hit && info.transform.gameObject != _target)
+                    bool hit = Physics.Raycast(transform.position, _target.transform.position - raycastSource, out info,(_target.transform.position - raycastSource).magnitude + 50);
+                    if (hit && info.transform.gameObject.tag == "Terrain")
                         lockIcon.transform.Find("ObstructedMarker").gameObject.SetActive(true);
                     else
                         lockIcon.transform.Find("ObstructedMarker").gameObject.SetActive(false);
@@ -247,9 +259,9 @@ public class PlayerTargetSystem : MonoBehaviour {
                     targetIcons[usedIcons].SetActive(true);
 
                     RaycastHit info;
-                    bool hit = Physics.Raycast(transform.position, enemy.transform.position - transform.position, out info);
+                    bool hit = Physics.Raycast(transform.position, enemy.transform.position - transform.position, out info,(enemy.transform.position - transform.position).magnitude + 50);
                     GameObject hitObj = info.transform.gameObject;
-                    if (hit && hitObj != enemy)
+                    if (hit && hitObj.tag == "Terrain")
                         targetIcons[usedIcons].transform.Find("ObstructedMarker").gameObject.SetActive(true);
                     else
                         targetIcons[usedIcons].transform.Find("ObstructedMarker").gameObject.SetActive(false);
