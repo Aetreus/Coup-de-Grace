@@ -19,9 +19,11 @@ public class FighterSteering : MonoBehaviour {
 
     private GameObject player;
 
+    public float fullTurnAngle;
     public float ref_speed = 200;
     public float tolerance = 2;
 
+    public Vector3 baseDir = Vector3.up;
     public Vector3 facingDir = new Vector3(0,0,1);
     public Vector3 upDir = new Vector3(0,1,0);
     public float targetVel = 200;
@@ -43,6 +45,7 @@ public class FighterSteering : MonoBehaviour {
 	void Update ()
     {
         float angle = Vector3.Angle(transform.forward, facingDir);
+        float upAngle = Vector3.Angle(transform.forward, upDir);
 
         Vector3 accel_vec = Vector3.zero;
         if (player)
@@ -57,12 +60,17 @@ public class FighterSteering : MonoBehaviour {
         Debug.DrawRay(transform.position, Vector3.ProjectOnPlane(upDir, Vector3.Cross(rb.transform.up, rb.transform.right)) * 20000, Color.blue);
 
         //Debug.DrawRay(transform.position, local_accel_vec * 20000, Color.blue);
-
+        /*
         float speedControlSense = 1.0F;
         if (rb.velocity.sqrMagnitude > ref_speed)
         {
             speedControlSense = ref_speed * ref_speed / rb.velocity.sqrMagnitude;
         }
+        */
+
+        float scaleFactor = (float)Math.Pow(1 - (upAngle / fullTurnAngle),1);
+        if (upAngle < fullTurnAngle)
+            upDir = upDir + (baseDir - upDir) * scaleFactor;
 
         _rollError = Vector3.Angle(rb.transform.up, Vector3.ProjectOnPlane(upDir, Vector3.Cross(rb.transform.up, rb.transform.right)));
         if(Vector3.Dot(Vector3.Cross(upDir,rb.transform.up),Vector3.Cross(rb.transform.up,rb.transform.right)) < 0)//Get the sign of the angle difference
@@ -76,13 +84,17 @@ public class FighterSteering : MonoBehaviour {
             _pitchError = -_pitchError;
         }
 
-        //Up and down are equivalent for turning purposes
-        /*
-        if(Math.Abs(_rollError) > 90)
+        _pitchError = Vector3.Angle(rb.transform.forward, Vector3.ProjectOnPlane(facingDir, Vector3.Cross(rb.transform.right, rb.transform.forward)));
+        if (Vector3.Dot(Vector3.Cross(facingDir, rb.transform.forward), Vector3.Cross(rb.transform.right, rb.transform.forward)) < 0)//Get the sign of the angle difference
+        {
+            _pitchError = -_pitchError;
+        }
+
+
+        if (Math.Abs(_rollError) > 90)
         {
             _rollError = Math.Sign(_rollError) * 180 - _rollError;
         }
-        */
 
         if(Math.Abs(angle) > tolerance)
             fb.aileron = -aileronController.Calc(_rollError);

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -98,12 +99,14 @@ public class FighterDecisionTree : MonoBehaviour {
                 break;
             case AIAction.FIRE_MISSILE:
             case AIAction.MANEUVER_LOCK:
-                Maintain_Lock();
-                break;
+                //Maintain_Lock();
+                //break;
             case AIAction.MANEUVER_REAR:
                 Move_Behind_Player();
                 break;
             case AIAction.PATH_PLAYER:
+                Follow_Path_To_Player();
+                break;
             default:
                 break;
 
@@ -300,7 +303,8 @@ public class FighterDecisionTree : MonoBehaviour {
 
         if(avoidNormal.magnitude > 0)
         {
-            return avoidNormal;
+            fs.facingDir = avoidNormal;
+            fs.upDir = avoidNormal;
         }
         
         Vector3 fleeVector = Vector3.zero;
@@ -328,7 +332,8 @@ public class FighterDecisionTree : MonoBehaviour {
 
         if(fleeVector.magnitude != 0)
         {
-            return fleeVector;
+            fs.facingDir = fleeVector;
+            fs.upDir = fleeVector;
         }
         return Vector3.zero;
     }
@@ -537,8 +542,15 @@ public class FighterDecisionTree : MonoBehaviour {
 
         output = output.normalized;
 
+        float outAngle = Vector3.Angle(output, rb.velocity);
+
+        float scaleFactor = (float)Math.Pow(1 - (outAngle / 20), 2);
+
         fs.facingDir = output;
-        fs.upDir = output;
+        if (outAngle < 20)
+            fs.upDir = output + (target.transform.forward - output) * scaleFactor;
+        else
+            fs.upDir = output;
     }
 
 

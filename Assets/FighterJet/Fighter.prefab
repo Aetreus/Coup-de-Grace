@@ -108,7 +108,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1919875478718506}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -600, y: 1500, z: 3800}
+  m_LocalPosition: {x: -636.8, y: -84.9, z: -1089}
   m_LocalScale: {x: 8, y: 4, z: 15}
   m_Children:
   - {fileID: 4608633451594562}
@@ -458,9 +458,9 @@ MonoBehaviour:
   dragCoeff: 0.04
   wingArea: 56
   maxThrust: 300000
-  rollDampeningCoeff: 0.08
+  rollDampeningCoeff: 0.12
   yawDampeningCoeff: 0.2
-  aileronControlCoeff: 0.23
+  aileronControlCoeff: 0.4
   elevatorControlCoeff: 0.19
   rudderControlCoeff: 0.1
   liftCoeffSetpoints:
@@ -512,29 +512,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   aileronController:
-    propConstant: 0.032
-    integConstant: 0.004
-    derivConstant: 0
-    output: 0
+    propConstant: 0.18
+    integConstant: 0.0002
+    derivConstant: 0.1
+    output: -13.263334
   elevatorController:
-    propConstant: 0.42
-    integConstant: 0.12
-    derivConstant: 0.02
-    output: 0
+    propConstant: 0.18
+    integConstant: 0.02
+    derivConstant: 0.03
+    output: -3.2812078
   yawController:
-    propConstant: 0.42
-    integConstant: 0.12
+    propConstant: 0.22
+    integConstant: 0.02
     derivConstant: 0.02
-    output: 0
+    output: 21.622551
   throttleController:
     propConstant: 0.6
     integConstant: 0.1
     derivConstant: 0
-    output: 0
+    output: 440.13232
+  fullTurnAngle: 30
   ref_speed: 200
   tolerance: 2
-  facingDir: {x: 0, y: 0, z: 1}
-  upDir: {x: 0, y: 1, z: 0}
+  baseDir: {x: 0, y: 1, z: 0}
+  facingDir: {x: 0.20849432, y: -0.9482825, z: -0.23935431}
+  upDir: {x: 0.20849432, y: -0.9482825, z: -0.23935431}
   targetVel: 200
   minAirspeed: 80
   stallLimit: -5
@@ -550,22 +552,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   accel_mag: 50
-  collision_whisker_len: 10
+  collision_whisker_len: 1000
   collision_whisker_offset: 5
-  collision_personal_space: 500
+  collision_personal_space: 300
   max_player_missile_approaching_angle: 30
-  beam_tolerance: 0
-  max_player_missile_close_dist: 150
+  beam_tolerance: 5
+  max_player_missile_close_dist: 1500
   stall_limit_excursion: 0
-  max_my_missile_close_distance: 30
+  max_my_missile_close_distance: 2000
   max_my_missile_approaching_angle: 60
   player_missile_cone_angle: 30
-  player_missile_cone_len: 1500
+  player_missile_cone_len: 7000
   fighter_missile_cone_angle: 120
   fighter_missile_cone_len: 200
-  min_pitch_ground_dist: 20
-  max_in_front_of_player_angle: 180
-  min_far_away_dist: 100
+  min_pitch_ground_dist: 2000
+  max_in_front_of_player_angle: 90
+  min_far_away_dist: 4000
   cruise_speed: 0
   maneuver_speed: 0
   sprint_speed: 0
@@ -669,7 +671,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -117593598
+  randomSeed: -1032600700
   InitialModule:
     serializedVersion: 3
     enabled: 1
