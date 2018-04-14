@@ -248,8 +248,8 @@ public class PlayerTargetSystem : MonoBehaviour {
 
                     RaycastHit info;
                     bool hit = Physics.Raycast(transform.position, enemy.transform.position - transform.position, out info);
-                    GameObject hitObj = info.transform.gameObject;
-                    if (hit && hitObj != enemy)
+                    Transform hitObj = info.transform;
+                    if (hit && hitObj.gameObject != enemy)
                         targetIcons[usedIcons].transform.Find("ObstructedMarker").gameObject.SetActive(true);
                     else
                         targetIcons[usedIcons].transform.Find("ObstructedMarker").gameObject.SetActive(false);

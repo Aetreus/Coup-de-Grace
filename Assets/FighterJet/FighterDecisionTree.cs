@@ -1,7 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+[RequireComponent(typeof(FighterSteering))]
 public class FighterDecisionTree : MonoBehaviour {
 
     public float accel_mag;
@@ -13,9 +16,11 @@ public class FighterDecisionTree : MonoBehaviour {
 
     //PlayerMissileApproaching variables
     public float max_player_missile_approaching_angle;
+    public float beam_tolerance;
 
     //PlayerMissileClose variables
     public float max_player_missile_close_dist;
+    public float stall_limit_excursion;
 
     //MyMissileCloseToPlayer variable
     public float max_my_missile_close_distance;
@@ -38,6 +43,12 @@ public class FighterDecisionTree : MonoBehaviour {
     public float max_in_front_of_player_angle;
     public float min_far_away_dist;
 
+    //Maneuver parameter variables
+    public float cruise_speed;
+    public float maneuver_speed;
+    public float sprint_speed;
+    public float base_stall_limit;
+
     //Predict_Player_Loc variables
     //public float max_prediction_time;
 
@@ -45,54 +56,94 @@ public class FighterDecisionTree : MonoBehaviour {
     private float max_node_arrived_dist;
 
     private GameObject activeMissile = null;
-    private GameObject player;
+    private GameObject target;
 
     private WeaponManager wm;
 
-    private Vector3 linear_accel;
+    private FighterSteering fs;
+    private FlightBehavior fb;
+    private Rigidbody rb;
+
+    private AIAction _action;
 
     private string debug_msg;
 
     // Use this for initialization
     void Start() {
-        linear_accel = transform.forward * accel_mag;
-        player = GameObject.FindGameObjectWithTag("Player");
+        target = GameObject.FindGameObjectWithTag("Player");
         wm = GetComponent<WeaponManager>();
-
         next_path_node = null;
+        fs = GetComponent<FighterSteering>();
+        fb = GetComponent<FlightBehavior>();
+        rb = GetComponent<Rigidbody>();
+        
     }
 
     // Update is called once per frame
     void Update() {
 
         debug_msg = "";
-        linear_accel = UpdateAcceleration();
+        AIAction action = DetectCollisionTree();
         Debug.Log(debug_msg, this.gameObject);
+        switch (action)
+        {
+            case AIAction.AVOID_COLLISION:
+                break;
+            case AIAction.AVOID_LOCK:
+                Exit_Missile_Cone();
+                break;
+            case AIAction.AVOID_MISSILE:
+                Break_Maneuver();
+                break;
+            case AIAction.MANEUVER_BEAM:
+                Turn_Side_Toward_Missile(PlayerMissileApproaching());
+                break;
+            case AIAction.FIRE_MISSILE:
+            case AIAction.MANEUVER_LOCK:
+                //Maintain_Lock();
+                //break;
+            case AIAction.MANEUVER_REAR:
+                Move_Behind_Player();
+                break;
+            case AIAction.PATH_PLAYER:
+                Follow_Path_To_Player();
+                break;
+            default:
+                break;
+
+        }
     }
 
-    public Vector3 LinearAcceleration
+    public AIAction action
     {
         get
         {
-            return linear_accel;
+            return _action;
         }
+    }
+
+    public enum AIAction
+    {
+        AVOID_COLLISION,
+        AVOID_MISSILE,
+        AVOID_LOCK,
+        MANEUVER_REAR,
+        MANEUVER_BEAM,
+        MANEUVER_LOCK,
+        FIRE_MISSILE,
+        PATH_PLAYER
     }
 
     //forks of the tree------------------------------------------------------
 
-    Vector3 UpdateAcceleration()
-    {
-        return DetectCollisionTree().normalized * accel_mag;
-    }
-
-    Vector3 DetectCollisionTree()
+    AIAction DetectCollisionTree()
     {
         Vector3 avoidVec = DetectCollision();
 
         if(avoidVec.magnitude > 0)
         {
             debug_msg += "Detect Collision T";
-            return avoidVec;
+            return AIAction.AVOID_COLLISION;
         }
         else
         {
@@ -101,7 +152,7 @@ public class FighterDecisionTree : MonoBehaviour {
         }
     }
 
-    Vector3 PlayerMissileApproachingTree()
+    AIAction PlayerMissileApproachingTree()
     {
         GameObject closest_missile = PlayerMissileApproaching();
 
@@ -118,12 +169,12 @@ public class FighterDecisionTree : MonoBehaviour {
         }
     }
 
-    Vector3 PlayerMissileCloseTree(GameObject closest_missile)
+    AIAction PlayerMissileCloseTree(GameObject closest_missile)
     {
         if(PlayerMissileClose(closest_missile))
         {
             debug_msg += " -> PlayerMissileClose T -> return Sharp Pitch";
-            return Sharp_Pitch();
+            return AIAction.AVOID_MISSILE;
         }
         else
         {
@@ -132,26 +183,26 @@ public class FighterDecisionTree : MonoBehaviour {
         }
     }
 
-    Vector3 MyMissileCloseToPlayerTree(GameObject closest_missile)
+    AIAction MyMissileCloseToPlayerTree(GameObject closest_missile)
     {
         if(MyMissileCloseToPlayer())
         {
             debug_msg += " -> MyMissileCloseToPlayer T -> return Seek Player";
-            return Seek_Player();
+            return AIAction.MANEUVER_LOCK;
         }
         else
         {
             debug_msg += " -> MyMissileCloseToPlayer F -> return Turn_Side_Toward_Missile";
-            return Turn_Side_Toward_Missile(closest_missile);
+            return AIAction.MANEUVER_BEAM;
         }
     }
 
-    Vector3 MyMissileApproachingPlayerTree()
+    AIAction MyMissileApproachingPlayerTree()
     {
         if(MyMissileApproachingPlayer())
         {
             debug_msg += " -> MyMissileApproachingPlayer T -> return Seek Player";
-            return Seek_Player();
+            return AIAction.MANEUVER_LOCK;
         }
         else
         {
@@ -160,7 +211,7 @@ public class FighterDecisionTree : MonoBehaviour {
         }
     }
 
-    Vector3 PlayerInLOSTree()
+    AIAction PlayerInLOSTree()
     {
         //return MissileAvailableTree();
 
@@ -172,11 +223,11 @@ public class FighterDecisionTree : MonoBehaviour {
         else
         {
             debug_msg += " -> PlayerInLOS F -> return Follow_Path_To_Player";
-            return Follow_Path_To_Player();
+            return AIAction.PATH_PLAYER;
         }
     }
 
-    Vector3 MissileAvailableTree()
+    AIAction MissileAvailableTree()
     {
         if (MissileAvailable())
         {
@@ -190,7 +241,7 @@ public class FighterDecisionTree : MonoBehaviour {
         }
     }
 
-    Vector3 PlayerInMissileConeTree()
+    AIAction PlayerInMissileConeTree()
     {
         if (PlayerInMissileCone())
         {
@@ -203,20 +254,20 @@ public class FighterDecisionTree : MonoBehaviour {
         }
 
         debug_msg += "-> return Seek_Player";
-        return Seek_Player();
+        return AIAction.MANEUVER_LOCK;
     }
     
-    Vector3 InPlayerMissileConeTree()
+    AIAction InPlayerMissileConeTree()
     {
         if(InPlayerMissileCone())
         {
             debug_msg += " -> InPlayerMissileCone T -> return Exit_Missile_Cone";
-            return Exit_Missile_Cone();
+            return AIAction.AVOID_LOCK;
         }
         else
         {
             debug_msg += " -> InPlayerMissileCone F -> return Move_Behind_Player";
-            return Move_Behind_Player();
+            return AIAction.MANEUVER_REAR;
         }
     }
     
@@ -253,13 +304,14 @@ public class FighterDecisionTree : MonoBehaviour {
 
         if(avoidNormal.magnitude > 0)
         {
-            return avoidNormal;
+            fs.facingDir = avoidNormal;
+            fs.upDir = avoidNormal;
         }
         
         Vector3 fleeVector = Vector3.zero;
 
         //check for collisions with planes using personal space
-        Vector3 toPlayer = player.transform.position - transform.position;
+        Vector3 toPlayer = target.transform.position - transform.position;
         if(toPlayer.magnitude <= collision_personal_space)
         {
             fleeVector -= toPlayer;
@@ -271,7 +323,7 @@ public class FighterDecisionTree : MonoBehaviour {
         {
             if(enemy != this)
             {
-                Vector3 toEnemy = player.transform.position - transform.position;
+                Vector3 toEnemy = target.transform.position - transform.position;
                 if (toEnemy.magnitude <= collision_personal_space)
                 {
                     fleeVector -= toEnemy;
@@ -281,7 +333,8 @@ public class FighterDecisionTree : MonoBehaviour {
 
         if(fleeVector.magnitude != 0)
         {
-            return fleeVector;
+            fs.facingDir = fleeVector;
+            fs.upDir = fleeVector;
         }
         return Vector3.zero;
     }
@@ -325,7 +378,7 @@ public class FighterDecisionTree : MonoBehaviour {
             return false;
         }
 
-        return Vector3.Distance(activeMissile.transform.position, player.transform.position) <= max_my_missile_close_distance;
+        return Vector3.Distance(activeMissile.transform.position, target.transform.position) <= max_my_missile_close_distance;
     }
 
     //true if a missile this fighter fired is close moving toward the player
@@ -337,10 +390,10 @@ public class FighterDecisionTree : MonoBehaviour {
         }
 
         Vector3 missileVel = activeMissile.GetComponent<Rigidbody>().velocity;
-        Vector3 missileToPlayer = player.transform.position - activeMissile.transform.position;
+        Vector3 missileToPlayer = target.transform.position - activeMissile.transform.position;
         float angle = Vector3.Angle(missileVel, missileToPlayer);
 
-        if (activeMissile.GetComponent<PropNav>().Target == player && angle <= max_my_missile_approaching_angle)
+        if (activeMissile.GetComponent<PropNav>().Target == target && angle <= max_my_missile_approaching_angle)
         {
             return true;
         }
@@ -351,8 +404,8 @@ public class FighterDecisionTree : MonoBehaviour {
     //true if this fighter is within the player's targeting area and the fighter is visible to player
     bool InPlayerMissileCone()
     {
-        Vector3 playerToFighter = transform.position - player.transform.position;
-        float angle = Vector3.Angle(playerToFighter, player.transform.forward);
+        Vector3 playerToFighter = transform.position - target.transform.position;
+        float angle = Vector3.Angle(playerToFighter, target.transform.forward);
         return angle <= player_missile_cone_angle && playerToFighter.magnitude <= player_missile_cone_len && PlayerInLOS();
 ;
     }
@@ -365,7 +418,7 @@ public class FighterDecisionTree : MonoBehaviour {
     //true if the player is within this fighter's targeting area and the player is visible to fighter
     bool PlayerInMissileCone()
     {
-        Vector3 fighterToPlayer = player.transform.position - transform.position;
+        Vector3 fighterToPlayer = target.transform.position - transform.position;
         float angle = Vector3.Angle(fighterToPlayer, transform.forward);
         return angle <= fighter_missile_cone_angle && fighterToPlayer.magnitude <= fighter_missile_cone_len && PlayerInLOS();
     }
@@ -373,7 +426,7 @@ public class FighterDecisionTree : MonoBehaviour {
     //true if a ray can be cast from this fighter to the player
     bool PlayerInLOS()
     {
-        Vector3 towardPlayer = player.transform.position - transform.position;
+        Vector3 towardPlayer = target.transform.position - transform.position;
 
         RaycastHit hitinfo;
         bool hit = Physics.Raycast(transform.position, towardPlayer, out hitinfo, towardPlayer.magnitude);
@@ -393,14 +446,17 @@ public class FighterDecisionTree : MonoBehaviour {
     //Tree actions-----------------------------------------------------------
 
     //accel stright up or down depending on current orientation
-    Vector3 Sharp_Pitch()
+    void Break_Maneuver()
     {
         RaycastHit hitinfo;
         bool hit = Physics.Raycast(transform.position, -Vector3.up, out hitinfo);
         if(hit && hitinfo.distance <= min_pitch_ground_dist)
         {
             debug_msg += " [too close to ground; pitch up]";
-            return Vector3.up;
+            fs.facingDir = Vector3.up;
+            fs.upDir = Vector3.up;
+            fs.stallLimit = stall_limit_excursion;
+            fs.targetVel = sprint_speed;
         }
 
         //get vector from horizontal vector in world to the fighter's forward vector
@@ -409,26 +465,43 @@ public class FighterDecisionTree : MonoBehaviour {
         //if diff is pointing up, pitch up, otherwise, pitch down
         if (diff.y > 0)
         {
-            debug_msg += " [facing up; pitch up]";
-            return Vector3.up;
+            fs.facingDir = Vector3.up;
+            fs.upDir = Vector3.up;
+            fs.stallLimit = stall_limit_excursion;
+            fs.targetVel = sprint_speed;
         }
         else
         {
-            debug_msg += " [facing down; pitch down]";
-            return -Vector3.up;
+            fs.facingDir = -Vector3.up;
+            fs.upDir = -Vector3.up;
+            fs.stallLimit = stall_limit_excursion;
+            fs.targetVel = sprint_speed;
         }
     }
 
     //accelerate in the direction of missiles' right or left depending on current orientation
-    Vector3 Turn_Side_Toward_Missile(GameObject missile)
+    void Turn_Side_Toward_Missile(GameObject missile)
     {
         Vector3 fighter_to_missile = missile.transform.position - transform.position;
 
         //get the vector perpendicular to the vector toward the missile in the direction the fighter is currently facing
         Vector3 projection = Vector3.ProjectOnPlane(transform.forward, fighter_to_missile);
 
+        //Get remaining angle for maneuver.
+        float angle = Vector3.Angle(projection, transform.forward);
+
         //accelerate in that direciton horizontally
-        return new Vector3(projection.x, 0, projection.z);
+        fs.facingDir = projection;
+
+        if (angle < beam_tolerance)
+            fs.upDir = Vector3.up;
+        else
+        {
+            float scaleFactor = Mathf.Pow(beam_tolerance / angle, 2);
+            fs.facingDir = transform.forward + (Vector3.up - transform.forward) * scaleFactor;
+        }
+
+       
 
         /*
         Vector3 fighter_to_missile = missile.transform.position - transform.position;
@@ -454,21 +527,46 @@ public class FighterDecisionTree : MonoBehaviour {
     }
 
     //maintain acceleration toward player
-    Vector3 Seek_Player()
+    void Maintain_Lock()
     {
-        return (player.transform.position - transform.position).normalized;
+        //Aim ahead of the target depending on its velocity, but keep it in the lock cone.
+        Vector3 leadFacing = target.transform.position + target.GetComponent<Rigidbody>().velocity * (float)((target.transform.position - transform.position).magnitude / rb.velocity.magnitude) - transform.position;
+        leadFacing = leadFacing.normalized;
+        Vector3 directFacing = (target.transform.position - transform.position).normalized;
+
+        float angle = Vector3.Angle(leadFacing, directFacing);
+
+        float scaleTerm = 1;
+
+        scaleTerm = Mathf.Min(scaleTerm, Mathf.Sin(Mathf.Deg2Rad* 25) / Mathf.Sin(Mathf.Deg2Rad * angle));
+
+        Vector3 output = directFacing + (leadFacing - directFacing) * scaleTerm;
+
+        output = output.normalized;
+
+        float outAngle = Vector3.Angle(output, rb.velocity);
+
+        float scaleFactor = (float)Math.Pow(1 - (outAngle / 20), 2);
+
+        fs.facingDir = output;
+        if (outAngle < 20)
+            fs.upDir = output + (target.transform.forward - output) * scaleFactor;
+        else
+            fs.upDir = output;
     }
 
 
-    Vector3 Exit_Missile_Cone()
+    void Exit_Missile_Cone()
     {
-        Vector3 fighter_to_player = player.transform.position - transform.position;
+        Vector3 fighter_to_player = target.transform.position - transform.position;
 
         //get the vector perpendicular to the vector toward the player in the fighter is currently facing
         Vector3 projection = Vector3.ProjectOnPlane(transform.forward, fighter_to_player);
 
         //accelerate in the opposite direction of that direction projection
-        return projection;
+        fs.facingDir = projection.normalized;
+        fs.upDir = projection.normalized;
+
 
         /*
         Vector3 diff = fighter_to_player.normalized - transform.forward;
@@ -495,62 +593,87 @@ public class FighterDecisionTree : MonoBehaviour {
     //if player is far away from fighter, accelerate toward player
     //otherwise, if fighter is in front of player, accelerate in the oppoisite direction the player is facing
     //otherwise, pursue the player
-    Vector3 Move_Behind_Player()
+    void Move_Behind_Player()
     {
-        Vector3 player_to_fighter = transform.position - player.transform.position;
+        Vector3 player_to_fighter = transform.position - target.transform.position;
 
         //if the fighter is far away, just move toward it
         if (player_to_fighter.magnitude >= min_far_away_dist)
         {
             debug_msg += " [far away, move toward player]";
-            return -player_to_fighter.normalized;
+            fs.facingDir = player_to_fighter;
+            fs.targetVel = 300;
         }
 
-        float angle = Vector3.Angle(player_to_fighter, player.transform.forward);
+        float angle = Vector3.Angle(player_to_fighter, target.transform.forward);
 
         //if the fighter is in front of the player,
         //move in the opposite direction the player is facing
         if (angle <= max_in_front_of_player_angle)
         {
             debug_msg += " [in front of player, move behind it]";
-            return -player.transform.forward;
+            fs.facingDir = -target.transform.forward;
+            fs.upDir = (transform.forward - target.transform.forward).normalized;
+            fs.targetVel = 200;
         }
         //otherwise, move toward the fighter
         else
         {
             debug_msg += " [behind player and close, move chase it]";
-            return -player_to_fighter.normalized;
+            fs.facingDir = -player_to_fighter.normalized;
+            //If the player is close in heading to us, match up vectors to anticipate a turn. Otherwise align to turn onto him.
+            if (Vector3.Angle(target.transform.forward, transform.forward) < 5)
+                fs.upDir = target.transform.up;
+            else
+                fs.upDir = (transform.forward - target.transform.forward).normalized;
+            //Try to maintain the distance between 1000-2000m
+            if (player_to_fighter.magnitude > 2000)
+            {
+                fs.targetVel = target.GetComponent<Rigidbody>().velocity.magnitude + 100;
+            }
+            else if (player_to_fighter.magnitude < 1000)
+            {
+                fs.targetVel = target.GetComponent<Rigidbody>().velocity.magnitude - 50;
+            }
+            else
+            {
+                fs.targetVel = target.GetComponent<Rigidbody>().velocity.magnitude;
+            }
         }
     }
 
     //if the player is on LOS, pursue it
     //otherwise, use Dijkstra's on the nodes to find the shortest path and seek the first node in that path
-    Vector3 Follow_Path_To_Player()
+    void Follow_Path_To_Player()
     {
         if(PlayerInLOS())
         {
             debug_msg += "-> [PlayerInLOS, no path finding needed]";
-            return player.transform.position - transform.position;
+            fs.facingDir = (target.transform.position - transform.position).normalized;
+            fs.upDir = (target.transform.position - transform.position).normalized;
+            return;
         }
 
         //if not arrived at previously calculated next node yet, then keep traveling towards it
         if(next_path_node != null && Vector3.Distance(transform.position, next_path_node.transform.position) > max_node_arrived_dist)
         {
             debug_msg += "-> [not at previously found node, contunue seeking it]";
-            return next_path_node.transform.position - transform.position;
+            fs.facingDir = next_path_node.transform.position - transform.position;
+            fs.upDir = next_path_node.transform.position - transform.position;
+            return;
         }
 
         //get queue of all nodes and set up Dijkstra's
         List<GameObject> queue = new List<GameObject>(GameObject.FindGameObjectsWithTag("Node")); //replace with Dijkstrainfo
         foreach(GameObject node in queue)
         {
-            node.GetComponent<DijkstraInfo>().Reset(this.gameObject, player);
+            node.GetComponent<DijkstraInfo>().Reset(this.gameObject, target);
         }
         queue.Remove(next_path_node);
-        GetComponent<DijkstraInfo>().Reset(this.gameObject, player);
+        GetComponent<DijkstraInfo>().Reset(this.gameObject, target);
         queue.Add(this.gameObject);
-        player.GetComponent<DijkstraInfo>().Reset(this.gameObject, player);
-        queue.Add(player);
+        target.GetComponent<DijkstraInfo>().Reset(this.gameObject, target);
+        queue.Add(target);
 
 
         //set the source's info
@@ -566,7 +689,7 @@ public class FighterDecisionTree : MonoBehaviour {
             queue.RemoveAt(0);
 
             //if that node is the player, we've found our path
-            if(node == player)
+            if(node == target)
             {
                 break;
             }
@@ -592,24 +715,28 @@ public class FighterDecisionTree : MonoBehaviour {
         }
 
         //follow the path backwards until you find the node in the path which is closest to this fighter
-        GameObject closest_on_path = player;
+        GameObject closest_on_path = target;
         while(closest_on_path.GetComponent<DijkstraInfo>().Prev != this.gameObject)
         {
             //if a path was not found, just travel straight toward the player
             if(closest_on_path.GetComponent<DijkstraInfo>().Prev == null)
             {
                 debug_msg += "-> [no path to player found, just seek the player]";
-                return player.transform.position - transform.position;
+                fs.facingDir = target.transform.position - transform.position;
+                fs.upDir = target.transform.position - transform.position;
+                return;
             }
 
             //otherwise, check the previous node
             closest_on_path = closest_on_path.GetComponent<DijkstraInfo>().Prev;
         }
-
+        
         //return vector from the fighter to that node and set it as the next_path_node
         debug_msg += "-> [found new node]";
         next_path_node = closest_on_path;
-        return closest_on_path.transform.position - transform.position;
+        fs.facingDir = closest_on_path.transform.position - transform.position;
+        fs.upDir = closest_on_path.transform.position - transform.position;
+        return;
     }
 
     //helper functions--------------------------------------------------

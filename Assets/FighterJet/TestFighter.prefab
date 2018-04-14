@@ -37,6 +37,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4879440243935596}
+  - component: {fileID: 54912262795560640}
   - component: {fileID: 33013569734093884}
   - component: {fileID: 65271062931346508}
   - component: {fileID: 23002157507058782}
@@ -45,10 +46,9 @@ GameObject:
   - component: {fileID: 114166326177066044}
   - component: {fileID: 114947547615600396}
   - component: {fileID: 114916999267209104}
-  - component: {fileID: 54912262795560640}
   m_Layer: 0
   m_Name: TestFighter
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -60,7 +60,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1706652144461562}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.5}
+  m_LocalPosition: {x: 0, y: 0, z: 0.496}
   m_LocalScale: {x: 1, y: 1, z: 0.5}
   m_Children: []
   m_Father: {fileID: 4879440243935596}
@@ -73,8 +73,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1963390877644980}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1000.74506, y: 1.5014186, z: -1.535}
-  m_LocalScale: {x: 1, y: 1, z: 2}
+  m_LocalPosition: {x: -631, y: 1559.8, z: 3831}
+  m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children:
   - {fileID: 4423916589990904}
   m_Father: {fileID: 0}
@@ -169,9 +169,9 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1963390877644980}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 20000
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0.1
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -211,14 +211,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8430f306debad8459e990b1c0804b3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  surfaceController:
-    propConstant: 0
-    integConstant: 0
+  aileronController:
+    propConstant: 0.42
+    integConstant: 0.12
+    derivConstant: 0.02
+    output: 0
+  elevatorController:
+    propConstant: 0.42
+    integConstant: 0.12
+    derivConstant: 0.02
+    output: 0
+  yawController:
+    propConstant: 0.42
+    integConstant: 0.12
+    derivConstant: 0.02
+    output: 0
+  throttleController:
+    propConstant: 0.6
+    integConstant: 0.1
     derivConstant: 0
     output: 0
   ref_speed: 200
-  ref_accel: 0
-  dampingTime: 0
+  tolerance: 2
+  facingDir: {x: 0, y: 0, z: 1}
+  upDir: {x: 0, y: 1, z: 0}
+  targetVel: 200
+  minAirspeed: 80
+  stallLimit: -5
 --- !u!114 &114740045443060822
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -233,18 +252,24 @@ MonoBehaviour:
   accel_mag: 50
   collision_whisker_len: 10
   collision_whisker_offset: 5
-  collision_personal_space: 20
-  max_player_missile_approaching_angle: 60
-  max_player_missile_close_dist: 30
+  collision_personal_space: 500
+  max_player_missile_approaching_angle: 30
+  beam_tolerance: 0
+  max_player_missile_close_dist: 150
+  stall_limit_excursion: 0
   max_my_missile_close_distance: 30
   max_my_missile_approaching_angle: 60
-  player_missile_cone_angle: 60
-  player_missile_cone_len: 50
-  fighter_missile_cone_angle: 50
-  fighter_missile_cone_len: 60
+  player_missile_cone_angle: 30
+  player_missile_cone_len: 1500
+  fighter_missile_cone_angle: 120
+  fighter_missile_cone_len: 200
   min_pitch_ground_dist: 20
   max_in_front_of_player_angle: 180
   min_far_away_dist: 100
+  cruise_speed: 0
+  maneuver_speed: 0
+  sprint_speed: 0
+  base_stall_limit: 0
 --- !u!114 &114916999267209104
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -256,14 +281,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d71116da01448e4aa39b11a4f4f540a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inertiaTensor: {x: 0, y: 0, z: 0}
+  inertiaTensor: {x: 180000, y: 180000, z: 30000}
   dragCoeff: 0.04
   wingArea: 56
-  maxThrust: 60000
-  rollDampeningCoeff: 0.05
-  yawDampeningCoeff: 0.1
-  aileronControlCoeff: 0.25
-  elevatorControlCoeff: 0.3
+  maxThrust: 300000
+  rollDampeningCoeff: 0.08
+  yawDampeningCoeff: 0.2
+  aileronControlCoeff: 0.23
+  elevatorControlCoeff: 0.19
   rudderControlCoeff: 0.1
   liftCoeffSetpoints:
   - {x: -180, y: 0}
@@ -278,24 +303,29 @@ MonoBehaviour:
   - {x: -180, y: 0}
   - {x: -35, y: -0.05}
   - {x: -20, y: -0.25}
+  - {x: 0, y: 0}
   - {x: 20, y: 0.25}
-  - {x: 35, y: -0.05}
+  - {x: 35, y: 0.05}
   - {x: 180, y: 0}
   pitchingMomentSetpoints:
   - {x: -180, y: 0}
-  - {x: -50, y: 0.1}
-  - {x: -35, y: 0.285}
+  - {x: -100, y: 0.115}
+  - {x: -50, y: 0.36}
+  - {x: -36, y: 0.265}
   - {x: 0, y: 0.005}
-  - {x: 35, y: -0.275}
-  - {x: 50, y: -0.1}
+  - {x: 35, y: -0.255}
+  - {x: 50, y: -0.36}
+  - {x: 100, y: -0.115}
   - {x: 180, y: 0}
   yawMomentSetpoints:
   - {x: -180, y: 0}
-  - {x: -50, y: 0.1}
+  - {x: -100, y: 0.15}
+  - {x: -50, y: 0.25}
   - {x: -35, y: 0.35}
   - {x: 0, y: 0}
   - {x: 35, y: -0.35}
-  - {x: 50, y: -0.1}
+  - {x: 50, y: -0.25}
+  - {x: -100, y: -0.125}
   - {x: 180, y: 0}
 --- !u!114 &114947547615600396
 MonoBehaviour:
