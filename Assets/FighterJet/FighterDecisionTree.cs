@@ -41,7 +41,7 @@ public class FighterDecisionTree : MonoBehaviour {
     //Predict_Player_Loc variables
     //public float max_prediction_time;
 
-    private GameObject targetNode;
+    private GameObject next_path_node;
     private float max_node_arrived_dist;
 
     private GameObject activeMissile = null;
@@ -59,7 +59,7 @@ public class FighterDecisionTree : MonoBehaviour {
         player = GameObject.FindGameObjectWithTag("Player");
         wm = GetComponent<WeaponManager>();
 
-        targetNode = null;
+        next_path_node = null;
     }
 
     // Update is called once per frame
@@ -399,6 +399,7 @@ public class FighterDecisionTree : MonoBehaviour {
         bool hit = Physics.Raycast(transform.position, -Vector3.up, out hitinfo);
         if(hit && hitinfo.distance <= min_pitch_ground_dist)
         {
+            debug_msg += " [too close to ground; pitch up]";
             return Vector3.up;
         }
 
@@ -408,10 +409,12 @@ public class FighterDecisionTree : MonoBehaviour {
         //if diff is pointing up, pitch up, otherwise, pitch down
         if (diff.y > 0)
         {
+            debug_msg += " [facing up; pitch up]";
             return Vector3.up;
         }
         else
         {
+            debug_msg += " [facing down; pitch down]";
             return -Vector3.up;
         }
     }
@@ -526,15 +529,15 @@ public class FighterDecisionTree : MonoBehaviour {
     {
         if(PlayerInLOS())
         {
-            debug_msg += "-> PlayerInLOS";
+            debug_msg += "-> [PlayerInLOS, no path finding needed]";
             return player.transform.position - transform.position;
         }
 
         //if not arrived at previously calculated next node yet, then keep traveling towards it
-        if(targetNode != null && Vector3.Distance(transform.position, targetNode.transform.position) > max_node_arrived_dist)
+        if(next_path_node != null && Vector3.Distance(transform.position, next_path_node.transform.position) > max_node_arrived_dist)
         {
-            debug_msg += "-> not at previously found node";
-            return targetNode.transform.position - transform.position;
+            debug_msg += "-> [not at previously found node, contunue seeking it]";
+            return next_path_node.transform.position - transform.position;
         }
 
         //get queue of all nodes and set up Dijkstra's
@@ -543,7 +546,7 @@ public class FighterDecisionTree : MonoBehaviour {
         {
             node.GetComponent<DijkstraInfo>().Reset(this.gameObject, player);
         }
-        queue.Remove(targetNode);
+        queue.Remove(next_path_node);
         GetComponent<DijkstraInfo>().Reset(this.gameObject, player);
         queue.Add(this.gameObject);
         player.GetComponent<DijkstraInfo>().Reset(this.gameObject, player);
@@ -595,6 +598,7 @@ public class FighterDecisionTree : MonoBehaviour {
             //if a path was not found, just travel straight toward the player
             if(closest_on_path.GetComponent<DijkstraInfo>().Prev == null)
             {
+                debug_msg += "-> [no path to player found, just seek the player]";
                 return player.transform.position - transform.position;
             }
 
@@ -602,9 +606,9 @@ public class FighterDecisionTree : MonoBehaviour {
             closest_on_path = closest_on_path.GetComponent<DijkstraInfo>().Prev;
         }
 
-        //return vector from the fighter to that node and set it as the targetNode
-        debug_msg += "-> found new node";
-        targetNode = closest_on_path;
+        //return vector from the fighter to that node and set it as the next_path_node
+        debug_msg += "-> [found new node]";
+        next_path_node = closest_on_path;
         return closest_on_path.transform.position - transform.position;
     }
 

@@ -45,7 +45,7 @@ public class FighterSteering : MonoBehaviour {
 
         //Debug.DrawRay(transform.position, local_accel_vec * 20000, Color.blue);
 
-        
+        /*
         float surfaceDampCoeff = 1.0F;
         if (dampingTimer > 0)
         {
@@ -73,6 +73,6 @@ public class FighterSteering : MonoBehaviour {
 
         fb.aileron = surfaceController.Calc(rollError);
         fb.elevator = surfaceController.Calc(elevatorError);
-        
+        */
     }
 }

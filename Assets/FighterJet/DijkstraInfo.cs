@@ -64,22 +64,14 @@ public class DijkstraInfo : MonoBehaviour {
         neighbors.AddRange(node_neighbors);
         if (start != null && this.gameObject != start)
         {
-            Vector3 toOther = start.transform.position - transform.position;
-            RaycastHit hitinfo;
-            bool hit = Physics.Raycast(transform.position, toOther, out hitinfo);
-
-            if (hit && hitinfo.collider.gameObject == start)
+            if (TargetVisible(start))
             {
                 neighbors.Add(start);
             }
         }
         if(end != null && this.gameObject != end)
         {
-            Vector3 toOther = end.transform.position - transform.position;
-            RaycastHit hitinfo;
-            bool hit = Physics.Raycast(transform.position, toOther, out hitinfo);
-
-            if (hit && hitinfo.collider.gameObject == end)
+            if (TargetVisible(end))
             {
                 neighbors.Add(end);
             }
@@ -96,9 +88,7 @@ public class DijkstraInfo : MonoBehaviour {
 
         foreach (GameObject node in nodes)
         {
-            Vector3 toOther = node.transform.position - transform.position;
-
-            if (node != this && !Physics.Raycast(transform.position, toOther, toOther.magnitude))
+            if(TargetVisible(node))
             {
                 neighbors.Add(node);
             }
@@ -107,5 +97,18 @@ public class DijkstraInfo : MonoBehaviour {
         return neighbors;
     }
 
-    
+    bool TargetVisible(GameObject target)
+    {
+        Vector3 towardTarget = target.transform.position - transform.position;
+
+        RaycastHit hitinfo;
+        bool hit = Physics.Raycast(transform.position, towardTarget, out hitinfo, towardTarget.magnitude);
+
+        if (hit && (hitinfo.collider.gameObject.tag == "Terrain" || hitinfo.collider.gameObject.tag == "Building"))
+        {
+            return false;
+        }
+
+        return true;
+    }
 }
