@@ -233,6 +233,11 @@ public class LevelEventManager : MonoBehaviour {
     {
         return Input.GetButtonUp(buttonName);
     }
+
+    public void Dummy()
+    {
+
+    }
 }
 
 [System.Serializable]
@@ -295,7 +300,8 @@ public class FunctionCall : ISerializationCallbackReceiver
 
     public void UpdateFunctionCall()
     {
-        System.Type type = reference.GetComponent(component).GetType();
+        UnityEngine.Component cp = reference.GetComponent(component);
+        System.Type type = cp.GetType();
         if (isMethod)
             info = type.GetMethod(valueName);
         else if ((prop = type.GetProperty(valueName)) == null)
