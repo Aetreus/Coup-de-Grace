@@ -5,12 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class SceneSaverScript : MonoBehaviour {
 
+    public string start_scene;
     string saved_scene;
 
 	// Use this for initialization
 	void Start () {
         DontDestroyOnLoad(this.gameObject);
-        saved_scene = null;
+        saved_scene = start_scene;
     }
 	
 	// Update is called once per frame

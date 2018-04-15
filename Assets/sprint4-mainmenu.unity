@@ -2530,6 +2530,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 429ba9d9bfc65c5408246237d8a27cf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  start_scene: sprint3-level1
 --- !u!4 &1815958586
 Transform:
   m_ObjectHideFlags: 0
