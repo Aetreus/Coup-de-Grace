@@ -720,140 +720,68 @@ MonoBehaviour:
   linesInit:
   - name: Briefing
     line:
-      text: Hey Commander, you rang?
+      text: 'So what now? Those bombers are done for, but it sounds like there''s
+        a bit more to do. '
       time: 5
       speaker: {fileID: 21300000, guid: 519032948b8f34748a868996562e24ce, type: 3}
       voice: {fileID: 0}
       nextLine: Briefing2
   - name: Briefing2
     line:
-      text: Do not be casual with me, you are late for your first briefing!
+      text: Correct. We were able to figure out where the bombers were coming from.
+        It seems like that Auster has taken over an airbase not too far from Aquilo.
       time: 5
       speaker: {fileID: 21300000, guid: 08df3e150d9efaa47a0250c6588ae9e5, type: 3}
       voice: {fileID: 0}
       nextLine: Briefing3
   - name: Briefing3
     line:
-      text: Sheesh, I've not been around the place. Pretty easy to get lost when you're
-        new, yeah?
+      text: I think I know where you mean, been there a few times myself for training.
+        Lemme guess, I'm gonna have to help bomb it to the ground?
       time: 5
       speaker: {fileID: 21300000, guid: 519032948b8f34748a868996562e24ce, type: 3}
       voice: {fileID: 0}
       nextLine: Briefing4
   - name: Briefing4
     line:
-      text: Nevermind that, you have your first assignment.
+      text: Something along those lines, yes. We will be mobilizing our forces within
+        the week. When that occurs, you will escort and assist our forces in the battle.
       time: 5
       speaker: {fileID: 21300000, guid: 08df3e150d9efaa47a0250c6588ae9e5, type: 3}
       voice: {fileID: 0}
       nextLine: Briefing5
   - name: Briefing5
     line:
-      text: Sure sure, lay it on me.
+      text: Well, sounds a bit more interesting at least. Shame about that place,
+        but that's how it goes sometimes.
       time: 5
       speaker: {fileID: 21300000, guid: 519032948b8f34748a868996562e24ce, type: 3}
       voice: {fileID: 0}
       nextLine: Briefing6
   - name: Briefing6
     line:
-      text: 'Auster is on the move. Their bombers are approaching our base. Strangely
-        enough, they are not escorted. We are uncertain whether this is a ploy or
-        some form of distraction, but we would like you to take care of them. '
+      text: Just make sure you are prepared, Hawk.
       time: 5
       speaker: {fileID: 21300000, guid: 08df3e150d9efaa47a0250c6588ae9e5, type: 3}
       voice: {fileID: 0}
       nextLine: Briefing7
   - name: Briefing7
     line:
-      text: Really, that's all? And here I thought I was signing up for some fun.
+      text: 'Aye, I''m always prepared. Just let me know when we''re moving out. '
       time: 5
       speaker: {fileID: 21300000, guid: 519032948b8f34748a868996562e24ce, type: 3}
       voice: {fileID: 0}
       nextLine: Briefing8
   - name: Briefing8
     line:
-      text: We are still unsure of many details of Auster's plans at this point in
-        time. For now, this is all we have to go on.
+      text: I will. Good luck on this mission.
       time: 5
       speaker: {fileID: 21300000, guid: 08df3e150d9efaa47a0250c6588ae9e5, type: 3}
       voice: {fileID: 0}
       nextLine: Briefing9
   - name: Briefing9
     line:
-      text: Why not just let me go take a crack right at their capital, huh?
-      time: 5
-      speaker: {fileID: 21300000, guid: 519032948b8f34748a868996562e24ce, type: 3}
-      voice: {fileID: 0}
-      nextLine: Briefing10
-  - name: Briefing10
-    line:
-      text: No, it is too risky, not without ground troops and other support pilots.
-        Besides, you know we were thoroughly defeated in the first battle. It would
-        be suicide to charge ahead alone.
-      time: 5
-      speaker: {fileID: 21300000, guid: 08df3e150d9efaa47a0250c6588ae9e5, type: 3}
-      voice: {fileID: 0}
-      nextLine: Briefing11
-  - name: Briefing11
-    line:
-      text: Fine, fine, I'll go take care of the bombers. Anything else?
-      time: 5
-      speaker: {fileID: 21300000, guid: 519032948b8f34748a868996562e24ce, type: 3}
-      voice: {fileID: 0}
-      nextLine: Briefing12
-  - name: Briefing12
-    line:
-      text: It would be appreciated if you keep your attitude in check.
-      time: 5
-      speaker: {fileID: 21300000, guid: 08df3e150d9efaa47a0250c6588ae9e5, type: 3}
-      voice: {fileID: 0}
-      nextLine: Briefing13
-  - name: Briefing13
-    line:
-      text: Too hot to handle?
-      time: 5
-      speaker: {fileID: 21300000, guid: 519032948b8f34748a868996562e24ce, type: 3}
-      voice: {fileID: 0}
-      nextLine: Briefing14
-  - name: Briefing14
-    line:
-      text: Moreso infuriating to handle. You are in the wrong place for casual talk.
-      time: 5
-      speaker: {fileID: 21300000, guid: 08df3e150d9efaa47a0250c6588ae9e5, type: 3}
-      voice: {fileID: 0}
-      nextLine: Briefing15
-  - name: Briefing15
-    line:
-      text: Whatever you say, Commander. I'll head out as soon as possible, alright?
-      time: 5
-      speaker: {fileID: 21300000, guid: 519032948b8f34748a868996562e24ce, type: 3}
-      voice: {fileID: 0}
-      nextLine: Briefing16
-  - name: Briefing16
-    line:
-      text: Be careful. I have no idea what you are capable of, but even a mission
-        as simple of this is nothing to get overconfident about.
-      time: 5
-      speaker: {fileID: 21300000, guid: 08df3e150d9efaa47a0250c6588ae9e5, type: 3}
-      voice: {fileID: 0}
-      nextLine: Briefing17
-  - name: Briefing17
-    line:
-      text: Don't worry about it, I'll be home in time for dinner.
-      time: 5
-      speaker: {fileID: 21300000, guid: 519032948b8f34748a868996562e24ce, type: 3}
-      voice: {fileID: 0}
-      nextLine: Briefing18
-  - name: Briefing18
-    line:
-      text: Excuse me?
-      time: 5
-      speaker: {fileID: 21300000, guid: 08df3e150d9efaa47a0250c6588ae9e5, type: 3}
-      voice: {fileID: 0}
-      nextLine: Briefing19
-  - name: Briefing19
-    line:
-      text: "Okay, I\u2019m going, I\u2019m going, sheesh!"
+      text: No luck required, just pure skill.
       time: 5
       speaker: {fileID: 21300000, guid: 519032948b8f34748a868996562e24ce, type: 3}
       voice: {fileID: 0}
