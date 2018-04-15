@@ -119,6 +119,8 @@ public class LevelEventManager : MonoBehaviour {
 
     private Dictionary<string, bool> living = new Dictionary<string, bool>();
 
+    private UnityEngine.AsyncOperation sceneLoad;
+
     // Use this for initialization
     void Start () {
 		foreach(Event e in events)
@@ -210,9 +212,26 @@ public class LevelEventManager : MonoBehaviour {
         SceneManager.LoadScene(levelName);
     }
 
+    public void TransitionLevelDelayed(string levelName)
+    {
+        sceneLoad = SceneManager.LoadSceneAsync(levelName);
+        sceneLoad.allowSceneActivation = false;
+    }
+
+    public void AllowLevelTransition()
+    {
+        if(sceneLoad != null)
+            sceneLoad.allowSceneActivation = true;
+    }
+
     public void ResetLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public bool OnButtonUp(string buttonName)
+    {
+        return Input.GetButtonUp(buttonName);
     }
 }
 
