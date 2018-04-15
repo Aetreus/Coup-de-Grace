@@ -209,6 +209,11 @@ public class LevelEventManager : MonoBehaviour {
     {
         SceneManager.LoadScene(levelName);
     }
+
+    public void ResetLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
 }
 
 [System.Serializable]
