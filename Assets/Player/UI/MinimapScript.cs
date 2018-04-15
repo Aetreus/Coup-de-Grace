@@ -95,6 +95,7 @@ public class MinimapScript : MonoBehaviour {
 
         outlineRect.GetComponent<RectTransform>().sizeDelta = new Vector2(bounds.width / scale, bounds.height / scale);
         Vector3 centerpos = centerObject.transform.position;
+        centerpos = centerpos + new Vector3(-bounds.center.x,-bounds.center.y,0);
         centerpos = new Vector3(-centerpos.x / scale, -centerpos.y / scale);
         outlineRect.GetComponent<RectTransform>().localPosition = centerpos;
 

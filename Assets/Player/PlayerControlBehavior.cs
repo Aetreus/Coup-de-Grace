@@ -282,6 +282,11 @@ public class PlayerControlBehavior : MonoBehaviour {
         string warningText = "";
         foreach (Warning w in warnings)
         {
+            if(w.reference == null)
+            {
+                Debug.Log("Player warning object reference evaluated as null and was removed.");
+                continue;
+            }
             w.warnTimer -= Time.deltaTime;
             float inspect = 0;
             if (w.isMethod)
@@ -345,6 +350,7 @@ public class PlayerControlBehavior : MonoBehaviour {
                     w.sound.Stop();
             }
         }
+        warnings.RemoveAll(w => w.reference == null);
         if (enableWarning)
         {
             AlertOutput.SetActive(true);
