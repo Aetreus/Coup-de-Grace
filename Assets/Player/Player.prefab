@@ -70,13 +70,14 @@ GameObject:
   - component: {fileID: 54554850910278232}
   - component: {fileID: 114878435811959906}
   - component: {fileID: 114793004816600776}
-  - component: {fileID: 114399108138111284}
   - component: {fileID: 114222035015594602}
   - component: {fileID: 114256119274711160}
+  - component: {fileID: 114780502300982004}
   - component: {fileID: 65232640516170786}
   - component: {fileID: 114001547825267288}
   - component: {fileID: 114217066268131064}
   - component: {fileID: 82183427652424906}
+  - component: {fileID: 114017819691621774}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -329,8 +330,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1118712050718116}
-  m_LocalRotation: {x: 0, y: 0.953717, z: 0, w: 0.30070582}
-  m_LocalPosition: {x: -1277, y: 1332, z: 8476}
+  m_LocalRotation: {x: -0.0000012867013, y: 0.953717, z: 0.000004080886, w: 0.30070582}
+  m_LocalPosition: {x: -1275.2761, y: 1331.9991, z: 8473.538}
   m_LocalScale: {x: 8, y: 4, z: 15}
   m_Children:
   - {fileID: 4516955123058722}
@@ -1309,6 +1310,17 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &114017819691621774
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1118712050718116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f17ff718e5ca9e34489d5f6a4c0a1e93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114217066268131064
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1394,7 +1406,7 @@ MonoBehaviour:
   onFire:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114399108138111284}
+      - m_Target: {fileID: 114780502300982004}
         m_MethodName: Create
         m_Mode: 0
         m_Arguments:
@@ -1409,7 +1421,7 @@ MonoBehaviour:
       PublicKeyToken=null
   maximumShots: 2
   reloadTime: 6
---- !u!114 &114399108138111284
+--- !u!114 &114780502300982004
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -1417,12 +1429,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1118712050718116}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5e2c53abab5c04468059faf376727dc, type: 3}
+  m_Script: {fileID: 11500000, guid: cee31e584d9beed4392345d3f4479439, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawned: {fileID: 1015981174769106, guid: 5f59c449d05f05746bb8a514e6938170, type: 2}
-  offset: {x: 0, y: -2, z: 5}
-  initial: {x: 0, y: -10, z: 0}
+  spawned: {fileID: 1122467257251606, guid: c7f969548f0ec494db8e6cb5a5709303, type: 2}
+  offset: {x: 0, y: -0.5, z: 0}
+  initial: {x: 0, y: -1, z: 0}
 --- !u!114 &114793004816600776
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1434,7 +1446,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53bc7cf0b952bc040a05fe63fc15a282, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lockAngle: 25
+  lockAngle: 30
   lockTime: 1.5
   flashTime: 0.15
   hostileTag: Enemy
@@ -1567,7 +1579,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1068710158
+  randomSeed: 970179594
   InitialModule:
     serializedVersion: 3
     enabled: 1

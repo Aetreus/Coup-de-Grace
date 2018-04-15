@@ -35,7 +35,7 @@ GameObject:
   - component: {fileID: 82644011822221456}
   m_Layer: 0
   m_Name: PNMissile2
-  m_TagString: Untagged
+  m_TagString: Missile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -333,6 +333,7 @@ MonoBehaviour:
   fueltime: 5
   lifetime: 12
   dampingTime: 0.5
+  viewCone: 180
   surfaceController:
     propConstant: 0.42
     integConstant: 0.1

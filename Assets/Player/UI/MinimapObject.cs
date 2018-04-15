@@ -4,15 +4,34 @@ using UnityEngine;
 
 public class MinimapObject : MonoBehaviour {
 
+
     private MinimapScript ms;
+    private bool isAdded = false;
 
     public GameObject Icon;
-    
+
+    void Awake()
+    {
+        tryAdd();
+    }
+        
 	// Use this for initialization
 	void Start () {
-        ms = FindObjectOfType<MinimapScript>();
-        ms.Register(this);
+        tryAdd();
 	}
+
+    public void tryAdd()
+    {
+        if (!isAdded)
+        {
+            ms = FindObjectOfType<MinimapScript>();
+            if (ms.isAwake)
+            {
+                Icon = ms.Register(this);
+                isAdded = true;
+            }
+        }
+    }
 	
 	// Update is called once per frame
 	void Update () {

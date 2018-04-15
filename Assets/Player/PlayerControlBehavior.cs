@@ -51,6 +51,7 @@ public class PlayerControlBehavior : MonoBehaviour {
     private Vector3 startVelocity;
     private float killTimer;
     private float warnTimer;
+    private GameObject escMenu;
 
     //Defines what a warning consists of
     [System.Serializable]
@@ -164,6 +165,10 @@ public class PlayerControlBehavior : MonoBehaviour {
         wm = GetComponent<WeaponManager>();
         pt = GetComponent<PlayerTargetSystem>();
 
+
+        escMenu = GameObject.Find("EscMenu");
+        escMenu.SetActive(false);
+
         canvas = GameObject.Find(CanvasName);
         AoAOutput = canvas.transform.Find(AoALabelName).gameObject;
         AltOutput = canvas.transform.Find(AltLabelName).gameObject;
@@ -239,6 +244,16 @@ public class PlayerControlBehavior : MonoBehaviour {
             pt.CenterTarget();
         }
 
+        if (Input.GetButtonUp("Escape"))
+        {
+            escMenu.SetActive(!escMenu.activeInHierarchy);
+            if (Time.timeScale == 1)
+                Time.timeScale = 0;
+            else
+                Time.timeScale = 1;
+                
+        }
+
         CheckWarnings();
 
         if (CheckWorldBounds())
@@ -282,6 +297,11 @@ public class PlayerControlBehavior : MonoBehaviour {
         string warningText = "";
         foreach (Warning w in warnings)
         {
+            if(w.reference == null)
+            {
+                Debug.Log("Player warning object reference evaluated as null and was removed.");
+                continue;
+            }
             w.warnTimer -= Time.deltaTime;
             float inspect = 0;
             if (w.isMethod)
@@ -345,6 +365,7 @@ public class PlayerControlBehavior : MonoBehaviour {
                     w.sound.Stop();
             }
         }
+        warnings.RemoveAll(w => w.reference == null);
         if (enableWarning)
         {
             AlertOutput.SetActive(true);

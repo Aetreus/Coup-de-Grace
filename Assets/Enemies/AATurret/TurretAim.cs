@@ -7,28 +7,28 @@ public class TurretAim : MonoBehaviour {
     public GameObject target;
     public GameObject bullet;
     public float rotateDelta;
-    public float minFireAngle;
-    public float minFireDist;
+    public float maxFireAngle;
+    public float maxFireDist;
     public float fireCooldown;
     public float bulletSpawnOffset;
     public string playerTag;
     
-    private float shotSpeed;
+    protected float shotSpeed;
 
     private Vector3 targetVel;
 
-    private Vector3 faceVector;
-    private float timer = 0;
+    protected Vector3 faceVector;
+    protected float timer = 0;
 
     // Use this for initialization
-    void Start () {
+    protected virtual void Start () {
         faceVector = transform.forward.normalized;
 
         shotSpeed = bullet.GetComponent<ArtillaryShellScript>().speed;
     }
 	
 	// Update is called once per frame
-	void Update () {
+	protected virtual void Update () {
 
         if (!target)
         {
@@ -53,7 +53,7 @@ public class TurretAim : MonoBehaviour {
             float angle = Vector3.Angle(faceVector, intercept);
 
             //if the target is close enough and the faceVector is close enough to the intercept
-            if (dist <= minFireDist && angle <= minFireAngle)
+            if (dist <= maxFireDist && angle <= maxFireAngle)
             {
                 //fire and reset the cooldown
                 Fire();
@@ -130,11 +130,16 @@ public class TurretAim : MonoBehaviour {
         return (shotVelOrth + shotVelTang).normalized;
     }
 
-    void Fire()
+    protected virtual void Fire()
     {
         Vector3 spawnLoc = transform.position + faceVector.normalized * bulletSpawnOffset;
         Quaternion spawnRot = Quaternion.LookRotation(faceVector);
         Instantiate(bullet, spawnLoc, spawnRot);
         //bullet.GetComponent<AntiAirBulletScript>().SetVel(faceVector.normalized * shotSpeed);
+    }
+
+    public virtual void SeekTarget()
+    {
+
     }
 }
