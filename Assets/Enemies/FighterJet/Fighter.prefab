@@ -78,6 +78,7 @@ GameObject:
   - component: {fileID: 114893411537729166}
   - component: {fileID: 114499780160209128}
   - component: {fileID: 114588039357388380}
+  - component: {fileID: 114625174870885210}
   m_Layer: 0
   m_Name: Fighter
   m_TagString: Enemy
@@ -540,6 +541,18 @@ MonoBehaviour:
   spawned: {fileID: 1455166400144356, guid: e787838d3fc651242b51a4f92582c88d, type: 2}
   offset: {x: 0, y: -0.5, z: 2}
   initial: {x: 0, y: -3, z: 0}
+--- !u!114 &114625174870885210
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1919875478718506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67f98435b43caf14eb48c078020e5fa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Icon: {fileID: 1261174597415340, guid: 8206aed36e2965c42a983254824459eb, type: 2}
 --- !u!114 &114668286498194948
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -554,6 +567,7 @@ MonoBehaviour:
   accel_mag: 50
   targetTags:
   - Player
+  - Allies
   collision_whisker_len: 1000
   collision_whisker_offset: 5
   collision_personal_space: 300

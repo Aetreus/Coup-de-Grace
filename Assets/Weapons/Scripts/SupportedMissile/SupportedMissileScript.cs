@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(PropNav))]
 public class SupportedMissileScript : PropNav {
 
     public float lockCone = 30;
