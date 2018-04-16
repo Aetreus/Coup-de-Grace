@@ -38,4 +38,9 @@ public class SceneSaverScript : MonoBehaviour {
             SceneManager.LoadScene(saved_scene);
         }
     }
+
+    public void SetSavedScene(string scene)
+    {
+        saved_scene = scene;
+    }
 }

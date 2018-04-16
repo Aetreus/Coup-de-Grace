@@ -702,7 +702,10 @@ public class FighterDecisionTree : MonoBehaviour {
         {
             selectionList.AddRange(GameObject.FindGameObjectsWithTag(tag));
         }
-        target = selectionList.OrderBy(g => (transform.position - g.transform.position).sqrMagnitude).First();
+        if (selectionList.Count == 0)
+            target = null;
+        else
+            target = selectionList.OrderBy(g => (transform.position - g.transform.position).sqrMagnitude).First();
     }
 
     void Fire_Target()
