@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,9 @@ using UnityEngine;
 public class FighterDecisionTree : MonoBehaviour {
 
     public float accel_mag;
+
+    //Target seeking list
+    public List<string> targetTags = new List<string>(){ "Player" };
 
     //DetectCollision variables
     public float collision_whisker_len;
@@ -70,23 +74,28 @@ public class FighterDecisionTree : MonoBehaviour {
 
     // Use this for initialization
     void Start() {
-        target = GameObject.FindGameObjectWithTag("Player");
+        Select_Closest_Target();
+        
         wm = GetComponent<WeaponManager>();
         next_path_node = null;
         fs = GetComponent<FighterSteering>();
         fb = GetComponent<FlightBehavior>();
         rb = GetComponent<Rigidbody>();
-        
+        rb.velocity = transform.TransformDirection(new Vector3(0, 0, 150));
     }
 
     // Update is called once per frame
     void Update() {
-
         debug_msg = "";
-        AIAction action = DetectCollisionTree();
+        AIAction action = HasTargetTree();
         Debug.Log(debug_msg, this.gameObject);
+        fs.targetVel = cruise_speed;
+        fs.stallLimit = base_stall_limit;
         switch (action)
         {
+            case AIAction.SEEK_TARGET:
+                Select_Closest_Target();
+                break;
             case AIAction.AVOID_COLLISION:
                 break;
             case AIAction.AVOID_LOCK:
@@ -100,8 +109,8 @@ public class FighterDecisionTree : MonoBehaviour {
                 break;
             case AIAction.FIRE_MISSILE:
             case AIAction.MANEUVER_LOCK:
-                //Maintain_Lock();
-                //break;
+            //Maintain_Lock();
+            //break;
             case AIAction.MANEUVER_REAR:
                 Move_Behind_Player();
                 break;
@@ -124,6 +133,8 @@ public class FighterDecisionTree : MonoBehaviour {
 
     public enum AIAction
     {
+        SEEK_TARGET,
+        NO_TARGET,
         AVOID_COLLISION,
         AVOID_MISSILE,
         AVOID_LOCK,
@@ -136,18 +147,38 @@ public class FighterDecisionTree : MonoBehaviour {
 
     //forks of the tree------------------------------------------------------
 
+    AIAction HasTargetTree()
+    {
+        if (target == null)
+        {
+            debug_msg += "Has Target F";
+            return AIAction.SEEK_TARGET;
+        }
+        else if(target == null)
+        {
+            debug_msg += "-> No Target";
+            return AIAction.NO_TARGET;
+        }
+        else
+        {
+            debug_msg += "Has Target T";
+            return DetectCollisionTree();
+        }
+
+    }
+
     AIAction DetectCollisionTree()
     {
         Vector3 avoidVec = DetectCollision();
 
         if(avoidVec.magnitude > 0)
         {
-            debug_msg += "Detect Collision T";
+            debug_msg += " -> Detect Collision T";
             return AIAction.AVOID_COLLISION;
         }
         else
         {
-            debug_msg += "Detect Collision F";
+            debug_msg += " -> Detect Collision F";
             return PlayerMissileApproachingTree();
         }
     }
@@ -306,6 +337,7 @@ public class FighterDecisionTree : MonoBehaviour {
         {
             fs.facingDir = avoidNormal;
             fs.upDir = avoidNormal;
+            return avoidNormal;
         }
         
         Vector3 fleeVector = Vector3.zero;
@@ -335,6 +367,7 @@ public class FighterDecisionTree : MonoBehaviour {
         {
             fs.facingDir = fleeVector;
             fs.upDir = fleeVector;
+            return fleeVector;
         }
         return Vector3.zero;
     }
@@ -431,7 +464,7 @@ public class FighterDecisionTree : MonoBehaviour {
         RaycastHit hitinfo;
         bool hit = Physics.Raycast(transform.position, towardPlayer, out hitinfo, towardPlayer.magnitude);
 
-        //Debug.DrawRay(transform.position, towardPlayer*200000, Color.green);
+        Debug.DrawRay(transform.position, towardPlayer*200000, Color.green);
 
         if (hit && (hitinfo.collider.gameObject.tag == "Terrain" || hitinfo.collider.gameObject.tag == "Building"))
         {
@@ -601,8 +634,9 @@ public class FighterDecisionTree : MonoBehaviour {
         if (player_to_fighter.magnitude >= min_far_away_dist)
         {
             debug_msg += " [far away, move toward player]";
-            fs.facingDir = player_to_fighter;
-            fs.targetVel = 300;
+            fs.facingDir = -player_to_fighter;
+            fs.upDir = -player_to_fighter;
+            fs.targetVel = cruise_speed;
         }
 
         float angle = Vector3.Angle(player_to_fighter, target.transform.forward);
@@ -613,8 +647,8 @@ public class FighterDecisionTree : MonoBehaviour {
         {
             debug_msg += " [in front of player, move behind it]";
             fs.facingDir = -target.transform.forward;
-            fs.upDir = (transform.forward - target.transform.forward).normalized;
-            fs.targetVel = 200;
+            fs.upDir = -player_to_fighter.normalized;
+            fs.targetVel = maneuver_speed;
         }
         //otherwise, move toward the fighter
         else
@@ -640,6 +674,17 @@ public class FighterDecisionTree : MonoBehaviour {
                 fs.targetVel = target.GetComponent<Rigidbody>().velocity.magnitude;
             }
         }
+    }
+
+    //Find the closest target from the tag list and set it as our target.
+    void Select_Closest_Target()
+    {
+        List<GameObject> selectionList = new List<GameObject>();
+        foreach (string tag in targetTags)
+        {
+            selectionList.AddRange(GameObject.FindGameObjectsWithTag(tag));
+        }
+        target = selectionList.OrderBy(g => (transform.position - g.transform.position).sqrMagnitude).First();
     }
 
     //if the player is on LOS, pursue it

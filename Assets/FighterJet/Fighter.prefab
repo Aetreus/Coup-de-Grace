@@ -80,7 +80,7 @@ GameObject:
   - component: {fileID: 114499780160209128}
   m_Layer: 0
   m_Name: Fighter
-  m_TagString: Enemy
+  m_TagString: Allies
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -107,8 +107,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1919875478718506}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -636.8, y: -84.9, z: -1089}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: -636.8, y: 3219, z: 6936}
   m_LocalScale: {x: 8, y: 4, z: 15}
   m_Children:
   - {fileID: 4608633451594562}
@@ -117,7 +117,7 @@ Transform:
   - {fileID: 4925069043943642}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!4 &4329648560285164
 Transform:
   m_ObjectHideFlags: 1
@@ -457,7 +457,7 @@ MonoBehaviour:
   inertiaTensor: {x: 180000, y: 180000, z: 30000}
   dragCoeff: 0.04
   wingArea: 56
-  maxThrust: 300000
+  staticThrust: 60000
   rollDampeningCoeff: 0.12
   yawDampeningCoeff: 0.2
   aileronControlCoeff: 0.4
@@ -512,13 +512,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   aileronController:
-    propConstant: 0.18
-    integConstant: 0.0002
+    propConstant: 0.02
+    integConstant: 0.0009
     derivConstant: 0.1
     output: -13.263334
   elevatorController:
-    propConstant: 0.18
-    integConstant: 0.02
+    propConstant: 0.018
+    integConstant: 0.0009
     derivConstant: 0.03
     output: -3.2812078
   yawController:
@@ -552,6 +552,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   accel_mag: 50
+  targetTags:
+  - Enemy
   collision_whisker_len: 1000
   collision_whisker_offset: 5
   collision_personal_space: 300
@@ -567,10 +569,10 @@ MonoBehaviour:
   fighter_missile_cone_len: 200
   min_pitch_ground_dist: 2000
   max_in_front_of_player_angle: 90
-  min_far_away_dist: 4000
-  cruise_speed: 0
-  maneuver_speed: 0
-  sprint_speed: 0
+  min_far_away_dist: 3000
+  cruise_speed: 300
+  maneuver_speed: 200
+  sprint_speed: 400
   base_stall_limit: 0
 --- !u!114 &114852199699454370
 MonoBehaviour:

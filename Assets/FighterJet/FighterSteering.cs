@@ -16,8 +16,7 @@ public class FighterSteering : MonoBehaviour {
     
     private FlightBehavior fb;
     private Rigidbody rb;
-
-    private GameObject player;
+    
 
     public float fullTurnAngle;
     public float ref_speed = 200;
@@ -38,7 +37,6 @@ public class FighterSteering : MonoBehaviour {
     {
         fb = GetComponent<FlightBehavior>();
         rb = GetComponent<Rigidbody>();
-        player = GameObject.FindGameObjectWithTag("Player");
     }
 	
 	// Update is called once per frame
@@ -48,13 +46,6 @@ public class FighterSteering : MonoBehaviour {
         float upAngle = Vector3.Angle(transform.forward, upDir);
 
         Vector3 accel_vec = Vector3.zero;
-        if (player)
-        {
-        }
-        else
-        {
-            accel_vec = Vector3.zero;
-        }
 
         Debug.DrawRay(transform.position, facingDir * 20000, Color.red);
         Debug.DrawRay(transform.position, Vector3.ProjectOnPlane(upDir, Vector3.Cross(rb.transform.up, rb.transform.right)) * 20000, Color.blue);
@@ -71,23 +62,24 @@ public class FighterSteering : MonoBehaviour {
         float scaleFactor = (float)Math.Pow(1 - (upAngle / fullTurnAngle),1);
         if (upAngle < fullTurnAngle)
             upDir = upDir + (baseDir - upDir) * scaleFactor;
-        _rollError = Vector3.Angle(rb.transform.up, Vector3.ProjectOnPlane(upDir, Vector3.Cross(rb.transform.up, rb.transform.right)));
+        _rollError = Vector3.Angle(Vector3.ProjectOnPlane(rb.transform.up,rb.velocity), Vector3.ProjectOnPlane(upDir, rb.velocity));
         if(Vector3.Dot(Vector3.Cross(upDir,rb.transform.up),Vector3.Cross(rb.transform.up,rb.transform.right)) < 0)//Get the sign of the angle difference
         {
             _rollError = -_rollError;
         }
 
-        _pitchError = Vector3.Angle(rb.transform.forward, Vector3.ProjectOnPlane(facingDir, Vector3.Cross(rb.transform.up, rb.transform.forward)));
+        _pitchError = Vector3.Angle(rb.velocity, Vector3.ProjectOnPlane(facingDir, Vector3.Cross(rb.transform.up, rb.velocity.normalized)));
         if (Vector3.Dot(Vector3.Cross(facingDir, rb.transform.forward), Vector3.Cross(rb.transform.up, rb.transform.forward)) < 0)//Get the sign of the angle difference
         {
             _pitchError = -_pitchError;
         }
-
-        _pitchError = Vector3.Angle(rb.transform.forward, Vector3.ProjectOnPlane(facingDir, Vector3.Cross(rb.transform.right, rb.transform.forward)));
+        /*
+        _yawError = Vector3.Angle(rb.transform.forward, Vector3.ProjectOnPlane(facingDir, Vector3.Cross(rb.transform.right, rb.transform.forward)));
         if (Vector3.Dot(Vector3.Cross(facingDir, rb.transform.forward), Vector3.Cross(rb.transform.right, rb.transform.forward)) < 0)//Get the sign of the angle difference
         {
-            _pitchError = -_pitchError;
+            _yawError = -_yawError;
         }
+        */
 
 
         if (Math.Abs(_rollError) > 90)

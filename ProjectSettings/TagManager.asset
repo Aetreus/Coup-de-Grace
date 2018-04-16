@@ -9,6 +9,7 @@ TagManager:
   - Building
   - Node
   - Missile
+  - Allies
   layers:
   - Default
   - TransparentFX

@@ -260,8 +260,7 @@ public class PlayerTargetSystem : MonoBehaviour {
 
                     RaycastHit info;
                     bool hit = Physics.Raycast(transform.position, enemy.transform.position - transform.position, out info,(enemy.transform.position - transform.position).magnitude + 50);
-                    GameObject hitObj = info.transform.gameObject;
-                    if (hit && hitObj.tag == "Terrain")
+                    if (hit && info.transform.gameObject.tag == "Terrain")
                         targetIcons[usedIcons].transform.Find("ObstructedMarker").gameObject.SetActive(true);
                     else
                         targetIcons[usedIcons].transform.Find("ObstructedMarker").gameObject.SetActive(false);

@@ -82,7 +82,7 @@ public class FlightBehavior : MonoBehaviour {
         {
             inertiaTensor = rb.inertiaTensor;
         }
-        rb.velocity = transform.TransformDirection(new Vector3(0, 0, 150));
+        
 	}
 	
 	// Update is called once per frame

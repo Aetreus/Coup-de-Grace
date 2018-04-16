@@ -350,7 +350,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 527db0ddbd7b343489a15f960f8bcb4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hostileTag: Enemy
+  hostileTag: Player
   triggerRange: 40
   damage: 4
   minDamage: 1
