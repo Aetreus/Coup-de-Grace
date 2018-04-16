@@ -73,14 +73,14 @@ GameObject:
   - component: {fileID: 54176910388109892}
   - component: {fileID: 114394754467270982}
   - component: {fileID: 114668286498194948}
-  - component: {fileID: 114140296527334382}
   - component: {fileID: 114852199699454370}
   - component: {fileID: 65614739184898264}
   - component: {fileID: 114893411537729166}
   - component: {fileID: 114499780160209128}
+  - component: {fileID: 114588039357388380}
   m_Layer: 0
   m_Name: Fighter
-  m_TagString: Allies
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -107,8 +107,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1919875478718506}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -636.8, y: 3219, z: 6936}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -636.8, y: 3739, z: -1089}
   m_LocalScale: {x: 8, y: 4, z: 15}
   m_Children:
   - {fileID: 4608633451594562}
@@ -429,20 +429,6 @@ TrailRenderer:
     generateLightingData: 0
   m_MinVertexDistance: 0
   m_Autodestruct: 0
---- !u!114 &114140296527334382
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1919875478718506}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5e2c53abab5c04468059faf376727dc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawned: {fileID: 1015981174769106, guid: 5f59c449d05f05746bb8a514e6938170, type: 2}
-  offset: {x: 0, y: -2, z: 5}
-  initial: {x: 0, y: -10, z: 0}
 --- !u!114 &114394754467270982
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -540,6 +526,20 @@ MonoBehaviour:
   targetVel: 200
   minAirspeed: 80
   stallLimit: -5
+--- !u!114 &114588039357388380
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1919875478718506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cee31e584d9beed4392345d3f4479439, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawned: {fileID: 1455166400144356, guid: e787838d3fc651242b51a4f92582c88d, type: 2}
+  offset: {x: 0, y: -0.5, z: 2}
+  initial: {x: 0, y: -3, z: 0}
 --- !u!114 &114668286498194948
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -553,7 +553,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   accel_mag: 50
   targetTags:
-  - Enemy
+  - Player
   collision_whisker_len: 1000
   collision_whisker_offset: 5
   collision_personal_space: 300
@@ -565,15 +565,17 @@ MonoBehaviour:
   max_my_missile_approaching_angle: 60
   player_missile_cone_angle: 30
   player_missile_cone_len: 7000
-  fighter_missile_cone_angle: 120
-  fighter_missile_cone_len: 200
+  fighter_missile_cone_angle: 35
+  fighter_missile_cone_len: 8000
   min_pitch_ground_dist: 2000
   max_in_front_of_player_angle: 90
   min_far_away_dist: 3000
   cruise_speed: 300
   maneuver_speed: 200
   sprint_speed: 400
-  base_stall_limit: 0
+  base_stall_limit: 5
+  missile_time: 10
+  missile_prob: 0.2
 --- !u!114 &114852199699454370
 MonoBehaviour:
   m_ObjectHideFlags: 1

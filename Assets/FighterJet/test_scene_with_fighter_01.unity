@@ -564,6 +564,16 @@ Prefab:
       propertyPath: m_Name
       value: AllyFighter
       objectReference: {fileID: 0}
+    - target: {fileID: 1919875478718506, guid: df464eed0284cd54d967c162a5385a27, type: 2}
+      propertyPath: m_TagString
+      value: Allies
+      objectReference: {fileID: 0}
+    - target: {fileID: 114588039357388380, guid: df464eed0284cd54d967c162a5385a27,
+        type: 2}
+      propertyPath: spawned
+      value: 
+      objectReference: {fileID: 1122467257251606, guid: c7f969548f0ec494db8e6cb5a5709303,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: df464eed0284cd54d967c162a5385a27, type: 2}
   m_IsPrefabParent: 0
@@ -857,6 +867,12 @@ Prefab:
       propertyPath: centerObject
       value: 
       objectReference: {fileID: 1159872218}
+    - target: {fileID: 114099157173389756, guid: f300ca3c4e7eadc41a6a7c96ddc547cb,
+        type: 2}
+      propertyPath: sourceObject
+      value: 
+      objectReference: {fileID: 1118712050718116, guid: df6bd1004b6bea74a9c6072f3afa6241,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f300ca3c4e7eadc41a6a7c96ddc547cb, type: 2}
   m_IsPrefabParent: 0
@@ -1026,15 +1042,6 @@ Prefab:
     - target: {fileID: 4220351548787534, guid: df464eed0284cd54d967c162a5385a27, type: 2}
       propertyPath: m_RootOrder
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1919875478718506, guid: df464eed0284cd54d967c162a5385a27, type: 2}
-      propertyPath: m_TagString
-      value: Enemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 114668286498194948, guid: df464eed0284cd54d967c162a5385a27,
-        type: 2}
-      propertyPath: targetTags.Array.data[0]
-      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: df464eed0284cd54d967c162a5385a27, type: 2}

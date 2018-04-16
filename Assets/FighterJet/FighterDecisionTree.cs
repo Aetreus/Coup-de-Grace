@@ -53,12 +53,18 @@ public class FighterDecisionTree : MonoBehaviour {
     public float sprint_speed;
     public float base_stall_limit;
 
+    //Missile parameters.
+    public float missile_time;
+    public float missile_prob;
+
     //Predict_Player_Loc variables
     //public float max_prediction_time;
 
     private GameObject next_path_node;
     private float max_node_arrived_dist;
 
+    private float missile_timer;
+    private bool missile_ready = true;
     private GameObject activeMissile = null;
     private GameObject target;
 
@@ -67,6 +73,8 @@ public class FighterDecisionTree : MonoBehaviour {
     private FighterSteering fs;
     private FlightBehavior fb;
     private Rigidbody rb;
+    private PNSpawner pn;
+    private System.Random rand;
 
     private AIAction _action;
 
@@ -75,12 +83,13 @@ public class FighterDecisionTree : MonoBehaviour {
     // Use this for initialization
     void Start() {
         Select_Closest_Target();
-        
-        wm = GetComponent<WeaponManager>();
+        missile_timer = 0;
         next_path_node = null;
+        pn = GetComponent<PNSpawner>();
         fs = GetComponent<FighterSteering>();
         fb = GetComponent<FlightBehavior>();
         rb = GetComponent<Rigidbody>();
+        rand = new System.Random();
         rb.velocity = transform.TransformDirection(new Vector3(0, 0, 150));
     }
 
@@ -108,9 +117,11 @@ public class FighterDecisionTree : MonoBehaviour {
                 Turn_Side_Toward_Missile(PlayerMissileApproaching());
                 break;
             case AIAction.FIRE_MISSILE:
+                Fire_Target();
+                break;
             case AIAction.MANEUVER_LOCK:
-            //Maintain_Lock();
-            //break;
+                Maintain_Lock();
+                break;
             case AIAction.MANEUVER_REAR:
                 Move_Behind_Player();
                 break;
@@ -277,7 +288,7 @@ public class FighterDecisionTree : MonoBehaviour {
         if (PlayerInMissileCone())
         {
             debug_msg += " -> PlayerInMissileCone T -> Fire Missile";
-            //fire missile
+            return AIAction.FIRE_MISSILE;
         }
         else
         {
@@ -445,7 +456,14 @@ public class FighterDecisionTree : MonoBehaviour {
 
     bool MissileAvailable()
     {
-        return activeMissile == null;
+        if (missile_timer < 0)
+        {
+            if (missile_prob * Time.deltaTime > rand.NextDouble())
+                missile_ready = true;
+        }
+        else
+            missile_timer -= Time.deltaTime;
+        return missile_ready;
     }
 
     //true if the player is within this fighter's targeting area and the player is visible to fighter
@@ -571,7 +589,7 @@ public class FighterDecisionTree : MonoBehaviour {
 
         float scaleTerm = 1;
 
-        scaleTerm = Mathf.Min(scaleTerm, Mathf.Sin(Mathf.Deg2Rad* 25) / Mathf.Sin(Mathf.Deg2Rad * angle));
+        scaleTerm = Mathf.Min(scaleTerm, Mathf.Sin(Mathf.Deg2Rad* 15) / Mathf.Sin(Mathf.Deg2Rad * angle));
 
         Vector3 output = directFacing + (leadFacing - directFacing) * scaleTerm;
 
@@ -685,6 +703,13 @@ public class FighterDecisionTree : MonoBehaviour {
             selectionList.AddRange(GameObject.FindGameObjectsWithTag(tag));
         }
         target = selectionList.OrderBy(g => (transform.position - g.transform.position).sqrMagnitude).First();
+    }
+
+    void Fire_Target()
+    {
+        pn.Create(target);
+        missile_timer = missile_time;
+        missile_ready = false;
     }
 
     //if the player is on LOS, pursue it
