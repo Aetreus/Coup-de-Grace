@@ -12,6 +12,16 @@ public class PlayerTargetSystem : MonoBehaviour {
 
     public string hostileTag;
 
+    public Dictionary<string, GameObject> iconSpec;
+    public List<IconSpec> specInit;
+
+    [System.Serializable]
+    public class IconSpec
+    {
+        public string tag;
+        public GameObject icon;
+    }
+
     public float referenceDistance;
     public float logBase;
     
@@ -27,7 +37,7 @@ public class PlayerTargetSystem : MonoBehaviour {
     private List<GameObject> enemies;
 
 
-    private List<GameObject> targetIcons;
+    private Dictionary<string,List<GameObject>> targetIcons;
 
     private GameObject lockIcon;
 
@@ -53,14 +63,25 @@ public class PlayerTargetSystem : MonoBehaviour {
         lockRing = GameObject.Find("LockRing");
         lockRing.SetActive(false);
         canvas = GameObject.Find("Canvas");
-        targetIcons = new List<GameObject>();
+        targetIcons = new Dictionary<string,List<GameObject>>();
         lockIcon = Instantiate(lockPrefab, canvas.transform);
         lockIcon.SetActive(false);
         lockSprite = lockIcon.GetComponent<Image>().sprite;
         targetSprite = targetPrefab.GetComponent<Image>().sprite;
+
+        iconSpec = new Dictionary<string, GameObject>();
+        foreach (IconSpec i in specInit)
+        {
+            iconSpec.Add(i.tag, i.icon);
+            targetIcons.Add(i.tag, new List<GameObject>());
+        }
+        foreach (string tag in iconSpec.Keys)
+        {
+            enemies.AddRange(GameObject.FindGameObjectsWithTag(tag));
+        }
         for (int i = 0; i < enemies.Count; i++)
         {
-            targetIcons.Add(Instantiate(targetPrefab, canvas.transform));
+            targetIcons[enemies[i].tag].Add(Instantiate(iconSpec[enemies[i].tag], canvas.transform));
         }
     }
 
@@ -69,6 +90,10 @@ public class PlayerTargetSystem : MonoBehaviour {
     {
         GameObject[] e = GameObject.FindGameObjectsWithTag(hostileTag);
         enemies = new List<GameObject>(e);
+        foreach (string tag in iconSpec.Keys)
+        {
+            enemies.AddRange(GameObject.FindGameObjectsWithTag(tag));
+        }
         enemies.Sort(SortByAngle);
 
         //if you currently have a target you are aiming at or locking onto...
@@ -202,10 +227,10 @@ public class PlayerTargetSystem : MonoBehaviour {
 
     private void DisplayIcons()
     {
-        int usedIcons = 0;
-        while (enemies.Count > targetIcons.Count)
+        Dictionary<string,int> usedIcons = new Dictionary<string, int>();
+        foreach(string tag in iconSpec.Keys)
         {
-            targetIcons.Add(Instantiate(targetPrefab, canvas.transform));
+            usedIcons[tag] = 0;
         }
         foreach (GameObject enemy in enemies)
         {
@@ -216,6 +241,10 @@ public class PlayerTargetSystem : MonoBehaviour {
                 if (_target != null && _target.Equals(enemy))
                 {
                     RectTransform location = lockIcon.GetComponent<RectTransform>();
+
+                    lockIcon.GetComponent<Image>().color = iconSpec[_target.tag].GetComponent<Image>().color;
+                    lockIcon.transform.Find("ObstructedMarker").gameObject.GetComponent<Image>().color = iconSpec[_target.tag].GetComponent<Image>().color;
+
                     location.anchoredPosition = (new Vector2(screenPos.x, screenPos.y) / canvas.GetComponent<RectTransform>().localScale.x ) - canvas.GetComponent<RectTransform>().sizeDelta / 2f;
                     GameObject DistLabel = lockIcon.transform.Find("DistLabel").gameObject;
                     DistLabel.GetComponent<Text>().text = (transform.position - _target.transform.position).magnitude.ToString();
@@ -254,16 +283,16 @@ public class PlayerTargetSystem : MonoBehaviour {
                 }
                 else
                 {
-                    RectTransform location = targetIcons[usedIcons].GetComponent<RectTransform>();
+                    RectTransform location = targetIcons[enemy.tag][usedIcons[enemy.tag]].GetComponent<RectTransform>();
                     location.anchoredPosition = (new Vector2(screenPos.x, screenPos.y) / canvas.GetComponent<RectTransform>().localScale.x) - canvas.GetComponent<RectTransform>().sizeDelta / 2f;
-                    targetIcons[usedIcons].SetActive(true);
+                    targetIcons[enemy.tag][usedIcons[enemy.tag]].SetActive(true);
 
                     RaycastHit info;
                     bool hit = Physics.Raycast(transform.position, enemy.transform.position - transform.position, out info,(enemy.transform.position - transform.position).magnitude + 50);
                     if (hit && info.transform.gameObject.tag == "Terrain")
-                        targetIcons[usedIcons].transform.Find("ObstructedMarker").gameObject.SetActive(true);
+                        targetIcons[enemy.tag][usedIcons[enemy.tag]].transform.Find("ObstructedMarker").gameObject.SetActive(true);
                     else
-                        targetIcons[usedIcons].transform.Find("ObstructedMarker").gameObject.SetActive(false);
+                        targetIcons[enemy.tag][usedIcons[enemy.tag]].transform.Find("ObstructedMarker").gameObject.SetActive(false);
 
 
                     float distance = (transform.position - enemy.transform.position).magnitude;
@@ -272,24 +301,26 @@ public class PlayerTargetSystem : MonoBehaviour {
                     if (distance > referenceDistance)
                     {
                         float scaleFactor = 1 / (1 + Mathf.Log(distance / referenceDistance) / Mathf.Log(logBase));
-                        targetIcons[usedIcons].transform.localScale = new Vector3(scaleFactor, scaleFactor, 1);
+                        targetIcons[enemy.tag][usedIcons[enemy.tag]].transform.localScale = new Vector3(scaleFactor, scaleFactor, 1);
                     }
                     else
                     {
-                        targetIcons[usedIcons].transform.localScale = new Vector3(1,1, 1);
+                        targetIcons[enemy.tag][usedIcons[enemy.tag]].transform.localScale = new Vector3(1,1, 1);
                     }
 
-                    usedIcons++;
+                    usedIcons[enemy.tag]++;
                 }
             }
         }
         if (_target == null)
             lockIcon.SetActive(false);
-
-        while (usedIcons < targetIcons.Count)
+        foreach (string tag in iconSpec.Keys)
         {
-            targetIcons[usedIcons].SetActive(false);
-            usedIcons++;
+            while (usedIcons[tag] < targetIcons[tag].Count)
+            {
+                targetIcons[tag][usedIcons[tag]].SetActive(false);
+                usedIcons[tag]++;
+            }
         }
     }
 
