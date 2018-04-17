@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/sprint3-mainmenu.unity
+    path: Assets/sprint4-mainmenu.unity
     guid: 420c1530c004c48438aa7726b2ad834a
   - enabled: 1
     path: Assets/sprint2-sample.unity

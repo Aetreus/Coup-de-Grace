@@ -25,6 +25,7 @@ public class PlayerControlBehavior : MonoBehaviour {
     public Rect worldBounds = new Rect(-10000, -10000, 20000, 20000);
     public float killTime = 20;
     public float minWarningTime = 5;
+    public float retryTime = 10;
 
     private GameObject AoAOutput;
     private GameObject AltOutput;
@@ -52,6 +53,9 @@ public class PlayerControlBehavior : MonoBehaviour {
     private float killTimer;
     private float warnTimer;
     private GameObject escMenu;
+
+    private float postKillTimer;
+    private bool isDead;
 
     //Defines what a warning consists of
     [System.Serializable]
@@ -206,6 +210,8 @@ public class PlayerControlBehavior : MonoBehaviour {
         UpdateWarnings();
 
         killTimer = killTime;
+
+        isDead = false;
     }
 
     // Update is called once per frame
@@ -244,7 +250,7 @@ public class PlayerControlBehavior : MonoBehaviour {
             pt.CenterTarget();
         }
 
-        if (Input.GetButtonUp("Escape"))
+        if (Input.GetButtonUp("Escape") && !isDead)
         {
             escMenu.SetActive(!escMenu.activeInHierarchy);
             if (Time.timeScale == 1)
@@ -252,6 +258,14 @@ public class PlayerControlBehavior : MonoBehaviour {
             else
                 Time.timeScale = 1;
                 
+        }
+
+        if(isDead)
+        {
+            postKillTimer -= Time.unscaledDeltaTime;
+            escMenu.transform.Find("EscMenuTitle").GetComponent<Text>().text = "RESPAWN: " + postKillTimer.ToString("F0");
+            if (postKillTimer < 0)
+                escMenu.transform.Find("Mainmenu").GetComponent<Button>().onClick.Invoke();
         }
 
         CheckWarnings();
@@ -266,8 +280,8 @@ public class PlayerControlBehavior : MonoBehaviour {
         else
             killTime = killTimer;
 
-        if (killTime < 0.0)
-            Respawn();//For now respawn
+        if (killTime < 0.0 && !isDead)
+            KillScreen();
 
         warnTimer -= Time.deltaTime;
 
@@ -391,6 +405,16 @@ public class PlayerControlBehavior : MonoBehaviour {
         transform.localRotation = startRotation;
         GetComponent<Rigidbody>().velocity = startVelocity;
         GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+    }
+
+    public void KillScreen()
+    {
+        Time.timeScale = 0.25F;
+        escMenu.SetActive(true);
+        escMenu.transform.Find("Exit").gameObject.SetActive(false);
+        isDead = true;
+        postKillTimer = retryTime;
+        canvas.transform.Find("ScreenFade").gameObject.GetComponent<Image>().CrossFadeColor(Color.black, 10, true, true);
     }
 
     void OnDestroy()

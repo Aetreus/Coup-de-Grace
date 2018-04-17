@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class BomberScript : MonoBehaviour {
@@ -9,6 +10,9 @@ public class BomberScript : MonoBehaviour {
     
     public GameObject bomb;
     public GameObject bomb_target;
+    public string bomb_target_backup = "Building";
+
+    public string target_tag = "Player";
 
     private Vector3 velocity;
     
@@ -21,7 +25,7 @@ public class BomberScript : MonoBehaviour {
     public float missile_chance;
     public float missile_spawn_offset;
     public float missile_max_range;
-    private GameObject player;
+    private GameObject target;
     
     private Vector3 target_loc;
     private Vector3 travel_direction;
@@ -29,20 +33,40 @@ public class BomberScript : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
-        target_loc = bomb_target.transform.position;
+        if (bomb_target != null)
+        {
+            target_loc = bomb_target.transform.position;
+        }
+        else
+        {
+            bomb_target = GameObject.FindGameObjectWithTag(bomb_target_backup);
+            if (bomb_target == null)
+                return;
+            target_loc = bomb_target.transform.position;
+        }
 
         travel_direction = (new Vector3(target_loc.x, 0, target_loc.z)) - (new Vector3(transform.position.x, 0, transform.position.z));
 
         transform.forward = travel_direction.normalized;
         velocity = travel_direction.normalized * speed;
-        
-        player = GameObject.FindGameObjectWithTag("Player");
+
+        List<GameObject> targets = new List<GameObject>(GameObject.FindGameObjectsWithTag(target_tag));
+        if (targets != null)
+        {
+            target = targets.OrderBy(g => (g.transform.position - transform.position).sqrMagnitude).First();
+        }
     }
 	
 	// Update is called once per frame
 	void Update () {
 
         MoveUpdate();
+
+        List<GameObject> targets = new List<GameObject>(GameObject.FindGameObjectsWithTag(target_tag));
+        if (targets != null)
+        {
+            target = targets.OrderBy(g => (g.transform.position - transform.position).sqrMagnitude).First();
+        }
 
         if ( drop_timer <= 0 )
         {
@@ -53,7 +77,8 @@ public class BomberScript : MonoBehaviour {
             drop_timer -= Time.deltaTime;
         }
 
-        MissileChance();
+        if(target != null)
+            MissileChance();
     }
 
     void MoveUpdate()
@@ -88,25 +113,25 @@ public class BomberScript : MonoBehaviour {
 
     void MissileChance()
     {
-        Vector3 towardPlayer = player.transform.position - transform.position;
+        Vector3 towardPlayer = target.transform.position - transform.position;
         float angle = Vector3.Angle(transform.forward, towardPlayer);
 
         RaycastHit info;
-        bool hit = Physics.Raycast(transform.position, player.transform.position - transform.position, out info);
+        bool hit = Physics.Raycast(transform.position, target.transform.position - transform.position, out info);
         GameObject hitObj;
         if (hit)
             hitObj = info.collider.gameObject;
         else
             hitObj = null;
 
-        if (/*hit && hitObj==player &&*/ angle <= missile_fire_angle && Random.Range(0.0f, 100.0f) <= missile_chance * Time.deltaTime && (player.transform.position - transform.position).magnitude < missile_max_range)
+        if (/*hit && hitObj==player &&*/ angle <= missile_fire_angle && Random.Range(0.0f, 100.0f) <= missile_chance * Time.deltaTime && (target.transform.position - transform.position).magnitude < missile_max_range)
         {
             Vector3 spawnLoc = transform.position + towardPlayer.normalized * missile_spawn_offset;
             Quaternion spawnRot = Quaternion.LookRotation(towardPlayer);
 
             GameObject m = Instantiate(missile, spawnLoc, spawnRot);
-            m.GetComponent<PropNav>().Target = player;
-            m.GetComponent<ProximityExplodeScript>().hostileTag = "Player";
+            m.GetComponent<PropNav>().Target = target;
+            m.GetComponent<ProximityExplodeScript>().hostileTag = target.tag;
         }
     }
 }

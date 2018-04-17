@@ -7,6 +7,14 @@ TagManager:
   - Enemy
   - Terrain
   - Building
+  - Node
+  - Missile
+  - Allies
+  - AlliedObjective
+  - HostileObjective
+  - Collision
+  - BenzinTank
+  - BuildingObjective
   layers:
   - Default
   - TransparentFX
