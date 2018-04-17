@@ -720,140 +720,171 @@ MonoBehaviour:
   linesInit:
   - name: Briefing
     line:
-      text: Hey Commander, you rang?
+      text: You're fairly confident if you think we can assault their capital after
+        that battle.
       time: 5
       speaker: {fileID: 21300000, guid: 519032948b8f34748a868996562e24ce, type: 3}
       voice: {fileID: 0}
       nextLine: Briefing2
   - name: Briefing2
     line:
-      text: Do not be casual with me, you are late for your first briefing!
+      text: I thought you wanted to go straight for it immediately.
       time: 5
       speaker: {fileID: 21300000, guid: 08df3e150d9efaa47a0250c6588ae9e5, type: 3}
       voice: {fileID: 0}
       nextLine: Briefing3
   - name: Briefing3
     line:
-      text: Sheesh, I've not been around the place. Pretty easy to get lost when you're
-        new, yeah?
+      text: '...Okay well, you got me there.'
       time: 5
       speaker: {fileID: 21300000, guid: 519032948b8f34748a868996562e24ce, type: 3}
       voice: {fileID: 0}
       nextLine: Briefing4
   - name: Briefing4
     line:
-      text: Nevermind that, you have your first assignment.
+      text: You should have no objections, then?
       time: 5
       speaker: {fileID: 21300000, guid: 08df3e150d9efaa47a0250c6588ae9e5, type: 3}
       voice: {fileID: 0}
       nextLine: Briefing5
   - name: Briefing5
     line:
-      text: Sure sure, lay it on me.
+      text: Of course not, just seems a little sudden.
       time: 5
       speaker: {fileID: 21300000, guid: 519032948b8f34748a868996562e24ce, type: 3}
       voice: {fileID: 0}
       nextLine: Briefing6
   - name: Briefing6
     line:
-      text: 'Auster is on the move. Their bombers are approaching our base. Strangely
-        enough, they are not escorted. We are uncertain whether this is a ploy or
-        some form of distraction, but we would like you to take care of them. '
+      text: After the previous battle, it seems like Auster has withdrawn entirely.
+        We have no idea why this is the case.
       time: 5
       speaker: {fileID: 21300000, guid: 08df3e150d9efaa47a0250c6588ae9e5, type: 3}
       voice: {fileID: 0}
       nextLine: Briefing7
   - name: Briefing7
     line:
-      text: Really, that's all? And here I thought I was signing up for some fun.
+      text: '...'
       time: 5
       speaker: {fileID: 21300000, guid: 519032948b8f34748a868996562e24ce, type: 3}
       voice: {fileID: 0}
       nextLine: Briefing8
   - name: Briefing8
     line:
-      text: We are still unsure of many details of Auster's plans at this point in
-        time. For now, this is all we have to go on.
+      text: Hawk?
       time: 5
       speaker: {fileID: 21300000, guid: 08df3e150d9efaa47a0250c6588ae9e5, type: 3}
       voice: {fileID: 0}
       nextLine: Briefing9
   - name: Briefing9
     line:
-      text: Why not just let me go take a crack right at their capital, huh?
+      text: Just thinking. Might have an idea why, but it's nothing certain.
       time: 5
       speaker: {fileID: 21300000, guid: 519032948b8f34748a868996562e24ce, type: 3}
       voice: {fileID: 0}
       nextLine: Briefing10
   - name: Briefing10
     line:
-      text: No, it is too risky, not without ground troops and other support pilots.
-        Besides, you know we were thoroughly defeated in the first battle. It would
-        be suicide to charge ahead alone.
+      text: Share it anyways.
       time: 5
       speaker: {fileID: 21300000, guid: 08df3e150d9efaa47a0250c6588ae9e5, type: 3}
       voice: {fileID: 0}
       nextLine: Briefing11
   - name: Briefing11
     line:
-      text: Fine, fine, I'll go take care of the bombers. Anything else?
+      text: Nah, it doesn't matter too much. I want to lead this strike. What's the
+        plan?
       time: 5
       speaker: {fileID: 21300000, guid: 519032948b8f34748a868996562e24ce, type: 3}
       voice: {fileID: 0}
       nextLine: Briefing12
   - name: Briefing12
     line:
-      text: It would be appreciated if you keep your attitude in check.
+      text: '...Alright. As you probably know, Auster is surrounded by mountains.
+        Flying over them would be simple, but they have the mountains covered heavily
+        by anti-air cannons. Even you would be shot down in an instant.'
       time: 5
       speaker: {fileID: 21300000, guid: 08df3e150d9efaa47a0250c6588ae9e5, type: 3}
       voice: {fileID: 0}
       nextLine: Briefing13
   - name: Briefing13
     line:
-      text: Too hot to handle?
+      text: Isn't there a canyon that cuts right through them, though?
       time: 5
       speaker: {fileID: 21300000, guid: 519032948b8f34748a868996562e24ce, type: 3}
       voice: {fileID: 0}
       nextLine: Briefing14
   - name: Briefing14
     line:
-      text: Moreso infuriating to handle. You are in the wrong place for casual talk.
+      text: Exactly. This canyon is riskier to fly through, but scouts have reported
+        much less defenses in that region. I suppose they think no one would dare
+        fly there, and so most of what is there is anti-ground.
       time: 5
       speaker: {fileID: 21300000, guid: 08df3e150d9efaa47a0250c6588ae9e5, type: 3}
       voice: {fileID: 0}
       nextLine: Briefing15
   - name: Briefing15
     line:
-      text: Whatever you say, Commander. I'll head out as soon as possible, alright?
+      text: Ah, overconfidence. I know that a bit too well, heh...
       time: 5
       speaker: {fileID: 21300000, guid: 519032948b8f34748a868996562e24ce, type: 3}
       voice: {fileID: 0}
       nextLine: Briefing16
   - name: Briefing16
     line:
-      text: Be careful. I have no idea what you are capable of, but even a mission
-        as simple of this is nothing to get overconfident about.
+      text: Ahem.
       time: 5
       speaker: {fileID: 21300000, guid: 08df3e150d9efaa47a0250c6588ae9e5, type: 3}
       voice: {fileID: 0}
       nextLine: Briefing17
   - name: Briefing17
     line:
-      text: Don't worry about it, I'll be home in time for dinner.
+      text: Yeah yeah, go on.
       time: 5
       speaker: {fileID: 21300000, guid: 519032948b8f34748a868996562e24ce, type: 3}
       voice: {fileID: 0}
       nextLine: Briefing18
   - name: Briefing18
     line:
-      text: Excuse me?
+      text: Your task is to cut through the canyon and take out as many defenses as
+        you can. Our ground troop will be right behind you, so once that is done,
+        proceed directly to the capital.
       time: 5
       speaker: {fileID: 21300000, guid: 08df3e150d9efaa47a0250c6588ae9e5, type: 3}
       voice: {fileID: 0}
       nextLine: Briefing19
   - name: Briefing19
     line:
-      text: "Okay, I\u2019m going, I\u2019m going, sheesh!"
+      text: Gotcha. If all goes well, this is the end, huh?
+      time: 5
+      speaker: {fileID: 21300000, guid: 519032948b8f34748a868996562e24ce, type: 3}
+      voice: {fileID: 0}
+      nextLine: Briefing20
+  - name: Briefing20
+    line:
+      text: I hope so. Do be careful. If we can end this war swiftly, then it will
+        be all the better for both Aquilo and Auster.
+      time: 5
+      speaker: {fileID: 21300000, guid: 08df3e150d9efaa47a0250c6588ae9e5, type: 3}
+      voice: {fileID: 0}
+      nextLine: Briefing21
+  - name: Briefing21
+    line:
+      text: It'll be boring when it ends, but it's better that way sometimes.
+      time: 5
+      speaker: {fileID: 21300000, guid: 519032948b8f34748a868996562e24ce, type: 3}
+      voice: {fileID: 0}
+      nextLine: Briefing22
+  - name: Briefing22
+    line:
+      text: Good luck, Hawk.
+      time: 5
+      speaker: {fileID: 21300000, guid: 08df3e150d9efaa47a0250c6588ae9e5, type: 3}
+      voice: {fileID: 0}
+      nextLine: Briefing23
+  - name: Briefing23
+    line:
+      text: Got no need for luck, heh...
       time: 5
       speaker: {fileID: 21300000, guid: 519032948b8f34748a868996562e24ce, type: 3}
       voice: {fileID: 0}
