@@ -256,6 +256,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
+  targetTags:
+  - Player
+  - Allies
+  - AlliedObjective
   bullet: {fileID: 1657919553941542, guid: 5e8b365525937ed4fa10054f6cf38a44, type: 2}
   rotateDelta: 100
   maxFireAngle: 20

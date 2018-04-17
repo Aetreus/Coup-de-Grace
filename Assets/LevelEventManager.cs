@@ -300,8 +300,14 @@ public class FunctionCall : ISerializationCallbackReceiver
 
     public void UpdateFunctionCall()
     {
-        UnityEngine.Component cp = reference.GetComponent(component);
-        System.Type type = cp.GetType();
+        System.Type type;
+        if (component == "GameObject")
+            type = reference.GetType();
+        else
+        {
+            UnityEngine.Component cp = reference.GetComponent(component);
+            type = cp.GetType();
+        }
         if (isMethod)
             info = type.GetMethod(valueName);
         else if ((prop = type.GetProperty(valueName)) == null)

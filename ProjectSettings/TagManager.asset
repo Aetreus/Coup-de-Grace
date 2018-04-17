@@ -12,6 +12,9 @@ TagManager:
   - Allies
   - AlliedObjective
   - HostileObjective
+  - Collision
+  - BenzinTank
+  - BuildingObjective
   layers:
   - Default
   - TransparentFX

@@ -244,6 +244,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
+  targetTags:
+  - Player
+  - Allies
+  - AlliedObjective
   bullet: {fileID: 1015981174769106, guid: 5f59c449d05f05746bb8a514e6938170, type: 2}
   rotateDelta: 10
   maxFireAngle: 50
@@ -252,6 +256,7 @@ MonoBehaviour:
   bulletSpawnOffset: 20
   playerTag: Player
   aimShotSpeed: 0
+  lockTime: 0
 --- !u!114 &114627589975913136
 MonoBehaviour:
   m_ObjectHideFlags: 1

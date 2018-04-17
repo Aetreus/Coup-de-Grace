@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class TurretAim : MonoBehaviour {
 
     public GameObject target;
+    public List<string> targetTags;
     public GameObject bullet;
     public float rotateDelta;
     public float maxFireAngle;
@@ -32,6 +34,8 @@ public class TurretAim : MonoBehaviour {
 
         if (!target)
         {
+            SelectTarget();
+            if (!target)
             return;
         }
         //get the velocity of the target
@@ -136,6 +140,19 @@ public class TurretAim : MonoBehaviour {
         Quaternion spawnRot = Quaternion.LookRotation(faceVector);
         Instantiate(bullet, spawnLoc, spawnRot);
         //bullet.GetComponent<AntiAirBulletScript>().SetVel(faceVector.normalized * shotSpeed);
+    }
+
+    protected virtual void SelectTarget()
+    {
+        List<GameObject> selectionList = new List<GameObject>();
+        foreach (string tag in targetTags)
+        {
+            selectionList.AddRange(GameObject.FindGameObjectsWithTag(tag));
+        }
+        if (selectionList.Count == 0)
+            target = null;
+        else
+            target = selectionList.OrderBy(g => (transform.position - g.transform.position).sqrMagnitude).First();
     }
 
     public virtual void SeekTarget()
