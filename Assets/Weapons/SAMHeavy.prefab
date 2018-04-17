@@ -24,7 +24,6 @@ GameObject:
   - component: {fileID: 114266908509361102}
   - component: {fileID: 54513382708065136}
   - component: {fileID: 114336828879300546}
-  - component: {fileID: 114867315422699986}
   - component: {fileID: 65587609851810136}
   - component: {fileID: 198590881827506658}
   - component: {fileID: 199381805371644988}
@@ -409,30 +408,6 @@ MonoBehaviour:
     output: 0
   lockCone: 90
   parent: {fileID: 0}
---- !u!114 &114867315422699986
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1524801194323548}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40d5954aa4d23794ab59a615aeebaafd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  N: 3
-  ref_accel: 15
-  ref_speed: 300
-  damage: 12
-  fueltime: 7
-  lifetime: 30
-  dampingTime: 1.5
-  viewCone: 180
-  surfaceController:
-    propConstant: 0.42
-    integConstant: 0.1
-    derivConstant: 0.02
-    output: 0
 --- !u!114 &114895900257333988
 MonoBehaviour:
   m_ObjectHideFlags: 1
