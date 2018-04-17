@@ -722,41 +722,41 @@ MonoBehaviour:
     line:
       text: '...So this is it, huh. Two aces I used to know, both shot down. No ill
         will of course, this is war and all. But I hope they survived.'
-      time: 5
+      time: 9.4
       speaker: {fileID: 21300000, guid: 519032948b8f34748a868996562e24ce, type: 3}
-      voice: {fileID: 0}
+      voice: {fileID: 8300000, guid: d51a708e8c412044690955457408dcbc, type: 3}
       nextLine: Briefing2
   - name: Briefing2
     line:
       text: They'll probably mobilize anyone else who is capable. If those two were
         fighting for Auster, that means there's still Vulture and Sparrow.
-      time: 5
+      time: 7.2
       speaker: {fileID: 21300000, guid: 519032948b8f34748a868996562e24ce, type: 3}
-      voice: {fileID: 0}
+      voice: {fileID: 8300000, guid: 6f7f11c2406e7a74aa868c2d8beee551, type: 3}
       nextLine: Briefing3
   - name: Briefing3
     line:
       text: The top ace of our group and our mentor... they'll be tough to take out.
         But I've got this under control.
-      time: 5
+      time: 6.2
       speaker: {fileID: 21300000, guid: 519032948b8f34748a868996562e24ce, type: 3}
-      voice: {fileID: 0}
+      voice: {fileID: 8300000, guid: 536f012089b6c6a44bf4cb3e8294e420, type: 3}
       nextLine: Briefing4
   - name: Briefing4
     line:
       text: '...Still, why did they all support this coup? Sparrow was never about
         unnecessary violence, so what the hell...?'
-      time: 5
+      time: 6.9
       speaker: {fileID: 21300000, guid: 519032948b8f34748a868996562e24ce, type: 3}
-      voice: {fileID: 0}
+      voice: {fileID: 8300000, guid: ee97bcb861958de4b92d4149a5882cf9, type: 3}
       nextLine: Briefing5
   - name: Briefing5
     line:
       text: '...The capital''s just ahead. No time to think about it. Time to end
         this war.'
-      time: 5
+      time: 5.1
       speaker: {fileID: 21300000, guid: 519032948b8f34748a868996562e24ce, type: 3}
-      voice: {fileID: 0}
+      voice: {fileID: 8300000, guid: 5acb16fb3cc4d56409ebe5596f769e8b, type: 3}
       nextLine: 
 --- !u!1 &1448286221
 GameObject:
@@ -801,7 +801,7 @@ MonoBehaviour:
     previousFired: 1
     oneTime: 1
     reset: 0
-    delay: 20
+    delay: 40
     delayTimer: 0
     subsequentEvent: 2
     predicate:
