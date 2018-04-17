@@ -9,13 +9,30 @@ public class FlightBehavior : MonoBehaviour {
 
     public Vector3 inertiaTensor = new Vector3(0,0,0);
 
-    const float airDensity = 1.225F; //kg/m^2
+    const float slAirDensity = 1.225F; //kg/m^2
+
+    private Dictionary<float,float> airDensitySetpoints = new Dictionary<float, float>() {
+        { -1000, 1.347F},
+        { 0,1.225F},
+        { 1000,1.112F},
+        { 2000,1.007F},
+        { 3000,0.9093F },
+        { 4000,0.8194F},
+        { 5000,0.7364F },
+        { 6000,0.6601F },
+        { 7000,0.5900F },
+        {8000,0.5258F },
+        {9000,0.4671F },
+        {10000,0.4135F },
+        {15000,0.1948F },
+        {20000,0.08891F },
+        {25000,0.04008F } };
 
     public float dragCoeff = 0.04F;
 
     public float wingArea = 56; //m^2
 
-    public float maxThrust = 60000;
+    public float staticThrust = 60000;
 
     //Aerodynamic forces that damp out roll and yaw based on the aircrafts velocity as well.
     public float rollDampeningCoeff = 0.05F;
@@ -65,6 +82,7 @@ public class FlightBehavior : MonoBehaviour {
         {
             inertiaTensor = rb.inertiaTensor;
         }
+        
 	}
 	
 	// Update is called once per frame
@@ -151,7 +169,7 @@ public class FlightBehavior : MonoBehaviour {
     void FixedUpdate ()
     {
 
-        float thrustMagnitude = maxThrust;
+        float thrustMagnitude = staticThrust;
         Vector3 thrust = rb.transform.forward * thrustMagnitude * throttleSetting;
         rb.AddForce(thrust, ForceMode.Force);
 
@@ -169,41 +187,41 @@ public class FlightBehavior : MonoBehaviour {
             sideslip = -sideslip;
         }
 
-        float liftMagnitude = (1F / 2) * airDensity * wingArea * (float)Math.Pow((double)rb.velocity.magnitude,2) * CalculateLiftCoeff();
+        float liftMagnitude = (1F / 2) * AirDensityAdjusted() * wingArea * (float)Math.Pow((double)rb.velocity.magnitude,2) * CalculateLiftCoeff();
         Vector3 liftDirection = Vector3.Cross(rb.velocity, rb.transform.right).normalized;
         Vector3 lift = liftDirection * liftMagnitude;
         rb.AddForce(lift, ForceMode.Force);
 
-        float crossLiftMagnitude = (1F / 2) * airDensity * wingArea * (float)Math.Pow((double)rb.velocity.magnitude, 2) * CalculateCrossLiftCoeff();
+        float crossLiftMagnitude = (1F / 2) * AirDensityAdjusted() * wingArea * (float)Math.Pow((double)rb.velocity.magnitude, 2) * CalculateCrossLiftCoeff();
         Vector3 crossLiftDirection = Vector3.Cross(rb.velocity, rb.transform.up).normalized;
         Vector3 crossLift = crossLiftDirection * crossLiftMagnitude;
         rb.AddForce(crossLift, ForceMode.Force);
 
-        float dragMagnitude = (1F / 2) * airDensity * wingArea * (float)Math.Pow((double)rb.velocity.magnitude, 2) * CalculateDragCoeff();
+        float dragMagnitude = (1F / 2) * AirDensityAdjusted() * wingArea * (float)Math.Pow((double)rb.velocity.magnitude, 2) * CalculateDragCoeff();
         Vector3 drag = rb.velocity.normalized * -1 * dragMagnitude;
         rb.AddForce(drag, ForceMode.Force);
 
         //Unity is left-handed, so all moments need to be inverted to keep constants in line with reference values
-        float cMMagnitude = (1F / 2) * airDensity * wingArea * (float)Math.Pow((double)rb.velocity.magnitude, 2) * CalculatePitchingCoeff() * -1;
+        float cMMagnitude = (1F / 2) * AirDensityAdjusted() * wingArea * (float)Math.Pow((double)rb.velocity.magnitude, 2) * CalculatePitchingCoeff() * -1;
         rb.AddRelativeTorque(cMMagnitude, 0, 0);
 
-        float yMMagnitude = (1F / 2) * airDensity * wingArea * (float)Math.Pow((double)rb.velocity.magnitude, 2) * CalculateYawCoeff() * -1;
+        float yMMagnitude = (1F / 2) * AirDensityAdjusted() * wingArea * (float)Math.Pow((double)rb.velocity.magnitude, 2) * CalculateYawCoeff() * -1;
         rb.AddRelativeTorque(0, yMMagnitude, 0);
 
         Vector3 localAngularVelocity = transform.InverseTransformDirection(rb.angularVelocity);//Why is there no rb.GetRelativeAngularVelocity()?
-        float rollDampMagnitude = (1F / 2) * airDensity * wingArea * (float)Math.Pow((double)rb.velocity.magnitude, 2) * localAngularVelocity.z * rollDampeningCoeff * -1;
+        float rollDampMagnitude = (1F / 2) * AirDensityAdjusted() * wingArea * (float)Math.Pow((double)rb.velocity.magnitude, 2) * localAngularVelocity.z * rollDampeningCoeff * -1;
         rb.AddRelativeTorque(0, 0, rollDampMagnitude);
 
-        float yawDampMagnitude = (1F / 2) * airDensity * wingArea * (float)Math.Pow((double)rb.velocity.magnitude, 2) * localAngularVelocity.y * yawDampeningCoeff * -1;
+        float yawDampMagnitude = (1F / 2) * AirDensityAdjusted() * wingArea * (float)Math.Pow((double)rb.velocity.magnitude, 2) * localAngularVelocity.y * yawDampeningCoeff * -1;
         rb.AddRelativeTorque(0, yawDampMagnitude, 0);
 
-        float eSigMMagnitude = (1F / 2) * airDensity * wingArea * (float)Math.Pow((double)rb.velocity.magnitude, 2) * elevatorControlCoeff * elevatorSetting * -1;
+        float eSigMMagnitude = (1F / 2) * AirDensityAdjusted() * wingArea * (float)Math.Pow((double)rb.velocity.magnitude, 2) * elevatorControlCoeff * elevatorSetting * -1;
         rb.AddRelativeTorque(eSigMMagnitude, 0, 0);
 
-        float rSigMMagnitude = (1F / 2) * airDensity * wingArea * (float)Math.Pow((double)rb.velocity.magnitude, 2) * rudderControlCoeff * rudderSetting * -1;
+        float rSigMMagnitude = (1F / 2) * AirDensityAdjusted() * wingArea * (float)Math.Pow((double)rb.velocity.magnitude, 2) * rudderControlCoeff * rudderSetting * -1;
         rb.AddRelativeTorque(0, rSigMMagnitude, 0);
 
-        float aSigMMMagnitude = (1F / 2) * airDensity * wingArea * (float)Math.Pow((double)rb.velocity.magnitude, 2) * aileronControlCoeff * aileronSetting * -1;
+        float aSigMMMagnitude = (1F / 2) * AirDensityAdjusted() * wingArea * (float)Math.Pow((double)rb.velocity.magnitude, 2) * aileronControlCoeff * aileronSetting * -1;
         rb.AddRelativeTorque(0, 0, aSigMMMagnitude);
     }
 
@@ -277,5 +295,19 @@ public class FlightBehavior : MonoBehaviour {
             }
         }
         throw new ArgumentException("Input not within setpoint range");
+    }
+
+    float AirDensityAdjusted()
+    {
+        List<float> keys = new List<float>(airDensitySetpoints.Keys);
+        for (int i = 1; i < keys.Count; i++)
+        {
+            //Linear interpolation
+            if (keys[i-1] <= rb.position.y && keys[i] >= rb.position.y)
+            {
+                return airDensitySetpoints[keys[i - 1]] + (rb.position.y - keys[i-1]) * (airDensitySetpoints[keys[i]] - airDensitySetpoints[keys[i - 1]]) / (keys[i] - keys[i - 1]);
+            }
+        }
+        throw new InvalidOperationException("Altitude exceeded definied pressure range.");
     }
 }

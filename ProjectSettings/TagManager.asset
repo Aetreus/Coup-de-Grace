@@ -7,6 +7,9 @@ TagManager:
   - Enemy
   - Terrain
   - Building
+  - Node
+  - Missile
+  - Allies
   layers:
   - Default
   - TransparentFX

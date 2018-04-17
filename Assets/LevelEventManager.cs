@@ -119,6 +119,8 @@ public class LevelEventManager : MonoBehaviour {
 
     private Dictionary<string, bool> living = new Dictionary<string, bool>();
 
+    private UnityEngine.AsyncOperation sceneLoad;
+
     // Use this for initialization
     void Start () {
 		foreach(Event e in events)
@@ -205,14 +207,36 @@ public class LevelEventManager : MonoBehaviour {
         return state;
     }
 
-    public void TransitionLevel(string levelName)
+    static public void TransitionLevel(string levelName)
     {
         SceneManager.LoadScene(levelName);
+    }
+
+    public void TransitionLevelDelayed(string levelName)
+    {
+        sceneLoad = SceneManager.LoadSceneAsync(levelName);
+        sceneLoad.allowSceneActivation = false;
+    }
+
+    public void AllowLevelTransition()
+    {
+        if(sceneLoad != null)
+            sceneLoad.allowSceneActivation = true;
     }
 
     public void ResetLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public bool OnButtonUp(string buttonName)
+    {
+        return Input.GetButtonUp(buttonName);
+    }
+
+    public void Dummy()
+    {
+
     }
 }
 
@@ -276,7 +300,8 @@ public class FunctionCall : ISerializationCallbackReceiver
 
     public void UpdateFunctionCall()
     {
-        System.Type type = reference.GetComponent(component).GetType();
+        UnityEngine.Component cp = reference.GetComponent(component);
+        System.Type type = cp.GetType();
         if (isMethod)
             info = type.GetMethod(valueName);
         else if ((prop = type.GetProperty(valueName)) == null)
