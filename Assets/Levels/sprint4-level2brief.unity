@@ -722,69 +722,69 @@ MonoBehaviour:
     line:
       text: 'So what now? Those bombers are done for, but it sounds like there''s
         a bit more to do. '
-      time: 5
+      time: 5.2
       speaker: {fileID: 21300000, guid: 519032948b8f34748a868996562e24ce, type: 3}
-      voice: {fileID: 0}
+      voice: {fileID: 8300000, guid: 1bafeeda40e58b4488c73e16610f3474, type: 3}
       nextLine: Briefing2
   - name: Briefing2
     line:
       text: Correct. We were able to figure out where the bombers were coming from.
         It seems like that Auster has taken over an airbase not too far from Aquilo.
-      time: 5
+      time: 10.3
       speaker: {fileID: 21300000, guid: 08df3e150d9efaa47a0250c6588ae9e5, type: 3}
-      voice: {fileID: 0}
+      voice: {fileID: 8300000, guid: 91fa67344e3c14749bc4d7bf7d11d7e6, type: 3}
       nextLine: Briefing3
   - name: Briefing3
     line:
       text: I think I know where you mean, been there a few times myself for training.
         Lemme guess, I'm gonna have to help bomb it to the ground?
-      time: 5
+      time: 7.4
       speaker: {fileID: 21300000, guid: 519032948b8f34748a868996562e24ce, type: 3}
-      voice: {fileID: 0}
+      voice: {fileID: 8300000, guid: e81d4e70848e4eb47a60156766028619, type: 3}
       nextLine: Briefing4
   - name: Briefing4
     line:
       text: Something along those lines, yes. We will be mobilizing our forces within
         the week. When that occurs, you will escort and assist our forces in the battle.
-      time: 5
+      time: 10.4
       speaker: {fileID: 21300000, guid: 08df3e150d9efaa47a0250c6588ae9e5, type: 3}
-      voice: {fileID: 0}
+      voice: {fileID: 8300000, guid: e3192e2689a29914f88937b58a649b28, type: 3}
       nextLine: Briefing5
   - name: Briefing5
     line:
       text: Well, sounds a bit more interesting at least. Shame about that place,
         but that's how it goes sometimes.
-      time: 5
+      time: 6.6
       speaker: {fileID: 21300000, guid: 519032948b8f34748a868996562e24ce, type: 3}
-      voice: {fileID: 0}
+      voice: {fileID: 8300000, guid: 7e5fc29ce39045e41a9292e8bb4272b3, type: 3}
       nextLine: Briefing6
   - name: Briefing6
     line:
       text: Just make sure you are prepared, Hawk.
-      time: 5
+      time: 3.1
       speaker: {fileID: 21300000, guid: 08df3e150d9efaa47a0250c6588ae9e5, type: 3}
-      voice: {fileID: 0}
+      voice: {fileID: 8300000, guid: 055ffd5f42486e94aa25555a9da0799f, type: 3}
       nextLine: Briefing7
   - name: Briefing7
     line:
       text: 'Aye, I''m always prepared. Just let me know when we''re moving out. '
-      time: 5
+      time: 4.4
       speaker: {fileID: 21300000, guid: 519032948b8f34748a868996562e24ce, type: 3}
-      voice: {fileID: 0}
+      voice: {fileID: 8300000, guid: b42a8b99a1a248a4c9c8f37030263fdf, type: 3}
       nextLine: Briefing8
   - name: Briefing8
     line:
       text: I will. Good luck on this mission.
-      time: 5
+      time: 3
       speaker: {fileID: 21300000, guid: 08df3e150d9efaa47a0250c6588ae9e5, type: 3}
-      voice: {fileID: 0}
+      voice: {fileID: 8300000, guid: 01ed4c81cc997dc4d9da1cbb925ded0b, type: 3}
       nextLine: Briefing9
   - name: Briefing9
     line:
       text: No luck required, just pure skill.
-      time: 5
+      time: 4.4
       speaker: {fileID: 21300000, guid: 519032948b8f34748a868996562e24ce, type: 3}
-      voice: {fileID: 0}
+      voice: {fileID: 8300000, guid: 7ba7415f5d6e72d44a8da9a722b87a9d, type: 3}
       nextLine: 
 --- !u!1 &1448286221
 GameObject:
@@ -829,7 +829,7 @@ MonoBehaviour:
     previousFired: 1
     oneTime: 1
     reset: 0
-    delay: 20
+    delay: 60
     delayTimer: 0
     subsequentEvent: 2
     predicate:
