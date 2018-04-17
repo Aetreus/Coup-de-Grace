@@ -10,6 +10,9 @@ TagManager:
   - Node
   - Missile
   - Allies
+  - Collision
+  - HostileObjective
+  - AlliedObjective
   layers:
   - Default
   - TransparentFX
