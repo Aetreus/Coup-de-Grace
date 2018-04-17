@@ -12,6 +12,7 @@ public class FlightBehavior : MonoBehaviour {
     const float slAirDensity = 1.225F; //kg/m^2
 
     private Dictionary<float,float> airDensitySetpoints = new Dictionary<float, float>() {
+        { -10000, 3.3F },
         { -1000, 1.347F},
         { 0,1.225F},
         { 1000,1.112F},
