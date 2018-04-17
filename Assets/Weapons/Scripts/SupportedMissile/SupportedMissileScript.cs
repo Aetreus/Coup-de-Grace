@@ -15,10 +15,10 @@ public class SupportedMissileScript : PropNav {
 
     // Update is called once per frame
     protected override void Update() {
-        if (parent == null && this.transform.parent.gameObject != null)
+        /*if (parent == null && this.transform.parent.gameObject != null)
         {
             parent = this.transform.parent.gameObject;
-        }
+        }*/
         if (parent != null && Target != null)
         {
             float angle = Vector3.Angle(parent.transform.forward, Target.transform.position - parent.transform.position);

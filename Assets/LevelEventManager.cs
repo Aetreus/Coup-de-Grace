@@ -100,7 +100,10 @@ public class LevelEventManager : MonoBehaviour {
         {
             if(CheckConditions())
             {
-                predicate.info.Invoke(predicate.reference.GetComponent(predicate.component),predicate.parameters);
+                if(predicate.component == "GameObject")
+                    predicate.info.Invoke(predicate.reference, predicate.parameters);
+                else
+                    predicate.info.Invoke(predicate.reference.GetComponent(predicate.component),predicate.parameters);
                 fired = true;
                 reset = true;
                 delayTimer = delay;

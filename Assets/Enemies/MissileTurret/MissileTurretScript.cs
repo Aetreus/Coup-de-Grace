@@ -5,6 +5,7 @@ using UnityEngine;
 public class MissileTurretScript : TurretAim {
 
     private PNSpawner spawner;
+    public float initialVelocity;
     public float aimShotSpeed;
     public float lockTime;
 
@@ -31,6 +32,11 @@ public class MissileTurretScript : TurretAim {
 
     protected override void Fire()
     {
-        spawner.Create(target);        
+        Vector3 spawnLoc = transform.position + faceVector.normalized * bulletSpawnOffset;
+        Quaternion spawnRot = Quaternion.LookRotation(faceVector);
+        GameObject created = Instantiate(bullet, spawnLoc, spawnRot);
+        created.GetComponent<Rigidbody>().velocity = faceVector.normalized * initialVelocity;
+        created.GetComponent<PropNav>().Target = target;
+        created.GetComponent<ProximityExplodeScript>().hostileTag = target.tag;
     }
 }

@@ -13,6 +13,7 @@ public class TurretAim : MonoBehaviour {
     public float maxFireDist;
     public float fireCooldown;
     public float bulletSpawnOffset;
+    public float retargetTime;
     public string playerTag;
     
     protected float shotSpeed;
@@ -21,11 +22,12 @@ public class TurretAim : MonoBehaviour {
 
     protected Vector3 faceVector;
     protected float timer = 0;
+    protected float retargetTimer = 0;
 
     // Use this for initialization
     protected virtual void Start () {
         faceVector = transform.forward.normalized;
-
+        retargetTimer = retargetTime;
         shotSpeed = bullet.GetComponent<ArtillaryShellScript>().speed;
     }
 	
@@ -62,6 +64,13 @@ public class TurretAim : MonoBehaviour {
                 //fire and reset the cooldown
                 Fire();
                 timer = fireCooldown;
+            }
+            else
+                retargetTimer -= Time.deltaTime;
+            if (retargetTimer < 0)
+            {
+                SelectTarget();
+                retargetTimer = retargetTime;
             }
         }
         else
