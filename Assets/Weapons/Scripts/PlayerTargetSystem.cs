@@ -77,21 +77,22 @@ public class PlayerTargetSystem : MonoBehaviour {
         }
         foreach (string tag in iconSpec.Keys)
         {
+            GameObject[] e = GameObject.FindGameObjectsWithTag(tag);
+            while (targetIcons[tag].Count < e.Length)
+                targetIcons[tag].Add(Instantiate(iconSpec[tag], canvas.transform));
             enemies.AddRange(GameObject.FindGameObjectsWithTag(tag));
-        }
-        for (int i = 0; i < enemies.Count; i++)
-        {
-            targetIcons[enemies[i].tag].Add(Instantiate(iconSpec[enemies[i].tag], canvas.transform));
         }
     }
 
     // Update is called once per frame
     void Update ()
     {
-        GameObject[] e = GameObject.FindGameObjectsWithTag(hostileTag);
-        enemies = new List<GameObject>(e);
+        enemies = new List<GameObject>();
         foreach (string tag in iconSpec.Keys)
         {
+            GameObject[] e = GameObject.FindGameObjectsWithTag(tag);
+            while (targetIcons[tag].Count < e.Length)
+                targetIcons[tag].Add(Instantiate(iconSpec[tag], canvas.transform));
             enemies.AddRange(GameObject.FindGameObjectsWithTag(tag));
         }
         enemies.Sort(SortByAngle);

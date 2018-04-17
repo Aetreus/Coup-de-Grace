@@ -1454,12 +1454,12 @@ MonoBehaviour:
   specInit:
   - tag: Enemy
     icon: {fileID: 1661510180886782, guid: b5887845d3719ba4e9d9e436a5fcbd9e, type: 2}
+  - tag: HostileObjective
+    icon: {fileID: 1472556420063468, guid: 7f17d7998c4fbc04b8e9565e097b38c1, type: 2}
   - tag: Allies
     icon: {fileID: 1886144066903364, guid: 1aa0c06a48792be4995d27751b9d156a, type: 2}
   - tag: AlliedObjective
     icon: {fileID: 1633238263958704, guid: eeebb78631786cf4c8635ed846dea9ef, type: 2}
-  - tag: HostileObjective
-    icon: {fileID: 1472556420063468, guid: 7f17d7998c4fbc04b8e9565e097b38c1, type: 2}
   referenceDistance: 4000
   logBase: 4
   targetPrefab: {fileID: 1661510180886782, guid: b5887845d3719ba4e9d9e436a5fcbd9e,

@@ -700,21 +700,10 @@ MonoBehaviour:
   - condition:
       reference: {fileID: 373668333}
       component: LevelEventManager
-      valueName: OnMultipleObjectsDie
+      valueName: IsObjectWithTagAlive
       isMethod: 1
       paramStrings:
-      - System.String#Bomber
-      - System.String#Bomber1
-      - System.String#Bomber2
-      - System.String#Bomber3
-      - System.String#Bomber4
-      - System.String#Bomber5
-      - System.String#Bomber6
-      - System.String#Bomber17
-      - System.String#Bomber8
-      - System.String#Bomber9
-      - System.String#Bomber10
-      - System.String#Bomber11
+      - System.String#HostileObjective
     isConditionBoolean: 1
     invertCondition: 0
     min: 0
@@ -2212,7 +2201,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4654294536136784, guid: df6bd1004b6bea74a9c6072f3afa6241, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -5205
+      value: -10484
       objectReference: {fileID: 0}
     - target: {fileID: 4654294536136784, guid: df6bd1004b6bea74a9c6072f3afa6241, type: 2}
       propertyPath: m_LocalPosition.y
@@ -2220,7 +2209,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4654294536136784, guid: df6bd1004b6bea74a9c6072f3afa6241, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -14448
+      value: -11755
       objectReference: {fileID: 0}
     - target: {fileID: 4654294536136784, guid: df6bd1004b6bea74a9c6072f3afa6241, type: 2}
       propertyPath: m_LocalRotation.x
@@ -2240,7 +2229,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4654294536136784, guid: df6bd1004b6bea74a9c6072f3afa6241, type: 2}
       propertyPath: m_RootOrder
-      value: 32
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 114001547825267288, guid: df6bd1004b6bea74a9c6072f3afa6241,
         type: 2}
