@@ -110,19 +110,19 @@ public class LevelEventManager : MonoBehaviour {
                 }
                 else
                 {
-                    if (condition.prop != null)
+                    if (predicate.prop != null)
                     {
                         if (predicate.component == "GameObject")
-                            condition.prop.SetValue(predicate.reference, predicate.parameters[0], null);
+                            predicate.prop.SetValue(predicate.reference, predicate.parameters[0], null);
                         else
-                            condition.prop.SetValue(predicate.reference.GetComponent(predicate.component), predicate.parameters[0],null);
+                            predicate.prop.SetValue(predicate.reference.GetComponent(predicate.component), predicate.parameters[0],null);
                     }
-                    else if (condition.field != null)
+                    else if (predicate.field != null)
                     {
                         if (predicate.component == "GameObject")
-                            condition.field.SetValue(predicate.reference, predicate.parameters[0]);
+                            predicate.field.SetValue(predicate.reference, predicate.parameters[0]);
                         else
-                            condition.field.SetValue(predicate.reference.GetComponent(predicate.component), predicate.parameters[0]);
+                            predicate.field.SetValue(predicate.reference.GetComponent(predicate.component), predicate.parameters[0]);
                     }
                 }
                 fired = true;
@@ -190,7 +190,8 @@ public class LevelEventManager : MonoBehaviour {
 
     public bool IsObjectWithTagAlive(string tag)
     {
-        if (GameObject.FindGameObjectWithTag(tag) != null)
+        GameObject g = GameObject.FindGameObjectWithTag(tag);
+        if (g != null)
             return true;
         return false;
     }
