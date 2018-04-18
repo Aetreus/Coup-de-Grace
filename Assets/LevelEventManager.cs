@@ -237,7 +237,7 @@ public class LevelEventManager : MonoBehaviour {
         return state;
     }
 
-    static public void TransitionLevel(string levelName)
+    public void TransitionLevel(string levelName)
     {
         SceneManager.LoadScene(levelName);
     }

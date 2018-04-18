@@ -493,7 +493,7 @@ GameObject:
   - component: {fileID: 73773114}
   m_Layer: 0
   m_Name: Terrain
-  m_TagString: Untagged
+  m_TagString: Terrain
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -2362,6 +2362,11 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 284954075}
   m_Mesh: {fileID: 4300000, guid: 42086c56f57ac5645ae5a1d9ab9a919c, type: 3}
+--- !u!1 &293077505 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1128966507142268, guid: f300ca3c4e7eadc41a6a7c96ddc547cb,
+    type: 2}
+  m_PrefabInternal: {fileID: 1406132340}
 --- !u!1 &307050182
 GameObject:
   m_ObjectHideFlags: 0
@@ -3092,7 +3097,7 @@ MonoBehaviour:
     delayTimer: 0
     subsequentEvent: 0
     predicate:
-      reference: {fileID: 0}
+      reference: {fileID: 293077505}
       component: DialogueController
       valueName: PlayLineSeries
       isMethod: 1
@@ -3117,7 +3122,7 @@ MonoBehaviour:
     delayTimer: 0
     subsequentEvent: 2
     predicate:
-      reference: {fileID: 0}
+      reference: {fileID: 293077505}
       component: DialogueController
       valueName: PlayLineSeries
       isMethod: 1
@@ -3142,7 +3147,7 @@ MonoBehaviour:
     delayTimer: 0
     subsequentEvent: 0
     predicate:
-      reference: {fileID: 0}
+      reference: {fileID: 373668333}
       component: LevelEventManager
       valueName: TransitionLevel
       isMethod: 1
@@ -3167,7 +3172,7 @@ MonoBehaviour:
     delayTimer: 0
     subsequentEvent: 0
     predicate:
-      reference: {fileID: 0}
+      reference: {fileID: 373668333}
       component: LevelEventManager
       valueName: TransitionLevel
       isMethod: 1
@@ -3197,7 +3202,7 @@ MonoBehaviour:
     delayTimer: 0
     subsequentEvent: 0
     predicate:
-      reference: {fileID: 0}
+      reference: {fileID: 373668333}
       component: LevelEventManager
       valueName: TransitionLevel
       isMethod: 1
@@ -3222,7 +3227,7 @@ MonoBehaviour:
     delayTimer: 180
     subsequentEvent: 2
     predicate:
-      reference: {fileID: 0}
+      reference: {fileID: 293077505}
       component: DialogueController
       valueName: PlayLineSeries
       isMethod: 1
@@ -3544,7 +3549,7 @@ GameObject:
   - component: {fileID: 423301193}
   m_Layer: 0
   m_Name: Terrain (2)
-  m_TagString: Untagged
+  m_TagString: Terrain
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -4392,7 +4397,7 @@ GameObject:
   - component: {fileID: 621215504}
   m_Layer: 0
   m_Name: Terrain (3)
-  m_TagString: Untagged
+  m_TagString: Terrain
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -8223,7 +8228,7 @@ GameObject:
   - component: {fileID: 1310619941}
   m_Layer: 0
   m_Name: Terrain (1)
-  m_TagString: Untagged
+  m_TagString: Terrain
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
