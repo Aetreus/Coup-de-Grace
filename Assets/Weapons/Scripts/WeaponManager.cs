@@ -3,16 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-[RequireComponent( typeof(PlayerTargetSystem))]
 public class WeaponManager : MonoBehaviour {
     [System.Serializable]
     public class OnFire : UnityEvent<GameObject> { }
     [SerializeField]
     public OnFire onFire = new OnFire();
+    
 
-    private PlayerTargetSystem pt;
-
-    public int maximumShots = 2;
+    public int maximumShots { get {return _maximumShots;} set { _maximumShots = value; ResetLoading(); }}
 
     public float reloadTime = 2.0F;
 
@@ -22,10 +20,11 @@ public class WeaponManager : MonoBehaviour {
 
     public float shots { get { return current_shots; } }
 
+    private int _maximumShots = 2;
+
 	// Use this for initialization
 	void Start () {
-
-        pt = GetComponent<PlayerTargetSystem>();
+        
 
         loadingTime = new List<float>();
 
@@ -36,6 +35,16 @@ public class WeaponManager : MonoBehaviour {
 
         current_shots = maximumShots;
 	}
+
+    void ResetLoading()
+    {
+        loadingTime = new List<float>();
+        for (int i = 0; i < maximumShots; i++)
+        {
+            loadingTime.Add(0.0F);
+        }
+        current_shots = 0;
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -50,7 +59,7 @@ public class WeaponManager : MonoBehaviour {
         }
 	}
 
-    public void Fire()
+    public void Fire(PlayerTargetSystem pt)
     {
         if (current_shots >= 1 && pt.Locked && pt.Target != null)
         {

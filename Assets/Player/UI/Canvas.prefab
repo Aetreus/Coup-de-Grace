@@ -783,8 +783,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b5f5190bffc28142b67c214a477f418, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sourceObject: {fileID: 1118712050718116, guid: df6bd1004b6bea74a9c6072f3afa6241,
-    type: 2}
+  sourceObject: {fileID: 0}
   referenceDistance: 4000
   logBase: 4
 --- !u!114 &114104954535453122
@@ -1511,94 +1510,197 @@ MonoBehaviour:
   linesInit:
   - name: Opening1
     line:
-      text: Hawk, do you read me loud and clear?
-      time: 3.1
-      speaker: {fileID: 21300000, guid: 08df3e150d9efaa47a0250c6588ae9e5, type: 3}
-      voice: {fileID: 8300000, guid: b82be7e99ffeb1245af40f6b15d83296, type: 3}
+      text: Damn, we just got here and we're already getting lit up pretty fast.
+      time: 4.8
+      speaker: {fileID: 21300000, guid: 519032948b8f34748a868996562e24ce, type: 3}
+      voice: {fileID: 8300000, guid: 4f4ec78eb396b364d944d8cd23834abe, type: 3}
       nextLine: Opening2
   - name: Opening2
     line:
-      text: Yeah, yeah, and here I thought I could get away from Mr. No Fun.
-      time: 4.6
-      speaker: {fileID: 21300000, guid: 519032948b8f34748a868996562e24ce, type: 3}
-      voice: {fileID: 8300000, guid: bd4fa6d1b61b9524c9ba9598d6c01372, type: 3}
+      text: It seems their defenses are stronger than we thought. I would recommend
+        a retreat, but-
+      time: 6
+      speaker: {fileID: 21300000, guid: 08df3e150d9efaa47a0250c6588ae9e5, type: 3}
+      voice: {fileID: 8300000, guid: d46f5c9815af7764ab31cde944e8609e, type: 3}
       nextLine: Opening3
   - name: Opening3
     line:
-      text: Excuse me, but you are on a mission for us, I do need to give orders and
-        relay imporant information when it arises.
-      time: 8.2
-      speaker: {fileID: 21300000, guid: 08df3e150d9efaa47a0250c6588ae9e5, type: 3}
-      voice: {fileID: 8300000, guid: d78ba3f97d0aacd48b1db203bdd36e60, type: 3}
-      nextLine: Opening41
+      text: Nah, we've got it handled still. Just because it's a poor start doesn't
+        mean it'll be a poor finish, yeah?
+      time: 6.3
+      speaker: {fileID: 21300000, guid: 519032948b8f34748a868996562e24ce, type: 3}
+      voice: {fileID: 8300000, guid: 5e77bc133013fc04487ca653d7ac65e3, type: 3}
+      nextLine: Opening4
   - name: Opening4
     line:
-      text: What I don't get is why they don't have an interceptor out keeping an
-        eye on 'em. They must be overconfident of just plain stupid.
-      time: 4.8
-      speaker: {fileID: 21300000, guid: 519032948b8f34748a868996562e24ce, type: 3}
-      voice: {fileID: 8300000, guid: 935e4ba4da784264aa4c6dfc8de96e1f, type: 3}
+      text: We will not last long as it is with their planes in the sky. From our
+        first battle, we know their air force is not to be trifled with.
+      time: 7.3
+      speaker: {fileID: 21300000, guid: 08df3e150d9efaa47a0250c6588ae9e5, type: 3}
+      voice: {fileID: 8300000, guid: 74344c95dd43b8a48950d81e6077bd7c, type: 3}
       nextLine: Opening5
   - name: Opening5
     line:
-      text: Whatever the reason we do not know. Just carry out the mission.
-      time: 6.8
+      text: Well "trifle" I will, let's see how tough these nuts are to crack.
+      time: 5
       speaker: {fileID: 21300000, guid: 08df3e150d9efaa47a0250c6588ae9e5, type: 3}
-      voice: {fileID: 8300000, guid: 97be08f59505eb7479f2ae0b0943f419, type: 3}
-      nextLine: Opening6
-  - name: Opening6
+      voice: {fileID: 8300000, guid: a2c9416608801e446844e881c21edde8, type: 3}
+      nextLine: 
+  - name: Mid1
     line:
-      text: Alright then. Guess this is as good time as any to get warmed back up
-        on this.
-      time: 5.5
+      text: This guy looks to be a lot tougher than the rest. I figured they had some
+        good pilots, but this has to be an ace of some sort.
+      time: 6.6
       speaker: {fileID: 21300000, guid: 519032948b8f34748a868996562e24ce, type: 3}
-      voice: {fileID: 8300000, guid: 5d606922fcb19cc4f804c4d83b14c45f, type: 3}
+      voice: {fileID: 8300000, guid: 5108c7b408814904bbbe55efcb32104d, type: 3}
+      nextLine: Mid2
+  - name: Mid2
+    line:
+      text: "Ha, you\u2019ve got that right!"
+      time: 3.8
+      speaker: {fileID: 21300000, guid: b17563a1b75467142b76cad8f2684610, type: 3}
+      voice: {fileID: 8300000, guid: 160c19945ed2e4d49af9d50f657bd99b, type: 3}
+      nextLine: Mid3
+  - name: Mid3
+    line:
+      text: Huh? How'd you get ahold of this line?
+      time: 3.6
+      speaker: {fileID: 21300000, guid: 519032948b8f34748a868996562e24ce, type: 3}
+      voice: {fileID: 8300000, guid: 32f9f40bd5faeb246ae49fa4f546211c, type: 3}
+      nextLine: Mid4
+  - name: Mid4
+    line:
+      text: 'Come on, you kept the same radio signal from back in the academy. Too
+        lazy to change it? '
+      time: 6.4
+      speaker: {fileID: 21300000, guid: b17563a1b75467142b76cad8f2684610, type: 3}
+      voice: {fileID: 8300000, guid: 8837b81829a6e4e4db551f39f64ee451, type: 3}
+      nextLine: Mid5
+  - name: Mid5
+    line:
+      text: Crap... yeah, now I remember. Trigger-happy Tanager, you're still around?
+      time: 6.5
+      speaker: {fileID: 21300000, guid: 519032948b8f34748a868996562e24ce, type: 3}
+      voice: {fileID: 8300000, guid: c72537f1acf4de748b0b9e884ff4543c, type: 3}
+      nextLine: Mid6
+  - name: Mid6
+    line:
+      text: Sure am! Been itching for a war ever since training. Those were some days,
+        weren't they Hawk?
+      time: 7.5
+      speaker: {fileID: 21300000, guid: b17563a1b75467142b76cad8f2684610, type: 3}
+      voice: {fileID: 8300000, guid: 23b02b4057f73c642ad82c98f10f39f2, type: 3}
+      nextLine: Mid7
+  - name: Mid7
+    line:
+      text: Well we didn't do a whole lot of fighting, but you were always eager to
+        take me down, you're too easy to read.
+      time: 5.7
+      speaker: {fileID: 21300000, guid: 519032948b8f34748a868996562e24ce, type: 3}
+      voice: {fileID: 8300000, guid: 5e8292d0264bb6b499c126bd0a09e1ff, type: 3}
+      nextLine: Mid8
+  - name: Mid8
+    line:
+      text: Hahaha, I suppose so! Now then, let's see which of us really was the best
+        of the academy!
+      time: 7.4
+      speaker: {fileID: 21300000, guid: b17563a1b75467142b76cad8f2684610, type: 3}
+      voice: {fileID: 8300000, guid: 1f043c1ae789f5e499c0fb5013223607, type: 3}
+      nextLine: Mid9
+  - name: Mid9
+    line:
+      text: Heh, let the games begin, then.
+      time: 3.8
+      speaker: {fileID: 21300000, guid: 519032948b8f34748a868996562e24ce, type: 3}
+      voice: {fileID: 8300000, guid: 812f222a229404740a07c9c2d53ecbb3, type: 3}
       nextLine: 
   - name: Ending1
     line:
-      text: And that's that. Coming on home.
-      time: 3.3
-      speaker: {fileID: 21300000, guid: 519032948b8f34748a868996562e24ce, type: 3}
-      voice: {fileID: 8300000, guid: 0a37893855a867442a94f77922b2b483, type: 3}
+      text: Damn you Hawk! I swear I'll kill you!
+      time: 3.9
+      speaker: {fileID: 21300000, guid: b17563a1b75467142b76cad8f2684610, type: 3}
+      voice: {fileID: 8300000, guid: e388208cc5e6bef4bac524fc43bf3b7f, type: 3}
       nextLine: Ending2
   - name: Ending2
     line:
-      text: Good work. This should halt their initial advance, at least for some time.
-        There is no telling if they are going to launch another attack, so once you
-        land, be on standby for further orders.
-      time: 11
-      speaker: {fileID: 21300000, guid: 08df3e150d9efaa47a0250c6588ae9e5, type: 3}
-      voice: {fileID: 8300000, guid: 7218c08fc904db141823bbb6e8d4e0f0, type: 3}
+      text: Sorry man, but when you play with fire, you simply get burnt.
+      time: 4.1
+      speaker: {fileID: 21300000, guid: 519032948b8f34748a868996562e24ce, type: 3}
+      voice: {fileID: 8300000, guid: 89bb765d41fa51e44ab5c33147c5901a, type: 3}
       nextLine: Ending3
   - name: Ending3
     line:
-      text: Yeah, yeah... man, been awhile since I've had to take orders. I don't
-        miss having to either.
-      time: 5.5
+      text: '*static*'
+      time: 3.5
+      speaker: {fileID: 21300000, guid: b17563a1b75467142b76cad8f2684610, type: 3}
+      voice: {fileID: 8300000, guid: c6ebd33f158992e45bfcc886c2407b41, type: 3}
+      nextLine: Ending4
+  - name: Ending4
+    line:
+      text: Well, that's him down. That ought to shake things up for everyone else.
+        Hey Commander, you heard all that, didn't you?
+      time: 7.2
       speaker: {fileID: 21300000, guid: 519032948b8f34748a868996562e24ce, type: 3}
-      voice: {fileID: 8300000, guid: aefa8f448d0b80c45b264beb52da9e1c, type: 3}
+      voice: {fileID: 8300000, guid: b7080e0b4be29f542bc744ea7576d506, type: 3}
+      nextLine: Ending5
+  - name: Ending5
+    line:
+      text: I have. We had not had time to look into your background, but given you
+        knew that enemy ace, I suppose you are an Austeran ace?
+      time: 10.3
+      speaker: {fileID: 21300000, guid: 08df3e150d9efaa47a0250c6588ae9e5, type: 3}
+      voice: {fileID: 8300000, guid: 013052707e26c2c4c9bc92270eb467d3, type: 3}
+      nextLine: Ending6
+  - name: Ending6
+    line:
+      text: Used to be at least. Wasn't too fond of their own plan, so I bailed.
+      time: 4.6
+      speaker: {fileID: 21300000, guid: 519032948b8f34748a868996562e24ce, type: 3}
+      voice: {fileID: 8300000, guid: 2ec3e209428a7764d9021af7e3de38ee, type: 3}
+      nextLine: Ending7
+  - name: Ending7
+    line:
+      text: So you say, but can we trust that word?
+      time: 3.9
+      speaker: {fileID: 21300000, guid: 08df3e150d9efaa47a0250c6588ae9e5, type: 3}
+      voice: {fileID: 8300000, guid: 33e0d8e776c84624a8e5769200c1fb60, type: 3}
+      nextLine: Ending8
+  - name: Ending8
+    line:
+      text: Despite my attitude I've followed orders so far, yeah? Helping take this
+        base ought to prove I'm against them this time, right?
+      time: 5.8
+      speaker: {fileID: 21300000, guid: 519032948b8f34748a868996562e24ce, type: 3}
+      voice: {fileID: 8300000, guid: 5e8292d0264bb6b499c126bd0a09e1ff, type: 3}
+      nextLine: Ending9
+  - name: Ending9
+    line:
+      text: Hmm... for the time being we'll believe you. But we're keeping an eye
+        on you.
+      time: 6.6
+      speaker: {fileID: 21300000, guid: 08df3e150d9efaa47a0250c6588ae9e5, type: 3}
+      voice: {fileID: 8300000, guid: cb678934e2e962b41b8383a7c9d876d4, type: 3}
+      nextLine: Ending10
+  - name: Ending10
+    line:
+      text: Whatever helps you sleep better at night.
+      time: 3.8
+      speaker: {fileID: 21300000, guid: 519032948b8f34748a868996562e24ce, type: 3}
+      voice: {fileID: 8300000, guid: 812f222a229404740a07c9c2d53ecbb3, type: 3}
       nextLine: 
-  - name: Opening41
+  - name: ObjChange1
     line:
-      text: Fine, fine. So those bogies over there are what I'm here for, yeah?
-      time: 4.2
+      text: Whatever helps you sleep better at night.
+      time: 3.8
       speaker: {fileID: 21300000, guid: 519032948b8f34748a868996562e24ce, type: 3}
-      voice: {fileID: 8300000, guid: a872206500ab1ea40835f5fc59f62e4f, type: 3}
-      nextLine: Opening42
-  - name: Opening42
+      voice: {fileID: 8300000, guid: 812f222a229404740a07c9c2d53ecbb3, type: 3}
+      nextLine: 
+  - name: ObjChange2
     line:
-      text: Yeah, yeah... man, been awhile since I've had to take orders. I don't
-        miss having to either.
-      time: 5.6
-      speaker: {fileID: 21300000, guid: 08df3e150d9efaa47a0250c6588ae9e5, type: 3}
-      voice: {fileID: 8300000, guid: 177ed2a6091ff0c408e039812a474d01, type: 3}
-      nextLine: Opening4
-  - name: Loss1
-    line:
-      text: Hawk, you've lost one of the base buildings. Don't lose another.
-      time: 5.6
-      speaker: {fileID: 21300000, guid: 08df3e150d9efaa47a0250c6588ae9e5, type: 3}
-      voice: {fileID: 0}
+      text: Whatever helps you sleep better at night.
+      time: 3.8
+      speaker: {fileID: 21300000, guid: 519032948b8f34748a868996562e24ce, type: 3}
+      voice: {fileID: 8300000, guid: 812f222a229404740a07c9c2d53ecbb3, type: 3}
       nextLine: 
 --- !u!114 &114806195905068340
 MonoBehaviour:
@@ -2006,10 +2108,10 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 224987644888831614}
   - {fileID: 224173288231350318}
   - {fileID: 224623534270641522}
   - {fileID: 224176197896166884}
-  - {fileID: 224987644888831614}
   - {fileID: 224089110106277568}
   m_Father: {fileID: 224805653806363832}
   m_RootOrder: 11
@@ -2179,7 +2281,7 @@ RectTransform:
   m_Children:
   - {fileID: 224026518744848608}
   m_Father: {fileID: 224025648839073590}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2216,7 +2318,7 @@ RectTransform:
   m_Children:
   - {fileID: 224203741379760252}
   m_Father: {fileID: 224025648839073590}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2366,7 +2468,7 @@ RectTransform:
   m_Children:
   - {fileID: 224723507771628660}
   m_Father: {fileID: 224025648839073590}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2561,7 +2663,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 224025648839073590}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

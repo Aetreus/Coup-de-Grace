@@ -51,7 +51,7 @@ public class BomberScript : MonoBehaviour {
         velocity = travel_direction.normalized * speed;
 
         List<GameObject> targets = new List<GameObject>(GameObject.FindGameObjectsWithTag(target_tag));
-        if (targets != null)
+        if (targets != null && targets.Count > 0)
         {
             target = targets.OrderBy(g => (g.transform.position - transform.position).sqrMagnitude).First();
         }
@@ -63,7 +63,7 @@ public class BomberScript : MonoBehaviour {
         MoveUpdate();
 
         List<GameObject> targets = new List<GameObject>(GameObject.FindGameObjectsWithTag(target_tag));
-        if (targets != null)
+        if (targets != null && targets.Count > 0)
         {
             target = targets.OrderBy(g => (g.transform.position - transform.position).sqrMagnitude).First();
         }
