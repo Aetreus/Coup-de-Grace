@@ -658,7 +658,7 @@ MonoBehaviour:
     previousFired: 1
     oneTime: 1
     reset: 0
-    delay: 0
+    delay: 50
     delayTimer: 0
     subsequentEvent: 2
     predicate:
