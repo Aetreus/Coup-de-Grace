@@ -161,12 +161,25 @@ public class PlayerControlBehavior : MonoBehaviour {
         }
     }
 
+    [System.Serializable]
+    public class WeaponSpec
+    {
+        public string nameText;
+        public float lockAngle;
+        public bool isSupported;
+        public GameObject firer;
+    }
+
     public List<Warning> warnings;
+
+    public List<WeaponSpec> weapons;
+
+    private int weaponSelect = 0;
 
     // Use this for initialization
     void Start() {
         fb = GetComponent<FlightBehavior>();
-        wm = GetComponent<WeaponManager>();
+        wm = weapons[weaponSelect].firer.GetComponent<WeaponManager>();
         pt = GetComponent<PlayerTargetSystem>();
 
 
@@ -237,7 +250,7 @@ public class PlayerControlBehavior : MonoBehaviour {
 
         if (Input.GetButtonDown("Fire1"))
         {
-            wm.Fire();
+            wm.Fire(pt);
         }
 
         if (Input.GetButtonDown("TargetNext"))
@@ -258,6 +271,17 @@ public class PlayerControlBehavior : MonoBehaviour {
             else
                 Time.timeScale = 1;
                 
+        }
+
+        if (Input.GetButtonUp("CycleWeapon"))
+        {
+            weaponSelect++;
+            if(weaponSelect > weapons.Count)
+            {
+                weaponSelect = 0;
+            }
+            wm = weapons[weaponSelect].firer.GetComponent<WeaponManager>();
+            pt.lockAngle = weapons[weaponSelect].lockAngle;
         }
 
         if(isDead)
