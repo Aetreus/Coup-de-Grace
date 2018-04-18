@@ -35,6 +35,7 @@ public class LevelEventManager : MonoBehaviour {
                 if (condition.isMethod)
                 {
                     ParameterInfo[] args = condition.info.GetParameters();
+                    if(args.Length != 0)
                     if(condition.parameters[0].GetType().Equals(args[0].ParameterType.GetElementType()))
                     {
                         int i = 0;
@@ -100,10 +101,30 @@ public class LevelEventManager : MonoBehaviour {
         {
             if(CheckConditions())
             {
-                if(predicate.component == "GameObject")
-                    predicate.info.Invoke(predicate.reference, predicate.parameters);
+                if (predicate.isMethod)
+                {
+                    if (predicate.component == "GameObject")
+                        predicate.info.Invoke(predicate.reference, predicate.parameters);
+                    else
+                        predicate.info.Invoke(predicate.reference.GetComponent(predicate.component), predicate.parameters);
+                }
                 else
-                    predicate.info.Invoke(predicate.reference.GetComponent(predicate.component),predicate.parameters);
+                {
+                    if (condition.prop != null)
+                    {
+                        if (predicate.component == "GameObject")
+                            condition.prop.SetValue(predicate.reference, predicate.parameters[0], null);
+                        else
+                            condition.prop.SetValue(predicate.reference.GetComponent(predicate.component), predicate.parameters[0],null);
+                    }
+                    else if (condition.field != null)
+                    {
+                        if (predicate.component == "GameObject")
+                            condition.field.SetValue(predicate.reference, predicate.parameters[0]);
+                        else
+                            condition.field.SetValue(predicate.reference.GetComponent(predicate.component), predicate.parameters[0]);
+                    }
+                }
                 fired = true;
                 reset = true;
                 delayTimer = delay;
@@ -155,6 +176,11 @@ public class LevelEventManager : MonoBehaviour {
         if (GameObject.Find(name) != null)
             return true;
         return false;
+    }
+
+    public bool DummyTrue()
+    {
+        return true;
     }
 
     public float NumObjectsWithTagAlive(string tag)
