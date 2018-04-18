@@ -1289,7 +1289,7 @@ MonoBehaviour:
     previousFired: 1
     oneTime: 1
     reset: 0
-    delay: 20
+    delay: 5
     delayTimer: 0
     subsequentEvent: 2
     predicate:
@@ -1314,9 +1314,9 @@ MonoBehaviour:
     previousFired: 0
     oneTime: 1
     reset: 0
-    delay: 5
+    delay: 0
     delayTimer: 0
-    subsequentEvent: 0
+    subsequentEvent: 3
     predicate:
       reference: {fileID: 2014305303}
       component: GameObject
@@ -1324,6 +1324,154 @@ MonoBehaviour:
       isMethod: 1
       paramStrings:
       - System.Boolean#True
+  - condition:
+      reference: {fileID: 373668333}
+      component: LevelEventManager
+      valueName: IsObjectAlive
+      isMethod: 1
+      paramStrings:
+      - System.String#Player
+    isConditionBoolean: 1
+    invertCondition: 0
+    min: 0
+    max: 0
+    previousEvent: 0
+    previousFired: 0
+    oneTime: 1
+    reset: 0
+    delay: 0
+    delayTimer: 0
+    subsequentEvent: 5
+    predicate:
+      reference: {fileID: 2014305303}
+      component: WaveSpawnerScript
+      valueName: SpawnWave
+      isMethod: 1
+      paramStrings: []
+  - condition:
+      reference: {fileID: 373668333}
+      component: LevelEventManager
+      valueName: IsObjectWithTagAlive
+      isMethod: 1
+      paramStrings:
+      - System.String#AlliedObjective
+    isConditionBoolean: 1
+    invertCondition: 1
+    min: 0
+    max: 0
+    previousEvent: 0
+    previousFired: 0
+    oneTime: 1
+    reset: 0
+    delay: 0
+    delayTimer: 0
+    subsequentEvent: 0
+    predicate:
+      reference: {fileID: 682402086}
+      component: PlayerControlBehavior
+      valueName: KillScreen
+      isMethod: 1
+      paramStrings: []
+  - condition:
+      reference: {fileID: 373668333}
+      component: LevelEventManager
+      valueName: IsObjectWithTagAlive
+      isMethod: 1
+      paramStrings:
+      - System.String#AlliedObjective
+    isConditionBoolean: 1
+    invertCondition: 1
+    min: 0
+    max: 0
+    previousEvent: 4
+    previousFired: 0
+    oneTime: 1
+    reset: 0
+    delay: 0
+    delayTimer: 0
+    subsequentEvent: 4
+    predicate:
+      reference: {fileID: 115640594}
+      component: GameObject
+      valueName: SetActive
+      isMethod: 1
+      paramStrings:
+      - System.Boolean#True
+  - condition:
+      reference: {fileID: 373668333}
+      component: LevelEventManager
+      valueName: IsObjectAlive
+      isMethod: 1
+      paramStrings:
+      - System.String#ControlTower
+    isConditionBoolean: 1
+    invertCondition: 1
+    min: 0
+    max: 0
+    previousEvent: 0
+    previousFired: 1
+    oneTime: 1
+    reset: 0
+    delay: 5
+    delayTimer: 0
+    subsequentEvent: 0
+    predicate:
+      reference: {fileID: 1211168778}
+      component: GameObject
+      valueName: SetActive
+      isMethod: 1
+      paramStrings:
+      - System.Boolean#False
+  - condition:
+      reference: {fileID: 373668333}
+      component: LevelEventManager
+      valueName: NumObjectsWithTagAlive
+      isMethod: 1
+      paramStrings:
+      - System.String#BuildingObjective
+    isConditionBoolean: 0
+    invertCondition: 0
+    min: 0
+    max: 4
+    previousEvent: 0
+    previousFired: 1
+    oneTime: 1
+    reset: 0
+    delay: 54
+    delayTimer: 0
+    subsequentEvent: 8
+    predicate:
+      reference: {fileID: 1479216521}
+      component: DialogueController
+      valueName: PlayLineSeries
+      isMethod: 1
+      paramStrings:
+      - System.String#Ending1
+  - condition:
+      reference: {fileID: 373668333}
+      component: LevelEventManager
+      valueName: NumObjectsWithTagAlive
+      isMethod: 1
+      paramStrings:
+      - System.String#BuildingObjective
+    isConditionBoolean: 0
+    invertCondition: 0
+    min: 0
+    max: 4
+    previousEvent: 0
+    previousFired: 0
+    oneTime: 1
+    reset: 0
+    delay: 5
+    delayTimer: 0
+    subsequentEvent: 0
+    predicate:
+      reference: {fileID: 373668333}
+      component: LevelEventManager
+      valueName: TransitionLevel
+      isMethod: 1
+      paramStrings:
+      - System.String#sprint4-level4brief
 --- !u!1001 &451327382
 Prefab:
   m_ObjectHideFlags: 0
@@ -2441,6 +2589,10 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1695501360247042, guid: 36e4516eb407a0e42866c6409b898c24, type: 2}
+      propertyPath: m_TagString
+      value: AlliedObjective
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 36e4516eb407a0e42866c6409b898c24, type: 2}
   m_IsPrefabParent: 0
@@ -2602,6 +2754,10 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1695501360247042, guid: 36e4516eb407a0e42866c6409b898c24, type: 2}
+      propertyPath: m_TagString
+      value: AlliedObjective
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 36e4516eb407a0e42866c6409b898c24, type: 2}
   m_IsPrefabParent: 0
@@ -2758,6 +2914,10 @@ Prefab:
     - target: {fileID: 1695501360247042, guid: 36e4516eb407a0e42866c6409b898c24, type: 2}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1695501360247042, guid: 36e4516eb407a0e42866c6409b898c24, type: 2}
+      propertyPath: m_TagString
+      value: AlliedObjective
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 36e4516eb407a0e42866c6409b898c24, type: 2}
@@ -2991,6 +3151,10 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1695501360247042, guid: 36e4516eb407a0e42866c6409b898c24, type: 2}
+      propertyPath: m_TagString
+      value: AlliedObjective
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 36e4516eb407a0e42866c6409b898c24, type: 2}
   m_IsPrefabParent: 0
@@ -3050,6 +3214,10 @@ Prefab:
     - target: {fileID: 1695501360247042, guid: 36e4516eb407a0e42866c6409b898c24, type: 2}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1695501360247042, guid: 36e4516eb407a0e42866c6409b898c24, type: 2}
+      propertyPath: m_TagString
+      value: AlliedObjective
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 36e4516eb407a0e42866c6409b898c24, type: 2}
@@ -5289,6 +5457,10 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1695501360247042, guid: 36e4516eb407a0e42866c6409b898c24, type: 2}
+      propertyPath: m_TagString
+      value: AlliedObjective
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 36e4516eb407a0e42866c6409b898c24, type: 2}
   m_IsPrefabParent: 0
@@ -6023,6 +6195,10 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1695501360247042, guid: 36e4516eb407a0e42866c6409b898c24, type: 2}
+      propertyPath: m_TagString
+      value: AlliedObjective
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 36e4516eb407a0e42866c6409b898c24, type: 2}
   m_IsPrefabParent: 0
@@ -6298,6 +6474,10 @@ Prefab:
     - target: {fileID: 1695501360247042, guid: 36e4516eb407a0e42866c6409b898c24, type: 2}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1695501360247042, guid: 36e4516eb407a0e42866c6409b898c24, type: 2}
+      propertyPath: m_TagString
+      value: AlliedObjective
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 36e4516eb407a0e42866c6409b898c24, type: 2}
@@ -6589,7 +6769,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3d4e275a7872814e9382dcbbd93482c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnDelayTime: 40
+  spawnDelayTime: 20
   autoSpawn: 1
   limitWaves: 1
   spawnDelayTimer: 0
