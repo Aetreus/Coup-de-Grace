@@ -67,6 +67,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4291554785243730}
   - component: {fileID: 65137174661006708}
+  - component: {fileID: 114039255855812266}
   m_Layer: 0
   m_Name: ControlCenter
   m_TagString: BuildingObjective
@@ -182,3 +183,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 13934, y: 23735, z: 14000}
   m_Center: {x: -705, y: 12335, z: 826}
+--- !u!114 &114039255855812266
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1900352603994150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3d4e275a7872814e9382dcbbd93482c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnDelayTime: 30
+  autoSpawn: 1
+  limitWaves: 0
+  spawnDelayTimer: 60
+  waves: 5
