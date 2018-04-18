@@ -268,6 +268,11 @@ public class LevelEventManager : MonoBehaviour {
     {
 
     }
+
+    public void Quit()
+    {
+        Application.Quit();
+    }
 }
 
 [System.Serializable]
