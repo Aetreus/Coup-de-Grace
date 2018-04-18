@@ -216,6 +216,40 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1696818973517076
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4183582024092126}
+  - component: {fileID: 114988727461789564}
+  - component: {fileID: 114972886065569304}
+  m_Layer: 0
+  m_Name: Agile
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1860687349942968
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4894525165248806}
+  - component: {fileID: 114010314237279130}
+  - component: {fileID: 114158275701553458}
+  m_Layer: 0
+  m_Name: Heavy
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1898684807374870
 GameObject:
   m_ObjectHideFlags: 0
@@ -304,6 +338,19 @@ Transform:
   m_Father: {fileID: 4798203947604748}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4183582024092126
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1696818973517076}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4227062158189532}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4227062158189532
 Transform:
   m_ObjectHideFlags: 1
@@ -315,6 +362,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4742241499464876}
+  - {fileID: 4894525165248806}
+  - {fileID: 4183582024092126}
   m_Father: {fileID: 4654294536136784}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -376,8 +425,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1118712050718116}
-  m_LocalRotation: {x: 0, y: 0.42095664, z: 0, w: 0.90708077}
-  m_LocalPosition: {x: -6942, y: 1999.3, z: -8789}
+  m_LocalRotation: {x: 0, y: 0.8580649, z: -0, w: -0.5135413}
+  m_LocalPosition: {x: 58051, y: 6083, z: 8786}
   m_LocalScale: {x: 8, y: 4, z: 15}
   m_Children:
   - {fileID: 4516955123058722}
@@ -391,7 +440,7 @@ Transform:
   - {fileID: 4227062158189532}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 49.79, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 241.8, z: 0}
 --- !u!4 &4666130877770110
 Transform:
   m_ObjectHideFlags: 1
@@ -447,6 +496,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4654294536136784}
   m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4894525165248806
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1860687349942968}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4227062158189532}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4921817401367798
 Transform:
@@ -1370,6 +1432,35 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &114010314237279130
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1860687349942968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0716285c4797c9a49978f348d02e0b9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onFire:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114158275701553458}
+        m_MethodName: Create
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: WeaponManager+OnFire, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  reloadTime: 3
+  _maximumShots: 6
 --- !u!114 &114017819691621774
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1381,6 +1472,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f17ff718e5ca9e34489d5f6a4c0a1e93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114158275701553458
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1860687349942968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5e2c53abab5c04468059faf376727dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawned: {fileID: 1106341500948570, guid: 2d72629a88e985d4ab0d36cc10f34662, type: 2}
+  offset: {x: 0, y: -1, z: 0}
+  initial: {x: 0, y: -0.5, z: 0}
 --- !u!114 &114217066268131064
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1413,10 +1518,10 @@ MonoBehaviour:
   AlertLabelName: AlertLabel
   worldBounds:
     serializedVersion: 2
-    x: -9000
-    y: -9000
-    width: 24000
-    height: 24000
+    x: 1
+    y: -12000
+    width: 64001
+    height: 30001
   killTime: 20
   minWarningTime: 4
   retryTime: 10
@@ -1454,10 +1559,18 @@ MonoBehaviour:
     sound: {fileID: 82838511723764936}
     forcePlay: 0
   weapons:
-  - nameText: Standard
+  - nameText: AA-SA
     lockAngle: 30
     isSupported: 1
     firer: {fileID: 1114118055079612}
+  - nameText: AGM
+    lockAngle: 40
+    isSupported: 1
+    firer: {fileID: 1860687349942968}
+  - nameText: AA-FF
+    lockAngle: 60
+    isSupported: 0
+    firer: {fileID: 1696818973517076}
 --- !u!114 &114256119274711160
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1486,6 +1599,7 @@ MonoBehaviour:
     m_TypeName: WeaponManager+OnFire, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   reloadTime: 6
+  _maximumShots: 2
 --- !u!114 &114359953910132994
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1513,7 +1627,8 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: WeaponManager+OnFire, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
-  reloadTime: 2
+  reloadTime: 6
+  _maximumShots: 2
 --- !u!114 &114401372777683326
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1628,6 +1743,49 @@ MonoBehaviour:
   - {x: 50, y: -0.25}
   - {x: -100, y: -0.125}
   - {x: 180, y: 0}
+--- !u!114 &114972886065569304
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1696818973517076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5e2c53abab5c04468059faf376727dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawned: {fileID: 1127273872400500, guid: db0550f1ea84ffb4cba8b443a3651d06, type: 2}
+  offset: {x: 0, y: -1, z: 0}
+  initial: {x: 0, y: -0.5, z: 0}
+--- !u!114 &114988727461789564
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1696818973517076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0716285c4797c9a49978f348d02e0b9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onFire:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1696818973517076}
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: WeaponManager+OnFire, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  reloadTime: 4
+  _maximumShots: 2
 --- !u!124 &124023859213085982
 Behaviour:
   m_ObjectHideFlags: 1

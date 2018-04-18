@@ -181,6 +181,40 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1241776592465788
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 224599545828411260}
+  - component: {fileID: 222143385701243174}
+  - component: {fileID: 114377455181848804}
+  m_Layer: 5
+  m_Name: Outline
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1263340943715532
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 224406928556403926}
+  - component: {fileID: 222402846198702682}
+  - component: {fileID: 114756157868813522}
+  m_Layer: 5
+  m_Name: Missile4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1308436208558296
 GameObject:
   m_ObjectHideFlags: 0
@@ -196,6 +230,23 @@ GameObject:
   - component: {fileID: 114031439527683722}
   m_Layer: 5
   m_Name: Minimap
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1331753217359920
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 224439924240952356}
+  - component: {fileID: 222664592245243282}
+  - component: {fileID: 114008044892184570}
+  m_Layer: 5
+  m_Name: Missile1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -270,6 +321,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1484934781568686
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 224851011010967020}
+  - component: {fileID: 222772370097071544}
+  - component: {fileID: 114832685874357730}
+  m_Layer: 5
+  m_Name: Outline
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1487871300174138
 GameObject:
   m_ObjectHideFlags: 0
@@ -338,6 +406,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1596256834805530
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 224009382033827834}
+  - component: {fileID: 222339195469533054}
+  - component: {fileID: 114893292781512548}
+  m_Layer: 5
+  m_Name: Missile3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1634639862494242
 GameObject:
   m_ObjectHideFlags: 0
@@ -388,6 +473,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
+--- !u!1 &1694065626861622
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 224041741219766438}
+  - component: {fileID: 222247219532789636}
+  - component: {fileID: 114468122951150746}
+  m_Layer: 5
+  m_Name: Outline
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1714365663186672
 GameObject:
   m_ObjectHideFlags: 1
@@ -421,6 +523,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1743938434883776
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 224112317934425560}
+  - component: {fileID: 222469882318396458}
+  - component: {fileID: 114438060101779682}
+  m_Layer: 5
+  m_Name: Missile5
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1760620331000172
 GameObject:
   m_ObjectHideFlags: 1
@@ -432,7 +551,7 @@ GameObject:
   - component: {fileID: 222219500982989052}
   - component: {fileID: 114104954535453122}
   m_Layer: 5
-  m_Name: Missile1
+  m_Name: Missile6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -574,6 +693,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1987978892706644
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 224248932241086964}
+  - component: {fileID: 222379791655570464}
+  - component: {fileID: 114270740723126238}
+  m_Layer: 5
+  m_Name: Outline
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!4 &4819689888463208
 Transform:
   m_ObjectHideFlags: 1
@@ -620,6 +756,33 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: AoA
+--- !u!114 &114008044892184570
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1331753217359920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.1764706, g: 0.8235294, b: 0.25882354, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: b17563a1b75467142b76cad8f2684610, type: 3}
+  m_Type: 3
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 1
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
 --- !u!114 &114031439527683722
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -994,6 +1157,33 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: PAUSE
+--- !u!114 &114270740723126238
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1987978892706644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.1764706, g: 0.8235294, b: 0.25882354, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: d1bacd8eaf8075645aa3b9bd936c94c7, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 1
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
 --- !u!114 &114285905211106448
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1225,6 +1415,33 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: SPEED
+--- !u!114 &114377455181848804
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1241776592465788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.1764706, g: 0.8235294, b: 0.25882354, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: d1bacd8eaf8075645aa3b9bd936c94c7, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 1
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
 --- !u!114 &114399045515268906
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1331,6 +1548,60 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!114 &114438060101779682
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1743938434883776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.1764706, g: 0.8235294, b: 0.25882354, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: b17563a1b75467142b76cad8f2684610, type: 3}
+  m_Type: 3
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 1
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!114 &114468122951150746
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1694065626861622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.1764706, g: 0.8235294, b: 0.25882354, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: d1bacd8eaf8075645aa3b9bd936c94c7, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 1
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
@@ -1467,6 +1738,33 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+--- !u!114 &114756157868813522
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1263340943715532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.1764706, g: 0.8235294, b: 0.25882354, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: b17563a1b75467142b76cad8f2684610, type: 3}
+  m_Type: 3
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 1
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
 --- !u!114 &114756399482470794
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1510,197 +1808,228 @@ MonoBehaviour:
   linesInit:
   - name: Opening1
     line:
-      text: Damn, we just got here and we're already getting lit up pretty fast.
-      time: 4.8
+      text: Seems like they've fortified this place since scouts looked at it.
+      time: 4.2
       speaker: {fileID: 21300000, guid: 519032948b8f34748a868996562e24ce, type: 3}
-      voice: {fileID: 8300000, guid: 4f4ec78eb396b364d944d8cd23834abe, type: 3}
+      voice: {fileID: 8300000, guid: 05387923f49e49f4288f369755296301, type: 3}
       nextLine: Opening2
   - name: Opening2
     line:
-      text: It seems their defenses are stronger than we thought. I would recommend
-        a retreat, but-
-      time: 6
+      text: Indeed. We were not careful enough.
+      time: 4.1
       speaker: {fileID: 21300000, guid: 08df3e150d9efaa47a0250c6588ae9e5, type: 3}
-      voice: {fileID: 8300000, guid: d46f5c9815af7764ab31cde944e8609e, type: 3}
+      voice: {fileID: 8300000, guid: f7bdb151e15bef24f9d5a5b7db6c7b16, type: 3}
       nextLine: Opening3
   - name: Opening3
     line:
-      text: Nah, we've got it handled still. Just because it's a poor start doesn't
-        mean it'll be a poor finish, yeah?
-      time: 6.3
+      text: It's fine, but that means they've got a few birds in the sky too now.
+      time: 4.3
       speaker: {fileID: 21300000, guid: 519032948b8f34748a868996562e24ce, type: 3}
-      voice: {fileID: 8300000, guid: 5e77bc133013fc04487ca653d7ac65e3, type: 3}
+      voice: {fileID: 8300000, guid: ddbb64a8779480d4cbe3aed0967d60ac, type: 3}
       nextLine: Opening4
   - name: Opening4
     line:
-      text: We will not last long as it is with their planes in the sky. From our
-        first battle, we know their air force is not to be trifled with.
-      time: 7.3
+      text: If I were to hazard a guess, one of them is likely an ace as well.
+      time: 5
       speaker: {fileID: 21300000, guid: 08df3e150d9efaa47a0250c6588ae9e5, type: 3}
-      voice: {fileID: 8300000, guid: 74344c95dd43b8a48950d81e6077bd7c, type: 3}
+      voice: {fileID: 8300000, guid: 42d70cc02a0df2545b888a2b2e98b674, type: 3}
       nextLine: Opening5
   - name: Opening5
     line:
-      text: Well "trifle" I will, let's see how tough these nuts are to crack.
-      time: 5
+      text: Probably another old friend of mine... well, I'll probably see who it
+        is soon enough.
+      time: 4.9
+      speaker: {fileID: 21300000, guid: 519032948b8f34748a868996562e24ce, type: 3}
+      voice: {fileID: 8300000, guid: b981f4e4a4289e449a5e0ccb5a048b66, type: 3}
+      nextLine: 
+  - name: Opening6
+    line:
+      text: Just be careful. Your flying space in this canyon is fairly limited. Be
+        wary of your maneuvers.
+      time: 7.3
       speaker: {fileID: 21300000, guid: 08df3e150d9efaa47a0250c6588ae9e5, type: 3}
-      voice: {fileID: 8300000, guid: a2c9416608801e446844e881c21edde8, type: 3}
+      voice: {fileID: 8300000, guid: d6dee695e152af041b3bcdd982ab054f, type: 3}
       nextLine: 
   - name: Mid1
     line:
-      text: This guy looks to be a lot tougher than the rest. I figured they had some
-        good pilots, but this has to be an ace of some sort.
-      time: 6.6
-      speaker: {fileID: 21300000, guid: 519032948b8f34748a868996562e24ce, type: 3}
-      voice: {fileID: 8300000, guid: 5108c7b408814904bbbe55efcb32104d, type: 3}
+      text: Well, been a long time, Hawk!
+      time: 3.1
+      speaker: {fileID: 21300000, guid: 0b55844176bc6c94dbccefd1137d4b83, type: 3}
+      voice: {fileID: 8300000, guid: 3b9c9bcfdde0bb84f978f22e05030b02, type: 3}
       nextLine: Mid2
   - name: Mid2
     line:
-      text: "Ha, you\u2019ve got that right!"
-      time: 3.8
-      speaker: {fileID: 21300000, guid: b17563a1b75467142b76cad8f2684610, type: 3}
-      voice: {fileID: 8300000, guid: 160c19945ed2e4d49af9d50f657bd99b, type: 3}
+      text: Right, damnit, forgot to change that. Hey Bluejay, that you?
+      time: 4.8
+      speaker: {fileID: 21300000, guid: 519032948b8f34748a868996562e24ce, type: 3}
+      voice: {fileID: 8300000, guid: 1e8ec3139241873428fb6e027623f299, type: 3}
       nextLine: Mid3
   - name: Mid3
     line:
-      text: Huh? How'd you get ahold of this line?
+      text: The one and only! How's it been?
       time: 3.6
-      speaker: {fileID: 21300000, guid: 519032948b8f34748a868996562e24ce, type: 3}
-      voice: {fileID: 8300000, guid: 32f9f40bd5faeb246ae49fa4f546211c, type: 3}
+      speaker: {fileID: 21300000, guid: 0b55844176bc6c94dbccefd1137d4b83, type: 3}
+      voice: {fileID: 8300000, guid: fcc31e76609534e4f89622630b5e368e, type: 3}
       nextLine: Mid4
   - name: Mid4
     line:
-      text: 'Come on, you kept the same radio signal from back in the academy. Too
-        lazy to change it? '
-      time: 6.4
-      speaker: {fileID: 21300000, guid: b17563a1b75467142b76cad8f2684610, type: 3}
-      voice: {fileID: 8300000, guid: 8837b81829a6e4e4db551f39f64ee451, type: 3}
+      text: Rougher than you'd think. Hard to find another mercenary job unless it's
+        a war going on.
+      time: 4.9
+      speaker: {fileID: 21300000, guid: 519032948b8f34748a868996562e24ce, type: 3}
+      voice: {fileID: 8300000, guid: 8d869b27f7c1135408de48e611e2283d, type: 3}
       nextLine: Mid5
   - name: Mid5
     line:
-      text: Crap... yeah, now I remember. Trigger-happy Tanager, you're still around?
-      time: 6.5
-      speaker: {fileID: 21300000, guid: 519032948b8f34748a868996562e24ce, type: 3}
-      voice: {fileID: 8300000, guid: c72537f1acf4de748b0b9e884ff4543c, type: 3}
+      text: Heh, sounds about right. Only reason I'm here is the war, after all.
+      time: 5.8
+      speaker: {fileID: 21300000, guid: 0b55844176bc6c94dbccefd1137d4b83, type: 3}
+      voice: {fileID: 8300000, guid: a8aa60c668a61d343b2ddb680ad16ab6, type: 3}
       nextLine: Mid6
   - name: Mid6
     line:
-      text: Sure am! Been itching for a war ever since training. Those were some days,
-        weren't they Hawk?
-      time: 7.5
-      speaker: {fileID: 21300000, guid: b17563a1b75467142b76cad8f2684610, type: 3}
-      voice: {fileID: 8300000, guid: 23b02b4057f73c642ad82c98f10f39f2, type: 3}
+      text: Shame we're on opposite sides, though.
+      time: 2.9
+      speaker: {fileID: 21300000, guid: 519032948b8f34748a868996562e24ce, type: 3}
+      voice: {fileID: 8300000, guid: d5ff9eeb37a5dd74da178b35da8eb5f2, type: 3}
       nextLine: Mid7
   - name: Mid7
     line:
-      text: Well we didn't do a whole lot of fighting, but you were always eager to
-        take me down, you're too easy to read.
-      time: 5.7
-      speaker: {fileID: 21300000, guid: 519032948b8f34748a868996562e24ce, type: 3}
-      voice: {fileID: 8300000, guid: 5e8292d0264bb6b499c126bd0a09e1ff, type: 3}
+      text: No kidding... would've been nice to catch up on old times after this.
+      time: 5.1
+      speaker: {fileID: 21300000, guid: 0b55844176bc6c94dbccefd1137d4b83, type: 3}
+      voice: {fileID: 8300000, guid: b2f885ccdee3f0b49922faabfedd24e6, type: 3}
       nextLine: Mid8
   - name: Mid8
     line:
-      text: Hahaha, I suppose so! Now then, let's see which of us really was the best
-        of the academy!
-      time: 7.4
-      speaker: {fileID: 21300000, guid: b17563a1b75467142b76cad8f2684610, type: 3}
-      voice: {fileID: 8300000, guid: 1f043c1ae789f5e499c0fb5013223607, type: 3}
+      text: Let's hope whoever gets shot down survives the crash, then.
+      time: 3.5
+      speaker: {fileID: 21300000, guid: 519032948b8f34748a868996562e24ce, type: 3}
+      voice: {fileID: 8300000, guid: e7f022657797b0241bcaa4fff7317bb4, type: 3}
       nextLine: Mid9
   - name: Mid9
     line:
-      text: Heh, let the games begin, then.
-      time: 3.8
-      speaker: {fileID: 21300000, guid: 519032948b8f34748a868996562e24ce, type: 3}
-      voice: {fileID: 8300000, guid: 812f222a229404740a07c9c2d53ecbb3, type: 3}
-      nextLine: 
-  - name: Ending1
+      text: Drinks after, then?
+      time: 2.4
+      speaker: {fileID: 21300000, guid: 0b55844176bc6c94dbccefd1137d4b83, type: 3}
+      voice: {fileID: 8300000, guid: b14a2ca110224b34d980412f5e419d9a, type: 3}
+      nextLine: Mid10
+  - name: Mid10
     line:
-      text: Damn you Hawk! I swear I'll kill you!
-      time: 3.9
-      speaker: {fileID: 21300000, guid: b17563a1b75467142b76cad8f2684610, type: 3}
-      voice: {fileID: 8300000, guid: e388208cc5e6bef4bac524fc43bf3b7f, type: 3}
-      nextLine: Ending2
-  - name: Ending2
-    line:
-      text: Sorry man, but when you play with fire, you simply get burnt.
-      time: 4.1
+      text: As long as we're both alive afterwards!
+      time: 4.2
       speaker: {fileID: 21300000, guid: 519032948b8f34748a868996562e24ce, type: 3}
-      voice: {fileID: 8300000, guid: 89bb765d41fa51e44ab5c33147c5901a, type: 3}
-      nextLine: Ending3
-  - name: Ending3
+      voice: {fileID: 8300000, guid: da62e6324566fbc4393d0663d6342d90, type: 3}
+      nextLine: Mid11
+  - name: Mid11
+    line:
+      text: You're on, then!
+      time: 2.2
+      speaker: {fileID: 21300000, guid: 0b55844176bc6c94dbccefd1137d4b83, type: 3}
+      voice: {fileID: 8300000, guid: 14bd982f12d00fa4f874d54a72a136f7, type: 3}
+      nextLine: Mid12
+  - name: Mid12
+    line:
+      text: Heh, let the games begin!
+      time: 3.3
+      speaker: {fileID: 21300000, guid: 519032948b8f34748a868996562e24ce, type: 3}
+      voice: {fileID: 8300000, guid: b4f5ddc67d0319a4bb65fccc45fd23c8, type: 3}
+      nextLine: Ending5
+  - name: BluejayDown1
+    line:
+      text: Damn, good one... well, good luck to you!
+      time: 4.9
+      speaker: {fileID: 21300000, guid: 0b55844176bc6c94dbccefd1137d4b83, type: 3}
+      voice: {fileID: 8300000, guid: 36f8365af4e7f244995b9013351ff37a, type: 3}
+      nextLine: BluejayDown2
+  - name: BluejayDown2
+    line:
+      text: Ha, same!
+      time: 2.4
+      speaker: {fileID: 21300000, guid: 519032948b8f34748a868996562e24ce, type: 3}
+      voice: {fileID: 8300000, guid: 3b543b35ab7437c42848850f39667a12, type: 3}
+      nextLine: BluejayDown3
+  - name: BluejayDown3
     line:
       text: '*static*'
       time: 3.5
-      speaker: {fileID: 21300000, guid: b17563a1b75467142b76cad8f2684610, type: 3}
+      speaker: {fileID: 21300000, guid: 0b55844176bc6c94dbccefd1137d4b83, type: 3}
       voice: {fileID: 8300000, guid: c6ebd33f158992e45bfcc886c2407b41, type: 3}
-      nextLine: Ending4
-  - name: Ending4
+      nextLine: BluejayDown4
+  - name: BluejayDown4
     line:
-      text: Well, that's him down. That ought to shake things up for everyone else.
-        Hey Commander, you heard all that, didn't you?
-      time: 7.2
+      text: '...I really hope he ejected in time.'
+      time: 5.5
       speaker: {fileID: 21300000, guid: 519032948b8f34748a868996562e24ce, type: 3}
-      voice: {fileID: 8300000, guid: b7080e0b4be29f542bc744ea7576d506, type: 3}
-      nextLine: Ending5
-  - name: Ending5
+      voice: {fileID: 8300000, guid: 0e86a85a7e9ee9446abcda5707c2f50d, type: 3}
+      nextLine: BluejayDown5
+  - name: BluejayDown5
     line:
-      text: I have. We had not had time to look into your background, but given you
-        knew that enemy ace, I suppose you are an Austeran ace?
-      time: 10.3
-      speaker: {fileID: 21300000, guid: 08df3e150d9efaa47a0250c6588ae9e5, type: 3}
-      voice: {fileID: 8300000, guid: 013052707e26c2c4c9bc92270eb467d3, type: 3}
-      nextLine: Ending6
-  - name: Ending6
-    line:
-      text: Used to be at least. Wasn't too fond of their own plan, so I bailed.
-      time: 4.6
-      speaker: {fileID: 21300000, guid: 519032948b8f34748a868996562e24ce, type: 3}
-      voice: {fileID: 8300000, guid: 2ec3e209428a7764d9021af7e3de38ee, type: 3}
-      nextLine: Ending7
-  - name: Ending7
-    line:
-      text: So you say, but can we trust that word?
-      time: 3.9
-      speaker: {fileID: 21300000, guid: 08df3e150d9efaa47a0250c6588ae9e5, type: 3}
-      voice: {fileID: 8300000, guid: 33e0d8e776c84624a8e5769200c1fb60, type: 3}
-      nextLine: Ending8
-  - name: Ending8
-    line:
-      text: Despite my attitude I've followed orders so far, yeah? Helping take this
-        base ought to prove I'm against them this time, right?
-      time: 5.8
-      speaker: {fileID: 21300000, guid: 519032948b8f34748a868996562e24ce, type: 3}
-      voice: {fileID: 8300000, guid: 5e8292d0264bb6b499c126bd0a09e1ff, type: 3}
-      nextLine: Ending9
-  - name: Ending9
-    line:
-      text: Hmm... for the time being we'll believe you. But we're keeping an eye
-        on you.
-      time: 6.6
+      text: '...'
+      time: 3.5
       speaker: {fileID: 21300000, guid: 08df3e150d9efaa47a0250c6588ae9e5, type: 3}
       voice: {fileID: 8300000, guid: cb678934e2e962b41b8383a7c9d876d4, type: 3}
-      nextLine: Ending10
-  - name: Ending10
+      nextLine: BluejayDown6
+  - name: BluejayDown6
     line:
-      text: Whatever helps you sleep better at night.
-      time: 3.8
+      text: I know you're listening, come on, speak up.
+      time: 3.3
       speaker: {fileID: 21300000, guid: 519032948b8f34748a868996562e24ce, type: 3}
-      voice: {fileID: 8300000, guid: 812f222a229404740a07c9c2d53ecbb3, type: 3}
+      voice: {fileID: 8300000, guid: 72d708dab5c027c4eaf22fe49cd03b5a, type: 3}
+      nextLine: BluejayDown7
+  - name: BluejayDown7
+    line:
+      text: Even though you two were on opposing sides, you were still cordial.
+      time: 4.9
+      speaker: {fileID: 21300000, guid: 08df3e150d9efaa47a0250c6588ae9e5, type: 3}
+      voice: {fileID: 8300000, guid: b05ebe116f789f7498ab5416c5932125, type: 3}
+      nextLine: BluejayDown8
+  - name: BluejayDown8
+    line:
+      text: I mean, just because you're in a war doesn't mean you can't catch up,
+        yanno? It's never about personal differences, just about who's giving us the
+        orders.
+      time: 8.4
+      speaker: {fileID: 21300000, guid: 519032948b8f34748a868996562e24ce, type: 3}
+      voice: {fileID: 8300000, guid: 2e1b235b6eb5bdd41a277e2c44bb2ae3, type: 3}
+      nextLine: BluejayDown9
+  - name: BluejayDown9
+    line:
+      text: I see. I suppose given Auster used to be our ally, we end up fighting
+        many former friends.
+      time: 7.5
+      speaker: {fileID: 21300000, guid: 08df3e150d9efaa47a0250c6588ae9e5, type: 3}
+      voice: {fileID: 8300000, guid: b0a92ad71917db4448d96dca78fa223f, type: 3}
+      nextLine: BluejayDown10
+  - name: BluejayDown10
+    line:
+      text: Just how it goes sometimes.
+      time: 2.6
+      speaker: {fileID: 21300000, guid: 519032948b8f34748a868996562e24ce, type: 3}
+      voice: {fileID: 8300000, guid: ae90467b9af812c45a5e3c83b1c8b5c7, type: 3}
       nextLine: 
-  - name: ObjChange1
+  - name: Ending1
     line:
-      text: Whatever helps you sleep better at night.
-      time: 3.8
+      text: Alright then, that should be good enough for the army to sweep through.
+      time: 3.6
       speaker: {fileID: 21300000, guid: 519032948b8f34748a868996562e24ce, type: 3}
-      voice: {fileID: 8300000, guid: 812f222a229404740a07c9c2d53ecbb3, type: 3}
-      nextLine: 
-  - name: ObjChange2
+      voice: {fileID: 8300000, guid: 5e7035a6487fd8c4abca425e79dd61a5, type: 3}
+      nextLine: Ending2
+  - name: Ending2
     line:
-      text: Whatever helps you sleep better at night.
-      time: 3.8
+      text: Indeed. They are heading through the canyon now. Go on ahead to the capital.
+        It will probably be heavily fortified, so scout the area and see what you
+        can do to let the army in.
+      time: 11.4
+      speaker: {fileID: 21300000, guid: 08df3e150d9efaa47a0250c6588ae9e5, type: 3}
+      voice: {fileID: 8300000, guid: 840e3a73d643f06489ce1bb67a607779, type: 3}
+      nextLine: Ending3
+  - name: Ending3
+    line:
+      text: Gotcha. Won't be long now...
+      time: 3.3
       speaker: {fileID: 21300000, guid: 519032948b8f34748a868996562e24ce, type: 3}
-      voice: {fileID: 8300000, guid: 812f222a229404740a07c9c2d53ecbb3, type: 3}
+      voice: {fileID: 8300000, guid: 58738eeff3bc2ec42a677f0ec1ea7a67, type: 3}
       nextLine: 
 --- !u!114 &114806195905068340
 MonoBehaviour:
@@ -1735,6 +2064,33 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Iorem ipsum dolor sit amet, consectetur adipiscing elit.
+--- !u!114 &114832685874357730
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1484934781568686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.1764706, g: 0.8235294, b: 0.25882354, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: d1bacd8eaf8075645aa3b9bd936c94c7, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 1
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
 --- !u!114 &114840423287338238
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1759,6 +2115,33 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!114 &114893292781512548
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1596256834805530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.1764706, g: 0.8235294, b: 0.25882354, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: b17563a1b75467142b76cad8f2684610, type: 3}
+  m_Type: 3
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 1
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
@@ -1934,6 +2317,12 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1487871300174138}
+--- !u!222 &222143385701243174
+CanvasRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1241776592465788}
 --- !u!222 &222148043098290066
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -1964,6 +2353,12 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1205209740769120}
+--- !u!222 &222247219532789636
+CanvasRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1694065626861622}
 --- !u!222 &222259337929838150
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -1988,6 +2383,12 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1030938066081868}
+--- !u!222 &222339195469533054
+CanvasRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1596256834805530}
 --- !u!222 &222344848390169482
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -2000,12 +2401,30 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1168347492839506}
+--- !u!222 &222379791655570464
+CanvasRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1987978892706644}
 --- !u!222 &222394514230933100
 CanvasRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1549722190695646}
+--- !u!222 &222402846198702682
+CanvasRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1263340943715532}
+--- !u!222 &222469882318396458
+CanvasRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1743938434883776}
 --- !u!222 &222543938733172570
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -2024,6 +2443,12 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1465316381339478}
+--- !u!222 &222664592245243282
+CanvasRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1331753217359920}
 --- !u!222 &222676917855189560
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -2042,6 +2467,12 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1197317139023010}
+--- !u!222 &222772370097071544
+CanvasRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1484934781568686}
 --- !u!222 &222891348676606638
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -2080,6 +2511,25 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!224 &224009382033827834
+RectTransform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1596256834805530}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.000002, y: 1.000002, z: 1.000002}
+  m_Children:
+  - {fileID: 224851011010967020}
+  m_Father: {fileID: 224312851980510552}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -117, y: -65.8}
+  m_SizeDelta: {x: 40, y: 160}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224022824969230686
 RectTransform:
   m_ObjectHideFlags: 1
@@ -2157,6 +2607,24 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 40, y: 160}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!224 &224041741219766438
+RectTransform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1694065626861622}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 224406928556403926}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 40, y: 160}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224052385152899510
 RectTransform:
   m_ObjectHideFlags: 1
@@ -2211,6 +2679,25 @@ RectTransform:
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -294, y: 20}
   m_SizeDelta: {x: 160, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!224 &224112317934425560
+RectTransform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1743938434883776}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.000002, y: 1.000002, z: 1.000002}
+  m_Children:
+  - {fileID: 224599545828411260}
+  m_Father: {fileID: 224312851980510552}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 67.7, y: -3.3}
+  m_SizeDelta: {x: 40, y: 160}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224142300672630422
 RectTransform:
@@ -2361,6 +2848,24 @@ RectTransform:
   m_AnchoredPosition: {x: 60.299957, y: -17.930279}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!224 &224248932241086964
+RectTransform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1987978892706644}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 224439924240952356}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 40, y: 160}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224264833228982140
 RectTransform:
   m_ObjectHideFlags: 1
@@ -2390,8 +2895,12 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 224824630910369684}
+  - {fileID: 224439924240952356}
   - {fileID: 224527192372468896}
+  - {fileID: 224009382033827834}
+  - {fileID: 224406928556403926}
+  - {fileID: 224112317934425560}
+  - {fileID: 224824630910369684}
   m_Father: {fileID: 224805653806363832}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2419,6 +2928,25 @@ RectTransform:
   m_AnchoredPosition: {x: 434.30002, y: 20}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!224 &224406928556403926
+RectTransform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1263340943715532}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.000002, y: 1.000002, z: 1.000002}
+  m_Children:
+  - {fileID: 224041741219766438}
+  m_Father: {fileID: 224312851980510552}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 117, y: -65.79999}
+  m_SizeDelta: {x: 40, y: 160}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224426106988639258
 RectTransform:
   m_ObjectHideFlags: 1
@@ -2437,6 +2965,25 @@ RectTransform:
   m_AnchoredPosition: {x: 50.5, y: -18.100025}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!224 &224439924240952356
+RectTransform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1331753217359920}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 224248932241086964}
+  m_Father: {fileID: 224312851980510552}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -24, y: -35}
+  m_SizeDelta: {x: 40, y: 160}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224527192372468896
 RectTransform:
   m_ObjectHideFlags: 1
@@ -2454,6 +3001,24 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 24, y: -35}
+  m_SizeDelta: {x: 40, y: 160}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!224 &224599545828411260
+RectTransform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1241776592465788}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 224112317934425560}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 40, y: 160}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224623534270641522
@@ -2623,15 +3188,15 @@ RectTransform:
   m_GameObject: {fileID: 1760620331000172}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.000002, y: 1.000002, z: 1.000002}
   m_Children:
   - {fileID: 224028647175961264}
   m_Father: {fileID: 224312851980510552}
-  m_RootOrder: 0
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -24, y: -35}
+  m_AnchoredPosition: {x: -67.70004, y: -3.2999878}
   m_SizeDelta: {x: 40, y: 160}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224849675817058386
@@ -2651,6 +3216,24 @@ RectTransform:
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 687, y: -275}
   m_SizeDelta: {x: 300, y: 300}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!224 &224851011010967020
+RectTransform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1484934781568686}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 224009382033827834}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 40, y: 160}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224987644888831614
 RectTransform:

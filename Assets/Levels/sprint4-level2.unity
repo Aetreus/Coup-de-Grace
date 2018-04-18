@@ -5656,6 +5656,26 @@ Prefab:
       propertyPath: onDie.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 373668335}
+    - target: {fileID: 114222035015594602, guid: df6bd1004b6bea74a9c6072f3afa6241,
+        type: 2}
+      propertyPath: worldBounds.x
+      value: -12000
+      objectReference: {fileID: 0}
+    - target: {fileID: 114222035015594602, guid: df6bd1004b6bea74a9c6072f3afa6241,
+        type: 2}
+      propertyPath: worldBounds.width
+      value: 24000
+      objectReference: {fileID: 0}
+    - target: {fileID: 114222035015594602, guid: df6bd1004b6bea74a9c6072f3afa6241,
+        type: 2}
+      propertyPath: worldBounds.height
+      value: 24000
+      objectReference: {fileID: 0}
+    - target: {fileID: 114222035015594602, guid: df6bd1004b6bea74a9c6072f3afa6241,
+        type: 2}
+      propertyPath: worldBounds.y
+      value: -12000
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: df6bd1004b6bea74a9c6072f3afa6241, type: 2}
   m_IsPrefabParent: 0

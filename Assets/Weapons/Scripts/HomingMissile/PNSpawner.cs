@@ -20,7 +20,15 @@ public class PNSpawner : MonoBehaviour {
     public virtual void Create(GameObject target)
     {
         GameObject created = Instantiate(spawned, transform.TransformPoint(offset), transform.rotation);
-        created.GetComponent<Rigidbody>().velocity = GetComponent<Rigidbody>().velocity + transform.localToWorldMatrix.MultiplyVector(initial);
+        GameObject sel = gameObject;
+        Rigidbody rb = null;
+        while (rb == null)
+        {
+            rb = sel.GetComponent<Rigidbody>();
+            if (rb == null)
+                sel = sel.transform.parent.gameObject;
+        }
+        created.GetComponent<Rigidbody>().velocity = rb.velocity + transform.localToWorldMatrix.MultiplyVector(initial);
         created.GetComponent<PropNav>().Target = target;
         created.GetComponent<ProximityExplodeScript>().hostileTag = target.tag;
     }

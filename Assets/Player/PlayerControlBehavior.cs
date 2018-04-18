@@ -213,7 +213,7 @@ public class PlayerControlBehavior : MonoBehaviour {
 
         for (int i = wm.maximumShots; i < WpnHolder.transform.childCount; i++)
         {
-            WpnGraphics[i].GetComponent<Image>().color = Color.red;
+            WpnGraphics[i].SetActive(false);
         }
 
         startLocation = transform.position;
@@ -246,6 +246,13 @@ public class PlayerControlBehavior : MonoBehaviour {
         for (int i = 0; i < WpnGraphics.Count && i < wm.maximumShots; i++)
         {
             WpnGraphics[i].GetComponent<Image>().fillAmount = wm.GetLoadingFraction(i);
+            WpnGraphics[i].SetActive(true);
+        }
+
+
+        for (int i = wm.maximumShots; i < WpnHolder.transform.childCount; i++)
+        {
+            WpnGraphics[i].SetActive(false);
         }
 
         if (Input.GetButtonDown("Fire1"))
@@ -276,7 +283,7 @@ public class PlayerControlBehavior : MonoBehaviour {
         if (Input.GetButtonUp("CycleWeapon"))
         {
             weaponSelect++;
-            if(weaponSelect > weapons.Count)
+            if(weaponSelect >= weapons.Count)
             {
                 weaponSelect = 0;
             }

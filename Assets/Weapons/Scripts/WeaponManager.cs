@@ -9,7 +9,6 @@ public class WeaponManager : MonoBehaviour {
     [SerializeField]
     public OnFire onFire = new OnFire();
     
-
     public int maximumShots { get {return _maximumShots;} set { _maximumShots = value; ResetLoading(); }}
 
     public float reloadTime = 2.0F;
@@ -20,6 +19,7 @@ public class WeaponManager : MonoBehaviour {
 
     public float shots { get { return current_shots; } }
 
+    [SerializeField]
     private int _maximumShots = 2;
 
 	// Use this for initialization
