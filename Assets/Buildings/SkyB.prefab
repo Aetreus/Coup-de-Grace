@@ -260,7 +260,7 @@ GameObject:
   - component: {fileID: 136294632598393962}
   m_Layer: 0
   m_Name: SkyB
-  m_TagString: BuildingObjective
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
