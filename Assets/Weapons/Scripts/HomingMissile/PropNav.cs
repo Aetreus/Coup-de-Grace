@@ -175,6 +175,10 @@ public class PropNav : MonoBehaviour {
             hp.Damage(damage);
         }
 
+        ExplosionScript s = gameObject.GetComponent<ExplosionScript>();
+        if (s != null)
+            s.explode();
+
         Destroy(gameObject);
     }
 

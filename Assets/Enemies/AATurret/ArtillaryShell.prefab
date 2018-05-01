@@ -591,10 +591,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hostileTag: Player
-  triggerRange: 5
+  triggerRange: 10
   damage: 2
   minDamage: 1
-  damageRadius: 5
+  damageRadius: 10
   innerDamageRadius: 2.5
 --- !u!136 &136744268328911122
 CapsuleCollider:
