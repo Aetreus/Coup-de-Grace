@@ -481,6 +481,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  hp: 0
 --- !u!65 &93101308
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -843,6 +844,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  hp: 0
 --- !u!1001 &167640852
 Prefab:
   m_ObjectHideFlags: 0
@@ -4010,6 +4012,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  hp: 0
 --- !u!65 &721196212
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16561,6 +16564,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  hp: 0
 --- !u!65 &1180105874
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -21880,18 +21884,13 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114001547825267288, guid: df6bd1004b6bea74a9c6072f3afa6241,
         type: 2}
-      propertyPath: onDie.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 373668335}
-    - target: {fileID: 114001547825267288, guid: df6bd1004b6bea74a9c6072f3afa6241,
-        type: 2}
       propertyPath: onDie.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: TransitionLevel
+      value: KillScreen
       objectReference: {fileID: 0}
     - target: {fileID: 114001547825267288, guid: df6bd1004b6bea74a9c6072f3afa6241,
         type: 2}
       propertyPath: onDie.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114001547825267288, guid: df6bd1004b6bea74a9c6072f3afa6241,
         type: 2}

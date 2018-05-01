@@ -12155,18 +12155,13 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114001547825267288, guid: df6bd1004b6bea74a9c6072f3afa6241,
         type: 2}
-      propertyPath: onDie.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 373668335}
-    - target: {fileID: 114001547825267288, guid: df6bd1004b6bea74a9c6072f3afa6241,
-        type: 2}
       propertyPath: onDie.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: TransitionLevel
+      value: KillScreen
       objectReference: {fileID: 0}
     - target: {fileID: 114001547825267288, guid: df6bd1004b6bea74a9c6072f3afa6241,
         type: 2}
       propertyPath: onDie.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114001547825267288, guid: df6bd1004b6bea74a9c6072f3afa6241,
         type: 2}

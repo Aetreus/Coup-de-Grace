@@ -2691,6 +2691,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  hp: 0
 --- !u!1 &682402086 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1118712050718116, guid: df6bd1004b6bea74a9c6072f3afa6241,
@@ -5651,11 +5652,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 114001547825267288, guid: df6bd1004b6bea74a9c6072f3afa6241,
-        type: 2}
-      propertyPath: onDie.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 373668335}
     - target: {fileID: 114222035015594602, guid: df6bd1004b6bea74a9c6072f3afa6241,
         type: 2}
       propertyPath: worldBounds.x
