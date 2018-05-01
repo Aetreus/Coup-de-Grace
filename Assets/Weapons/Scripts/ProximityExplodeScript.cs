@@ -27,7 +27,7 @@ public class ProximityExplodeScript : MonoBehaviour {
         nearby = new List<GameObject>();
         SphereCollider sc = gameObject.AddComponent<SphereCollider>() as SphereCollider;
         sc.isTrigger = true;
-        sc.radius = damageRadius;
+        sc.radius = damageRadius / transform.localScale.x;
 	}
 	
 	// Update is called once per frame
@@ -38,8 +38,10 @@ public class ProximityExplodeScript : MonoBehaviour {
         nearby.RemoveAll(g => g == null);
         foreach(GameObject g in nearby)
         {
-            if(g.tag == hostileTag)
+            if (g.tag == hostileTag)
+            {
                 distances.Add((g.transform.position - transform.position).magnitude);
+            }
         }
         distances.Sort();
 
@@ -83,6 +85,11 @@ public class ProximityExplodeScript : MonoBehaviour {
     void OnTriggerEnter(Collider other)
     {
         nearby.Add(other.gameObject);
+        if (other.tag == hostileTag)
+        {
+            if(((other.gameObject.transform.position - transform.position).magnitude) < triggerRange)
+                Explode();
+        }
     }
 
     void OnTriggerExit(Collider other)

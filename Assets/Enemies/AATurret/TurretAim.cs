@@ -140,7 +140,7 @@ public class TurretAim : MonoBehaviour {
         float shotSpeedOrth = Mathf.Sqrt(shotSpeed * shotSpeed - shotVelSpeed * shotVelSpeed);
         Vector3 shotVelOrth = dirToTarget * shotSpeedOrth;
 
-        return (shotVelOrth + shotVelTang).normalized;
+        return (shotVelOrth + shotVelTang);
     }
 
     protected virtual void Fire()

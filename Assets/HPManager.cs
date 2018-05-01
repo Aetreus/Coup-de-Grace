@@ -9,6 +9,7 @@ public class HPManager : MonoBehaviour {
 
     public UnityEvent onDie = new UnityEvent();
 
+    [SerializeField]
     private float hp;
 
 	// Use this for initialization

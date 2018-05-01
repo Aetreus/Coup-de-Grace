@@ -109,6 +109,7 @@ GameObject:
   - component: {fileID: 114422050710063746}
   - component: {fileID: 136744268328911122}
   - component: {fileID: 82435465861546536}
+  - component: {fileID: 114741323985426464}
   m_Layer: 0
   m_Name: ArtillaryShell
   m_TagString: Untagged
@@ -576,7 +577,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifetime: 10
-  speed: 400
+  speed: 850
   damage: 2
   hostileTag: Player
 --- !u!114 &114422050710063746
@@ -591,11 +592,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hostileTag: Player
-  triggerRange: 10
-  damage: 2
-  minDamage: 1
-  damageRadius: 10
+  triggerRange: 20
+  damage: 1.5
+  minDamage: 0
+  damageRadius: 20
   innerDamageRadius: 2.5
+--- !u!114 &114741323985426464
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1657919553941542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afaf34423f48635499832e428c207998, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 1855380049135256, guid: 0f953d726d1924e4993251ba20d3ddbf, type: 2}
+  numDebris: 5
+  power: 20
 --- !u!136 &136744268328911122
 CapsuleCollider:
   m_ObjectHideFlags: 1
