@@ -8752,17 +8752,17 @@ Prefab:
         type: 2}
       propertyPath: linesInit.Array.data[0].line.voice
       value: 
-      objectReference: {fileID: 8300000, guid: b82be7e99ffeb1245af40f6b15d83296, type: 3}
+      objectReference: {fileID: 8300000, guid: 2c9f91c9af9508b4e9fd27ceb378d18c, type: 3}
     - target: {fileID: 114773720726601326, guid: f300ca3c4e7eadc41a6a7c96ddc547cb,
         type: 2}
       propertyPath: linesInit.Array.data[0].line.time
-      value: 3.1
+      value: 2.9
       objectReference: {fileID: 0}
     - target: {fileID: 114773720726601326, guid: f300ca3c4e7eadc41a6a7c96ddc547cb,
         type: 2}
       propertyPath: linesInit.Array.data[2].line.voice
       value: 
-      objectReference: {fileID: 8300000, guid: d78ba3f97d0aacd48b1db203bdd36e60, type: 3}
+      objectReference: {fileID: 8300000, guid: a41c9119306f8da45a98f3f3d3bacb25, type: 3}
     - target: {fileID: 114773720726601326, guid: f300ca3c4e7eadc41a6a7c96ddc547cb,
         type: 2}
       propertyPath: linesInit.Array.data[2].line.time
@@ -8772,7 +8772,7 @@ Prefab:
         type: 2}
       propertyPath: linesInit.Array.data[4].line.voice
       value: 
-      objectReference: {fileID: 8300000, guid: 97be08f59505eb7479f2ae0b0943f419, type: 3}
+      objectReference: {fileID: 8300000, guid: b5231c1c7888887488b3893709fa29b7, type: 3}
     - target: {fileID: 114773720726601326, guid: f300ca3c4e7eadc41a6a7c96ddc547cb,
         type: 2}
       propertyPath: linesInit.Array.data[4].line.time
@@ -8791,7 +8791,7 @@ Prefab:
     - target: {fileID: 114773720726601326, guid: f300ca3c4e7eadc41a6a7c96ddc547cb,
         type: 2}
       propertyPath: linesInit.Array.data[9].line.time
-      value: 4.2
+      value: 4.7
       objectReference: {fileID: 0}
     - target: {fileID: 114773720726601326, guid: f300ca3c4e7eadc41a6a7c96ddc547cb,
         type: 2}
@@ -8803,7 +8803,7 @@ Prefab:
         type: 2}
       propertyPath: linesInit.Array.data[9].line.voice
       value: 
-      objectReference: {fileID: 8300000, guid: a872206500ab1ea40835f5fc59f62e4f, type: 3}
+      objectReference: {fileID: 8300000, guid: d32527c8ba6a05b4abf8b3d4cdd81896, type: 3}
     - target: {fileID: 114773720726601326, guid: f300ca3c4e7eadc41a6a7c96ddc547cb,
         type: 2}
       propertyPath: linesInit.Array.data[10].name
@@ -8812,8 +8812,8 @@ Prefab:
     - target: {fileID: 114773720726601326, guid: f300ca3c4e7eadc41a6a7c96ddc547cb,
         type: 2}
       propertyPath: linesInit.Array.data[10].line.text
-      value: Yeah, yeah... man, been awhile since I've had to take orders. I don't
-        miss having to either.
+      value: Affirmative. You're to take them down before they are able to get close
+        enough to do a bombing run.
       objectReference: {fileID: 0}
     - target: {fileID: 114773720726601326, guid: f300ca3c4e7eadc41a6a7c96ddc547cb,
         type: 2}
@@ -8830,7 +8830,7 @@ Prefab:
         type: 2}
       propertyPath: linesInit.Array.data[10].line.voice
       value: 
-      objectReference: {fileID: 8300000, guid: 177ed2a6091ff0c408e039812a474d01, type: 3}
+      objectReference: {fileID: 8300000, guid: 3c8103996b2265b46bc44a8d3f751d50, type: 3}
     - target: {fileID: 114773720726601326, guid: f300ca3c4e7eadc41a6a7c96ddc547cb,
         type: 2}
       propertyPath: linesInit.Array.data[9].line.nextLine
@@ -8840,12 +8840,12 @@ Prefab:
         type: 2}
       propertyPath: linesInit.Array.data[1].line.voice
       value: 
-      objectReference: {fileID: 8300000, guid: bd4fa6d1b61b9524c9ba9598d6c01372, type: 3}
+      objectReference: {fileID: 8300000, guid: 1ebb2de11630daf4ba3687efe56655e2, type: 3}
     - target: {fileID: 114773720726601326, guid: f300ca3c4e7eadc41a6a7c96ddc547cb,
         type: 2}
       propertyPath: linesInit.Array.data[3].line.voice
       value: 
-      objectReference: {fileID: 8300000, guid: 935e4ba4da784264aa4c6dfc8de96e1f, type: 3}
+      objectReference: {fileID: 8300000, guid: 4908350048f1abd448fee7cd0dd312a1, type: 3}
     - target: {fileID: 114773720726601326, guid: f300ca3c4e7eadc41a6a7c96ddc547cb,
         type: 2}
       propertyPath: linesInit.Array.data[10].line.nextLine
@@ -8860,26 +8860,26 @@ Prefab:
         type: 2}
       propertyPath: linesInit.Array.data[7].line.voice
       value: 
-      objectReference: {fileID: 8300000, guid: 7218c08fc904db141823bbb6e8d4e0f0, type: 3}
+      objectReference: {fileID: 8300000, guid: 13ba3edc033cacd4cad911fa18952292, type: 3}
     - target: {fileID: 114773720726601326, guid: f300ca3c4e7eadc41a6a7c96ddc547cb,
         type: 2}
       propertyPath: linesInit.Array.data[5].line.voice
       value: 
-      objectReference: {fileID: 8300000, guid: 5d606922fcb19cc4f804c4d83b14c45f, type: 3}
+      objectReference: {fileID: 8300000, guid: 6e0a4b2411636ba48b5dccdadc4503d4, type: 3}
     - target: {fileID: 114773720726601326, guid: f300ca3c4e7eadc41a6a7c96ddc547cb,
         type: 2}
       propertyPath: linesInit.Array.data[6].line.voice
       value: 
-      objectReference: {fileID: 8300000, guid: 0a37893855a867442a94f77922b2b483, type: 3}
+      objectReference: {fileID: 8300000, guid: 00fcffc601f16924a8d51f3decef9434, type: 3}
     - target: {fileID: 114773720726601326, guid: f300ca3c4e7eadc41a6a7c96ddc547cb,
         type: 2}
       propertyPath: linesInit.Array.data[8].line.voice
       value: 
-      objectReference: {fileID: 8300000, guid: aefa8f448d0b80c45b264beb52da9e1c, type: 3}
+      objectReference: {fileID: 8300000, guid: 96be0e5226d179942b7130482d05ac65, type: 3}
     - target: {fileID: 114773720726601326, guid: f300ca3c4e7eadc41a6a7c96ddc547cb,
         type: 2}
       propertyPath: linesInit.Array.data[3].line.time
-      value: 4.8
+      value: 7.4
       objectReference: {fileID: 0}
     - target: {fileID: 114773720726601326, guid: f300ca3c4e7eadc41a6a7c96ddc547cb,
         type: 2}
@@ -8889,12 +8889,12 @@ Prefab:
     - target: {fileID: 114773720726601326, guid: f300ca3c4e7eadc41a6a7c96ddc547cb,
         type: 2}
       propertyPath: linesInit.Array.data[6].line.time
-      value: 3.3
+      value: 3.1
       objectReference: {fileID: 0}
     - target: {fileID: 114773720726601326, guid: f300ca3c4e7eadc41a6a7c96ddc547cb,
         type: 2}
       propertyPath: linesInit.Array.data[7].line.time
-      value: 11
+      value: 11.8
       objectReference: {fileID: 0}
     - target: {fileID: 114773720726601326, guid: f300ca3c4e7eadc41a6a7c96ddc547cb,
         type: 2}
@@ -8986,6 +8986,150 @@ Prefab:
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
       value: sprint4-level1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114773720726601326, guid: f300ca3c4e7eadc41a6a7c96ddc547cb,
+        type: 2}
+      propertyPath: linesInit.Array.data[0].line.text
+      value: Hawk, do you read me loud and clear?
+      objectReference: {fileID: 0}
+    - target: {fileID: 114773720726601326, guid: f300ca3c4e7eadc41a6a7c96ddc547cb,
+        type: 2}
+      propertyPath: linesInit.Array.data[0].line.speaker
+      value: 
+      objectReference: {fileID: 21300000, guid: 08df3e150d9efaa47a0250c6588ae9e5,
+        type: 3}
+    - target: {fileID: 114773720726601326, guid: f300ca3c4e7eadc41a6a7c96ddc547cb,
+        type: 2}
+      propertyPath: linesInit.Array.data[1].line.text
+      value: Yeah yeah, and here I thought I could get away from Mr. No Fun.
+      objectReference: {fileID: 0}
+    - target: {fileID: 114773720726601326, guid: f300ca3c4e7eadc41a6a7c96ddc547cb,
+        type: 2}
+      propertyPath: linesInit.Array.data[1].line.speaker
+      value: 
+      objectReference: {fileID: 21300000, guid: 519032948b8f34748a868996562e24ce,
+        type: 3}
+    - target: {fileID: 114773720726601326, guid: f300ca3c4e7eadc41a6a7c96ddc547cb,
+        type: 2}
+      propertyPath: linesInit.Array.data[2].line.text
+      value: Excuse me, but you are on a mission for us, I do need to give orders
+        and relay important information when it arises.
+      objectReference: {fileID: 0}
+    - target: {fileID: 114773720726601326, guid: f300ca3c4e7eadc41a6a7c96ddc547cb,
+        type: 2}
+      propertyPath: linesInit.Array.data[2].line.speaker
+      value: 
+      objectReference: {fileID: 21300000, guid: 08df3e150d9efaa47a0250c6588ae9e5,
+        type: 3}
+    - target: {fileID: 114773720726601326, guid: f300ca3c4e7eadc41a6a7c96ddc547cb,
+        type: 2}
+      propertyPath: linesInit.Array.data[3].line.text
+      value: What I don't get is why they don't have an interceptor out keeping an
+        eye on 'em. They must be overconfident or just plain stupid.
+      objectReference: {fileID: 0}
+    - target: {fileID: 114773720726601326, guid: f300ca3c4e7eadc41a6a7c96ddc547cb,
+        type: 2}
+      propertyPath: linesInit.Array.data[3].line.speaker
+      value: 
+      objectReference: {fileID: 21300000, guid: 519032948b8f34748a868996562e24ce,
+        type: 3}
+    - target: {fileID: 114773720726601326, guid: f300ca3c4e7eadc41a6a7c96ddc547cb,
+        type: 2}
+      propertyPath: linesInit.Array.data[4].line.text
+      value: Whatever the reason, we do not know. Just carry out the mission.
+      objectReference: {fileID: 0}
+    - target: {fileID: 114773720726601326, guid: f300ca3c4e7eadc41a6a7c96ddc547cb,
+        type: 2}
+      propertyPath: linesInit.Array.data[4].line.speaker
+      value: 
+      objectReference: {fileID: 21300000, guid: 08df3e150d9efaa47a0250c6588ae9e5,
+        type: 3}
+    - target: {fileID: 114773720726601326, guid: f300ca3c4e7eadc41a6a7c96ddc547cb,
+        type: 2}
+      propertyPath: linesInit.Array.data[4].line.nextLine
+      value: Opening6
+      objectReference: {fileID: 0}
+    - target: {fileID: 114773720726601326, guid: f300ca3c4e7eadc41a6a7c96ddc547cb,
+        type: 2}
+      propertyPath: linesInit.Array.data[5].line.speaker
+      value: 
+      objectReference: {fileID: 21300000, guid: 519032948b8f34748a868996562e24ce,
+        type: 3}
+    - target: {fileID: 114773720726601326, guid: f300ca3c4e7eadc41a6a7c96ddc547cb,
+        type: 2}
+      propertyPath: linesInit.Array.data[5].line.text
+      value: Alright then. Guess this is as good time as any to get warmed back up
+        on this.
+      objectReference: {fileID: 0}
+    - target: {fileID: 114773720726601326, guid: f300ca3c4e7eadc41a6a7c96ddc547cb,
+        type: 2}
+      propertyPath: linesInit.Array.data[5].line.time
+      value: 5.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114773720726601326, guid: f300ca3c4e7eadc41a6a7c96ddc547cb,
+        type: 2}
+      propertyPath: linesInit.Array.data[6].name
+      value: End1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114773720726601326, guid: f300ca3c4e7eadc41a6a7c96ddc547cb,
+        type: 2}
+      propertyPath: linesInit.Array.data[6].line.text
+      value: And that's that. Coming on home.
+      objectReference: {fileID: 0}
+    - target: {fileID: 114773720726601326, guid: f300ca3c4e7eadc41a6a7c96ddc547cb,
+        type: 2}
+      propertyPath: linesInit.Array.data[6].line.nextLine
+      value: End2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114773720726601326, guid: f300ca3c4e7eadc41a6a7c96ddc547cb,
+        type: 2}
+      propertyPath: linesInit.Array.data[6].line.speaker
+      value: 
+      objectReference: {fileID: 21300000, guid: 519032948b8f34748a868996562e24ce,
+        type: 3}
+    - target: {fileID: 114773720726601326, guid: f300ca3c4e7eadc41a6a7c96ddc547cb,
+        type: 2}
+      propertyPath: linesInit.Array.data[7].name
+      value: End2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114773720726601326, guid: f300ca3c4e7eadc41a6a7c96ddc547cb,
+        type: 2}
+      propertyPath: linesInit.Array.data[7].line.speaker
+      value: 
+      objectReference: {fileID: 21300000, guid: 08df3e150d9efaa47a0250c6588ae9e5,
+        type: 3}
+    - target: {fileID: 114773720726601326, guid: f300ca3c4e7eadc41a6a7c96ddc547cb,
+        type: 2}
+      propertyPath: linesInit.Array.data[7].line.text
+      value: Good work. This should halt their initial advance, at least for some
+        time. There is no telling if they are going to launch another attack, so once
+        you land, be on standby for further orders.
+      objectReference: {fileID: 0}
+    - target: {fileID: 114773720726601326, guid: f300ca3c4e7eadc41a6a7c96ddc547cb,
+        type: 2}
+      propertyPath: linesInit.Array.data[7].line.nextLine
+      value: End3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114773720726601326, guid: f300ca3c4e7eadc41a6a7c96ddc547cb,
+        type: 2}
+      propertyPath: linesInit.Array.data[8].line.speaker
+      value: 
+      objectReference: {fileID: 21300000, guid: 519032948b8f34748a868996562e24ce,
+        type: 3}
+    - target: {fileID: 114773720726601326, guid: f300ca3c4e7eadc41a6a7c96ddc547cb,
+        type: 2}
+      propertyPath: linesInit.Array.data[8].line.nextLine
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114773720726601326, guid: f300ca3c4e7eadc41a6a7c96ddc547cb,
+        type: 2}
+      propertyPath: linesInit.Array.data[8].line.time
+      value: 6.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 114773720726601326, guid: f300ca3c4e7eadc41a6a7c96ddc547cb,
+        type: 2}
+      propertyPath: linesInit.Array.data[8].name
+      value: End3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f300ca3c4e7eadc41a6a7c96ddc547cb, type: 2}
