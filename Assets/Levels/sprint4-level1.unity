@@ -3109,7 +3109,7 @@ MonoBehaviour:
       valueName: IsObjectWithTagAlive
       isMethod: 1
       paramStrings:
-      - System.String#Enemy
+      - System.String#HostileObjective
     isConditionBoolean: 1
     invertCondition: 1
     min: 0
@@ -3177,7 +3177,7 @@ MonoBehaviour:
       valueName: TransitionLevel
       isMethod: 1
       paramStrings:
-      - System.String#sprint3-mainmenu
+      - System.String#sprint4-mainmenu
   - condition:
       reference: {fileID: 373668333}
       component: LevelEventManager
