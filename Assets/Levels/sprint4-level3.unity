@@ -1037,8 +1037,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 215.01978, y: 745.9839, z: 187.58215}
+  m_Center: {x: 32.312622, y: 377.45483, z: 2.772522}
 --- !u!114 &477872022
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3446,6 +3446,26 @@ Prefab:
       propertyPath: onDie.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 373668335}
+    - target: {fileID: 114222035015594602, guid: df6bd1004b6bea74a9c6072f3afa6241,
+        type: 2}
+      propertyPath: worldBounds.width
+      value: 64002
+      objectReference: {fileID: 0}
+    - target: {fileID: 114222035015594602, guid: df6bd1004b6bea74a9c6072f3afa6241,
+        type: 2}
+      propertyPath: worldBounds.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114222035015594602, guid: df6bd1004b6bea74a9c6072f3afa6241,
+        type: 2}
+      propertyPath: worldBounds.y
+      value: -12001
+      objectReference: {fileID: 0}
+    - target: {fileID: 114222035015594602, guid: df6bd1004b6bea74a9c6072f3afa6241,
+        type: 2}
+      propertyPath: worldBounds.height
+      value: 30000
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: df6bd1004b6bea74a9c6072f3afa6241, type: 2}
   m_IsPrefabParent: 0
