@@ -225,6 +225,8 @@ public class PlayerControlBehavior : MonoBehaviour {
         killTimer = killTime;
 
         isDead = false;
+
+        Time.timeScale = 1.0F;
     }
 
     // Update is called once per frame
