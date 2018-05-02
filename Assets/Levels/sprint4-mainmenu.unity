@@ -799,7 +799,9 @@ MonoBehaviour:
 
     Center View:
 
-    Center Target In View:'
+    Center Target In View:
+
+    Pause/Skip:'
 --- !u!222 &306922225
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2436,7 +2438,9 @@ MonoBehaviour:
 
     Square
 
-    Triangle'
+    Triangle
+
+    Start'
 --- !u!222 &1610070245
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2551,7 +2555,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -79}
+  m_AnchoredPosition: {x: 0, y: -88.8}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1710487966
@@ -2926,7 +2930,13 @@ MonoBehaviour:
 
     T
 
-    R'
+    R
+
+
+
+
+
+    Escape'
 --- !u!222 &1829618990
 CanvasRenderer:
   m_ObjectHideFlags: 0
