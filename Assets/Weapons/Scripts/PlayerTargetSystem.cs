@@ -12,6 +12,9 @@ public class PlayerTargetSystem : MonoBehaviour {
 
     public string hostileTag;
 
+    public string lockRingName = "LockRing";
+    public string cameraCarrierName = "CameraCarrier";
+
     public Dictionary<string, GameObject> iconSpec;
     public List<IconSpec> specInit;
 
@@ -32,6 +35,7 @@ public class PlayerTargetSystem : MonoBehaviour {
     private bool locking;
 
     private GameObject lockRing;
+    private GameObject cameraCarrier;
     
     private GameObject _target;
     private List<GameObject> enemies;
@@ -62,6 +66,7 @@ public class PlayerTargetSystem : MonoBehaviour {
 
         lockRing = GameObject.Find("LockRing");
         lockRing.SetActive(false);
+        cameraCarrier = GameObject.Find("CameraCarrier");
         canvas = GameObject.Find("Canvas");
         targetIcons = new Dictionary<string,List<GameObject>>();
         lockIcon = Instantiate(lockPrefab, canvas.transform);
@@ -199,15 +204,15 @@ public class PlayerTargetSystem : MonoBehaviour {
         }
     }
 
-    static int SortByAngle(GameObject a, GameObject b)
+    int SortByAngle(GameObject a, GameObject b)
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
 
-        Vector3 toA = a.transform.position - player.transform.position;
-        float angleA = Vector3.Angle(toA, player.transform.forward);
+        Vector3 toA = a.transform.position - cameraCarrier.transform.position;
+        float angleA = Vector3.Angle(toA, cameraCarrier.transform.forward);
 
-        Vector3 toB = b.transform.position - player.transform.position;
-        float angleB = Vector3.Angle(toB, player.transform.forward);
+        Vector3 toB = b.transform.position - cameraCarrier.transform.position;
+        float angleB = Vector3.Angle(toB, cameraCarrier.transform.forward);
 
         if(angleA < angleB)
         {
@@ -222,8 +227,11 @@ public class PlayerTargetSystem : MonoBehaviour {
 
     private void ScaleLock(float angle)
     {
+        float xPos = cameraCarrier.GetComponent<CameraControlScript>().Azimuth / (Camera.main.fieldOfView) * canvas.GetComponent<RectTransform>().sizeDelta.y;
+        float yPos = cameraCarrier.GetComponent<CameraControlScript>().Altitude / (Camera.main.fieldOfView) * canvas.GetComponent<RectTransform>().sizeDelta.y;
         float size = angle / (Camera.main.fieldOfView / 2) * canvas.GetComponent<RectTransform>().sizeDelta.y;
         lockRing.GetComponent<RectTransform>().sizeDelta = new Vector2(size, size);
+        lockRing.GetComponent<RectTransform>().localPosition = new Vector3(xPos, yPos);
     }
 
     private void DisplayIcons()

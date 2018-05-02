@@ -4772,17 +4772,17 @@ Prefab:
         type: 2}
       propertyPath: reference
       value: 
-      objectReference: {fileID: 682402086}
+      objectReference: {fileID: 1906950376}
     - target: {fileID: 114959137564407764, guid: 42a25b5d79de3cb49bb4ed46df84db7f,
         type: 2}
       propertyPath: reference
       value: 
-      objectReference: {fileID: 682402086}
+      objectReference: {fileID: 1906950376}
     - target: {fileID: 114410439427865640, guid: 42a25b5d79de3cb49bb4ed46df84db7f,
         type: 2}
       propertyPath: reference
       value: 
-      objectReference: {fileID: 682402086}
+      objectReference: {fileID: 1906950376}
     - target: {fileID: 4939626695293630, guid: 42a25b5d79de3cb49bb4ed46df84db7f, type: 2}
       propertyPath: m_LocalPosition.y
       value: 0.95
@@ -19850,7 +19850,7 @@ Prefab:
     - target: {fileID: 114773720726601326, guid: f300ca3c4e7eadc41a6a7c96ddc547cb,
         type: 2}
       propertyPath: linesInit.Array.data[4].line.nextLine
-      value: Opening6
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 114596823672075502, guid: f300ca3c4e7eadc41a6a7c96ddc547cb,
         type: 2}
@@ -19892,6 +19892,12 @@ Prefab:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
       value: sprint4-level4
       objectReference: {fileID: 0}
+    - target: {fileID: 114773720726601326, guid: f300ca3c4e7eadc41a6a7c96ddc547cb,
+        type: 2}
+      propertyPath: linesInit.Array.data[24].line.speaker
+      value: 
+      objectReference: {fileID: 21300000, guid: 519032948b8f34748a868996562e24ce,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f300ca3c4e7eadc41a6a7c96ddc547cb, type: 2}
   m_IsPrefabParent: 0
@@ -21904,12 +21910,12 @@ Prefab:
     - target: {fileID: 114222035015594602, guid: df6bd1004b6bea74a9c6072f3afa6241,
         type: 2}
       propertyPath: worldBounds.x
-      value: -60000
+      value: -6000
       objectReference: {fileID: 0}
     - target: {fileID: 114222035015594602, guid: df6bd1004b6bea74a9c6072f3afa6241,
         type: 2}
       propertyPath: worldBounds.y
-      value: -60000
+      value: -42000
       objectReference: {fileID: 0}
     - target: {fileID: 114222035015594602, guid: df6bd1004b6bea74a9c6072f3afa6241,
         type: 2}
@@ -21924,6 +21930,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: df6bd1004b6bea74a9c6072f3afa6241, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1906950376 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1967548434702748, guid: df6bd1004b6bea74a9c6072f3afa6241,
+    type: 2}
+  m_PrefabInternal: {fileID: 1906950375}
 --- !u!1 &1925890659
 GameObject:
   m_ObjectHideFlags: 0
