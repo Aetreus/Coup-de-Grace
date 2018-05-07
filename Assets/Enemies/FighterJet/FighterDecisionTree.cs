@@ -126,7 +126,7 @@ public class FighterDecisionTree : MonoBehaviour {
                 Move_Behind_Player();
                 break;
             case AIAction.PATH_PLAYER:
-                Follow_Path_To_Player();
+                Move_Behind_Player();
                 break;
             default:
                 break;
@@ -581,7 +581,12 @@ public class FighterDecisionTree : MonoBehaviour {
     void Maintain_Lock()
     {
         //Aim ahead of the target depending on its velocity, but keep it in the lock cone.
-        Vector3 leadFacing = target.transform.position + target.GetComponent<Rigidbody>().velocity * (float)((target.transform.position - transform.position).magnitude / rb.velocity.magnitude) - transform.position;
+        Vector3 targetVelocity;
+        if (target.GetComponent<Rigidbody>() != null)
+            targetVelocity = target.GetComponent<Rigidbody>().velocity;
+        else
+            targetVelocity = new Vector3(0,0,0);
+        Vector3 leadFacing = target.transform.position + targetVelocity * (float)((target.transform.position - transform.position).magnitude / rb.velocity.magnitude) - transform.position;
         leadFacing = leadFacing.normalized;
         Vector3 directFacing = (target.transform.position - transform.position).normalized;
 
@@ -679,17 +684,25 @@ public class FighterDecisionTree : MonoBehaviour {
             else
                 fs.upDir = (transform.forward - target.transform.forward).normalized;
             //Try to maintain the distance between 1000-2000m
+            Vector3 targetVelocity;
+            if (target.GetComponent<Rigidbody>() != null)
+            {
+                targetVelocity = target.GetComponent<Rigidbody>().velocity;
+            }
+            else
+                targetVelocity = new Vector3(0, 0, 0);
+
             if (player_to_fighter.magnitude > 2000)
             {
-                fs.targetVel = target.GetComponent<Rigidbody>().velocity.magnitude + 100;
+                fs.targetVel = targetVelocity.magnitude + 100;
             }
             else if (player_to_fighter.magnitude < 1000)
             {
-                fs.targetVel = target.GetComponent<Rigidbody>().velocity.magnitude - 50;
+                fs.targetVel = targetVelocity.magnitude - 50;
             }
             else
             {
-                fs.targetVel = target.GetComponent<Rigidbody>().velocity.magnitude;
+                fs.targetVel = targetVelocity.magnitude;
             }
         }
     }

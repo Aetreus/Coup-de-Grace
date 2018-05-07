@@ -65,6 +65,8 @@ public class ProximityExplodeScript : MonoBehaviour {
         }
         foreach (GameObject g in nearby)
         {
+            if (g == null)
+                continue;
             HPManager man = g.GetComponent<HPManager>();
             if(man != null)
             {
