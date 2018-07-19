@@ -3123,7 +3123,7 @@ MonoBehaviour:
     previousFired: 1
     oneTime: 1
     reset: 0
-    delay: 20
+    delay: 25
     delayTimer: 0
     subsequentEvent: 2
     predicate:
@@ -3132,7 +3132,7 @@ MonoBehaviour:
       valueName: PlayLineSeries
       isMethod: 1
       paramStrings:
-      - System.String#Ending1
+      - System.String#End1
   - condition:
       reference: {fileID: 373668333}
       component: LevelEventManager
@@ -3228,8 +3228,8 @@ MonoBehaviour:
     previousFired: 1
     oneTime: 1
     reset: 1
-    delay: 240
-    delayTimer: 240
+    delay: 360
+    delayTimer: 360
     subsequentEvent: 2
     predicate:
       reference: {fileID: 293077505}
@@ -3318,6 +3318,10 @@ Prefab:
     - target: {fileID: 1457669272040804, guid: ec3cf49d205d6d341812aa48fc4b34ef, type: 2}
       propertyPath: m_TagString
       value: HostileObjective
+      objectReference: {fileID: 0}
+    - target: {fileID: 1457669272040804, guid: ec3cf49d205d6d341812aa48fc4b34ef, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ec3cf49d205d6d341812aa48fc4b34ef, type: 2}
@@ -10283,6 +10287,10 @@ Prefab:
       propertyPath: m_TagString
       value: HostileObjective
       objectReference: {fileID: 0}
+    - target: {fileID: 1457669272040804, guid: ec3cf49d205d6d341812aa48fc4b34ef, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ec3cf49d205d6d341812aa48fc4b34ef, type: 2}
   m_IsPrefabParent: 0
@@ -10553,6 +10561,10 @@ Prefab:
       propertyPath: m_TagString
       value: HostileObjective
       objectReference: {fileID: 0}
+    - target: {fileID: 1457669272040804, guid: ec3cf49d205d6d341812aa48fc4b34ef, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ec3cf49d205d6d341812aa48fc4b34ef, type: 2}
   m_IsPrefabParent: 0
@@ -10611,6 +10623,10 @@ Prefab:
     - target: {fileID: 1457669272040804, guid: ec3cf49d205d6d341812aa48fc4b34ef, type: 2}
       propertyPath: m_TagString
       value: HostileObjective
+      objectReference: {fileID: 0}
+    - target: {fileID: 1457669272040804, guid: ec3cf49d205d6d341812aa48fc4b34ef, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ec3cf49d205d6d341812aa48fc4b34ef, type: 2}
@@ -11251,6 +11267,10 @@ Prefab:
     - target: {fileID: 1457669272040804, guid: ec3cf49d205d6d341812aa48fc4b34ef, type: 2}
       propertyPath: m_TagString
       value: HostileObjective
+      objectReference: {fileID: 0}
+    - target: {fileID: 1457669272040804, guid: ec3cf49d205d6d341812aa48fc4b34ef, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ec3cf49d205d6d341812aa48fc4b34ef, type: 2}
@@ -12315,6 +12335,10 @@ Prefab:
     - target: {fileID: 1457669272040804, guid: ec3cf49d205d6d341812aa48fc4b34ef, type: 2}
       propertyPath: m_TagString
       value: HostileObjective
+      objectReference: {fileID: 0}
+    - target: {fileID: 1457669272040804, guid: ec3cf49d205d6d341812aa48fc4b34ef, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ec3cf49d205d6d341812aa48fc4b34ef, type: 2}
