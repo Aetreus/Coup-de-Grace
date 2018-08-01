@@ -228,6 +228,9 @@ public class PlayerTargetSystem : MonoBehaviour {
 
     private void ScaleLock(float angle)
     {
+        //CameraControlScript cs = cameraCarrier.GetComponent<CameraControlScript>();
+        //float test = Camera.main.fieldOfView;
+        //test = canvas.GetComponent<RectTransform>().sizeDelta.y;
         float xPos = cameraCarrier.GetComponent<CameraControlScript>().Azimuth / (Camera.main.fieldOfView) * canvas.GetComponent<RectTransform>().sizeDelta.y;
         float yPos = cameraCarrier.GetComponent<CameraControlScript>().Altitude / (Camera.main.fieldOfView) * canvas.GetComponent<RectTransform>().sizeDelta.y;
         float size = angle / (Camera.main.fieldOfView / 2) * canvas.GetComponent<RectTransform>().sizeDelta.y;

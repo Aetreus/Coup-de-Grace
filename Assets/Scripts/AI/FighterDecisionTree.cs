@@ -99,7 +99,7 @@ public class FighterDecisionTree : MonoBehaviour {
         AIAction action = HasTargetTree();
         Debug.Log(debug_msg, this.gameObject);
         fs.targetVel = cruise_speed;
-        fs.stallLimit = base_stall_limit;
+        //fs.stallLimit = base_stall_limit;
         switch (action)
         {
             case AIAction.SEEK_TARGET:
@@ -506,7 +506,7 @@ public class FighterDecisionTree : MonoBehaviour {
             debug_msg += " [too close to ground; pitch up]";
             fs.facingDir = Vector3.up;
             fs.upDir = Vector3.up;
-            fs.stallLimit = stall_limit_excursion;
+            //fs.stallLimit = stall_limit_excursion;
             fs.targetVel = sprint_speed;
         }
 
@@ -518,14 +518,14 @@ public class FighterDecisionTree : MonoBehaviour {
         {
             fs.facingDir = Vector3.up;
             fs.upDir = Vector3.up;
-            fs.stallLimit = stall_limit_excursion;
+            //fs.stallLimit = stall_limit_excursion;
             fs.targetVel = sprint_speed;
         }
         else
         {
             fs.facingDir = -Vector3.up;
             fs.upDir = -Vector3.up;
-            fs.stallLimit = stall_limit_excursion;
+            //fs.stallLimit = stall_limit_excursion;
             fs.targetVel = sprint_speed;
         }
     }
@@ -586,29 +586,22 @@ public class FighterDecisionTree : MonoBehaviour {
             targetVelocity = target.GetComponent<Rigidbody>().velocity;
         else
             targetVelocity = new Vector3(0,0,0);
-        Vector3 leadFacing = target.transform.position + targetVelocity * (float)((target.transform.position - transform.position).magnitude / rb.velocity.magnitude) - transform.position;
+        Vector3 leadFacing = target.transform.position + targetVelocity * (float)((target.transform.position - transform.position).magnitude / (rb.velocity.magnitude + targetVelocity.magnitude)) - transform.position;
         leadFacing = leadFacing.normalized;
         Vector3 directFacing = (target.transform.position - transform.position).normalized;
 
         float angle = Vector3.Angle(leadFacing, directFacing);
+        
+        Vector3 axis = Vector3.Cross(leadFacing, directFacing);
 
-        float scaleTerm = 1;
+        angle = Mathf.Clamp(angle, 0, 20);
 
-        scaleTerm = Mathf.Min(scaleTerm, Mathf.Sin(Mathf.Deg2Rad* 15) / Mathf.Sin(Mathf.Deg2Rad * angle));
-
-        Vector3 output = directFacing + (leadFacing - directFacing) * scaleTerm;
-
+        Vector3 output = directFacing;//Quaternion.AngleAxis(angle,axis) * directFacing;
+        
         output = output.normalized;
-
-        float outAngle = Vector3.Angle(output, rb.velocity);
-
-        float scaleFactor = (float)Math.Pow(1 - (outAngle / 20), 2);
-
+        
         fs.facingDir = output;
-        if (outAngle < 20)
-            fs.upDir = output + (target.transform.forward - output) * scaleFactor;
-        else
-            fs.upDir = output;
+        fs.upDir = output;
     }
 
 

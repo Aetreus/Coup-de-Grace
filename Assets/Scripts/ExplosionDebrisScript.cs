@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ExplosionDebrisScript : MonoBehaviour {
-	public float gravity;
 	public float lifetime;
 	private float countdown;
 
@@ -14,10 +13,9 @@ public class ExplosionDebrisScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		countdown -= 1;
-		if (countdown == 0) {
+        countdown -= Time.deltaTime;
+		if (countdown < 0) {
 			Destroy(gameObject);
 		}
-		gameObject.GetComponent<Rigidbody>().AddForce(Vector3.down * gravity);
 	}
 }

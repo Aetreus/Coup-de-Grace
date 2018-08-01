@@ -23,4 +23,10 @@ public class PIDController{
         return output;
     }
 
+    public void Reset()
+    {
+        integ = 0;
+        prevErr = 0;
+    }
+
 }
