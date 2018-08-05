@@ -688,7 +688,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!65 &65232640516170786
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -1507,18 +1507,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onFire:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 114158275701553458}
-        m_MethodName: Create
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: WeaponManager+OnFire, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   reloadTime: 3
@@ -1675,18 +1664,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onFire:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 114401372777683326}
-        m_MethodName: Create
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: WeaponManager+OnFire, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   reloadTime: 6
@@ -1850,18 +1828,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onFire:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 114972886065569304}
-        m_MethodName: Create
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: WeaponManager+OnFire, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   reloadTime: 4

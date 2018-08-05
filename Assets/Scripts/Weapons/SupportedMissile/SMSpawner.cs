@@ -5,7 +5,7 @@ using UnityEngine;
 public class SMSpawner : PNSpawner {
 
 
-    public override void Create(GameObject target)
+    public override GameObject Create(GameObject target)
     {
         GameObject created = Instantiate(spawned, transform.TransformPoint(offset), transform.rotation);
         GameObject sel = gameObject;
@@ -21,6 +21,6 @@ public class SMSpawner : PNSpawner {
         created.GetComponent<PropNav>().Target = target;
         created.GetComponent<ProximityExplodeScript>().hostileTag = target.tag;
         created.GetComponent<SupportedMissileScript>().parent = this.gameObject;
-
+        return created;
     }
 }

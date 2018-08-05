@@ -21,7 +21,8 @@ public class FighterSteering : MonoBehaviour {
 
     public float fullTurnAngle;
     public float ref_speed = 200;
-    public float tolerance = 2;
+    public float turnTolerance = 20;
+    public float tolerance = 4;
 
     public Vector3 baseDir = Vector3.up;
     public Vector3 facingDir = new Vector3(0,0,1);
@@ -68,8 +69,8 @@ public class FighterSteering : MonoBehaviour {
             upDir = upDir + (baseDir - upDir) * scaleFactor;
 
         //Calculate difference between set up/forward vectors and current course.
-        _rollError = Vector3.Angle(Vector3.ProjectOnPlane(rb.transform.up,rb.velocity), Vector3.ProjectOnPlane(upDir, rb.velocity));
-        if(Vector3.Dot(Vector3.Cross(upDir,rb.transform.up),Vector3.Cross(rb.transform.up,rb.transform.right)) < 0)//Get the sign of the angle difference
+        _rollError = Vector3.Angle(Vector3.ProjectOnPlane(rb.transform.up,rb.velocity), Vector3.ProjectOnPlane(facingDir, rb.velocity));
+        if(Vector3.Dot(Vector3.Cross(facingDir,rb.transform.up),Vector3.Cross(rb.transform.up,rb.transform.right)) < 0)//Get the sign of the angle difference
         {
             _rollError = -_rollError;
         }
@@ -97,16 +98,28 @@ public class FighterSteering : MonoBehaviour {
             _rollError = Math.Sign(_rollError) * 180 - _rollError;
         }
         */
-        if (Math.Abs(angle) > tolerance && _rollError > tolerance)
+        if (Math.Abs(angle) > tolerance && Math.Abs(_rollError) > turnTolerance)
         {
             fb.aileron = -aileronController.Calc(_rollError);
+            fb.elevator = 0;
+            elevatorController.Reset();
         }
         else if(Math.Abs(angle) > tolerance)
         {
             fb.aileron = -aileronController.Calc(_rollError);
             float desiredPitch = pitchController.Calc(_pitchHeadingError);
             Mathf.Clamp(desiredPitch, aoaMin, aoaMax);
-            fb.elevator = elevatorController.Calc(_pitchAngle - desiredPitch);
+            fb.elevator = elevatorController.Calc(desiredPitch - _pitchAngle);
+        }
+        else
+        {
+            _rollError = Vector3.Angle(Vector3.ProjectOnPlane(rb.transform.up, rb.velocity), Vector3.ProjectOnPlane(upDir, rb.velocity));
+            if (Vector3.Dot(Vector3.Cross(upDir, rb.transform.up), Vector3.Cross(rb.transform.up, rb.transform.right)) < 0)//Get the sign of the angle difference
+            {
+                _rollError = -_rollError;
+            }
+            fb.aileron = -aileronController.Calc(_rollError);
+            elevatorController.Reset();
         }
         fb.throttle = throttleController.Calc(targetVel - fb.airspeed);
         fb.rudder = yawController.Calc(fb.slip);

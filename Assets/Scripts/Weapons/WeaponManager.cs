@@ -17,6 +17,8 @@ public class WeaponManager : MonoBehaviour {
 
     private List<float> loadingTime;
 
+    private PNSpawner sp;
+
     public float shots { get { return current_shots; } }
 
     [SerializeField]
@@ -24,7 +26,7 @@ public class WeaponManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        
+        sp = GetComponent<PNSpawner>();
 
         loadingTime = new List<float>();
 
@@ -69,7 +71,7 @@ public class WeaponManager : MonoBehaviour {
                 if(loadingTime[i] <= 0.0F)
                 {
                     loadingTime[i] = reloadTime;
-                    onFire.Invoke(pt.Target);
+                    sp.Create(pt.Target);
                     return;
                 }
             }

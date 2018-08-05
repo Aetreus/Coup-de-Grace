@@ -1302,7 +1302,7 @@ MonoBehaviour:
       valueName: PlayLineSeries
       isMethod: 1
       paramStrings:
-      - System.String#ObjChange1
+      - System.String#Objective1
   - condition:
       reference: {fileID: 373668333}
       component: LevelEventManager
@@ -2686,7 +2686,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 668998993}
-        m_MethodName: Die
+        m_MethodName: Destroy
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2695,7 +2695,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   hp: 0

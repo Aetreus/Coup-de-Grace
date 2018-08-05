@@ -226,7 +226,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!65 &65614739184898264
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -444,7 +444,7 @@ MonoBehaviour:
   inertiaTensor: {x: 180000, y: 180000, z: 30000}
   dragCoeff: 0.04
   wingArea: 56
-  staticThrust: 60000
+  staticThrust: 80000
   rollDampeningCoeff: 0.12
   yawDampeningCoeff: 0.2
   aileronControlCoeff: 0.4
@@ -509,7 +509,7 @@ MonoBehaviour:
     derivConstant: 0.01
     output: -3.2812078
   pitchController:
-    propConstant: 0.04
+    propConstant: 0.06
     integConstant: 0.008
     derivConstant: 0.01
     output: 0
@@ -525,6 +525,7 @@ MonoBehaviour:
     output: 440.13232
   fullTurnAngle: 30
   ref_speed: 200
+  turnTolerance: 35
   tolerance: 2
   baseDir: {x: 0, y: 1, z: 0}
   facingDir: {x: 0.20849432, y: -0.9482825, z: -0.23935431}

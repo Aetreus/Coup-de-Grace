@@ -66,7 +66,7 @@ public class PlayerTargetSystem : MonoBehaviour {
 
         lockRing = GameObject.Find("LockRing");
         lockRing.SetActive(false);
-        cameraCarrier = GameObject.Find("CameraCarrier");
+        cameraCarrier = transform.Find("CameraCarrier").gameObject;
         canvas = GameObject.Find("Canvas");
         targetIcons = new Dictionary<string,List<GameObject>>();
         lockIcon = Instantiate(lockPrefab, canvas.transform);
@@ -210,12 +210,38 @@ public class PlayerTargetSystem : MonoBehaviour {
         //GameObject player = GameObject.FindGameObjectWithTag("Player");
 
         Vector3 toA = a.transform.position - cameraCarrier.transform.position;
-        float angleA = Vector3.Angle(toA, cameraCarrier.transform.forward);
+
+        //Ref:https://stackoverflow.com/questions/16542042/fastest-way-to-sort-vectors-by-angle-without-actually-computing-that-angle
+        Vector3 normProjA = Vector3.Project(toA, cameraCarrier.transform.forward);
+        Vector3 perpinA = toA - normProjA;
+        float distNormA = normProjA.magnitude;
+        float perpinDistA = perpinA.magnitude;
+        float angleA = distNormA / (distNormA + Mathf.Abs(perpinA.magnitude));
+        if (perpinDistA < 0)
+            angleA += 3;
+        else
+            angleA = 1 - angleA;
+            
+
+        //float angleA = Vector3.Angle(toA, cameraCarrier.transform.forward);
 
         Vector3 toB = b.transform.position - cameraCarrier.transform.position;
-        float angleB = Vector3.Angle(toB, cameraCarrier.transform.forward);
 
-        if(angleA < angleB)
+        
+        Vector3 normProjB = Vector3.Project(toB, cameraCarrier.transform.forward);
+        Vector3 perpinB = toB - normProjB;
+        float distNormB = normProjB.magnitude;
+        float perpinDistB = perpinB.magnitude;
+        float angleB = distNormB / (distNormB + Mathf.Abs(perpinB.magnitude));
+        if (perpinDistB < 0)
+            angleB += 3;
+        else
+            angleB = 1 - angleB;
+            
+
+        //float angleB = Vector3.Angle(toB, cameraCarrier.transform.forward);
+
+        if (angleA < angleB)
         {
             return -1;
         }
@@ -228,9 +254,9 @@ public class PlayerTargetSystem : MonoBehaviour {
 
     private void ScaleLock(float angle)
     {
-        //CameraControlScript cs = cameraCarrier.GetComponent<CameraControlScript>();
-        //float test = Camera.main.fieldOfView;
-        //test = canvas.GetComponent<RectTransform>().sizeDelta.y;
+        CameraControlScript cs = cameraCarrier.GetComponent<CameraControlScript>();
+        float test = Camera.main.fieldOfView;
+        test = canvas.GetComponent<RectTransform>().sizeDelta.y;
         float xPos = cameraCarrier.GetComponent<CameraControlScript>().Azimuth / (Camera.main.fieldOfView) * canvas.GetComponent<RectTransform>().sizeDelta.y;
         float yPos = cameraCarrier.GetComponent<CameraControlScript>().Altitude / (Camera.main.fieldOfView) * canvas.GetComponent<RectTransform>().sizeDelta.y;
         float size = angle / (Camera.main.fieldOfView / 2) * canvas.GetComponent<RectTransform>().sizeDelta.y;

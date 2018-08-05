@@ -17,7 +17,7 @@ public class PNSpawner : MonoBehaviour {
 		
 	}
 
-    public virtual void Create(GameObject target)
+    public virtual GameObject Create(GameObject target)
     {
         GameObject created = Instantiate(spawned, transform.TransformPoint(offset), transform.rotation);
         GameObject sel = gameObject;
@@ -31,5 +31,6 @@ public class PNSpawner : MonoBehaviour {
         created.GetComponent<Rigidbody>().velocity = rb.velocity + transform.localToWorldMatrix.MultiplyVector(initial);
         created.GetComponent<PropNav>().Target = target;
         created.GetComponent<ProximityExplodeScript>().hostileTag = target.tag;
+        return created;
     }
 }

@@ -472,6 +472,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  hp: 0
 --- !u!114 &114166545565179366
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -501,10 +502,15 @@ MonoBehaviour:
     derivConstant: 0.1
     output: -13.263334
   elevatorController:
-    propConstant: 0.018
-    integConstant: 0.0009
-    derivConstant: 0.03
+    propConstant: 0.024
+    integConstant: 0.0018
+    derivConstant: 0.01
     output: -3.2812078
+  pitchController:
+    propConstant: 0.06
+    integConstant: 0.008
+    derivConstant: 0.01
+    output: 0
   yawController:
     propConstant: 0.22
     integConstant: 0.02
@@ -517,13 +523,15 @@ MonoBehaviour:
     output: 440.13232
   fullTurnAngle: 30
   ref_speed: 200
+  turnTolerance: 35
   tolerance: 2
   baseDir: {x: 0, y: 1, z: 0}
   facingDir: {x: 0.20849432, y: -0.9482825, z: -0.23935431}
   upDir: {x: 0.20849432, y: -0.9482825, z: -0.23935431}
   targetVel: 200
   minAirspeed: 80
-  stallLimit: -5
+  aoaMax: 25
+  aoaMin: -20
 --- !u!114 &114310498908616930
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -538,7 +546,7 @@ MonoBehaviour:
   inertiaTensor: {x: 180000, y: 180000, z: 30000}
   dragCoeff: 0.04
   wingArea: 56
-  staticThrust: 60000
+  staticThrust: 80000
   rollDampeningCoeff: 0.12
   yawDampeningCoeff: 0.2
   aileronControlCoeff: 0.4

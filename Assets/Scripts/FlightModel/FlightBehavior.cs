@@ -300,6 +300,7 @@ public class FlightBehavior : MonoBehaviour {
         throw new ArgumentException("Input not within setpoint range");
     }
 
+    //Calculates air density at current altitude based on internal setpoint map.
     float AirDensityAdjusted()
     {
         List<float> keys = new List<float>(airDensitySetpoints.Keys);

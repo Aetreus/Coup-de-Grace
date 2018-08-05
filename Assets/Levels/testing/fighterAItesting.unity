@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -238,6 +238,16 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114359953910132994, guid: df6bd1004b6bea74a9c6072f3afa6241,
+        type: 2}
+      propertyPath: onFire.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114010314237279130, guid: df6bd1004b6bea74a9c6072f3afa6241,
+        type: 2}
+      propertyPath: onFire.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4654294536136784, guid: df6bd1004b6bea74a9c6072f3afa6241, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -275,9 +285,59 @@ Prefab:
       propertyPath: moveWithTransform
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114222035015594602, guid: df6bd1004b6bea74a9c6072f3afa6241,
+        type: 2}
+      propertyPath: worldBounds.x
+      value: -2000
+      objectReference: {fileID: 0}
+    - target: {fileID: 114359953910132994, guid: df6bd1004b6bea74a9c6072f3afa6241,
+        type: 2}
+      propertyPath: onFire.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1235552234}
+    - target: {fileID: 114359953910132994, guid: df6bd1004b6bea74a9c6072f3afa6241,
+        type: 2}
+      propertyPath: onFire.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114359953910132994, guid: df6bd1004b6bea74a9c6072f3afa6241,
+        type: 2}
+      propertyPath: onFire.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114359953910132994, guid: df6bd1004b6bea74a9c6072f3afa6241,
+        type: 2}
+      propertyPath: onFire.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114010314237279130, guid: df6bd1004b6bea74a9c6072f3afa6241,
+        type: 2}
+      propertyPath: onFire.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1551505815}
+    - target: {fileID: 114010314237279130, guid: df6bd1004b6bea74a9c6072f3afa6241,
+        type: 2}
+      propertyPath: onFire.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Create
+      objectReference: {fileID: 0}
+    - target: {fileID: 114010314237279130, guid: df6bd1004b6bea74a9c6072f3afa6241,
+        type: 2}
+      propertyPath: onFire.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 114010314237279130, guid: df6bd1004b6bea74a9c6072f3afa6241,
+        type: 2}
+      propertyPath: onFire.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: df6bd1004b6bea74a9c6072f3afa6241, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1235552234 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1114118055079612, guid: df6bd1004b6bea74a9c6072f3afa6241,
+    type: 2}
+  m_PrefabInternal: {fileID: 715595151}
 --- !u!1 &1382010676
 GameObject:
   m_ObjectHideFlags: 0
@@ -400,6 +460,12 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 42a25b5d79de3cb49bb4ed46df84db7f, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &1551505815 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114158275701553458, guid: df6bd1004b6bea74a9c6072f3afa6241,
+    type: 2}
+  m_PrefabInternal: {fileID: 715595151}
+  m_Script: {fileID: 11500000, guid: d5e2c53abab5c04468059faf376727dc, type: 3}
 --- !u!114 &1711858244 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114217066268131064, guid: df6bd1004b6bea74a9c6072f3afa6241,

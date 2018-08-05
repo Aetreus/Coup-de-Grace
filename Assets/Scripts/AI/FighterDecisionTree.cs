@@ -19,7 +19,7 @@ public class FighterDecisionTree : MonoBehaviour {
     public float collision_personal_space;
 
     //PlayerMissileApproaching variables
-    public float max_player_missile_approaching_angle;
+    public float max_missile_approach_dist;
     public float beam_tolerance;
 
     //PlayerMissileClose variables
@@ -97,7 +97,7 @@ public class FighterDecisionTree : MonoBehaviour {
     void Update() {
         debug_msg = "";
         AIAction action = HasTargetTree();
-        Debug.Log(debug_msg, this.gameObject);
+        //Debug.Log(debug_msg, this.gameObject);
         fs.targetVel = cruise_speed;
         //fs.stallLimit = base_stall_limit;
         switch (action)
@@ -383,26 +383,31 @@ public class FighterDecisionTree : MonoBehaviour {
         return Vector3.zero;
     }
 
-    //returns the missile closet missile that is targeting and traveling toward this fighter
+    //returns the closest missile that is targeting and traveling toward this fighter
     //null if there are none
     GameObject PlayerMissileApproaching()
     {
         GameObject result = null;
-        float smallestAngle = Mathf.Infinity;
+        float smallestSquareDistance = Mathf.Infinity;
 
         GameObject[] missiles = GameObject.FindGameObjectsWithTag("Missile");
 
         foreach(GameObject missile in missiles)
         {
-            Vector3 missileVel = missile.GetComponent<Rigidbody>().velocity;
-            Vector3 missileToFighter = transform.position - missile.transform.position;
-            float angle = Vector3.Angle(missileVel, missileToFighter);
-
-            if(missile.GetComponent<PropNav>().Target == this.gameObject && angle <= max_player_missile_approaching_angle && angle < smallestAngle)
+            
+            if (missile.GetComponent<PropNav>().Target == this.gameObject)
             {
-                result = missile;
-                smallestAngle = angle;
+                Vector3 missileVel = missile.GetComponent<Rigidbody>().velocity;
+                Vector3 missileToFighter = transform.position - missile.transform.position;
+                float squareDist = missileToFighter.sqrMagnitude;
+                if (squareDist <= max_missile_approach_dist && squareDist < smallestSquareDistance)
+                {
+                    result = missile;
+                    smallestSquareDistance = squareDist;
+                }
+
             }
+            
         }
 
         return result;
@@ -440,6 +445,10 @@ public class FighterDecisionTree : MonoBehaviour {
         if (activeMissile.GetComponent<PropNav>().Target == target && angle <= max_my_missile_approaching_angle)
         {
             return true;
+        }
+        else
+        {
+            activeMissile = null;
         }
 
        return false;
@@ -716,7 +725,7 @@ public class FighterDecisionTree : MonoBehaviour {
 
     void Fire_Target()
     {
-        pn.Create(target);
+        activeMissile = pn.Create(target);
         missile_timer = missile_time;
         missile_ready = false;
     }
