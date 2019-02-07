@@ -392,7 +392,7 @@ public class FighterDecisionTree : MonoBehaviour {
 
         GameObject[] missiles = GameObject.FindGameObjectsWithTag("Missile");
 
-        foreach(GameObject missile in missiles)
+        foreach(GameObject missile in missiles) 
         {
             
             if (missile.GetComponent<PropNav>().Target == this.gameObject)

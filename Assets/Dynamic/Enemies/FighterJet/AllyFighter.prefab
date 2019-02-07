@@ -606,7 +606,7 @@ MonoBehaviour:
   collision_whisker_len: 1000
   collision_whisker_offset: 5
   collision_personal_space: 300
-  max_player_missile_approaching_angle: 30
+  max_missile_approach_dist: 4000
   beam_tolerance: 5
   max_player_missile_close_dist: 1500
   stall_limit_excursion: 0
