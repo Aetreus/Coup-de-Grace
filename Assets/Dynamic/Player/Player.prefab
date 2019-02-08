@@ -473,7 +473,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1118712050718116}
   m_LocalRotation: {x: 0, y: 0.38268343, z: 0, w: 0.92387956}
-  m_LocalPosition: {x: 0, y: 3000, z: 0}
+  m_LocalPosition: {x: 3.8427823, y: -0.6436348, z: -2.0411777}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4565344106272534}
@@ -1801,6 +1801,12 @@ MonoBehaviour:
   - {x: 50, y: -0.25}
   - {x: -100, y: -0.125}
   - {x: 180, y: 0}
+  liftCoeff:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!114 &114972886065569304
 MonoBehaviour:
   m_ObjectHideFlags: 1

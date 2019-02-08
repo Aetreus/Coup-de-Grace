@@ -23,6 +23,8 @@ public class PropNav : MonoBehaviour {
     private GameObject target = null;
     private Vector3 last_pos;
     private Vector3 target_last_pos;
+
+    private Vector3 last_vel;
     
     private FlightBehavior fb;
 
@@ -37,6 +39,7 @@ public class PropNav : MonoBehaviour {
         last_pos = transform.position;
         fb = GetComponent<FlightBehavior>();
         rb = GetComponent<Rigidbody>();
+        last_vel = rb.velocity;
         dampingTimer = dampingTime;
     }
 	
@@ -62,6 +65,7 @@ public class PropNav : MonoBehaviour {
             _targetDistance = range.magnitude;
 
             Vector3 missile_vel = GetComponent<Rigidbody>().velocity;
+
             Vector3 relative_vel;
             if (target.GetComponent<Rigidbody>() == null)
             {
@@ -71,7 +75,7 @@ public class PropNav : MonoBehaviour {
             {
                 relative_vel = target.GetComponent<Rigidbody>().velocity - missile_vel;
             }
-
+            
             Vector3 rotation_vec = Vector3.Cross(range, relative_vel) / Vector3.Dot(range, range);
 
             Vector3 term1 = -N * relative_vel.magnitude * missile_vel.normalized;
@@ -83,20 +87,30 @@ public class PropNav : MonoBehaviour {
             latax = Vector3.zero;
         }
 
-        Vector3 local_accel = transform.InverseTransformVector(latax);
+        //Compare previous acceleration to latax
+
+        Vector3 accel = (rb.velocity - last_vel) / Time.deltaTime;
+
+        Vector3 delta_accel = accel - latax;
+
+        Vector3 local_delta = transform.InverseTransformVector(delta_accel);
 
         //print(local_accel);
 
-        if(lifetime < 0)
+        if (lifetime < 0)
         {
             Destroy(gameObject);
         }
+        
+        //Linearly damp outputs for short period of flight.
         float surfaceDampCoeff = 1.0F;
         if(dampingTimer > 0)
         {
             surfaceDampCoeff = 1.0F - (dampingTime / dampingTimer);
             dampingTime -= Time.deltaTime;
         }
+        surfaceDampCoeff = Mathf.Min(surfaceDampCoeff, 1);
+            
 
         if(fueltime > 0)
         {
@@ -106,17 +120,24 @@ public class PropNav : MonoBehaviour {
         {
             fb.throttle = 0.0F;
         }
+
+        //Higher speed accelerations are acheived with square less control inputs.
         float speedControlSense = 1.0F;
         if(rb.velocity.sqrMagnitude > ref_speed)
         {
             speedControlSense = ref_speed * ref_speed / rb.velocity.sqrMagnitude;
         }
 
-        fb.rudder = surfaceController.Calc((-local_accel.x / ref_accel) * speedControlSense * surfaceDampCoeff);
-        fb.elevator = surfaceController.Calc((local_accel.y / ref_accel) * speedControlSense * surfaceDampCoeff);
+        Debug.DrawLine(transform.position, transform.position + latax);
+        Debug.DrawLine(transform.position, transform.position + accel);
+
+        fb.rudder = surfaceController.Calc((local_delta.x / ref_accel) * speedControlSense * surfaceDampCoeff);
+        fb.elevator = surfaceController.Calc((-local_delta.y / ref_accel) * speedControlSense * surfaceDampCoeff);
 
         fueltime -= Time.deltaTime;
         lifetime -= Time.deltaTime;
+
+        last_vel = rb.velocity;
     }
 
     public GameObject Target

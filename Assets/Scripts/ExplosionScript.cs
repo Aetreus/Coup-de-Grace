@@ -6,6 +6,7 @@ public class ExplosionScript : MonoBehaviour {
 	public GameObject prefab;
 	public int numDebris;
 	public float power;
+    public float dragRange = 0.4F;
 
     private Rigidbody myrb;
 
@@ -21,6 +22,7 @@ public class ExplosionScript : MonoBehaviour {
 			GameObject clone = Instantiate(prefab);
 			Transform transform = clone.GetComponent<Transform>();
 			Rigidbody rb = clone.GetComponent<Rigidbody>();
+            rb.drag = rb.drag * Random.Range(1 + dragRange, 1 - dragRange);
 
 			transform.position = gameObject.GetComponent<Transform>().position;
             Vector3 inherit = new Vector3(0, 0, 0);

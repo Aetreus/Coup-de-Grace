@@ -66,6 +66,23 @@ public class FlightBehavior : MonoBehaviour {
     //Yaw moment coefficient is similar, but makes the aircraft stable in yaw instead of pitch. Yaw moment coefficient slope should be negative over the stable range.
     public List<Vector2> yawMomentSetpoints = new List<Vector2> { new Vector2(-180, 0.0F), new Vector2(-50, 0.1F), new Vector2(-35, 0.35F), new Vector2(0, 0.000F), new Vector2(35, -0.35F), new Vector2(50, -0.1F), new Vector2(180, 0) };
 
+    public AnimationCurve liftCoeff = new AnimationCurve();
+
+    public void OnBeforeSerialize()
+    {
+        foreach(Vector2 setpoint in liftCoeffSetpoints)
+        {
+            liftCoeff.AddKey(setpoint.x, setpoint.y);
+        }
+    }
+
+    public void OnAfterDeserialize()
+    {
+        foreach (Vector2 setpoint in liftCoeffSetpoints)
+        {
+            liftCoeff.AddKey(setpoint.x, setpoint.y);
+        }
+    }
 
     private float AoA = 0.0F;
 
