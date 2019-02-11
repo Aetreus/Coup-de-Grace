@@ -487,6 +487,12 @@ MonoBehaviour:
   - {x: 50, y: -0.25}
   - {x: -100, y: -0.125}
   - {x: 180, y: 0}
+  liftCoeff:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!114 &114499780160209128
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -578,19 +584,19 @@ MonoBehaviour:
   collision_whisker_len: 2000
   collision_whisker_offset: 5
   collision_personal_space: 300
-  max_missile_approach_dist: 4000
+  max_missile_approach_dist: 8000
   beam_tolerance: 5
-  max_player_missile_close_dist: 1500
+  max_player_missile_close_dist: 3000
   stall_limit_excursion: 0
   max_my_missile_close_distance: 2000
   max_my_missile_approaching_angle: 60
   player_missile_cone_angle: 30
-  player_missile_cone_len: 7000
+  player_missile_cone_len: 6000
   fighter_missile_cone_angle: 25
   fighter_missile_cone_len: 10000
   min_pitch_ground_dist: 3000
   max_in_front_of_player_angle: 90
-  min_far_away_dist: 6000
+  min_far_away_dist: 12000
   cruise_speed: 300
   maneuver_speed: 200
   sprint_speed: 400

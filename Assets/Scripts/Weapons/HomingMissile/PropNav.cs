@@ -123,10 +123,10 @@ public class PropNav : MonoBehaviour {
 
         //Higher speed accelerations are acheived with square less control inputs.
         float speedControlSense = 1.0F;
-        if(rb.velocity.sqrMagnitude > ref_speed)
+        /*if(rb.velocity.sqrMagnitude > ref_speed)
         {
             speedControlSense = ref_speed * ref_speed / rb.velocity.sqrMagnitude;
-        }
+        }*/
 
         Debug.DrawLine(transform.position, transform.position + latax);
         Debug.DrawLine(transform.position, transform.position + accel);

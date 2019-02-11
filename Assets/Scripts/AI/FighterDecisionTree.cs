@@ -97,7 +97,7 @@ public class FighterDecisionTree : MonoBehaviour {
     void Update() {
         debug_msg = "";
         AIAction action = HasTargetTree();
-        //Debug.Log(debug_msg, this.gameObject);
+        Debug.Log(debug_msg, this.gameObject);
         fs.targetVel = cruise_speed;
         //fs.stallLimit = base_stall_limit;
         switch (action)
@@ -400,7 +400,8 @@ public class FighterDecisionTree : MonoBehaviour {
                 Vector3 missileVel = missile.GetComponent<Rigidbody>().velocity;
                 Vector3 missileToFighter = transform.position - missile.transform.position;
                 float squareDist = missileToFighter.sqrMagnitude;
-                if (squareDist <= max_missile_approach_dist && squareDist < smallestSquareDistance)
+
+                if (squareDist <= max_missile_approach_dist * max_missile_approach_dist && squareDist < smallestSquareDistance)
                 {
                     result = missile;
                     smallestSquareDistance = squareDist;
@@ -430,7 +431,7 @@ public class FighterDecisionTree : MonoBehaviour {
         return Vector3.Distance(activeMissile.transform.position, target.transform.position) <= max_my_missile_close_distance;
     }
 
-    //true if a missile this fighter fired is close moving toward the player
+    //True if a missile this fighter fired is actively seeking a target
     bool MyMissileApproachingPlayer()
     {
         if (activeMissile == null)
@@ -558,7 +559,7 @@ public class FighterDecisionTree : MonoBehaviour {
         else
         {
             float scaleFactor = Mathf.Pow(beam_tolerance / angle, 2);
-            fs.facingDir = transform.forward + (Vector3.up - transform.forward) * scaleFactor;
+            fs.upDir = transform.forward + (Vector3.up - transform.forward) * scaleFactor;
         }
 
        

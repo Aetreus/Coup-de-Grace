@@ -33,7 +33,7 @@ GameObject:
   - component: {fileID: 114388826810936230}
   m_Layer: 0
   m_Name: SupportedMissile
-  m_TagString: Untagged
+  m_TagString: Missile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -389,7 +389,7 @@ MonoBehaviour:
   ref_speed: 200
   damage: 5
   fueltime: 5
-  lifetime: 20
+  lifetime: 40
   dampingTime: 0.5
   viewCone: 40
   surfaceController:
@@ -449,6 +449,12 @@ MonoBehaviour:
   - {x: 35, y: -0.7}
   - {x: 120, y: -1.15}
   - {x: 180, y: 0}
+  liftCoeff:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!114 &114466200483360108
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -463,6 +469,7 @@ MonoBehaviour:
   prefab: {fileID: 1855380049135256, guid: 0f953d726d1924e4993251ba20d3ddbf, type: 2}
   numDebris: 8
   power: 50
+  dragRange: 0.4
 --- !u!114 &114882183830779402
 MonoBehaviour:
   m_ObjectHideFlags: 1

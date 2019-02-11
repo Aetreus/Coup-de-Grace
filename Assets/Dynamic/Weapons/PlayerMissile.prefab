@@ -50,7 +50,7 @@ GameObject:
   - component: {fileID: 82003426931759518}
   m_Layer: 0
   m_Name: PlayerMissile
-  m_TagString: Untagged
+  m_TagString: Missile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -452,6 +452,12 @@ MonoBehaviour:
   - {x: 35, y: -0.7}
   - {x: 120, y: -1.15}
   - {x: 180, y: 0}
+  liftCoeff:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!114 &114334992840237326
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -466,6 +472,7 @@ MonoBehaviour:
   prefab: {fileID: 1855380049135256, guid: 0f953d726d1924e4993251ba20d3ddbf, type: 2}
   numDebris: 8
   power: 50
+  dragRange: 0.4
 --- !u!114 &114337073628492380
 MonoBehaviour:
   m_ObjectHideFlags: 1
