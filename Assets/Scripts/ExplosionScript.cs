@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ExplosionScript : MonoBehaviour {
-	public GameObject prefab;
+	public GameObject debrisPrefab;
+    public GameObject explosionPrefab;
 	public int numDebris;
 	public float power;
     public float dragRange = 0.4F;
@@ -18,8 +19,11 @@ public class ExplosionScript : MonoBehaviour {
 	}
 
 	public void explode() {
+        //Create the given explosion at the present location.
+        Instantiate(explosionPrefab, transform.position, transform.rotation);
+        //Spawn a number of debris that inherit the current velocity and some random deviation in velocity and drag.
 		for (int i = 0; i < numDebris; i++) {
-			GameObject clone = Instantiate(prefab);
+			GameObject clone = Instantiate(debrisPrefab);
 			Transform transform = clone.GetComponent<Transform>();
 			Rigidbody rb = clone.GetComponent<Rigidbody>();
             rb.drag = rb.drag * Random.Range(1 + dragRange, 1 - dragRange);

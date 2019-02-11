@@ -42,6 +42,7 @@ public class MinimapScript : MonoBehaviour {
         outlineRect = Instantiate(outlineRect, this.transform);
 	}
 
+    //Minimap objects call this function in order to appear on the minimap
     public GameObject Register(MinimapObject reg)
     {
         actives.Add(reg);
@@ -52,6 +53,7 @@ public class MinimapScript : MonoBehaviour {
         return temp;
     }
 
+    //Called on destruction of a minimap object. Removes object and destroys corresponding icon.
     public void Unregister(MinimapObject unreg)
     {
         actives.Remove(unreg);
@@ -68,6 +70,7 @@ public class MinimapScript : MonoBehaviour {
             r.gameObject.SetActive(false);
         }*/
 
+        //When using dynamic scaling size the minimap to include all the icons present in between min/max dynamic scale.
         if(scaleDynamic)
         {
             float maxDist = 0;
@@ -81,6 +84,7 @@ public class MinimapScript : MonoBehaviour {
             scale = Math.Max(minDynamicScale,Math.Min(maxDynamicScale, scale));
         }
 
+        //Each active object gets transformed onto the minimap according to its position relative to the player.
 		foreach(MinimapObject obj in actives)
         {
             RectTransform r = obj.Icon.GetComponent<RectTransform>();
