@@ -15,10 +15,6 @@ public class PlayerControlBehavior : MonoBehaviour {
     PlayerTargetSystem pt;
 
     public string CanvasName = "Canvas";
-    public string AoALabelName = "AoALabel/AoAValue";
-    public string AltLabelName = "AltLabel/AltValue";
-    public string SpdOutputName = "SpdLabel/SpdValue";
-    public string SlpOutputName = "SlpLabel/SlpValue";
     public string WpnHolderName = "WpnHolder";
     public string AlertLabelName = "AlertLabel";
 
@@ -27,21 +23,13 @@ public class PlayerControlBehavior : MonoBehaviour {
     public float minWarningTime = 5;
     public float retryTime = 10;
 
-    private GameObject AoAOutput;
-    private GameObject AltOutput;
-    private GameObject SpdOutput;
-    private GameObject SlpOutput;
     private GameObject WpnHolder;
     private GameObject AlertOutput;
     private GameObject canvas;
 
     public Color warningColor = Color.red;
     public Color defaultColor = Color.green;
-
-    private Text AoALabel;
-    private Text AltLabel;
-    private Text SpdLabel;
-    private Text SlpLabel;
+    
 
     private List<GameObject> WpnGraphics;
 
@@ -187,17 +175,8 @@ public class PlayerControlBehavior : MonoBehaviour {
         escMenu.SetActive(false);
 
         canvas = GameObject.Find(CanvasName);
-        AoAOutput = canvas.transform.Find(AoALabelName).gameObject;
-        AltOutput = canvas.transform.Find(AltLabelName).gameObject;
-        SpdOutput = canvas.transform.Find(SpdOutputName).gameObject;
-        SlpOutput = canvas.transform.Find(SlpOutputName).gameObject;
         WpnHolder = canvas.transform.Find(WpnHolderName).gameObject;
         AlertOutput = canvas.transform.Find(AlertLabelName).gameObject;
-
-        AoALabel = AoAOutput.GetComponent<Text>();
-        AltLabel = AltOutput.GetComponent<Text>();
-        SpdLabel = SpdOutput.GetComponent<Text>();
-        SlpLabel = SlpOutput.GetComponent<Text>();
 
         GetComponent<Rigidbody>().velocity = transform.forward * 150;
 
@@ -236,14 +215,6 @@ public class PlayerControlBehavior : MonoBehaviour {
         fb.aileron = Input.GetAxis("Aileron");
 
         fb.throttle = Input.GetAxis("Throttle") * 0.5F + 0.5F;
-
-        AoALabel.text = fb.aoa.ToString();
-
-        AltLabel.text = transform.position.y.ToString();
-
-        SpdLabel.text = fb.airspeed.ToString();
-
-        SlpLabel.text = fb.slip.ToString();
 
         for (int i = 0; i < WpnGraphics.Count && i < wm.maximumShots; i++)
         {

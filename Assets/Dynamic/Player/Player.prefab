@@ -87,6 +87,7 @@ GameObject:
   - component: {fileID: 54554850910278232}
   - component: {fileID: 114878435811959906}
   - component: {fileID: 114793004816600776}
+  - component: {fileID: 114327952914052024}
   - component: {fileID: 114222035015594602}
   - component: {fileID: 114256119274711160}
   - component: {fileID: 114780502300982004}
@@ -473,7 +474,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1118712050718116}
   m_LocalRotation: {x: 0, y: 0.38268343, z: 0, w: 0.92387956}
-  m_LocalPosition: {x: 3.8427823, y: -0.6436348, z: -2.0411777}
+  m_LocalPosition: {x: 0, y: 3000, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4565344106272534}
@@ -1561,15 +1562,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CanvasName: Canvas
-  AoALabelName: AoALabel/AoAValue
-  AltLabelName: AltLabel/AltValue
-  SpdOutputName: SpeedLabel/SpeedValue
-  SlpOutputName: SideslipLabel/SideslipValue
   WpnHolderName: WeaponsUIHolder
   AlertLabelName: AlertLabel
   worldBounds:
     serializedVersion: 2
-    x: 8000
+    x: -2000
     y: -8000
     width: 20000
     height: 20000
@@ -1651,6 +1648,25 @@ MonoBehaviour:
       PublicKeyToken=null
   reloadTime: 6
   _maximumShots: 2
+--- !u!114 &114327952914052024
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1118712050718116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73cfbcd613a3ef54daba17bc858c7da4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CanvasName: Canvas
+  AoALabelName: AoALabel/AoAValue
+  AltLabelName: AltLabel/AltValue
+  SpdOutputName: SpeedLabel/SpeedValue
+  SlpOutputName: SideslipLabel/SideslipValue
+  WpnHolderName: WeaponsUIHolder
+  AlertLabelName: AlertLabel
+  HealthHolderName: HealthUIHolder
 --- !u!114 &114359953910132994
 MonoBehaviour:
   m_ObjectHideFlags: 1
