@@ -10,13 +10,28 @@ public class HPManager : MonoBehaviour {
     public UnityEvent onDie = new UnityEvent();
 
     [SerializeField]
-    private float hp;
+    private float _hp;
+    
+    [HideInInspector]
+    public float Hp
+    {
+        get { return _hp; }
+        set
+        {
+            _hp = Mathf.Clamp(value, 0, maxHP);
+
+            if (_hp <= 0)
+            {
+                Die();
+            }
+        }
+    }
 
 	// Use this for initialization
 	void Start () {
         if (onDie.GetPersistentEventCount() == 0)
             onDie.AddListener(delegate { Destroy(gameObject); });
-        hp = maxHP;
+        _hp = maxHP;
 	}
 	
 	// Update is called once per frame
@@ -26,9 +41,9 @@ public class HPManager : MonoBehaviour {
 
     public void SetHP(float value)
     {
-        hp = Mathf.Clamp(value, 0, maxHP);
+        _hp = Mathf.Clamp(value, 0, maxHP);
 
-        if (hp <= 0)
+        if (_hp <= 0)
         {
             Die();
         }
@@ -36,7 +51,7 @@ public class HPManager : MonoBehaviour {
 
     public void ChangeHP(float value)
     {
-        SetHP(hp + value);
+        SetHP(_hp + value);
     }
 
     public void Damage(float damage)

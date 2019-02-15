@@ -100,7 +100,7 @@ public class PlayerTargetSystem : MonoBehaviour {
                 targetIcons[tag].Add(Instantiate(iconSpec[tag], canvas.transform));
             enemies.AddRange(GameObject.FindGameObjectsWithTag(tag));
         }
-        //TODO: Thhis call is expensive, evaluate its utility.
+        //TODO: This call is expensive, evaluate its utility.
         enemies.Sort(SortByAngle);
 
         //if you currently have a target you are aiming at or locking onto...
@@ -143,6 +143,8 @@ public class PlayerTargetSystem : MonoBehaviour {
             else
                 flash = true;
         }
+
+        //Show the lock angle ring if we have a target within it.
         if (locking == true || locked == true)
         {
             lockRing.SetActive(true);
@@ -153,6 +155,7 @@ public class PlayerTargetSystem : MonoBehaviour {
         DisplayIcons();
     }
 
+    //Select the next closest target
     public void CycleTarget()
     {
         int targetIndex = enemies.IndexOf(_target);
@@ -174,6 +177,7 @@ public class PlayerTargetSystem : MonoBehaviour {
     //Attempts to start a lock on the current target.
     private void AttemptLock()
     {
+        //Is the target within lock angle degrees of the direction the player is facing
         Vector3 toTarget = _target.transform.position - transform.position;
         float angleToTarget = Vector3.Angle(toTarget, transform.forward);
         if (angleToTarget <= lockAngle)
@@ -187,6 +191,7 @@ public class PlayerTargetSystem : MonoBehaviour {
         }
     }
 
+    //Target the enemy closest to the center of the view.
     public void CenterTarget()
     {
         
@@ -252,6 +257,7 @@ public class PlayerTargetSystem : MonoBehaviour {
         return 0;
     }
 
+    //Scale the lock ring to the correct size for the current lock angle
     private void ScaleLock(float angle)
     {
         CameraControlScript cs = cameraCarrier.GetComponent<CameraControlScript>();
@@ -264,6 +270,7 @@ public class PlayerTargetSystem : MonoBehaviour {
         lockRing.GetComponent<RectTransform>().localPosition = new Vector3(xPos, yPos);
     }
 
+    //Display the correct icons over each enemy
     private void DisplayIcons()
     {
         Dictionary<string,int> usedIcons = new Dictionary<string, int>();
@@ -271,12 +278,16 @@ public class PlayerTargetSystem : MonoBehaviour {
         {
             usedIcons[tag] = 0;
         }
+
         foreach (GameObject enemy in enemies)
         {
+            //Get the enemies screen position.
             Vector3 screenPos = Camera.main.WorldToScreenPoint(enemy.transform.position);
             
+            //If the enemy is in front of the player.
             if (screenPos.z > 1)
             {
+                //If we have a target, show them with a distance marker.
                 if (_target != null && _target.Equals(enemy))
                 {
                     RectTransform location = lockIcon.GetComponent<RectTransform>();
@@ -322,10 +333,12 @@ public class PlayerTargetSystem : MonoBehaviour {
                 }
                 else
                 {
+                    //Other targets get a standard icon.
                     RectTransform location = targetIcons[enemy.tag][usedIcons[enemy.tag]].GetComponent<RectTransform>();
                     location.anchoredPosition = (new Vector2(screenPos.x, screenPos.y) / canvas.GetComponent<RectTransform>().localScale.x) - canvas.GetComponent<RectTransform>().sizeDelta / 2f;
                     targetIcons[enemy.tag][usedIcons[enemy.tag]].SetActive(true);
 
+                    //Check if we have an obstruction
                     RaycastHit info;
                     bool hit = Physics.Raycast(transform.position, enemy.transform.position - transform.position, out info,(enemy.transform.position - transform.position).magnitude + 50);
                     if (hit && info.transform.gameObject.tag == "Terrain")

@@ -29,12 +29,18 @@ public class PlayerUIScript : MonoBehaviour {
     private Text SpdLabel;
     private Text SlpLabel;
 
+    private Image HealthFill;
+
     private FlightBehavior fb;
+
+    private HPManager hp;
 
     // Use this for initialization
     void Start () {
 
         fb = GetComponent<FlightBehavior>();
+
+        hp = GetComponent<HPManager>();
 
         canvas = GameObject.Find(CanvasName);
         AoAOutput = canvas.transform.Find(AoALabelName).gameObject;
@@ -49,6 +55,7 @@ public class PlayerUIScript : MonoBehaviour {
         AltLabel = AltOutput.GetComponent<Text>();
         SpdLabel = SpdOutput.GetComponent<Text>();
         SlpLabel = SlpOutput.GetComponent<Text>();
+        HealthFill = HealthOutput.transform.Find("PlaneShade").gameObject.GetComponent<Image>();
 
     }
 	
@@ -63,5 +70,7 @@ public class PlayerUIScript : MonoBehaviour {
         SpdLabel.text = (fb.airspeed * 3.6F).ToString();
 
         SlpLabel.text = fb.slip.ToString();
+
+        HealthFill.fillAmount = hp.Hp / hp.maxHP;
     }
 }
