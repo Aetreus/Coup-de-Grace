@@ -292,12 +292,16 @@ public class PlayerTargetSystem : MonoBehaviour {
                 {
                     RectTransform location = lockIcon.GetComponent<RectTransform>();
 
+                    //Set the color based off of the tag.
                     lockIcon.GetComponent<Image>().color = iconSpec[_target.tag].GetComponent<Image>().color;
                     lockIcon.transform.Find("ObstructedMarker").gameObject.GetComponent<Image>().color = iconSpec[_target.tag].GetComponent<Image>().color;
-
+                    
+                    //Position the icon.
                     location.anchoredPosition = (new Vector2(screenPos.x, screenPos.y) / canvas.GetComponent<RectTransform>().localScale.x ) - canvas.GetComponent<RectTransform>().sizeDelta / 2f;
                     GameObject DistLabel = lockIcon.transform.Find("DistLabel").gameObject;
                     DistLabel.GetComponent<Text>().text = (transform.position - _target.transform.position).magnitude.ToString();
+
+                    //Flash the lock indicator if we're still locking, solid if not.
                     if ((flash && locking) || locked)
                     {
                         lockIcon.SetActive(true);

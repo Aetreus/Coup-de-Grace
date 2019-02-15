@@ -97,7 +97,7 @@ public class FighterDecisionTree : MonoBehaviour {
     void Update() {
         debug_msg = "";
         AIAction action = HasTargetTree();
-        Debug.Log(debug_msg, this.gameObject);
+        //Debug.Log(debug_msg, this.gameObject);
         fs.targetVel = cruise_speed;
         //fs.stallLimit = base_stall_limit;
         switch (action)

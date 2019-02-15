@@ -1494,7 +1494,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  hp: 0
+  _hp: 0
 --- !u!114 &114010314237279130
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1819,10 +1819,226 @@ MonoBehaviour:
   - {x: 180, y: 0}
   liftCoeff:
     serializedVersion: 2
-    m_Curve: []
+    m_Curve:
+    - serializedVersion: 2
+      time: -180
+      value: 0
+      inSlope: -0.0027586208
+      outSlope: -0.0027586208
+      tangentMode: 0
+    - serializedVersion: 2
+      time: -35
+      value: -0.4
+      inSlope: -0.010000001
+      outSlope: -0.010000001
+      tangentMode: 136
+    - serializedVersion: 2
+      time: -20
+      value: -2
+      inSlope: 0.0016666651
+      outSlope: 0.0016666651
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0
+      value: 0.2
+      inSlope: 0.1072
+      outSlope: 0.1072
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 25
+      value: 2.81
+      inSlope: 0.032199994
+      outSlope: 0.032199994
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 30
+      value: 2.61
+      inSlope: -0.093666665
+      outSlope: -0.093666665
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 45
+      value: 0.4
+      inSlope: -0.01066667
+      outSlope: -0.01066667
+      tangentMode: 136
+    - serializedVersion: 2
+      time: 180
+      value: 0
+      inSlope: -0.002962963
+      outSlope: -0.002962963
+      tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
+  crossLiftCoeff:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: -180
+      value: 0
+      inSlope: -0.0003448276
+      outSlope: -0.0003448276
+      tangentMode: 0
+    - serializedVersion: 2
+      time: -35
+      value: -0.05
+      inSlope: -0.0012500001
+      outSlope: -0.0012500001
+      tangentMode: 136
+    - serializedVersion: 2
+      time: -20
+      value: -0.25
+      inSlope: -0.00041666673
+      outSlope: -0.00041666673
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0.0125
+      outSlope: 0.0125
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 20
+      value: 0.25
+      inSlope: -0.0037500006
+      outSlope: -0.0037500006
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 35
+      value: -0.05
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+    - serializedVersion: 2
+      time: 180
+      value: 0
+      inSlope: 0.0003448276
+      outSlope: 0.0003448276
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  pitchingMoment:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: -180
+      value: 0
+      inSlope: 0.0014375
+      outSlope: 0.0014375
+      tangentMode: 0
+    - serializedVersion: 2
+      time: -100
+      value: 0.115
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+    - serializedVersion: 2
+      time: -50
+      value: 0.1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+    - serializedVersion: 2
+      time: -36
+      value: 0.265
+      inSlope: 0.015892863
+      outSlope: 0.015892863
+      tangentMode: 0
+    - serializedVersion: 2
+      time: -35
+      value: 0.285
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+    - serializedVersion: 2
+      time: 0
+      value: 0.005
+      inSlope: -0.008
+      outSlope: -0.008
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 35
+      value: -0.275
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+    - serializedVersion: 2
+      time: 50
+      value: -0.1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+    - serializedVersion: 2
+      time: 100
+      value: -0.115
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+    - serializedVersion: 2
+      time: 180
+      value: 0
+      inSlope: 0.0014375
+      outSlope: 0.0014375
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  yawMoment:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: -180
+      value: 0
+      inSlope: 0.0018750001
+      outSlope: 0.0018750001
+      tangentMode: 0
+    - serializedVersion: 2
+      time: -100
+      value: 0.15
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+    - serializedVersion: 2
+      time: -50
+      value: 0.1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+    - serializedVersion: 2
+      time: -35
+      value: 0.35
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: -0.01
+      outSlope: -0.01
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 35
+      value: -0.35
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+    - serializedVersion: 2
+      time: 50
+      value: -0.1
+      inSlope: 0.002413793
+      outSlope: 0.002413793
+      tangentMode: 136
+    - serializedVersion: 2
+      time: 180
+      value: 0
+      inSlope: 0.00076923077
+      outSlope: 0.00076923077
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!114 &114972886065569304
 MonoBehaviour:
   m_ObjectHideFlags: 1

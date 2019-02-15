@@ -68,22 +68,12 @@ public class FlightBehavior : MonoBehaviour {
 
     public AnimationCurve liftCoeff = new AnimationCurve();
 
-    public void OnBeforeSerialize()
-    {
-        foreach(Vector2 setpoint in liftCoeffSetpoints)
-        {
-            liftCoeff.AddKey(setpoint.x, setpoint.y);
-        }
-    }
+    public AnimationCurve crossLiftCoeff = new AnimationCurve();
 
-    public void OnAfterDeserialize()
-    {
-        foreach (Vector2 setpoint in liftCoeffSetpoints)
-        {
-            liftCoeff.AddKey(setpoint.x, setpoint.y);
-        }
-    }
+    public AnimationCurve pitchingMoment = new AnimationCurve();
 
+    public AnimationCurve yawMoment = new AnimationCurve();
+    
     private float AoA = 0.0F;
 
     private float sideslip;
@@ -92,9 +82,10 @@ public class FlightBehavior : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+
         rb = GetComponent<Rigidbody>();
 
-        if(!inertiaTensor.Equals(new Vector3(0,0,0)))
+        if (!inertiaTensor.Equals(new Vector3(0,0,0)))
         {
             rb.inertiaTensor = inertiaTensor;
         }
