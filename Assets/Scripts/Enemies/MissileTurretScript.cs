@@ -38,5 +38,9 @@ public class MissileTurretScript : TurretAim {
         created.GetComponent<Rigidbody>().velocity = faceVector.normalized * initialVelocity;
         created.GetComponent<PropNav>().Target = target;
         created.GetComponent<ProximityExplodeScript>().hostileTag = target.tag;
+        if(created.GetComponent<SupportedMissileScript>() != null)
+        {
+            created.GetComponent<SupportedMissileScript>().parent = gameObject;
+        }
     }
 }

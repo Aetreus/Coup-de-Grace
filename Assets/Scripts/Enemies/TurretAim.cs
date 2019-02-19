@@ -90,7 +90,7 @@ public class TurretAim : MonoBehaviour {
     {
         //transform.forward = faceVector.normalized;
 
-        transform.right = Vector3.Normalize(new Vector3(faceVector.x, 0, faceVector.z));
+        transform.forward = Vector3.Normalize(new Vector3(faceVector.x, 0, faceVector.z));
 
         float zAngle = Vector3.Angle(faceVector, transform.right);
 
