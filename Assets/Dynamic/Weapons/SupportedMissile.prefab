@@ -522,9 +522,9 @@ MonoBehaviour:
   dampingTime: 0.5
   viewCone: 40
   surfaceController:
-    propConstant: 0.42
-    integConstant: 0.1
-    derivConstant: 0.02
+    propConstant: 0.007
+    integConstant: 0.0016
+    derivConstant: 0.00033
     output: 0
   lockCone: 30
   parent: {fileID: 0}
@@ -548,36 +548,6 @@ MonoBehaviour:
   aileronControlCoeff: 0.25
   elevatorControlCoeff: 0.6
   rudderControlCoeff: 0.6
-  liftCoeffSetpoints:
-  - {x: -180, y: 0}
-  - {x: -45, y: -2}
-  - {x: -20, y: -3}
-  - {x: 20, y: 3}
-  - {x: 45, y: 2}
-  - {x: 180, y: 0}
-  crossLiftCoeffSetpoints:
-  - {x: -180, y: 0}
-  - {x: -45, y: -2}
-  - {x: -20, y: -3}
-  - {x: 20, y: 3}
-  - {x: 45, y: 2}
-  - {x: 180, y: 0}
-  pitchingMomentSetpoints:
-  - {x: -180, y: 0}
-  - {x: -120, y: 1.15}
-  - {x: -35, y: 0.7}
-  - {x: 0, y: 0}
-  - {x: 35, y: -0.7}
-  - {x: 120, y: -1.15}
-  - {x: 180, y: 0}
-  yawMomentSetpoints:
-  - {x: -180, y: 0}
-  - {x: -120, y: 1.15}
-  - {x: -35, y: 0.7}
-  - {x: 0, y: 0}
-  - {x: 35, y: -0.7}
-  - {x: 120, y: -1.15}
-  - {x: 180, y: 0}
   liftCoeff:
     serializedVersion: 2
     m_Curve:

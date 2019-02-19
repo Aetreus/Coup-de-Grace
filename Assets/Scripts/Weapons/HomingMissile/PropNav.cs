@@ -133,10 +133,10 @@ public class PropNav : MonoBehaviour {
         Debug.DrawLine(transform.position, transform.position + latax);
         Debug.DrawLine(transform.position, transform.position + accel);
 
-        fb.rudder = surfaceController.Calc((local_delta.x / ref_accel) * speedControlSense * surfaceDampCoeff);
-        fb.elevator = surfaceController.Calc((-local_delta.y / ref_accel) * speedControlSense * surfaceDampCoeff);
+        fb.rudder += surfaceController.Calc((local_delta.x / ref_accel)  * surfaceDampCoeff) * speedControlSense;
+        fb.elevator += surfaceController.Calc((-local_delta.y / ref_accel) * surfaceDampCoeff) * speedControlSense;
 
-        
+
 
         fueltime -= Time.deltaTime;
         lifetime -= Time.deltaTime;

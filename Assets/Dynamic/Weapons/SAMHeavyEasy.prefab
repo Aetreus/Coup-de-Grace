@@ -434,9 +434,9 @@ MonoBehaviour:
   dampingTime: 1.5
   viewCone: 180
   surfaceController:
-    propConstant: 0.42
-    integConstant: 0.1
-    derivConstant: 0.02
+    propConstant: 0.007
+    integConstant: 0.0016
+    derivConstant: 0.00033
     output: 0
   lockCone: 90
   parent: {fileID: 0}

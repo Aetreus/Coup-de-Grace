@@ -679,9 +679,9 @@ MonoBehaviour:
   dampingTime: 1
   viewCone: 40
   surfaceController:
-    propConstant: 0.42
-    integConstant: 0.1
-    derivConstant: 0.02
+    propConstant: 0.007
+    integConstant: 0.0016
+    derivConstant: 0.00033
     output: 0
 --- !u!114 &114813190405355534
 MonoBehaviour:
