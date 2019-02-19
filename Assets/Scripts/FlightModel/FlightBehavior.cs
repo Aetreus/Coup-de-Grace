@@ -54,24 +54,24 @@ public class FlightBehavior : MonoBehaviour {
 
     public float rudderControlCoeff = 0.1F;
 
+    //public List<Vector2> liftCoeffSetpoints = new List<Vector2> { new Vector2(-180,0.0F),new Vector2(-35, -0.4F), new Vector2(-20,-2.0F),new Vector2(0, 0.2F),new Vector2(25 ,2.81F),new Vector2(30,2.61F),new Vector2(45,0.4F),new Vector2(180,0.0F)};
+
+    //public List<Vector2> crossLiftCoeffSetpoints = new List<Vector2> { new Vector2(-180, 0.0F), new Vector2(-35, -0.05F), new Vector2(-20, -0.25F), new Vector2(20, 0.25F), new Vector2(35, -0.05F), new Vector2(180, 0.0F) };
+
+    //public List<Vector2> pitchingMomentSetpoints = new List<Vector2> { new Vector2(-180, 0.0F), new Vector2(-50, 0.1F), new Vector2(-35, 0.285F), new Vector2(0, 0.005F), new Vector2(35, -0.275F), new Vector2(50, -0.1F), new Vector2(180, 0) };
+
+    //public List<Vector2> yawMomentSetpoints = new List<Vector2> { new Vector2(-180, 0.0F), new Vector2(-50, 0.1F), new Vector2(-35, 0.35F), new Vector2(0, 0.000F), new Vector2(35, -0.35F), new Vector2(50, -0.1F), new Vector2(180, 0) };
+
     //Drive how strong lift is in the vertical direction based on AoA. Usually asymmetric biased towards positive lift.
-    public List<Vector2> liftCoeffSetpoints = new List<Vector2> { new Vector2(-180,0.0F),new Vector2(-35, -0.4F), new Vector2(-20,-2.0F),new Vector2(0, 0.2F),new Vector2(25 ,2.81F),new Vector2(30,2.61F),new Vector2(45,0.4F),new Vector2(180,0.0F)};
-
-    //Drive how strong lift is in the sideways direction based on sideslip(much lower for typical aircraft).
-    public List<Vector2> crossLiftCoeffSetpoints = new List<Vector2> { new Vector2(-180, 0.0F), new Vector2(-35, -0.05F), new Vector2(-20, -0.25F), new Vector2(20, 0.25F), new Vector2(35, -0.05F), new Vector2(180, 0.0F) };
-
-    //Pitching moment coefficient is an aircraft's tendency to center itself vertically(i.e. to fly in the direction it's pointing). Slope should be negative over the stable range.
-    public List<Vector2> pitchingMomentSetpoints = new List<Vector2> { new Vector2(-180, 0.0F), new Vector2(-50, 0.1F), new Vector2(-35, 0.285F), new Vector2(0, 0.005F), new Vector2(35, -0.275F), new Vector2(50, -0.1F), new Vector2(180, 0) };
-
-    //Yaw moment coefficient is similar, but makes the aircraft stable in yaw instead of pitch. Yaw moment coefficient slope should be negative over the stable range.
-    public List<Vector2> yawMomentSetpoints = new List<Vector2> { new Vector2(-180, 0.0F), new Vector2(-50, 0.1F), new Vector2(-35, 0.35F), new Vector2(0, 0.000F), new Vector2(35, -0.35F), new Vector2(50, -0.1F), new Vector2(180, 0) };
-
     public AnimationCurve liftCoeff = new AnimationCurve();
 
+    //Drive how strong lift is in the sideways direction based on sideslip(much lower for typical aircraft).
     public AnimationCurve crossLiftCoeff = new AnimationCurve();
 
+    //Pitching moment coefficient is an aircraft's tendency to center itself vertically(i.e. to fly in the direction it's pointing). Slope should be negative over the stable range.
     public AnimationCurve pitchingMoment = new AnimationCurve();
 
+    //Yaw moment coefficient is similar, but makes the aircraft stable in yaw instead of pitch. Yaw moment coefficient slope should be negative over the stable range.
     public AnimationCurve yawMoment = new AnimationCurve();
     
     private float AoA = 0.0F;
@@ -198,6 +198,7 @@ public class FlightBehavior : MonoBehaviour {
             sideslip = -sideslip;
         }
 
+        //Aerodynamic forces are proportional to air density, wing area, and the square of velocity.
         float liftMagnitude = (1F / 2) * airDensity * wingArea * (float)Math.Pow((double)rb.velocity.magnitude,2) * CalculateLiftCoeff();
         Vector3 liftDirection = Vector3.Cross(rb.velocity, rb.transform.right).normalized;
         Vector3 lift = liftDirection * liftMagnitude;
@@ -238,7 +239,8 @@ public class FlightBehavior : MonoBehaviour {
 
     float CalculateYawCoeff()
     {
-        return InterpolateSetpoints(sideslip, yawMomentSetpoints);
+        //return InterpolateSetpoints(sideslip, yawMomentSetpoints);
+        return yawMoment.Evaluate(sideslip);
     }
 
     float CalculateLiftCoeff()
@@ -263,14 +265,17 @@ public class FlightBehavior : MonoBehaviour {
         else
             return 0.0F;
             */
-        return InterpolateSetpoints(AoA, liftCoeffSetpoints);
+        //return InterpolateSetpoints(AoA, liftCoeffSetpoints);
+        return liftCoeff.Evaluate(AoA);
     }
 
     float CalculateCrossLiftCoeff()
     {
-        return InterpolateSetpoints(sideslip, crossLiftCoeffSetpoints);
+        //return InterpolateSetpoints(sideslip, crossLiftCoeffSetpoints);
+        return crossLiftCoeff.Evaluate(sideslip);
     }
 
+    //Aproximate formula for drag as a function of AoA.
     float CalculateDragCoeff()
     {
         return Math.Min(dragCoeff + 0.025F * Math.Abs(AoA), 2.0F);
@@ -278,7 +283,8 @@ public class FlightBehavior : MonoBehaviour {
 
     float CalculatePitchingCoeff()
     {
-        return InterpolateSetpoints(AoA, pitchingMomentSetpoints);
+        //return InterpolateSetpoints(AoA, pitchingMomentSetpoints);
+        return pitchingMoment.Evaluate(AoA);
     }
 
     void OnCollisionEnter(Collision collision)
