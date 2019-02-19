@@ -6,6 +6,8 @@ public class ProximityExplodeScript : MonoBehaviour {
 
     private List<GameObject> nearby;
 
+    private GameObject trail;
+
     public string hostileTag;
 
     public float triggerRange = 5;
@@ -28,6 +30,10 @@ public class ProximityExplodeScript : MonoBehaviour {
         SphereCollider sc = gameObject.AddComponent<SphereCollider>() as SphereCollider;
         sc.isTrigger = true;
         sc.radius = damageRadius / transform.localScale.x;
+        if (transform.Find("Trail") != null)
+            trail = transform.Find("Trail").gameObject;
+        else
+            trail = null;
 	}
 	
 	// Update is called once per frame
@@ -80,6 +86,12 @@ public class ProximityExplodeScript : MonoBehaviour {
                     man.Damage((dist - innerDamageRadius) / (damageRadius - innerDamageRadius) * (damage - minDamage) + minDamage);
                 }
             }
+        }
+        //Detach the trail and set it to autodestroy.
+        if(trail != null)
+        {
+            trail.transform.parent = null;
+            Destroy(trail, 7);
         }
         Destroy(gameObject);
     }
