@@ -236,11 +236,11 @@ MonoBehaviour:
   rotateDelta: 10
   maxFireAngle: 50
   maxFireDist: 5000
-  fireCooldown: 8
+  fireCooldown: 16
   bulletSpawnOffset: 30
   retargetTime: 10
   playerTag: Player
-  initialVelocity: 80
+  initialVelocity: 40
   aimShotSpeed: 300
   lockTime: 10
 --- !u!114 &114627589975913136
@@ -260,6 +260,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  _hp: 0
 --- !u!114 &114914650140310752
 MonoBehaviour:
   m_ObjectHideFlags: 1
