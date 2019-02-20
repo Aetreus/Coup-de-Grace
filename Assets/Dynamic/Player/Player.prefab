@@ -1549,7 +1549,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67f98435b43caf14eb48c078020e5fa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Icon: {fileID: 1744471353617844, guid: fbc3d3b633ee6e146b599a0dc5c829c8, type: 2}
+  _icon: {fileID: 1744471353617844, guid: fbc3d3b633ee6e146b599a0dc5c829c8, type: 2}
 --- !u!114 &114222035015594602
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1780,43 +1780,6 @@ MonoBehaviour:
   aileronControlCoeff: 0.23
   elevatorControlCoeff: 0.19
   rudderControlCoeff: 0.1
-  liftCoeffSetpoints:
-  - {x: -180, y: 0}
-  - {x: -35, y: -0.4}
-  - {x: -20, y: -2}
-  - {x: 0, y: 0.2}
-  - {x: 25, y: 2.81}
-  - {x: 30, y: 2.61}
-  - {x: 45, y: 0.4}
-  - {x: 180, y: 0}
-  crossLiftCoeffSetpoints:
-  - {x: -180, y: 0}
-  - {x: -35, y: -0.05}
-  - {x: -20, y: -0.25}
-  - {x: 0, y: 0}
-  - {x: 20, y: 0.25}
-  - {x: 35, y: 0.05}
-  - {x: 180, y: 0}
-  pitchingMomentSetpoints:
-  - {x: -180, y: 0}
-  - {x: -100, y: 0.115}
-  - {x: -50, y: 0.36}
-  - {x: -36, y: 0.265}
-  - {x: 0, y: 0.005}
-  - {x: 35, y: -0.255}
-  - {x: 50, y: -0.36}
-  - {x: 100, y: -0.115}
-  - {x: 180, y: 0}
-  yawMomentSetpoints:
-  - {x: -180, y: 0}
-  - {x: -100, y: 0.15}
-  - {x: -50, y: 0.25}
-  - {x: -35, y: 0.35}
-  - {x: 0, y: 0}
-  - {x: 35, y: -0.35}
-  - {x: 50, y: -0.25}
-  - {x: -100, y: -0.125}
-  - {x: 180, y: 0}
   liftCoeff:
     serializedVersion: 2
     m_Curve:

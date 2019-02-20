@@ -334,13 +334,17 @@ public class FighterDecisionTree : MonoBehaviour {
         foreach (Vector3 dir in directions)
         {
             RaycastHit hitinfo;
-            bool hit = Physics.Raycast(transform.position, transform.forward, out hitinfo, collision_whisker_len);
+            bool hit = Physics.Raycast(transform.position, dir, out hitinfo, collision_whisker_len);
 
             if (hit)
             {
                 float dist = Vector3.Distance(hitinfo.point, transform.position);
-
+                Debug.DrawLine(transform.position, transform.position + dir * collision_whisker_len, Color.red);
                 avoidNormal += hitinfo.normal;
+            }
+            else
+            {
+                Debug.DrawLine(transform.position, transform.position + dir * collision_whisker_len, Color.green);
             }
         }
 

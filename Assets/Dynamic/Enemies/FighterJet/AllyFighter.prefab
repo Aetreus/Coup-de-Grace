@@ -135,7 +135,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1266950073805010}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -636.8, y: 3739, z: -1089}
+  m_LocalPosition: {x: 9911.679, y: 2691.73, z: 8020.465}
   m_LocalScale: {x: 8, y: 4, z: 15}
   m_Children:
   - {fileID: 4797448115293674}
@@ -165,7 +165,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1321721977642654}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.205, z: 0}
   m_LocalScale: {x: 12.5, y: 6.666671, z: 25.000015}
   m_Children: []
   m_Father: {fileID: 4601531986462614}
@@ -237,8 +237,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.2885198, y: 0.42504072, z: 0.68956125}
-  m_Center: {x: -0.012802571, y: 0.2996242, z: 0.07685139}
+  m_Size: {x: 0.2885198, y: 0.4043579, z: 0.68956137}
+  m_Center: {x: -0.012802571, y: 0.026824951, z: 0.076851405}
 --- !u!95 &95164775885997702
 Animator:
   serializedVersion: 3
@@ -442,7 +442,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawned: {fileID: 1122467257251606, guid: c7f969548f0ec494db8e6cb5a5709303, type: 2}
-  offset: {x: 0, y: -0.5, z: 2}
+  offset: {x: 0, y: -1.5, z: 2}
   initial: {x: 0, y: -3, z: 0}
 --- !u!114 &114157326852668900
 MonoBehaviour:
@@ -484,7 +484,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67f98435b43caf14eb48c078020e5fa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Icon: {fileID: 1224000558889898, guid: f780a4c8343d1554fbb3ba86c3496cb5, type: 2}
+  _icon: {fileID: 1224000558889898, guid: f780a4c8343d1554fbb3ba86c3496cb5, type: 2}
 --- !u!114 &114201641326519070
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -804,9 +804,9 @@ MonoBehaviour:
   min_pitch_ground_dist: 2000
   max_in_front_of_player_angle: 90
   min_far_away_dist: 3000
-  cruise_speed: 300
-  maneuver_speed: 200
-  sprint_speed: 400
+  cruise_speed: 400
+  maneuver_speed: 300
+  sprint_speed: 600
   base_stall_limit: 5
   missile_time: 10
   missile_prob: 0.2

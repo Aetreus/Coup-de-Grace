@@ -313,6 +313,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  _hp: 0
 --- !u!114 &114547039967664742
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -328,6 +329,8 @@ MonoBehaviour:
   speed: 120
   bomb: {fileID: 1971833699960792, guid: 09a37c71be6d84d43809cf1ebb2e6f8e, type: 2}
   bomb_target: {fileID: 0}
+  bomb_target_backup: Building
+  target_tag: Player
   drop_frequency: 0.1
   bombing_radius: 50
   bomb_spawn_offset: 1
@@ -346,9 +349,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afaf34423f48635499832e428c207998, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 1855380049135256, guid: 0f953d726d1924e4993251ba20d3ddbf, type: 2}
+  debrisPrefab: {fileID: 0}
+  explosionPrefab: {fileID: 0}
   numDebris: 12
   power: 20
+  dragRange: 0.4
 --- !u!114 &114690141641881100
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -360,4 +365,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67f98435b43caf14eb48c078020e5fa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Icon: {fileID: 1261174597415340, guid: 8206aed36e2965c42a983254824459eb, type: 2}
+  _icon: {fileID: 1261174597415340, guid: 8206aed36e2965c42a983254824459eb, type: 2}
