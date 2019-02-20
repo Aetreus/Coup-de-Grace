@@ -159,14 +159,6 @@ public class PropNav : MonoBehaviour {
                 if (pcb != null)
                 {
                     pcb.warnings.RemoveAll(w => w.reference == gameObject);
-                    if (GetComponent<MinimapObject>() != null)
-                    {
-                        MinimapObject mo = GetComponent<MinimapObject>();
-                        if (mo.Icon.GetComponent<Image>() != null)
-                        {
-                            mo.Icon.GetComponent<Image>().color = Color.white;
-                        }
-                    }
                 }
             }
             target = value;
@@ -179,14 +171,6 @@ public class PropNav : MonoBehaviour {
                     PlayerControlBehavior.Warning warn = new PlayerControlBehavior.Warning(gameObject, "PropNav", "targetDistance", false, null, false, 2000, "MISSILE", "None", target.transform.Find("UISoundHolder/MissileAlertPlayer").GetComponent<AudioSource>(), true);
                     pcb.warnings.Add(warn);
                     pcb.UpdateWarnings();
-                    if (GetComponent<MinimapObject>() != null)
-                    {
-                        MinimapObject mo = GetComponent<MinimapObject>();
-                        if (mo.Icon.GetComponent<Image>() != null)
-                        {
-                            mo.Icon.GetComponent<Image>().color = Color.red;
-                        }
-                    }
                 }
             }
         }

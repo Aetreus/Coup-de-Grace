@@ -57,7 +57,7 @@ public class MinimapScript : MonoBehaviour {
     public void Unregister(MinimapObject unreg)
     {
         actives.Remove(unreg);
-        int index = icons.FindIndex(x => x.name == unreg.Icon.name);
+        int index = icons.FindIndex(x => x.name.StartsWith(unreg.Icon.name));
         GameObject.Destroy(icons[index].gameObject, 0.1F);
         icons.RemoveAt(index);
         
