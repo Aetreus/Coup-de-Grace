@@ -18,7 +18,7 @@ public class SMSpawner : PNSpawner {
         }
 
         created.GetComponent<Rigidbody>().velocity = rb.velocity + transform.localToWorldMatrix.MultiplyVector(initial);
-        created.GetComponent<PropNav>().Target = target;
+        created.GetComponent<PropNav>().target = target;
         created.GetComponent<ProximityExplodeScript>().hostileTag = target.tag;
         created.GetComponent<SupportedMissileScript>().parent = this.gameObject;
         return created;

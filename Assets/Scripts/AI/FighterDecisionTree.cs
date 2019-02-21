@@ -399,7 +399,7 @@ public class FighterDecisionTree : MonoBehaviour {
         foreach(GameObject missile in missiles) 
         {
             
-            if (missile.GetComponent<PropNav>().Target == this.gameObject)
+            if (missile.GetComponent<PropNav>().target == this.gameObject)
             {
                 Vector3 missileVel = missile.GetComponent<Rigidbody>().velocity;
                 Vector3 missileToFighter = transform.position - missile.transform.position;
@@ -447,7 +447,7 @@ public class FighterDecisionTree : MonoBehaviour {
         Vector3 missileToPlayer = target.transform.position - activeMissile.transform.position;
         float angle = Vector3.Angle(missileVel, missileToPlayer);
 
-        if (activeMissile.GetComponent<PropNav>().Target == target && angle <= max_my_missile_approaching_angle)
+        if (activeMissile.GetComponent<PropNav>().target == target && angle <= max_my_missile_approaching_angle)
         {
             return true;
         }

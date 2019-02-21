@@ -20,7 +20,7 @@ public class PropNav : MonoBehaviour {
 
     public PIDController surfaceController;
 
-    private GameObject target = null;
+    private GameObject _target = null;
     private Vector3 last_pos;
     private Vector3 target_last_pos;
 
@@ -50,30 +50,30 @@ public class PropNav : MonoBehaviour {
         Vector3 latax;
 
         //Check if target in view cone before calculating latax
-        if (target)
+        if (_target)
         {
-            float targetAngle = Vector3.Angle(this.transform.forward, target.transform.position - transform.position);
+            float targetAngle = Vector3.Angle(this.transform.forward, _target.transform.position - transform.position);
             if (targetAngle > viewCone)
-                target = null;
+                _target = null;
         }
 
-        if (target)
+        if (_target)
         {
 
-            Vector3 range = target.transform.position - transform.position;
+            Vector3 range = _target.transform.position - transform.position;
 
             _targetDistance = range.magnitude;
 
             Vector3 missile_vel = GetComponent<Rigidbody>().velocity;
 
             Vector3 relative_vel;
-            if (target.GetComponent<Rigidbody>() == null)
+            if (_target.GetComponent<Rigidbody>() == null)
             {
                 relative_vel = -missile_vel;   
             }
             else
             {
-                relative_vel = target.GetComponent<Rigidbody>().velocity - missile_vel;
+                relative_vel = _target.GetComponent<Rigidbody>().velocity - missile_vel;
             }
             
             Vector3 rotation_vec = Vector3.Cross(range, relative_vel) / Vector3.Dot(range, range);
@@ -144,31 +144,31 @@ public class PropNav : MonoBehaviour {
         last_vel = rb.velocity;
     }
 
-    public GameObject Target
+    public GameObject target
     {
         get
         {
-            return target;
+            return _target;
         }
         set
         {
             //Add/remove target warnings if we target the player.
-            if (target != null)
+            if (_target != null)
             {
-                PlayerControlBehavior pcb = target.GetComponent<PlayerControlBehavior>();
+                PlayerControlBehavior pcb = _target.GetComponent<PlayerControlBehavior>();
                 if (pcb != null)
                 {
                     pcb.warnings.RemoveAll(w => w.reference == gameObject);
                 }
             }
-            target = value;
-            if (target != null)
+            _target = value;
+            if (_target != null)
             {
-                target_last_pos = target.transform.position;
-                if (target.GetComponent<PlayerControlBehavior>() != null)
+                target_last_pos = _target.transform.position;
+                if (_target.GetComponent<PlayerControlBehavior>() != null)
                 {
-                    PlayerControlBehavior pcb = target.GetComponent<PlayerControlBehavior>();
-                    PlayerControlBehavior.Warning warn = new PlayerControlBehavior.Warning(gameObject, "PropNav", "targetDistance", false, null, false, 2000, "MISSILE", "None", target.transform.Find("UISoundHolder/MissileAlertPlayer").GetComponent<AudioSource>(), true);
+                    PlayerControlBehavior pcb = _target.GetComponent<PlayerControlBehavior>();
+                    PlayerControlBehavior.Warning warn = new PlayerControlBehavior.Warning(gameObject, "PropNav", "targetDistance", false, null, false, 2000, "MISSILE", "None", _target.transform.Find("UISoundHolder/MissileAlertPlayer").GetComponent<AudioSource>(), true);
                     pcb.warnings.Add(warn);
                     pcb.UpdateWarnings();
                 }
@@ -178,7 +178,7 @@ public class PropNav : MonoBehaviour {
 
     void OnCollisionEnter(Collision collision)
     {
-        if (target && collision.gameObject == target)
+        if (_target && collision.gameObject == _target)
         {
             HPManager hp = collision.gameObject.GetComponent<HPManager>();
             hp.Damage(damage);
@@ -193,12 +193,12 @@ public class PropNav : MonoBehaviour {
 
     private void OnDestroy()
     {
-        if (target != null)
+        if (_target != null)
         {
-            PlayerControlBehavior pcb = target.GetComponent<PlayerControlBehavior>();
+            PlayerControlBehavior pcb = _target.GetComponent<PlayerControlBehavior>();
             if (pcb != null)
             {
-                target.transform.Find("UISoundHolder/MissileAlertPlayer").GetComponent<AudioSource>().Stop();
+                _target.transform.Find("UISoundHolder/MissileAlertPlayer").GetComponent<AudioSource>().Stop();
                 pcb.warnings.RemoveAll(w => w.reference == gameObject);
             }
         }

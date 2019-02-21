@@ -36,7 +36,7 @@ public class MissileTurretScript : TurretAim {
         Quaternion spawnRot = Quaternion.LookRotation(faceVector);
         GameObject created = Instantiate(bullet, spawnLoc, spawnRot);
         created.GetComponent<Rigidbody>().velocity = faceVector.normalized * initialVelocity;
-        created.GetComponent<PropNav>().Target = target;
+        created.GetComponent<PropNav>().target = target;
         created.GetComponent<ProximityExplodeScript>().hostileTag = target.tag;
         if(created.GetComponent<SupportedMissileScript>() != null)
         {

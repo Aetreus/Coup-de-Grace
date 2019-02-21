@@ -29,7 +29,7 @@ public class PNSpawner : MonoBehaviour {
                 sel = sel.transform.parent.gameObject;
         }
         created.GetComponent<Rigidbody>().velocity = rb.velocity + transform.localToWorldMatrix.MultiplyVector(initial);
-        created.GetComponent<PropNav>().Target = target;
+        created.GetComponent<PropNav>().target = target;
         created.GetComponent<ProximityExplodeScript>().hostileTag = target.tag;
         return created;
     }

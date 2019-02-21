@@ -19,7 +19,7 @@ public class ProjectileObject : MonoBehaviour {
         if(gameObject.GetComponent<PropNav>() != null)
         {
             pn = gameObject.GetComponent<PropNav>();
-            target = pn.Target;
+            target = pn.target;
             if (ms.sourceObject.Equals(target))
                 ms.Register(this);
         }
@@ -30,9 +30,9 @@ public class ProjectileObject : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        if(pn.Target != target)
+        if(pn.target != target)
         {
-            if(ms.sourceObject.Equals(pn.Target))
+            if(ms.sourceObject.Equals(pn.target))
             {
                 ms.Register(this);
             }
@@ -40,7 +40,7 @@ public class ProjectileObject : MonoBehaviour {
             {
                 ms.Unregister(this);
             }
-            target = pn.Target;
+            target = pn.target;
         }
     }
 

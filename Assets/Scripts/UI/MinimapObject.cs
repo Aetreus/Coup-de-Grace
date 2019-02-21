@@ -52,7 +52,7 @@ public class MinimapObject : MonoBehaviour {
         //If this is a missile tracking the player it is red, otherwise missiles are white.
 		if(pn != null)
         {
-            if (pn.Target != null && pn.Target.tag == "Player")
+            if (pn.target != null && pn.target.tag == "Player")
             {
                 iconSprite.color = Color.red;
             }

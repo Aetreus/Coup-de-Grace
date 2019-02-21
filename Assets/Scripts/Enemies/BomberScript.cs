@@ -130,7 +130,7 @@ public class BomberScript : MonoBehaviour {
             Quaternion spawnRot = Quaternion.LookRotation(towardPlayer);
 
             GameObject m = Instantiate(missile, spawnLoc, spawnRot);
-            m.GetComponent<PropNav>().Target = target;
+            m.GetComponent<PropNav>().target = target;
             m.GetComponent<ProximityExplodeScript>().hostileTag = target.tag;
         }
     }
