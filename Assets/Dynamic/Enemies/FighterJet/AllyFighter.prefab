@@ -788,6 +788,7 @@ MonoBehaviour:
   accel_mag: 50
   targetTags:
   - Enemy
+  - HostileObjective
   collision_whisker_len: 1000
   collision_whisker_offset: 5
   collision_personal_space: 300

@@ -244,4 +244,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67f98435b43caf14eb48c078020e5fa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Icon: {fileID: 1048764489350130, guid: f6ddf0c4ccecfaf48b9b359eae587ca7, type: 2}
+  _icon: {fileID: 1521486262125800, guid: ba72b13cea69b1e438fbd5735d25ce1c, type: 2}

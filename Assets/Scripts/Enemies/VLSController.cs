@@ -14,7 +14,7 @@ public class VLSController : MonoBehaviour {
 
     private float fireTimer;
     private GameObject target;
-    public float retargetTimer;
+    public float retargetTimer; 
 
     // Use this for initialization
     void Start()
