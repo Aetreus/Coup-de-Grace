@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 
 public class PlayerTargetSystem : MonoBehaviour {
 
@@ -39,7 +40,6 @@ public class PlayerTargetSystem : MonoBehaviour {
     
     private GameObject _target;
     private List<GameObject> enemies;
-
 
     private Dictionary<string,List<GameObject>> targetIcons;
 
@@ -92,16 +92,29 @@ public class PlayerTargetSystem : MonoBehaviour {
     // Update is called once per frame
     void Update ()
     {
-        enemies = new List<GameObject>();
+        List<GameObject> tempEnemies = new List<GameObject>();
         foreach (string tag in iconSpec.Keys)
         {
             GameObject[] e = GameObject.FindGameObjectsWithTag(tag);
             while (targetIcons[tag].Count < e.Length)
                 targetIcons[tag].Add(Instantiate(iconSpec[tag], canvas.transform));
-            enemies.AddRange(GameObject.FindGameObjectsWithTag(tag));
+            tempEnemies.AddRange(GameObject.FindGameObjectsWithTag(tag));
         }
+
+        enemies.RemoveAll(x => x == null);
+
+        List<GameObject> newObjects = tempEnemies.Except(enemies).ToList();
+
         //TODO: This call is expensive, evaluate its utility.
         enemies.Sort(SortByAngle);
+
+        //Insert the difference items into the enemies list in a sorted fashion.
+        foreach (GameObject obj in newObjects)
+        {
+            int index = enemies.BinarySearch(obj,new AngleComparer(this));
+            if (index < 0) index = ~index;
+            enemies.Insert(index, obj);
+        }
 
         //if you currently have a target you are aiming at or locking onto...
         if (_target != null)
@@ -255,6 +268,22 @@ public class PlayerTargetSystem : MonoBehaviour {
             return 1;
         }
         return 0;
+    }
+
+    //Wrapper IComparer for angle sorting function of this pts.
+    private class AngleComparer : IComparer<GameObject>
+    {
+        private PlayerTargetSystem _pts;
+
+        public AngleComparer(PlayerTargetSystem pts)
+        {
+            _pts = pts;
+        }
+
+        int IComparer<GameObject>.Compare(GameObject x, GameObject y)
+        {
+            return _pts.SortByAngle(x, y);
+        }
     }
 
     //Scale the lock ring to the correct size for the current lock angle

@@ -412,15 +412,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d71116da01448e4aa39b11a4f4f540a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inertiaTensor: {x: 170, y: 170, z: 10}
-  dragCoeff: 0.02
-  wingArea: 4.5
+  inertiaTensor: {x: 400, y: 400, z: 80}
+  dragCoeff: 0.1
+  wingArea: 6
   staticThrust: 102000
   rollDampeningCoeff: 0.2
   yawDampeningCoeff: 0.1
   aileronControlCoeff: 0.25
-  elevatorControlCoeff: 0.6
-  rudderControlCoeff: 0.6
+  elevatorControlCoeff: 0.8
+  rudderControlCoeff: 0.8
   liftCoeff:
     serializedVersion: 2
     m_Curve:
@@ -647,16 +647,16 @@ MonoBehaviour:
   ref_speed: 300
   damage: 12
   fueltime: 7
-  lifetime: 12
-  dampingTime: 1.5
+  lifetime: 30
+  dampingTime: 0.5
   viewCone: 180
   surfaceController:
-    propConstant: 0.007
-    integConstant: 0.0016
+    propConstant: 0.02
+    integConstant: 0.0064
     derivConstant: 0.00033
     output: 0
   lockCone: 90
-  parent: {fileID: 0}
+  _parent: {fileID: 0}
 --- !u!114 &114895900257333988
 MonoBehaviour:
   m_ObjectHideFlags: 1
