@@ -29,9 +29,15 @@ public class FlightBehavior : MonoBehaviour {
         {20000,0.08891F },
         {25000,0.04008F } };
 
-    public float dragCoeff = 0.04F;
+    public float dragCoeff = 0.02F;
 
     public float wingArea = 56; //m^2
+
+    //Wing span squared divided by wing area
+    public float aspectRatio = 3.014F;
+
+    //Efficnecy of wing relative to elliptical wing, emperical value.
+    public float oswaldEffFactor = 0.8F;
 
     public float staticThrust = 60000;
 
@@ -278,7 +284,7 @@ public class FlightBehavior : MonoBehaviour {
     //Aproximate formula for drag as a function of AoA.
     float CalculateDragCoeff()
     {
-        return Math.Min(dragCoeff + 0.025F * Math.Abs(AoA), 2.0F);
+        return dragCoeff + (float)(Math.Pow(CalculateLiftCoeff(),2) / (Math.PI * oswaldEffFactor * aspectRatio));
     }
 
     float CalculatePitchingCoeff()

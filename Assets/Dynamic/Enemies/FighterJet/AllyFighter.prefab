@@ -219,7 +219,7 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1266950073805010}
   serializedVersion: 2
-  m_Mass: 20000
+  m_Mass: 18000
   m_Drag: 0
   m_AngularDrag: 0.1
   m_UseGravity: 1
@@ -546,7 +546,9 @@ MonoBehaviour:
   inertiaTensor: {x: 180000, y: 180000, z: 30000}
   dragCoeff: 0.04
   wingArea: 56
-  staticThrust: 80000
+  aspectRatio: 3.014
+  oswaldEffFactor: 0.8
+  staticThrust: 200000
   rollDampeningCoeff: 0.12
   yawDampeningCoeff: 0.2
   aileronControlCoeff: 0.4

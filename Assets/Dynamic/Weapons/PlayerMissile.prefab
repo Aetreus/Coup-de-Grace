@@ -539,6 +539,8 @@ MonoBehaviour:
   inertiaTensor: {x: 85, y: 85, z: 10}
   dragCoeff: 0.06
   wingArea: 0.5
+  aspectRatio: 1
+  oswaldEffFactor: 0.8
   staticThrust: 18000
   rollDampeningCoeff: 0.2
   yawDampeningCoeff: 0.1

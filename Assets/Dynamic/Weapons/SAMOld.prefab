@@ -428,6 +428,8 @@ MonoBehaviour:
   inertiaTensor: {x: 7405, y: 7405, z: 110}
   dragCoeff: 0.15
   wingArea: 4
+  aspectRatio: 0.5
+  oswaldEffFactor: 0.8
   staticThrust: 40000
   rollDampeningCoeff: 0.2
   yawDampeningCoeff: 0.1
@@ -742,7 +744,7 @@ MonoBehaviour:
     derivConstant: 0.00033
     output: 0
   lockCone: 30
-  parent: {fileID: 0}
+  _parent: {fileID: 0}
 --- !u!198 &198244486038309710
 ParticleSystem:
   m_ObjectHideFlags: 1

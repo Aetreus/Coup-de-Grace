@@ -433,7 +433,7 @@ MonoBehaviour:
     derivConstant: 0.00033
     output: 0
   lockCone: 30
-  parent: {fileID: 0}
+  _parent: {fileID: 0}
 --- !u!114 &114391130095048748
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -448,6 +448,8 @@ MonoBehaviour:
   inertiaTensor: {x: 170, y: 170, z: 10}
   dragCoeff: 0.02
   wingArea: 1.5
+  aspectRatio: 0.5
+  oswaldEffFactor: 0.8
   staticThrust: 27000
   rollDampeningCoeff: 0.2
   yawDampeningCoeff: 0.1
