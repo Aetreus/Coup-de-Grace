@@ -6,20 +6,22 @@ using UnityEngine.Serialization;
 [System.Serializable]
 public class TypeSpec{
 
-    public GameObject prefabBase;
+    public string prefabName;
+
+    private GameObject _prefabBase;
 
     public GameObject Instantiate()
     {
-        return GameObject.Instantiate(prefabBase);
+        return GameObject.Instantiate(_prefabBase);
     }
 
     public GameObject Instantiate(Vector3 location, Quaternion rotation)
     {
-        return GameObject.Instantiate(prefabBase, location, rotation);
+        return GameObject.Instantiate(_prefabBase, location, rotation);
     }
     
     public GameObject Instantiate(Vector3 location, Quaternion rotation, Transform parent)
     {
-        return GameObject.Instantiate(prefabBase, location, rotation, parent);
+        return GameObject.Instantiate(_prefabBase, location, rotation, parent);
     }
 }

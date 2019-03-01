@@ -1469,49 +1469,38 @@ MonoBehaviour:
   inertiaTensor: {x: 180000, y: 180000, z: 30000}
   dragCoeff: 0.04
   wingArea: 56
+  aspectRatio: 3.014
+  oswaldEffFactor: 0.8
   staticThrust: 60000
   rollDampeningCoeff: 0.12
   yawDampeningCoeff: 0.2
   aileronControlCoeff: 0.4
   elevatorControlCoeff: 0.19
   rudderControlCoeff: 0.1
-  liftCoeffSetpoints:
-  - {x: -180, y: 0}
-  - {x: -35, y: -0.4}
-  - {x: -20, y: -2}
-  - {x: 0, y: 0.2}
-  - {x: 25, y: 2.81}
-  - {x: 30, y: 2.61}
-  - {x: 45, y: 0.4}
-  - {x: 180, y: 0}
-  crossLiftCoeffSetpoints:
-  - {x: -180, y: 0}
-  - {x: -35, y: -0.05}
-  - {x: -20, y: -0.25}
-  - {x: 0, y: 0}
-  - {x: 20, y: 0.25}
-  - {x: 35, y: 0.05}
-  - {x: 180, y: 0}
-  pitchingMomentSetpoints:
-  - {x: -180, y: 0}
-  - {x: -100, y: 0.115}
-  - {x: -50, y: 0.36}
-  - {x: -36, y: 0.265}
-  - {x: 0, y: 0.005}
-  - {x: 35, y: -0.255}
-  - {x: 50, y: -0.36}
-  - {x: 100, y: -0.115}
-  - {x: 180, y: 0}
-  yawMomentSetpoints:
-  - {x: -180, y: 0}
-  - {x: -100, y: 0.15}
-  - {x: -50, y: 0.25}
-  - {x: -35, y: 0.35}
-  - {x: 0, y: 0}
-  - {x: 35, y: -0.35}
-  - {x: 50, y: -0.25}
-  - {x: -100, y: -0.125}
-  - {x: 180, y: 0}
+  liftCoeff:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  crossLiftCoeff:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  pitchingMoment:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  yawMoment:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!114 &114039255855812266
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1556,6 +1545,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  _hp: 0
 --- !u!114 &114175101038777460
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1588,7 +1578,7 @@ MonoBehaviour:
   collision_whisker_len: 1000
   collision_whisker_offset: 5
   collision_personal_space: 300
-  max_player_missile_approaching_angle: 30
+  max_missile_approach_dist: 0
   beam_tolerance: 5
   max_player_missile_close_dist: 1500
   stall_limit_excursion: 0
@@ -1628,6 +1618,11 @@ MonoBehaviour:
     integConstant: 0.0009
     derivConstant: 0.03
     output: -3.2812078
+  pitchController:
+    propConstant: 0
+    integConstant: 0
+    derivConstant: 0
+    output: 0
   yawController:
     propConstant: 0.22
     integConstant: 0.02
@@ -1640,13 +1635,15 @@ MonoBehaviour:
     output: 440.13232
   fullTurnAngle: 30
   ref_speed: 200
+  turnTolerance: 20
   tolerance: 2
   baseDir: {x: 0, y: 1, z: 0}
   facingDir: {x: 0.20849432, y: -0.9482825, z: -0.23935431}
   upDir: {x: 0.20849432, y: -0.9482825, z: -0.23935431}
   targetVel: 200
   minAirspeed: 80
-  stallLimit: -5
+  aoaMax: 25
+  aoaMin: -20
 --- !u!114 &114380030264049326
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1661,49 +1658,38 @@ MonoBehaviour:
   inertiaTensor: {x: 180000, y: 180000, z: 30000}
   dragCoeff: 0.04
   wingArea: 56
+  aspectRatio: 3.014
+  oswaldEffFactor: 0.8
   staticThrust: 60000
   rollDampeningCoeff: 0.12
   yawDampeningCoeff: 0.2
   aileronControlCoeff: 0.4
   elevatorControlCoeff: 0.19
   rudderControlCoeff: 0.1
-  liftCoeffSetpoints:
-  - {x: -180, y: 0}
-  - {x: -35, y: -0.4}
-  - {x: -20, y: -2}
-  - {x: 0, y: 0.2}
-  - {x: 25, y: 2.81}
-  - {x: 30, y: 2.61}
-  - {x: 45, y: 0.4}
-  - {x: 180, y: 0}
-  crossLiftCoeffSetpoints:
-  - {x: -180, y: 0}
-  - {x: -35, y: -0.05}
-  - {x: -20, y: -0.25}
-  - {x: 0, y: 0}
-  - {x: 20, y: 0.25}
-  - {x: 35, y: 0.05}
-  - {x: 180, y: 0}
-  pitchingMomentSetpoints:
-  - {x: -180, y: 0}
-  - {x: -100, y: 0.115}
-  - {x: -50, y: 0.36}
-  - {x: -36, y: 0.265}
-  - {x: 0, y: 0.005}
-  - {x: 35, y: -0.255}
-  - {x: 50, y: -0.36}
-  - {x: 100, y: -0.115}
-  - {x: 180, y: 0}
-  yawMomentSetpoints:
-  - {x: -180, y: 0}
-  - {x: -100, y: 0.15}
-  - {x: -50, y: 0.25}
-  - {x: -35, y: 0.35}
-  - {x: 0, y: 0}
-  - {x: 35, y: -0.35}
-  - {x: 50, y: -0.25}
-  - {x: -100, y: -0.125}
-  - {x: 180, y: 0}
+  liftCoeff:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  crossLiftCoeff:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  pitchingMoment:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  yawMoment:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!114 &114451209419646892
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1726,7 +1712,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67f98435b43caf14eb48c078020e5fa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Icon: {fileID: 1261174597415340, guid: 8206aed36e2965c42a983254824459eb, type: 2}
+  _icon: {fileID: 0}
 --- !u!114 &114496498671364438
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1745,7 +1731,7 @@ MonoBehaviour:
   collision_whisker_len: 1000
   collision_whisker_offset: 5
   collision_personal_space: 300
-  max_player_missile_approaching_angle: 30
+  max_missile_approach_dist: 0
   beam_tolerance: 5
   max_player_missile_close_dist: 1500
   stall_limit_excursion: 0
@@ -1785,6 +1771,11 @@ MonoBehaviour:
     integConstant: 0.0009
     derivConstant: 0.03
     output: -3.2812078
+  pitchController:
+    propConstant: 0
+    integConstant: 0
+    derivConstant: 0
+    output: 0
   yawController:
     propConstant: 0.22
     integConstant: 0.02
@@ -1797,13 +1788,15 @@ MonoBehaviour:
     output: 440.13232
   fullTurnAngle: 30
   ref_speed: 200
+  turnTolerance: 20
   tolerance: 2
   baseDir: {x: 0, y: 1, z: 0}
   facingDir: {x: 0.20849432, y: -0.9482825, z: -0.23935431}
   upDir: {x: 0.20849432, y: -0.9482825, z: -0.23935431}
   targetVel: 200
   minAirspeed: 80
-  stallLimit: -5
+  aoaMax: 25
+  aoaMin: -20
 --- !u!114 &114720635765703894
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1818,49 +1811,38 @@ MonoBehaviour:
   inertiaTensor: {x: 180000, y: 180000, z: 30000}
   dragCoeff: 0.04
   wingArea: 56
+  aspectRatio: 3.014
+  oswaldEffFactor: 0.8
   staticThrust: 60000
   rollDampeningCoeff: 0.12
   yawDampeningCoeff: 0.2
   aileronControlCoeff: 0.4
   elevatorControlCoeff: 0.19
   rudderControlCoeff: 0.1
-  liftCoeffSetpoints:
-  - {x: -180, y: 0}
-  - {x: -35, y: -0.4}
-  - {x: -20, y: -2}
-  - {x: 0, y: 0.2}
-  - {x: 25, y: 2.81}
-  - {x: 30, y: 2.61}
-  - {x: 45, y: 0.4}
-  - {x: 180, y: 0}
-  crossLiftCoeffSetpoints:
-  - {x: -180, y: 0}
-  - {x: -35, y: -0.05}
-  - {x: -20, y: -0.25}
-  - {x: 0, y: 0}
-  - {x: 20, y: 0.25}
-  - {x: 35, y: 0.05}
-  - {x: 180, y: 0}
-  pitchingMomentSetpoints:
-  - {x: -180, y: 0}
-  - {x: -100, y: 0.115}
-  - {x: -50, y: 0.36}
-  - {x: -36, y: 0.265}
-  - {x: 0, y: 0.005}
-  - {x: 35, y: -0.255}
-  - {x: 50, y: -0.36}
-  - {x: 100, y: -0.115}
-  - {x: 180, y: 0}
-  yawMomentSetpoints:
-  - {x: -180, y: 0}
-  - {x: -100, y: 0.15}
-  - {x: -50, y: 0.25}
-  - {x: -35, y: 0.35}
-  - {x: 0, y: 0}
-  - {x: 35, y: -0.35}
-  - {x: 50, y: -0.25}
-  - {x: -100, y: -0.125}
-  - {x: 180, y: 0}
+  liftCoeff:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  crossLiftCoeff:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  pitchingMoment:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  yawMoment:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!114 &114734776143990200
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1879,7 +1861,7 @@ MonoBehaviour:
   collision_whisker_len: 1000
   collision_whisker_offset: 5
   collision_personal_space: 300
-  max_player_missile_approaching_angle: 30
+  max_missile_approach_dist: 0
   beam_tolerance: 5
   max_player_missile_close_dist: 1500
   stall_limit_excursion: 0
@@ -1909,7 +1891,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67f98435b43caf14eb48c078020e5fa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Icon: {fileID: 1261174597415340, guid: 8206aed36e2965c42a983254824459eb, type: 2}
+  _icon: {fileID: 0}
 --- !u!114 &114741497454739082
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1966,6 +1948,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  _hp: 0
 --- !u!114 &114857783572245606
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1987,6 +1970,11 @@ MonoBehaviour:
     integConstant: 0.0009
     derivConstant: 0.03
     output: -3.2812078
+  pitchController:
+    propConstant: 0
+    integConstant: 0
+    derivConstant: 0
+    output: 0
   yawController:
     propConstant: 0.22
     integConstant: 0.02
@@ -1999,13 +1987,15 @@ MonoBehaviour:
     output: 440.13232
   fullTurnAngle: 30
   ref_speed: 200
+  turnTolerance: 20
   tolerance: 2
   baseDir: {x: 0, y: 1, z: 0}
   facingDir: {x: 0.20849432, y: -0.9482825, z: -0.23935431}
   upDir: {x: 0.20849432, y: -0.9482825, z: -0.23935431}
   targetVel: 200
   minAirspeed: 80
-  stallLimit: -5
+  aoaMax: 25
+  aoaMin: -20
 --- !u!114 &114859441068876404
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2034,6 +2024,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  _hp: 0
 --- !u!114 &114901889682309110
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2056,7 +2047,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67f98435b43caf14eb48c078020e5fa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Icon: {fileID: 1261174597415340, guid: 8206aed36e2965c42a983254824459eb, type: 2}
+  _icon: {fileID: 0}
 --- !u!114 &114948525519918404
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2085,6 +2076,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  _hp: 0
 --- !u!198 &198112471280161058
 ParticleSystem:
   m_ObjectHideFlags: 1

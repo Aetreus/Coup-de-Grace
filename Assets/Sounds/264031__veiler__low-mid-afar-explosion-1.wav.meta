@@ -1,7 +1,5 @@
 fileFormatVersion: 2
 guid: c85a046f130abc949bc926438ffcfdf5
-timeCreated: 1522191434
-licenseType: Free
 AudioImporter:
   externalObjects: {}
   serializedVersion: 6
@@ -20,5 +18,5 @@ AudioImporter:
   ambisonic: 0
   3D: 1
   userData: 
-  assetBundleName: 
+  assetBundleName: sounds
   assetBundleVariant: 
