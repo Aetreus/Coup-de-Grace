@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TypeSpec Name="Default">
+  <Prefab>Assets/Dynamic/Enemies/MissileTurret/MissileTurretOld.prefab</Prefab>
+  <Properties>
+    <ArrayOfMod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <Mod>
+        <_target>MissileTurretScript</_target>
+        <_propertyPath>bullet</_propertyPath>
+        <_type>ObjectReference</_type>
+        <_value />
+      </Mod>
+      <Mod>
+        <_target>MissileTurretScript</_target>
+        <_propertyPath>rotateDelta</_propertyPath>
+        <_type>Float</_type>
+        <_value>12</_value>
+      </Mod>
+    </ArrayOfMod>
+  </Properties>
+</TypeSpec>
