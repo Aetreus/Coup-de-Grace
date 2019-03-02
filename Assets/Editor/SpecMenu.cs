@@ -14,11 +14,23 @@ public class SpecMenu
     {
         GameObject sel = Selection.activeGameObject;
         Object ret = PrefabUtility.GetPrefabParent(sel);
-        if(ret != null)
+        if (ret != null)
         {
             GameObject prefab = (GameObject)ret;
+            //Initialize spec with prefab path.
+            TypeSpec spec = new TypeSpec() { prefabName = AssetDatabase.GetAssetPath(prefab), specName = "Default" };
             PropertyModification[] mods = PrefabUtility.GetPropertyModifications(sel);
-            PropertyModification mod = mods[0];
+            foreach (PropertyModification mod in mods)
+            {
+                //Ignore properties that deal only with the game object or the transform
+                SerializedObject so = new SerializedObject(mod.target);
+                SerializedProperty prop = so.FindProperty(mod.propertyPath);
+                System.Type compType  = so.targetObject.GetType();
+                if (compType != typeof(UnityEngine.Transform) && compType != typeof(UnityEngine.GameObject))
+                {
+                    spec.AddMod(compType.ToString(), mod.propertyPath, prop.propertyType.ToString(), mod.value.ToString());
+                }
+            }
         }
     }
 }
