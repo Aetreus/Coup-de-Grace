@@ -4,17 +4,21 @@ using System.Xml;
 using System.Xml.Serialization;
 using System.Xml.Schema;
 using UnityEngine;
+using System.Collections.ObjectModel;
+using System;
+using System.Reflection;
+using System.ComponentModel;
 
 [System.Serializable]
 public class TypeSpec : IXmlSerializable {
 
     [System.Serializable]
-    public class Mod
+    public class Delta
     {
-        public string _target;
-        public string _propertyPath;
-        public string _type;
-        public string _value;
+        public string target;
+        public string propertyPath;
+        public string type;
+        public string value;
     }
 
     public string prefabName;
@@ -23,36 +27,50 @@ public class TypeSpec : IXmlSerializable {
 
     private GameObject _prefabBase;
 
-    private List<Mod> _modifications;
+    private List<Delta> _modifications;
+
+    private ReadOnlyCollection<Delta> _externalMods;
 
     public TypeSpec()
     {
-        _modifications = new List<Mod>();
+        _modifications = new List<Delta>();
+        _externalMods = new ReadOnlyCollection<Delta>(_modifications);
     }
 
     public GameObject Instantiate()
     {
-        return GameObject.Instantiate(_prefabBase);
+        GameObject obj =  GameObject.Instantiate(_prefabBase);
+        ApplySpec(obj);
+        return obj;
     }
 
     public GameObject Instantiate(Vector3 location, Quaternion rotation)
     {
-        return GameObject.Instantiate(_prefabBase, location, rotation);
+        GameObject obj = GameObject.Instantiate(_prefabBase, location, rotation);
+        ApplySpec(obj);
+        return obj;
     }
 
     public GameObject Instantiate(Vector3 location, Quaternion rotation, Transform parent)
     {
-        return GameObject.Instantiate(_prefabBase, location, rotation, parent);
+        GameObject obj = GameObject.Instantiate(_prefabBase, location, rotation, parent);
+        ApplySpec(obj);
+        return obj;
     }
 
-    public void AddMod(string target, string propertyPath, string type, string value)
+    public void AddDelta(string target, string propertyPath, string type, string value)
     {
-        _modifications.Add(new Mod() { _target = target, _propertyPath = propertyPath, _type = type, _value = value });
+        _modifications.Add(new Delta() { target = target, propertyPath = propertyPath, type = type, value = value });
     }
 
-    public void ClearMods()
+    public void ClearDeltas()
     {
         _modifications.Clear();
+    }
+
+    public ReadOnlyCollection<Delta> GetDeltas()
+    {
+        return _externalMods;
     }
 
     public XmlSchema GetSchema()
@@ -69,21 +87,35 @@ public class TypeSpec : IXmlSerializable {
         if(reader.Name == "Properties")
         {
             reader.ReadStartElement();
-            XmlSerializer xs = new XmlSerializer(typeof(List<Mod>));
-            _modifications = (List<Mod>)xs.Deserialize(reader);
+            XmlSerializer xs = new XmlSerializer(typeof(List<Delta>));
+            _modifications = (List<Delta>)xs.Deserialize(reader);
             reader.ReadEndElement();
         }
+        reader.ReadEndElement();
     }
 
     public void WriteXml(XmlWriter writer)
     {
         writer.WriteAttributeString("Name", specName);
-        writer.WriteElementString("Prefab", prefabName);
+        writer.WriteAttributeString("Prefab", prefabName);
 
         writer.WriteStartElement("Properties");
-        XmlSerializer xs = new XmlSerializer(typeof(List<Mod>));
+        XmlSerializer xs = new XmlSerializer(typeof(List<Delta>));
         xs.Serialize(writer, _modifications);
         writer.WriteEndElement();
 
+    }
+
+    private void ApplySpec(GameObject obj)
+    {
+        foreach (Delta d in _modifications)
+        {
+            UnityEngine.Component c = obj.GetComponent(d.target);
+            Type type = c.GetType();
+            PropertyInfo prop = type.GetProperty(d.propertyPath);
+            prop.SetValue(c, TypeDescriptor.GetConverter(type).ConvertFromString(d.value), null);
+        }
+        obj.AddComponent(typeof(TypeInfo));
+        obj.GetComponent<TypeInfo>().specName = specName;
     }
 }

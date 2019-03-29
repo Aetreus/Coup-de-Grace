@@ -1,12 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Reflection;
 using System.Xml;
 using System.Xml.Serialization;
 using System.Xml.Schema;
 using UnityEngine;
 using UnityEditor;
 using UnityEngine.Serialization;
+using System;
+using System.ComponentModel;
 
 
 //Class for adding spec creation/loading functions to menus.
@@ -18,7 +21,7 @@ public class SpecMenu
     static void CreateSpec()
     {
         GameObject sel = Selection.activeGameObject;
-        Object ret = PrefabUtility.GetPrefabParent(sel);
+        UnityEngine.Object ret = PrefabUtility.GetPrefabParent(sel);
         if (ret != null)
         {
             GameObject prefab = (GameObject)ret;
@@ -34,7 +37,7 @@ public class SpecMenu
                 System.Type compType  = so.targetObject.GetType();
                 if (compType != typeof(UnityEngine.Transform) && compType != typeof(UnityEngine.GameObject))
                 {
-                    spec.AddMod(compType.ToString(), mod.propertyPath, prop.propertyType.ToString(), mod.value.ToString());
+                    spec.AddDelta(compType.ToString(), mod.propertyPath, prop.propertyType.ToString(), mod.value.ToString());
                 }
             }
 
@@ -46,6 +49,35 @@ public class SpecMenu
             writer.Close();
 
             //TODO:Update all objects using the same spec/having the same differences from the prefab to match, carry the spec name with them.
+        }
+    }
+
+    //Reset the parent gameobject to the defined spec.
+    [MenuItem("CONTEXT/TypeInfo/Revert to Spec")]
+    static void ResetSpec()
+    {
+        GameObject sel = Selection.activeGameObject;
+        TypeInfo info = sel.GetComponent<TypeInfo>();
+        if(info.specName != null)
+        {
+            string path = Application.streamingAssetsPath + "/Specs/" + info.specName + ".xml";
+            XmlSerializer xs = new XmlSerializer(typeof(TypeSpec));
+            StreamReader reader = new StreamReader(path);
+            TypeSpec spec = (TypeSpec)xs.Deserialize(reader);
+            if(spec != null)
+            {
+                //First reset the game object.
+                PrefabUtility.RevertPrefabInstance(sel);
+
+                //Then update the object based on the defined spec
+                foreach(TypeSpec.Delta d in spec.GetDeltas())
+                {
+                    UnityEngine.Component c = sel.GetComponent(d.target);
+                    Type type = c.GetType();
+                    PropertyInfo prop = type.GetProperty(d.propertyPath);
+                    prop.SetValue(c,TypeDescriptor.GetConverter(type).ConvertFromString(d.value),null);
+                }
+            }
         }
     }
 }
