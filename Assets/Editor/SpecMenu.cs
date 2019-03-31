@@ -80,4 +80,12 @@ public class SpecMenu
             }
         }
     }
+
+    //Testing, export the level event manager component as an XML document
+    [MenuItem("CONTEXT/LevelEventManager/ExportXML")]
+    static void ExportLEM()
+    {
+        GameObject sel = Selection.activeGameObject;
+        LevelEventManager manager = sel.GetComponent<LevelEventManager>();
+    }
 }

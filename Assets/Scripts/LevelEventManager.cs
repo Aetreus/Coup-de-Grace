@@ -9,21 +9,22 @@ using System.ComponentModel;
 public class LevelEventManager : MonoBehaviour {
 
     [System.Serializable]
-    public class Event
+    public class Trigger
     {
+        public string name;
         public FunctionCall condition;
         public bool isConditionBoolean;
         public bool invertCondition;
         public float min;
         public float max;
-        public int previousEvent;
+        public string previous;
         public bool previousFired;
         public bool oneTime;
         private bool fired;
         public bool reset;
         public float delay;
         public float delayTimer;
-        public int subsequentEvent;
+        public string subsequent;
         public FunctionCall predicate;
 
         public bool CheckConditions()
@@ -136,10 +137,33 @@ public class LevelEventManager : MonoBehaviour {
             condition.UpdateFunctionCall();
             predicate.UpdateFunctionCall();
         }
+
+        public Trigger()
+        {
+
+        }
+
+        public Trigger(Trigger e)
+        {
+            condition = new FunctionCall(e.condition);
+            predicate = new FunctionCall(e.predicate);
+            isConditionBoolean = e.isConditionBoolean;
+            invertCondition = e.invertCondition;
+            min = e.min;
+            max = e.max;
+            previous = e.previous;
+            previousFired = e.previousFired;
+            oneTime = e.oneTime;
+            fired = false;
+            reset = e.reset;
+            delay = e.delay;
+            delayTimer = e.delayTimer;
+            subsequent = e.subsequent;
+    }
     }
 
     [SerializeField]
-    public List<Event> events;
+    public List<Trigger> events;
 
     private Dictionary<string, bool> living = new Dictionary<string, bool>();
 
@@ -147,7 +171,7 @@ public class LevelEventManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-		foreach(Event e in events)
+		foreach(Trigger e in events)
         {
             e.UpdateEvent();
         }
@@ -164,7 +188,7 @@ public class LevelEventManager : MonoBehaviour {
             }
             if(events[i].delayTimer < 0 && events[i].reset)
             {
-                events[events[i].subsequentEvent].previousFired = true;
+                events.Find((item) => item.name == events[i].subsequent).previousFired = true;
                 events[i].reset = false;
             }
         }
@@ -375,6 +399,22 @@ public class FunctionCall : ISerializationCallbackReceiver
             }
         }
         parameters = temp.ToArray();
+    }
+}
+
+public class LevelEventManagerSerialSurrogate
+{
+    public List<LevelEventManager.Trigger> events;
+
+    public LevelEventManagerSerialSurrogate()
+    {
+        events = new List<LevelEventManager.Trigger>();
+    }
+
+    public LevelEventManagerSerialSurrogate(LevelEventManager basis)
+    {
+        events = new List<LevelEventManager.Trigger>(basis.events.Count);
+        basis.events.ForEach((item) => events.Add(new LevelEventManager.Trigger(item)));
     }
 }
 
