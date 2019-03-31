@@ -3083,24 +3083,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   events:
-  - condition:
+  - name: Initial Dialogue
+    condition:
       reference: {fileID: 373668333}
       component: LevelEventManager
-      valueName: IsObjectAlive
+      valueName: DummyTrue
       isMethod: 1
-      paramStrings:
-      - System.String#Player
+      paramStrings: []
     isConditionBoolean: 1
     invertCondition: 0
     min: 0
     max: 0
-    previousEvent: 0
+    previous: 
     previousFired: 1
     oneTime: 1
     reset: 0
     delay: 5
     delayTimer: 0
-    subsequentEvent: 0
+    subsequent: 
     predicate:
       reference: {fileID: 293077505}
       component: DialogueController
@@ -3108,7 +3108,8 @@ MonoBehaviour:
       isMethod: 1
       paramStrings:
       - System.String#Opening1
-  - condition:
+  - name: BombersDown
+    condition:
       reference: {fileID: 373668333}
       component: LevelEventManager
       valueName: IsObjectWithTagAlive
@@ -3119,13 +3120,13 @@ MonoBehaviour:
     invertCondition: 1
     min: 0
     max: 0
-    previousEvent: 0
+    previous: 
     previousFired: 1
     oneTime: 1
     reset: 0
     delay: 25
     delayTimer: 0
-    subsequentEvent: 2
+    subsequent: LevelNext
     predicate:
       reference: {fileID: 293077505}
       component: DialogueController
@@ -3133,7 +3134,8 @@ MonoBehaviour:
       isMethod: 1
       paramStrings:
       - System.String#End1
-  - condition:
+  - name: LevelNext
+    condition:
       reference: {fileID: 373668333}
       component: LevelEventManager
       valueName: IsObjectAlive
@@ -3144,13 +3146,13 @@ MonoBehaviour:
     invertCondition: 0
     min: 0
     max: 0
-    previousEvent: 0
+    previous: 
     previousFired: 0
     oneTime: 1
     reset: 0
     delay: 5
     delayTimer: 0
-    subsequentEvent: 0
+    subsequent: 
     predicate:
       reference: {fileID: 373668333}
       component: LevelEventManager
@@ -3158,7 +3160,8 @@ MonoBehaviour:
       isMethod: 1
       paramStrings:
       - System.String#sprint4-level2brief
-  - condition:
+  - name: BaseDestroyed
+    condition:
       reference: {fileID: 373668333}
       component: LevelEventManager
       valueName: NumObjectsWithTagAlive
@@ -3169,13 +3172,13 @@ MonoBehaviour:
     invertCondition: 0
     min: 0
     max: 3
-    previousEvent: 0
+    previous: 
     previousFired: 1
     oneTime: 1
     reset: 0
     delay: 8
     delayTimer: 0
-    subsequentEvent: 6
+    subsequent: 
     predicate:
       reference: {fileID: 293077505}
       component: DialogueController
@@ -3183,7 +3186,8 @@ MonoBehaviour:
       isMethod: 1
       paramStrings:
       - System.String#Loss2
-  - condition:
+  - name: BaseDamaged
+    condition:
       reference: {fileID: 373668333}
       component: LevelEventManager
       valueName: OnAnyObjectDie
@@ -3199,13 +3203,13 @@ MonoBehaviour:
     invertCondition: 0
     min: 0
     max: 4
-    previousEvent: 0
+    previous: 
     previousFired: 0
     oneTime: 1
     reset: 0
     delay: 5
     delayTimer: 0
-    subsequentEvent: 0
+    subsequent: 
     predicate:
       reference: {fileID: 293077505}
       component: DialogueController
@@ -3213,24 +3217,24 @@ MonoBehaviour:
       isMethod: 1
       paramStrings:
       - System.String#Loss1
-  - condition:
+  - name: LevelEndTime
+    condition:
       reference: {fileID: 373668333}
       component: LevelEventManager
-      valueName: IsObjectAlive
+      valueName: DummyTrue
       isMethod: 1
-      paramStrings:
-      - System.String#Player
+      paramStrings: []
     isConditionBoolean: 1
     invertCondition: 0
     min: 0
     max: 4
-    previousEvent: 0
+    previous: 
     previousFired: 1
     oneTime: 1
     reset: 1
     delay: 360
     delayTimer: 360
-    subsequentEvent: 2
+    subsequent: LevelNext
     predicate:
       reference: {fileID: 293077505}
       component: DialogueController
@@ -3238,7 +3242,8 @@ MonoBehaviour:
       isMethod: 1
       paramStrings:
       - System.String#Ending1
-  - condition:
+  - name: LevelFail
+    condition:
       reference: {fileID: 373668333}
       component: LevelEventManager
       valueName: IsObjectAlive
@@ -3249,13 +3254,13 @@ MonoBehaviour:
     invertCondition: 0
     min: 0
     max: 4
-    previousEvent: 0
+    previous: 
     previousFired: 0
     oneTime: 1
     reset: 0
     delay: 0
     delayTimer: 0
-    subsequentEvent: 0
+    subsequent: 
     predicate:
       reference: {fileID: 373668333}
       component: LevelEventManager

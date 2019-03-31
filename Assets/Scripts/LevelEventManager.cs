@@ -188,7 +188,9 @@ public class LevelEventManager : MonoBehaviour {
             }
             if(events[i].delayTimer < 0 && events[i].reset)
             {
-                events.Find((item) => item.name == events[i].subsequent).previousFired = true;
+                //If the event subsequent is not nil, set it to evaluate.
+                if(events[i].subsequent != "")
+                    events.Find((item) => item.name == events[i].subsequent).previousFired = true;
                 events[i].reset = false;
             }
         }
