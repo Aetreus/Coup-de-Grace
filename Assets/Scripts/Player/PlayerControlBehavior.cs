@@ -23,6 +23,8 @@ public class PlayerControlBehavior : MonoBehaviour {
     public float minWarningTime = 5;
     public float retryTime = 10;
 
+    public PIDController antiSlip = new PIDController(0.022f,0.002f,0.002f);
+
     private GameObject WpnHolder;
     private GameObject AlertOutput;
     private GameObject canvas;
@@ -215,6 +217,9 @@ public class PlayerControlBehavior : MonoBehaviour {
         fb.aileron = Input.GetAxis("Aileron");
 
         fb.throttle = Input.GetAxis("Throttle") * 0.5F + 0.5F;
+
+        //Autopilot used rudder to eliminate slip
+        fb.rudder = antiSlip.Calc(fb.slip);
 
         for (int i = 0; i < WpnGraphics.Count && i < wm.maximumShots; i++)
         {

@@ -5,6 +5,18 @@ using UnityEngine;
 [System.Serializable]
 public class PIDController{
 
+    public PIDController(float prop, float integ, float diff)
+    {
+        propConstant = prop;
+        integConstant = integ;
+        derivConstant = diff;
+    }
+
+    public PIDController() : this(0,0,0)
+    {
+
+    }
+
     public float propConstant;
     public float integConstant;
     public float derivConstant;

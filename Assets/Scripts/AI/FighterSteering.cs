@@ -63,11 +63,11 @@ public class FighterSteering : MonoBehaviour {
             speedControlSense = ref_speed * ref_speed / rb.velocity.sqrMagnitude;
         }
         */
-
+        /*
         float scaleFactor = (float)Math.Pow(1 - (upAngle / fullTurnAngle),1);
         if (upAngle < fullTurnAngle)
             upDir = upDir + (baseDir - upDir) * scaleFactor;
-
+            */
         //Calculate difference between set up/forward vectors and current course.
         _rollError = Vector3.Angle(Vector3.ProjectOnPlane(rb.transform.up,rb.velocity), Vector3.ProjectOnPlane(facingDir, rb.velocity));
         if(Vector3.Dot(Vector3.Cross(facingDir,rb.transform.up),Vector3.Cross(rb.transform.up,rb.transform.right)) < 0)//Get the sign of the angle difference

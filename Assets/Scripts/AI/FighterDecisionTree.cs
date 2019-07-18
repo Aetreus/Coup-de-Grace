@@ -56,6 +56,7 @@ public class FighterDecisionTree : MonoBehaviour {
     //Missile parameters.
     public float missile_time;
     public float missile_prob;
+    public bool double_fire = false;
 
     //Predict_Player_Loc variables
     //public float max_prediction_time;
@@ -244,6 +245,8 @@ public class FighterDecisionTree : MonoBehaviour {
         if(MyMissileApproachingPlayer())
         {
             debug_msg += " -> MyMissileApproachingPlayer T -> return Seek Player";
+            if (MissileAvailable() && PlayerInMissileCone())
+                return AIAction.FIRE_MISSILE;
             return AIAction.MANEUVER_LOCK;
         }
         else
@@ -730,8 +733,11 @@ public class FighterDecisionTree : MonoBehaviour {
 
     void Fire_Target()
     {
+        if (double_fire && activeMissile == null)
+            missile_timer = 0.2f;
+        else
+            missile_timer = missile_time;
         activeMissile = pn.Create(target);
-        missile_timer = missile_time;
         missile_ready = false;
     }
 
