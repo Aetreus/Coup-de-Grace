@@ -1253,7 +1253,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   events:
-  - condition:
+  - name: StartLevelDialogue
+    condition:
       reference: {fileID: 373668333}
       component: LevelEventManager
       valueName: IsObjectAlive
@@ -1264,13 +1265,13 @@ MonoBehaviour:
     invertCondition: 0
     min: 0
     max: 0
-    previousEvent: 0
+    previous: 
     previousFired: 1
     oneTime: 1
     reset: 0
     delay: 5
     delayTimer: 0
-    subsequentEvent: 0
+    subsequent: StartLevelObjective
     predicate:
       reference: {fileID: 1479216521}
       component: DialogueController
@@ -1278,7 +1279,8 @@ MonoBehaviour:
       isMethod: 1
       paramStrings:
       - System.String#Opening1
-  - condition:
+  - name: ClearedFirstObjective
+    condition:
       reference: {fileID: 373668333}
       component: LevelEventManager
       valueName: NumObjectsWithTagAlive
@@ -1289,13 +1291,13 @@ MonoBehaviour:
     invertCondition: 0
     min: 0
     max: 3
-    previousEvent: 0
+    previous: 
     previousFired: 1
     oneTime: 1
     reset: 0
     delay: 5
     delayTimer: 0
-    subsequentEvent: 2
+    subsequent: StartObjectiveCleared
     predicate:
       reference: {fileID: 1479216521}
       component: DialogueController
@@ -1303,7 +1305,8 @@ MonoBehaviour:
       isMethod: 1
       paramStrings:
       - System.String#Objective1
-  - condition:
+  - name: SpawnBombers
+    condition:
       reference: {fileID: 373668333}
       component: LevelEventManager
       valueName: IsObjectAlive
@@ -1314,13 +1317,13 @@ MonoBehaviour:
     invertCondition: 0
     min: 0
     max: 0
-    previousEvent: 0
+    previous: 
     previousFired: 0
     oneTime: 1
     reset: 0
-    delay: 0
+    delay: 25
     delayTimer: 0
-    subsequentEvent: 3
+    subsequent: CreateBomberObjective
     predicate:
       reference: {fileID: 2014305303}
       component: GameObject
@@ -1328,7 +1331,8 @@ MonoBehaviour:
       isMethod: 1
       paramStrings:
       - System.Boolean#True
-  - condition:
+  - name: 
+    condition:
       reference: {fileID: 373668333}
       component: LevelEventManager
       valueName: IsObjectAlive
@@ -1339,20 +1343,21 @@ MonoBehaviour:
     invertCondition: 0
     min: 0
     max: 0
-    previousEvent: 0
+    previous: 
     previousFired: 0
     oneTime: 1
     reset: 0
     delay: 0
     delayTimer: 0
-    subsequentEvent: 5
+    subsequent: 
     predicate:
       reference: {fileID: 2014305303}
       component: WaveSpawnerScript
       valueName: SpawnWave
       isMethod: 1
       paramStrings: []
-  - condition:
+  - name: FailMission
+    condition:
       reference: {fileID: 373668333}
       component: LevelEventManager
       valueName: IsObjectWithTagAlive
@@ -1363,20 +1368,22 @@ MonoBehaviour:
     invertCondition: 1
     min: 0
     max: 0
-    previousEvent: 0
+    previous: 
     previousFired: 0
     oneTime: 1
     reset: 0
-    delay: 0
+    delay: 10
     delayTimer: 0
-    subsequentEvent: 10
+    subsequent: KillPlayer
     predicate:
-      reference: {fileID: 682402086}
-      component: PlayerControlBehavior
-      valueName: KillScreen
-      isMethod: 1
-      paramStrings: []
-  - condition:
+      reference: {fileID: 1406132341}
+      component: ObjectiveScript
+      valueName: FailObjective
+      isMethod: 0
+      paramStrings:
+      - Protect Allied Bombers(TGT)
+  - name: StartReserveSpawner
+    condition:
       reference: {fileID: 373668333}
       component: LevelEventManager
       valueName: IsObjectWithTagAlive
@@ -1387,13 +1394,13 @@ MonoBehaviour:
     invertCondition: 0
     min: 0
     max: 0
-    previousEvent: 4
+    previous: 
     previousFired: 0
     oneTime: 1
     reset: 0
     delay: 0
     delayTimer: 0
-    subsequentEvent: 9
+    subsequent: 
     predicate:
       reference: {fileID: 115640594}
       component: GameObject
@@ -1401,7 +1408,8 @@ MonoBehaviour:
       isMethod: 1
       paramStrings:
       - System.Boolean#True
-  - condition:
+  - name: AirbaseSpawnerActive
+    condition:
       reference: {fileID: 373668333}
       component: LevelEventManager
       valueName: IsObjectAlive
@@ -1412,13 +1420,13 @@ MonoBehaviour:
     invertCondition: 1
     min: 0
     max: 0
-    previousEvent: 0
+    previous: 
     previousFired: 1
     oneTime: 1
     reset: 0
     delay: 5
     delayTimer: 0
-    subsequentEvent: 0
+    subsequent: StartReserveSpawner
     predicate:
       reference: {fileID: 1211168778}
       component: GameObject
@@ -1426,7 +1434,8 @@ MonoBehaviour:
       isMethod: 1
       paramStrings:
       - System.Boolean#False
-  - condition:
+  - name: AirbaseDestroyed
+    condition:
       reference: {fileID: 373668333}
       component: LevelEventManager
       valueName: NumObjectsWithTagAlive
@@ -1437,13 +1446,13 @@ MonoBehaviour:
     invertCondition: 0
     min: 0
     max: 4
-    previousEvent: 0
+    previous: 
     previousFired: 1
     oneTime: 1
     reset: 0
     delay: 54
     delayTimer: 0
-    subsequentEvent: 8
+    subsequent: EndLevelSuccess
     predicate:
       reference: {fileID: 1479216521}
       component: DialogueController
@@ -1451,7 +1460,8 @@ MonoBehaviour:
       isMethod: 1
       paramStrings:
       - System.String#Ending1
-  - condition:
+  - name: EndLevelSuccess
+    condition:
       reference: {fileID: 373668333}
       component: LevelEventManager
       valueName: NumObjectsWithTagAlive
@@ -1462,13 +1472,13 @@ MonoBehaviour:
     invertCondition: 0
     min: 0
     max: 4
-    previousEvent: 0
+    previous: 
     previousFired: 0
     oneTime: 1
     reset: 0
     delay: 5
     delayTimer: 0
-    subsequentEvent: 0
+    subsequent: 
     predicate:
       reference: {fileID: 373668333}
       component: LevelEventManager
@@ -1476,7 +1486,8 @@ MonoBehaviour:
       isMethod: 1
       paramStrings:
       - System.String#sprint4-level3brief
-  - condition:
+  - name: 
+    condition:
       reference: {fileID: 373668333}
       component: LevelEventManager
       valueName: IsObjectWithTagAlive
@@ -1487,13 +1498,13 @@ MonoBehaviour:
     invertCondition: 0
     min: 0
     max: 4
-    previousEvent: 0
+    previous: 
     previousFired: 0
     oneTime: 1
     reset: 0
     delay: 0
     delayTimer: 0
-    subsequentEvent: 4
+    subsequent: 
     predicate:
       reference: {fileID: 1479216521}
       component: DialogueController
@@ -1501,7 +1512,8 @@ MonoBehaviour:
       isMethod: 1
       paramStrings:
       - System.String#Objective1
-  - condition:
+  - name: FailObjectiveTalk
+    condition:
       reference: {fileID: 373668333}
       component: LevelEventManager
       valueName: IsObjectWithTagAlive
@@ -1512,13 +1524,13 @@ MonoBehaviour:
     invertCondition: 1
     min: 0
     max: 4
-    previousEvent: 0
+    previous: 
     previousFired: 0
     oneTime: 1
     reset: 0
     delay: 0
     delayTimer: 0
-    subsequentEvent: 0
+    subsequent: 
     predicate:
       reference: {fileID: 1479216521}
       component: DialogueController
@@ -1526,6 +1538,105 @@ MonoBehaviour:
       isMethod: 1
       paramStrings:
       - System.String#Loss1
+  - name: StartLevelObjective
+    condition:
+      reference: {fileID: 373668333}
+      component: LevelEventManager
+      valueName: DummyTrue
+      isMethod: 1
+      paramStrings: []
+    isConditionBoolean: 1
+    invertCondition: 0
+    min: 0
+    max: 4
+    previous: 
+    previousFired: 0
+    oneTime: 1
+    reset: 0
+    delay: 0
+    delayTimer: 0
+    subsequent: 
+    predicate:
+      reference: {fileID: 1406132341}
+      component: ObjectiveScript
+      valueName: AddObjective
+      isMethod: 1
+      paramStrings:
+      - System.String#Destroy Defenses
+  - name: StartObjectiveCleared
+    condition:
+      reference: {fileID: 373668333}
+      component: LevelEventManager
+      valueName: DummyTrue
+      isMethod: 1
+      paramStrings: []
+    isConditionBoolean: 1
+    invertCondition: 0
+    min: 0
+    max: 4
+    previous: 
+    previousFired: 0
+    oneTime: 1
+    reset: 0
+    delay: 0
+    delayTimer: 0
+    subsequent: SpawnBombers
+    predicate:
+      reference: {fileID: 1406132341}
+      component: ObjectiveScript
+      valueName: ClearObjective
+      isMethod: 1
+      paramStrings:
+      - System.String#Destroy Defenses
+  - name: CreateBomberObjective
+    condition:
+      reference: {fileID: 373668333}
+      component: LevelEventManager
+      valueName: DummyTrue
+      isMethod: 1
+      paramStrings: []
+    isConditionBoolean: 1
+    invertCondition: 0
+    min: 0
+    max: 4
+    previous: 
+    previousFired: 0
+    oneTime: 1
+    reset: 0
+    delay: 0
+    delayTimer: 0
+    subsequent: 
+    predicate:
+      reference: {fileID: 1406132341}
+      component: ObjectiveScript
+      valueName: AddObjective
+      isMethod: 1
+      paramStrings:
+      - System.String#Protect Allied Bombers(TGT)
+  - name: KillPlayer
+    condition:
+      reference: {fileID: 373668333}
+      component: LevelEventManager
+      valueName: DummyTrue
+      isMethod: 1
+      paramStrings: []
+    isConditionBoolean: 1
+    invertCondition: 0
+    min: 0
+    max: 4
+    previous: 
+    previousFired: 0
+    oneTime: 1
+    reset: 0
+    delay: 0
+    delayTimer: 0
+    subsequent: SpawnBombers
+    predicate:
+      reference: {fileID: 682402086}
+      component: PlayerControlBehavior
+      valueName: KillScreen
+      isMethod: 1
+      paramStrings: []
 --- !u!1001 &451327382
 Prefab:
   m_ObjectHideFlags: 0
@@ -4909,6 +5020,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f300ca3c4e7eadc41a6a7c96ddc547cb, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1406132341 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1157562806160196, guid: f300ca3c4e7eadc41a6a7c96ddc547cb,
+    type: 2}
+  m_PrefabInternal: {fileID: 1406132340}
 --- !u!1001 &1421687718
 Prefab:
   m_ObjectHideFlags: 0
@@ -6614,7 +6730,7 @@ MonoBehaviour:
   autoSpawn: 1
   limitWaves: 1
   spawnDelayTimer: 0
-  waves: 1
+  waves: 2
 --- !u!1001 &2016036668
 Prefab:
   m_ObjectHideFlags: 0

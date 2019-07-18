@@ -349,7 +349,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afaf34423f48635499832e428c207998, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debrisPrefab: {fileID: 0}
+  debrisPrefab: {fileID: 1855380049135256, guid: 0f953d726d1924e4993251ba20d3ddbf,
+    type: 2}
   explosionPrefab: {fileID: 0}
   numDebris: 12
   power: 20

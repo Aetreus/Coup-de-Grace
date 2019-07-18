@@ -98,19 +98,24 @@ public class FighterSteering : MonoBehaviour {
             _rollError = Math.Sign(_rollError) * 180 - _rollError;
         }
         */
+        //If the aircraft isn't facing in the ocrrect orientation for a turn but wants to turn, roll it into the correct orientation
         if (Math.Abs(angle) > tolerance && Math.Abs(_rollError) > turnTolerance)
         {
             fb.aileron = -aileronController.Calc(_rollError);
             fb.elevator = 0;
             elevatorController.Reset();
         }
+        //If it is in the correct orientation pitch it and continue keeping it in the correct orientation
         else if(Math.Abs(angle) > tolerance)
         {
             fb.aileron = -aileronController.Calc(_rollError);
             float desiredPitch = pitchController.Calc(_pitchHeadingError);
+            //Desired pitch is clamped to stall limit values
             Mathf.Clamp(desiredPitch, aoaMin, aoaMax);
+            //This feeds the controller to set the elevators to align the aircraft with the desired pitch angle
             fb.elevator = elevatorController.Calc(desiredPitch - _pitchAngle);
         }
+        //If the aircraft is in the correct orientation, try to align it with the desired up vector
         else
         {
             _rollError = Vector3.Angle(Vector3.ProjectOnPlane(rb.transform.up, rb.velocity), Vector3.ProjectOnPlane(upDir, rb.velocity));
@@ -122,6 +127,7 @@ public class FighterSteering : MonoBehaviour {
             elevatorController.Reset();
         }
         fb.throttle = throttleController.Calc(targetVel - fb.airspeed);
+        //Cancel out any slip with the rudder
         fb.rudder = yawController.Calc(fb.slip);
     }
 }

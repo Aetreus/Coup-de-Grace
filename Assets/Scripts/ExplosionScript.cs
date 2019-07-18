@@ -20,8 +20,10 @@ public class ExplosionScript : MonoBehaviour {
 
 	public void explode() {
         //Create the given explosion at the present location.
-        Instantiate(explosionPrefab, transform.position, transform.rotation);
+        if(explosionPrefab != null)
+            Instantiate(explosionPrefab, transform.position, transform.rotation);
         //Spawn a number of debris that inherit the current velocity and some random deviation in velocity and drag.
+        if(debrisPrefab != null)
 		for (int i = 0; i < numDebris; i++) {
 			GameObject clone = Instantiate(debrisPrefab);
 			Transform transform = clone.GetComponent<Transform>();

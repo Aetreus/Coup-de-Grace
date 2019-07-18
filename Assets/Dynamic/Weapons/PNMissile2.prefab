@@ -62,7 +62,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
+  m_DynamicOccludee: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -374,43 +374,33 @@ MonoBehaviour:
   inertiaTensor: {x: 170, y: 170, z: 10}
   dragCoeff: 0.02
   wingArea: 1.5
+  aspectRatio: 3.014
+  oswaldEffFactor: 0.8
   staticThrust: 27000
   rollDampeningCoeff: 0.2
   yawDampeningCoeff: 0.1
   aileronControlCoeff: 0.25
   elevatorControlCoeff: 0.6
   rudderControlCoeff: 0.6
-  liftCoeffSetpoints:
-  - {x: -180, y: 0}
-  - {x: -45, y: -2}
-  - {x: -20, y: -3}
-  - {x: 20, y: 3}
-  - {x: 45, y: 2}
-  - {x: 180, y: 0}
-  crossLiftCoeffSetpoints:
-  - {x: -180, y: 0}
-  - {x: -45, y: -2}
-  - {x: -20, y: -3}
-  - {x: 20, y: 3}
-  - {x: 45, y: 2}
-  - {x: 180, y: 0}
-  pitchingMomentSetpoints:
-  - {x: -180, y: 0}
-  - {x: -120, y: 1.15}
-  - {x: -35, y: 0.7}
-  - {x: 0, y: 0}
-  - {x: 35, y: -0.7}
-  - {x: 120, y: -1.15}
-  - {x: 180, y: 0}
-  yawMomentSetpoints:
-  - {x: -180, y: 0}
-  - {x: -120, y: 1.15}
-  - {x: -35, y: 0.7}
-  - {x: 0, y: 0}
-  - {x: 35, y: -0.7}
-  - {x: 120, y: -1.15}
-  - {x: 180, y: 0}
   liftCoeff:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  crossLiftCoeff:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  pitchingMoment:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  yawMoment:
     serializedVersion: 2
     m_Curve: []
     m_PreInfinity: 2
@@ -427,7 +417,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67f98435b43caf14eb48c078020e5fa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Icon: {fileID: 1969818061814534, guid: f7d7173db0157374fb9aaedcb90acc0c, type: 2}
+  _icon: {fileID: 1969818061814534, guid: f7d7173db0157374fb9aaedcb90acc0c, type: 2}
 --- !u!198 &198058937082830708
 ParticleSystem:
   m_ObjectHideFlags: 1
